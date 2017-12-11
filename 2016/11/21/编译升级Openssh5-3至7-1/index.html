@@ -1,0 +1,511 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>编译升级Openssh5.3至7.1 | Wang&#39;T博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Wang&#39;T">
+    
+
+    
+    <meta name="description" content="编译生成OpenSSH RPM升级OpenSSH至7.1
+安装编译所需工具12yum -y groupinstall &quot;Development tools&quot;yum -y install pam-devel rpm-build rpmdevtools zlib-devel krb5-devel tcp_wrappers tcp_wrappers-devel tcp_wrappers-libs lib">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编译升级Openssh5.3至7.1">
+<meta property="og:url" content="http://wting.tk/2016/11/21/编译升级Openssh5-3至7-1/index.html">
+<meta property="og:site_name" content="Wang'T博客">
+<meta property="og:description" content="编译生成OpenSSH RPM升级OpenSSH至7.1
+安装编译所需工具12yum -y groupinstall &quot;Development tools&quot;yum -y install pam-devel rpm-build rpmdevtools zlib-devel krb5-devel tcp_wrappers tcp_wrappers-devel tcp_wrappers-libs lib">
+<meta property="og:updated_time" content="2016-11-21T02:36:38.042Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="编译升级Openssh5.3至7.1">
+<meta name="twitter:description" content="编译生成OpenSSH RPM升级OpenSSH至7.1
+安装编译所需工具12yum -y groupinstall &quot;Development tools&quot;yum -y install pam-devel rpm-build rpmdevtools zlib-devel krb5-devel tcp_wrappers tcp_wrappers-devel tcp_wrappers-libs lib">
+
+    
+    <link rel="alternative" href="atom.xml" title="Wang&#39;T博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Wang&#39;T博客" title="Wang&#39;T博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Wang&#39;T博客">Wang&#39;T博客</a></h1>
+				<h2 class="blog-motto">_入网络深似海,从此节操是路人.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页|Home</a></li>
+					
+						<li><a href="/linux">Linux</a></li>
+					
+						<li><a href="/运维">运维</a></li>
+					
+						<li><a href="/网络">网络</a></li>
+					
+						<li><a href="/虚拟化">虚拟化</a></li>
+					
+						<li><a href="/archives">归档|Archives</a></li>
+					
+						<li><a href="/about">关于|About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:wting.tk">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/11/21/编译升级Openssh5-3至7-1/" title="编译升级Openssh5.3至7.1" itemprop="url">编译升级Openssh5.3至7.1</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
+		
+  <p class="article-time">
+    <time datetime="2016-11-21T02:05:00.000Z" itemprop="datePublished"> 发表于 2016-11-21</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<p>编译生成OpenSSH RPM升级OpenSSH至7.1</p>
+<p>安装编译所需工具<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y groupinstall <span class="string">"Development tools"</span></span><br><span class="line">yum -y install pam-devel rpm-build rpmdevtools zlib-devel krb5-devel tcp_wrappers tcp_wrappers-devel tcp_wrappers-libs libX11-devel xmkmf libXt-devel wget</span><br></pre></td></tr></table></figure></p>
+<p>配置RPM编译环境<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -pv rpmbuild/&#123;BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS&#125;</span><br></pre></td></tr></table></figure></p>
+<p>下载源码包<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/rpmbuild/SOURCES/</span><br><span class="line">wget http:<span class="comment">//openbsd.hk/pub/OpenBSD/OpenSSH/portable/openssh-7.1p2.tar.gz</span></span><br><span class="line">wget http:<span class="comment">//ftp.riken.jp/Linux/momonga/6/Everything/SOURCES/x11-ssh-askpass-1.2.4.1.tar.gz</span></span><br></pre></td></tr></table></figure></p>
+<p>配置SPEC文件<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd ~/rpmbuild/SPECS</span><br><span class="line">tar xfz ../SOURCES/openssh-<span class="number">7.1</span>p2.tar.gz openssh-<span class="number">7.1</span>p2/contrib/redhat/openssh.spec</span><br><span class="line">mv openssh-<span class="number">7.1</span>p2/contrib/redhat/openssh.spec openssh-<span class="number">7.1</span>p2.spec</span><br><span class="line">rm -rf openssh-<span class="number">7.1</span>p2</span><br><span class="line">sed -i -e <span class="string">"s/%define no_gnome_askpass 0/%define no_gnome_askpass 1/g"</span> openssh-<span class="number">7.1</span>p2.spec</span><br><span class="line">sed -i -e <span class="string">"s/%define no_x11_askpass 0/%define no_x11_askpass 1/g"</span> openssh-<span class="number">7.1</span>p2.spec</span><br><span class="line">sed -i -e <span class="string">"s/BuildPreReq/BuildRequires/g"</span> openssh-<span class="number">7.1</span>p2.spec</span><br></pre></td></tr></table></figure></p>
+<p>编译生成RPM<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/rpmbuild/SPECS</span><br><span class="line">rpmbuild -bb openssh-<span class="number">7.1</span>p2.spec</span><br></pre></td></tr></table></figure></p>
+<p>查看生成的RPM<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd ~/rpmbuild/RPMS/x86_64</span><br><span class="line">ls</span><br><span class="line">-rw-r--r-- <span class="number">1</span> root root <span class="number">445248</span> Nov <span class="number">18</span> <span class="number">10</span>:<span class="number">28</span> openssh-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm</span><br><span class="line">-rw-r--r-- <span class="number">1</span> root root  <span class="number">41764</span> Nov <span class="number">18</span> <span class="number">10</span>:<span class="number">28</span> openssh-askpass-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm</span><br><span class="line">-rw-r--r-- <span class="number">1</span> root root <span class="number">577584</span> Nov <span class="number">18</span> <span class="number">10</span>:<span class="number">28</span> openssh-clients-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm</span><br><span class="line">-rw-r--r-- <span class="number">1</span> root root  <span class="number">16960</span> Nov <span class="number">18</span> <span class="number">10</span>:<span class="number">28</span> openssh-debuginfo-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm</span><br><span class="line">-rw-r--r-- <span class="number">1</span> root root <span class="number">390076</span> Nov <span class="number">18</span> <span class="number">10</span>:<span class="number">28</span> openssh-server-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm</span><br></pre></td></tr></table></figure></p>
+<p>卸载旧openssh<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa |<span class="string"> grep openssh </span>|<span class="string">xargs rpm -e  --nodeps</span></span><br></pre></td></tr></table></figure></p>
+<p>安装生成RPM包<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">yum install openssh-*</span><br><span class="line">Loaded plugins: fastestmirror, refresh-packagekit, security</span><br><span class="line">Setting up Install Process</span><br><span class="line">Examining openssh-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm: openssh-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64</span><br><span class="line">Marking openssh-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm to be installed</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line"> * base: mirrors.aliyun.com</span><br><span class="line"> * epel: mirrors.ustc.edu.cn</span><br><span class="line"> * extras: mirrors.aliyun.com</span><br><span class="line"> * remi-safe: mirrors.tuna.tsinghua.edu.cn</span><br><span class="line"> * updates: mirrors.aliyun.com</span><br><span class="line">Examining openssh-askpass-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm: openssh-askpass-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64</span><br><span class="line">Marking openssh-askpass-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm to be installed</span><br><span class="line">Examining openssh-clients-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm: openssh-clients-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64</span><br><span class="line">Marking openssh-clients-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm to be installed</span><br><span class="line">Examining openssh-debuginfo-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm: openssh-debuginfo-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64</span><br><span class="line">Marking openssh-debuginfo-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm to be installed</span><br><span class="line">Examining openssh-server-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm: openssh-server-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64</span><br><span class="line">Marking openssh-server-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm to be installed</span><br><span class="line">Resolving Dependencies</span><br><span class="line">--&gt; Running transaction check</span><br><span class="line">---&gt; Package openssh.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span> will be installed</span><br><span class="line">---&gt; Package openssh-askpass.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span> will be installed</span><br><span class="line">---&gt; Package openssh-clients.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span> will be installed</span><br><span class="line">---&gt; Package openssh-debuginfo.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span> will be installed</span><br><span class="line">---&gt; Package openssh-server.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span> will be installed</span><br><span class="line">--&gt; Finished Dependency Resolution</span><br><span class="line"></span><br><span class="line">Dependencies Resolved</span><br><span class="line"></span><br><span class="line">====================================================================================================================================================================================================</span><br><span class="line"> Package                                         Arch                                 Version                                 Repository                                                       Size</span><br><span class="line">====================================================================================================================================================================================================</span><br><span class="line">Installing:</span><br><span class="line"> openssh                                         x86_64                               <span class="number">7.1</span>p2-<span class="number">1</span>                                 /openssh-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                         <span class="number">1.9</span> M</span><br><span class="line"> openssh-askpass                                 x86_64                               <span class="number">7.1</span>p2-<span class="number">1</span>                                 /openssh-askpass-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                  <span class="number">73</span> k</span><br><span class="line"> openssh-clients                                 x86_64                               <span class="number">7.1</span>p2-<span class="number">1</span>                                 /openssh-clients-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                 <span class="number">2.0</span> M</span><br><span class="line"> openssh-debuginfo                               x86_64                               <span class="number">7.1</span>p2-<span class="number">1</span>                                 /openssh-debuginfo-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                               <span class="number">0.0</span>  </span><br><span class="line"> openssh-server                                  x86_64                               <span class="number">7.1</span>p2-<span class="number">1</span>                                 /openssh-server-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                  <span class="number">937</span> k</span><br><span class="line"></span><br><span class="line">Transaction Summary</span><br><span class="line">====================================================================================================================================================================================================</span><br><span class="line">Install       <span class="number">5</span> Package(s)</span><br><span class="line"></span><br><span class="line">Total size: <span class="number">4.9</span> M</span><br><span class="line">Installed size: <span class="number">4.9</span> M</span><br><span class="line">Is this ok [y/N]: y</span><br><span class="line">Downloading Packages:</span><br><span class="line">Running rpm_check_debug</span><br><span class="line">Running Transaction Test</span><br><span class="line">Transaction Test Succeeded</span><br><span class="line">Running Transaction</span><br><span class="line">Warning: RPMDB altered outside of yum.</span><br><span class="line">** Found <span class="number">5</span> pre-existing rpmdb problem(s), <span class="string">'yum check'</span> output follows:</span><br><span class="line">git-<span class="number">1.7</span><span class="number">.1</span>-<span class="number">4.</span>el6_7<span class="number">.1</span>.x86_64 has missing requires of openssh-clients</span><br><span class="line">gnome-user-share-<span class="number">2.28</span><span class="number">.2</span>-<span class="number">3.</span>el6.x86_64 has missing requires of httpd &gt;= (<span class="string">'0'</span>, <span class="string">'2.2.0'</span>, None)</span><br><span class="line">php-<span class="number">5.6</span><span class="number">.26</span>-<span class="number">1.</span>el6.remi.x86_64 has missing requires of httpd-mmn = (<span class="string">'0'</span>, <span class="string">'20051115'</span>, None)</span><br><span class="line">python-meh-<span class="number">0.12</span><span class="number">.1</span>-<span class="number">3.</span>el6.noarch has missing requires of openssh-clients</span><br><span class="line">systemtap-client-<span class="number">2.9</span>-<span class="number">4.</span>el6.x86_64 has missing requires of openssh-clients</span><br><span class="line">  Installing : openssh-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                           <span class="number">1</span>/<span class="number">5</span> </span><br><span class="line">  Installing : openssh-askpass-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                   <span class="number">2</span>/<span class="number">5</span> </span><br><span class="line">  Installing : openssh-server-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                    <span class="number">3</span>/<span class="number">5</span> </span><br><span class="line">  Installing : openssh-clients-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                   <span class="number">4</span>/<span class="number">5</span> </span><br><span class="line">  Installing : openssh-debuginfo-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                 <span class="number">5</span>/<span class="number">5</span> </span><br><span class="line">  Verifying  : openssh-askpass-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                   <span class="number">1</span>/<span class="number">5</span> </span><br><span class="line">  Verifying  : openssh-server-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                    <span class="number">2</span>/<span class="number">5</span> </span><br><span class="line">  Verifying  : openssh-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                           <span class="number">3</span>/<span class="number">5</span> </span><br><span class="line">  Verifying  : openssh-clients-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                   <span class="number">4</span>/<span class="number">5</span> </span><br><span class="line">  Verifying  : openssh-debuginfo-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                 <span class="number">5</span>/<span class="number">5</span> </span><br><span class="line"></span><br><span class="line">Installed:</span><br><span class="line">  openssh.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span>        openssh-askpass.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span>        openssh-clients.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span>        openssh-debuginfo.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span>        openssh-server.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span>       </span><br><span class="line">Complete!</span><br></pre></td></tr></table></figure></p>
+<p>将配置文件更新为新版本，避免某些参数变更造成无法远程登录<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp <span class="regexp">/etc/</span>ssh<span class="regexp">/sshd_config.rpmnew /</span>etc<span class="regexp">/ssh/</span>sshd_config</span><br></pre></td></tr></table></figure></p>
+<p>制作ssh rpm 包升级后，ssh无法登录系统，报错如下：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PAM unable to dlopen(<span class="regexp">/lib64/</span>security<span class="regexp">/pam_stack.so): /</span>lib64<span class="regexp">/security/</span>pam_stack.<span class="string">so:</span> cannot open shared object <span class="string">file:</span> No such file or directory</span><br><span class="line">PAM adding faulty <span class="string">module:</span> <span class="regexp">/lib64/</span>security/pam_stack.so</span><br></pre></td></tr></table></figure></p>
+<p>解决方法：<br>ssh rpm 升级后会修改/etc/pam.d/sshd 文件<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#%PAM-<span class="number">1.0</span></span><br><span class="line">auth       required     pam_stack.<span class="keyword">so</span> service=<span class="built_in">system</span>-auth</span><br><span class="line">account    required     pam_nologin.<span class="keyword">so</span></span><br><span class="line">account    required     pam_stack.<span class="keyword">so</span> service=<span class="built_in">system</span>-auth</span><br><span class="line">password   required     pam_stack.<span class="keyword">so</span> service=<span class="built_in">system</span>-auth</span><br><span class="line">session    required     pam_stack.<span class="keyword">so</span> service=<span class="built_in">system</span>-auth</span><br><span class="line">需要恢复原来的模样，如下：</span><br><span class="line"></span><br><span class="line">#%PAM-<span class="number">1.0</span></span><br><span class="line">auth       required     pam_sepermit.<span class="keyword">so</span></span><br><span class="line">auth       include      password-auth</span><br><span class="line">account    required     pam_nologin.<span class="keyword">so</span></span><br><span class="line">account    include      password-auth</span><br><span class="line">password   include      password-auth</span><br><span class="line"># pam_selinux.<span class="keyword">so</span> <span class="keyword">close</span> should <span class="keyword">be</span> the <span class="keyword">first</span> session rule</span><br><span class="line">session    required     pam_selinux.<span class="keyword">so</span> <span class="keyword">close</span></span><br><span class="line">session    required     pam_loginuid.<span class="keyword">so</span></span><br><span class="line"># pam_selinux.<span class="keyword">so</span> <span class="keyword">open</span> should <span class="keyword">only</span> <span class="keyword">be</span> followed by sessions <span class="keyword">to</span> <span class="keyword">be</span> executed in the user context</span><br><span class="line">session    required     pam_selinux.<span class="keyword">so</span> <span class="keyword">open</span> env_params</span><br><span class="line">session    optional     pam_keyinit.<span class="keyword">so</span> force revoke</span><br><span class="line">session    include      password-auth</span><br></pre></td></tr></table></figure></p>
+<p>重启SSH服务<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/etc/i</span>nit.d<span class="regexp">/sshd restart</span></span><br></pre></td></tr></table></figure></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/linux/">linux</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/02/23/zabbix改中文/" title="zabbix改中文">
+  <strong>上一篇：</strong><br/>
+  <span>
+  zabbix改中文</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/11/09/nginx日志自动切割脚本/"  title="nginx日志自动切割脚本">
+ <strong>下一篇：</strong><br/> 
+ <span>nginx日志自动切割脚本
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/11/21/编译升级Openssh5-3至7-1/" data-title="编译升级Openssh5.3至7.1" data-url="http://wting.tk/2016/11/21/编译升级Openssh5-3至7-1/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+  <iframe width="100%" height="200" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=4&isTitle=1&noborder=0&isWeibo=0&isFans=0&uid=3857079413&verifier=f23b343c&dpc=1"></iframe>
+  </div>
+
+
+  
+
+  <div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/nginx/" title="nginx">nginx<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/shell/" title="shell">shell<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tomcat/" title="tomcat">tomcat<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络/" title="网络">网络<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/集群/" style="font-size: 10px;">-集群</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/VRRP/" style="font-size: 10px;">VRRP</a> <a href="/tags/lvs/" style="font-size: 10px;">lvs</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/ssl/" style="font-size: 10px;">ssl</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/tags/zabbix/" style="font-size: 15px;">zabbix</a>
+    </div>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.g5od.com" target="_blank" title="Goooood的技术博客">Goooood的技术博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.sky-oracle.com" target="_blank" title="Oracle 自学手册">Oracle 自学手册</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ytniu.com" target="_blank" title="SRE杂谈">SRE杂谈</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello, this is wang&#39;T blog. <br/>
+			Hosted in GitHub.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/3857079413" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/Hwting" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:wang.t.nace@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Wang&#39;T">Wang&#39;T</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"wtingnet"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?36d5a879adb375c2431070b83481fdf5";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

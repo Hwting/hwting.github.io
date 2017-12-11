@@ -1,0 +1,986 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Wang&#39;T博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Wang&#39;T">
+    
+
+    
+    <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wang'T博客">
+<meta property="og:url" content="http://wting.tk/index.html">
+<meta property="og:site_name" content="Wang'T博客">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Wang'T博客">
+<meta name="twitter:description">
+
+    
+    <link rel="alternative" href="atom.xml" title="Wang&#39;T博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Wang&#39;T博客" title="Wang&#39;T博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Wang&#39;T博客">Wang&#39;T博客</a></h1>
+				<h2 class="blog-motto">_入网络深似海,从此节操是路人.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页|Home</a></li>
+					
+						<li><a href="/linux">Linux</a></li>
+					
+						<li><a href="/运维">运维</a></li>
+					
+						<li><a href="/网络">网络</a></li>
+					
+						<li><a href="/虚拟化">虚拟化</a></li>
+					
+						<li><a href="/archives">归档|Archives</a></li>
+					
+						<li><a href="/about">关于|About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:wting.tk">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main">
+
+   
+    
+    <article class="post-expand n" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/12/11/zabbix自动发现交换机接口信息监控网络设备流量模板配置/" title="zabbix自动发现交换机接口信息监控网络设备流量模板配置" itemprop="url">zabbix自动发现交换机接口信息监控网络设备流量模板配置</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
+		
+  <p class="article-time">
+    <time datetime="2017-12-11T04:53:00.000Z" itemprop="datePublished"> 发表于 2017-12-11</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>1、思科交换机snmp配置<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">建立snmp团体，名称为<span class="keyword">public</span>，权限为只读</span><br><span class="line">(config)<span class="comment">#snmp-server community public ro</span></span><br><span class="line">    允许路由器将所有类型SNMP Trap发送出去</span><br><span class="line">(config)<span class="comment">#snmp-server enable traps</span></span><br><span class="line">    设置主机<span class="number">172.16</span><span class="number">.0</span><span class="number">.21</span>接受交换机所发送过来的SNMP Trap 信息</span><br><span class="line">(config)<span class="comment">#snmp-server host 172.16.0.21 version 2c public</span></span><br><span class="line">    使用loopback0接口的IP地址作为SNMP Traps发送源地址，这个随便可以不用。</span><br><span class="line">(config)<span class="comment">#snmp-server trap-source loopback0</span></span><br><span class="line">    zabbix执行测试</span><br><span class="line">snmpwalk -v <span class="number">2</span>c -c <span class="keyword">public</span>   <span class="number">172.16</span><span class="number">.0</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="u914D_u7F6E_u53D1_u73B0_u89C4_u5219__u8FD9_u91CC_u4F7F_u7528_u6DF1_u4FE1_u670D_u8BBE_u5907"><a href="#u914D_u7F6E_u53D1_u73B0_u89C4_u5219__u8FD9_u91CC_u4F7F_u7528_u6DF1_u4FE1_u670D_u8BBE_u5907" class="headerlink" title="配置发现规则 这里使用深信服设备"></a>配置发现规则 这里使用深信服设备</h1><p>配置 → 模板→点击适当模板行中的发现<br><img src="/img/zabbix1.png" alt="zabbix"><br>点击屏幕右上角的创建发现规则<br>填写发现规则表单，具体细节如下面的屏幕截图所示<br><img src="/img/zabbix2.png" alt="zabbix"><br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">名称 Network interfaces</span><br><span class="line">类型  SNMPv2 agent</span><br><span class="line">键值 ifDescr</span><br><span class="line">SNMP OID discovery[&#123;#SNMPVALUE&#125;,IF-MIB::ifDescr]</span><br><span class="line">SNMP community &#123;<span class="variable">$SNMP</span>_COMMUNITY&#125;</span><br><span class="line">端口 <span class="number">161</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">要发现的<span class="tag">OID</span>在<span class="tag">SNMP</span> <span class="tag">OID</span>字段中按以下格式定义： <span class="tag">discovery</span><span class="attr_selector">[&#123;#MACRO1&#125;, oid1, &#123;#MACRO2&#125;, oid2, …,]</span></span><br><span class="line">其中&#123;<span class="id">#MACRO1</span>&#125;，&#123;<span class="id">#MACRO2</span>&#125; ...是有效的宏名称，<span class="tag">oid1</span>，<span class="tag">oid2</span> ...是能够为这些宏生成有意义的值的<span class="tag">OID</span>。包含已发现<span class="tag">OID</span>索引的内置宏&#123;<span class="id">#SNMPINDEX</span>&#125;将应用于发现的实体。发现的实体按&#123;<span class="id">#SNMPINDEX</span>&#125;宏值分组。</span><br></pre></td></tr></table></figure>
+<p>为了理解我们的意思，让我们在我们的交换机上执行几个步骤：<br>snmpwalk获取接口描述<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost~]<span class="preprocessor"># snmpwalk -v <span class="number">2</span>c -c public  <span class="number">172.16</span><span class="number">.0</span><span class="number">.1</span>  IF-MIB:ifDescr</span></span><br><span class="line">IF-MIB::ifDescr<span class="number">.1</span> = STRING: lo</span><br><span class="line">IF-MIB::ifDescr<span class="number">.2</span> = STRING: blackhole</span><br><span class="line">IF-MIB::ifDescr<span class="number">.3</span> = STRING: eth0</span><br><span class="line">IF-MIB::ifDescr<span class="number">.4</span> = STRING: eth1</span><br><span class="line">IF-MIB::ifDescr<span class="number">.5</span> = STRING: eth2</span><br><span class="line">IF-MIB::ifDescr<span class="number">.6</span> = STRING: eth3</span><br><span class="line">IF-MIB::ifDescr<span class="number">.7</span> = STRING: eth4</span><br><span class="line">IF-MIB::ifDescr<span class="number">.8</span> = STRING: eth5</span><br><span class="line">IF-MIB::ifDescr<span class="number">.9</span> = STRING: bond0</span><br><span class="line">IF-MIB::ifDescr<span class="number">.10</span> = STRING: bond1</span><br><span class="line">IF-MIB::ifDescr<span class="number">.11</span> = STRING: bond2</span><br><span class="line">IF-MIB::ifDescr<span class="number">.12</span> = STRING: bond3</span><br><span class="line">IF-MIB::ifDescr<span class="number">.13</span> = STRING: bond4</span><br><span class="line">IF-MIB::ifDescr<span class="number">.14</span> = STRING: gre0</span><br><span class="line">IF-MIB::ifDescr<span class="number">.15</span> = STRING: vlan0</span><br><span class="line">IF-MIB::ifDescr<span class="number">.16</span> = STRING: vpntun</span><br><span class="line">IF-MIB::ifDescr<span class="number">.17</span> = STRING: Tun0</span><br><span class="line">IF-MIB::ifDescr<span class="number">.18</span> = STRING: Tun</span><br><span class="line">[root@localhost~]<span class="preprocessor"># snmpwalk -v <span class="number">2</span>c -c public  <span class="number">172.16</span><span class="number">.0</span><span class="number">.1</span> IF-MIB::ifPhysAddress</span></span><br><span class="line">IF-MIB::ifPhysAddress<span class="number">.1</span> = STRING: </span><br><span class="line">IF-MIB::ifPhysAddress<span class="number">.2</span> = STRING: </span><br><span class="line">IF-MIB::ifPhysAddress<span class="number">.3</span> = STRING: <span class="number">68</span>:ed:a4:a:<span class="number">5f</span>:d1</span><br><span class="line">IF-MIB::ifPhysAddress<span class="number">.4</span> = STRING: <span class="number">68</span>:ed:a4:a:<span class="number">5f</span>:d4</span><br><span class="line">IF-MIB::ifPhysAddress<span class="number">.5</span> = STRING: <span class="number">68</span>:ed:a4:a:<span class="number">5f</span>:d3</span><br><span class="line">IF-MIB::ifPhysAddress<span class="number">.6</span> = STRING: <span class="number">68</span>:ed:a4:a:<span class="number">5f</span>:d2</span><br><span class="line">IF-MIB::ifPhysAddress<span class="number">.7</span> = STRING: <span class="number">68</span>:ed:a4:b:d8:<span class="number">71</span></span><br><span class="line">IF-MIB::ifPhysAddress<span class="number">.8</span> = STRING: <span class="number">68</span>:ed:a4:b:d8:<span class="number">72</span></span><br><span class="line">IF-MIB::ifPhysAddress<span class="number">.9</span> = STRING: </span><br><span class="line">IF-MIB::ifPhysAddress<span class="number">.10</span> = STRING: </span><br><span class="line">IF-MIB::ifPhysAddress<span class="number">.11</span> = STRING: </span><br><span class="line">IF-MIB::ifPhysAddress<span class="number">.12</span> = STRING: </span><br><span class="line">IF-MIB::ifPhysAddress<span class="number">.13</span> = STRIN</span><br><span class="line">IF-MIB::ifPhysAddress<span class="number">.14</span> = STRING: </span><br><span class="line">IF-MIB::ifPhysAddress<span class="number">.15</span> = STRING: <span class="number">2</span>:<span class="number">0</span>:<span class="number">4</span>c:<span class="number">69</span>:<span class="number">36</span>:<span class="number">49</span></span><br><span class="line">IF-MIB::ifPhysAddress<span class="number">.16</span> = STRING: </span><br><span class="line">IF-MIB::ifPhysAddress<span class="number">.17</span> = STRING: </span><br><span class="line">IF-MIB::ifPhysAddress<span class="number">.18</span> = STRING:</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">并将SNMP OID设置为： discovery[</span><span class="expression">&#123;<span class="begin-block">#IFDESCR</span>&#125;</span><span class="xml">, ifDescr, </span><span class="expression">&#123;<span class="begin-block">#IFPHYSADDRESS</span>&#125;</span><span class="xml">, ifPhysAddress]</span></span><br></pre></td></tr></table></figure>
+<h1 id="u76D1_u63A7_u9879_u539F_u578B"><a href="#u76D1_u63A7_u9879_u539F_u578B" class="headerlink" title="监控项原型"></a>监控项原型</h1><p>获取接口出流量信息<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost~]<span class="preprocessor"># snmpwalk -v <span class="number">2</span>c -c public  <span class="number">172.16</span><span class="number">.0</span><span class="number">.1</span> ifoutOctets</span></span><br><span class="line">IF-MIB::ifOutOctets<span class="number">.1</span> = Counter32: <span class="number">2312213349</span></span><br><span class="line">IF-MIB::ifOutOctets<span class="number">.2</span> = Counter32: <span class="number">0</span></span><br><span class="line">IF-MIB::ifOutOctets<span class="number">.3</span> = Counter32: <span class="number">1302935657</span></span><br><span class="line">IF-MIB::ifOutOctets<span class="number">.4</span> = Counter32: <span class="number">2736366927</span></span><br><span class="line">IF-MIB::ifOutOctets<span class="number">.5</span> = Counter32: <span class="number">16974643</span></span><br><span class="line">IF-MIB::ifOutOctets<span class="number">.6</span> = Counter32: <span class="number">242096597</span></span><br><span class="line">IF-MIB::ifOutOctets<span class="number">.7</span> = Counter32: <span class="number">0</span></span><br><span class="line">IF-MIB::ifOutOctets<span class="number">.8</span> = Counter32: <span class="number">0</span></span><br><span class="line">IF-MIB::ifOutOctets<span class="number">.9</span> = Counter32: <span class="number">0</span></span><br><span class="line">IF-MIB::ifOutOctets<span class="number">.10</span> = Counter32: <span class="number">0</span></span><br><span class="line">IF-MIB::ifOutOctets<span class="number">.11</span> = Counter32: <span class="number">0</span></span><br><span class="line">IF-MIB::ifOutOctets<span class="number">.12</span> = Counter32: <span class="number">0</span></span><br><span class="line">IF-MIB::ifOutOctets<span class="number">.13</span> = Counter32: <span class="number">0</span></span><br><span class="line">IF-MIB::ifOutOctets<span class="number">.14</span> = Counter32: <span class="number">0</span></span><br><span class="line">IF-MIB::ifOutOctets<span class="number">.15</span> = Counter32: <span class="number">0</span></span><br><span class="line">IF-MIB::ifOutOctets<span class="number">.16</span> = Counter32: <span class="number">2958989090</span></span><br><span class="line">IF-MIB::ifOutOctets<span class="number">.17</span> = Counter32: <span class="number">1787720</span></span><br><span class="line">IF-MIB::ifOutOctets<span class="number">.18</span> = Counter32: <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="u6DFB_u52A0item"><a href="#u6DFB_u52A0item" class="headerlink" title="添加item"></a>添加item</h2><p><img src="/img/zabbix3.png" alt="zabbix"><br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">名称 Outbound traffic on interface <span class="variable">$1</span></span><br><span class="line">类型 SNMPv2 agent</span><br><span class="line">键值 ifOutOctets[&#123;#SNMPVALUE&#125;]</span><br><span class="line">SNMP OID IF-MIB::ifOutOctets.&#123;#SNMPINDEX&#125;</span><br><span class="line">SNMPcommunity &#123;<span class="variable">$SNMP</span>_COMMUNITY&#125;</span><br><span class="line">端口 <span class="number">161</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">进流量只需要改</span><br><span class="line">名称  Incoming traffic on interface <span class="variable">$1</span></span><br><span class="line">键值 ifInOctets[&#123;#SNMPVALUE&#125;]</span><br><span class="line">SNMP OID IF-MIB::ifInOctets.&#123;#SNMPINDEX&#125;</span><br></pre></td></tr></table></figure>
+<p>根据需要创建尽可能多的项目原型<br><img src="/img/zabbix4.png" alt="zabbix"></p>
+<h1 id="Graph_prototypes__u521B_u5EFA_u56FE_u5F62"><a href="#Graph_prototypes__u521B_u5EFA_u56FE_u5F62" class="headerlink" title="Graph prototypes 创建图形"></a>Graph prototypes 创建图形</h1><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">名称： &#123;<span class="id">#SNMPVALUE</span>&#125;接口流量信息</span><br></pre></td></tr></table></figure>
+<p><img src="/img/zabbix5.png" alt="zabbix"><br><img src="/img/zabbix6.png" alt="zabbix"><br>主机添加模板省略（博客不方便放图片）</p>
+<h1 id="u914D_u7F6E_u65B0_u52A0_u7F51_u7EDC_u8BBE_u5907Macros_u53C2_u6570"><a href="#u914D_u7F6E_u65B0_u52A0_u7F51_u7EDC_u8BBE_u5907Macros_u53C2_u6570" class="headerlink" title="配置新加网络设备Macros参数"></a>配置新加网络设备Macros参数</h1><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设置 Host macros :  MACRO : &#123;<span class="variable">$SNMP</span>_COMMUNITY&#125;  ； VALUE : public (VALUE 值是配置网络设备SNMP的团体字符串)</span><br></pre></td></tr></table></figure>
+<p><img src="/img/zabbix7.png" alt="zabbix"></p>
+<h1 id="u67E5_u770B_u76D1_u63A7"><a href="#u67E5_u770B_u76D1_u63A7" class="headerlink" title="查看监控"></a>查看监控</h1><p><img src="/img/zabbix8.png" alt="zabbix"></p>
+<p>官网资料<a href="https://www.zabbix.com/documentation/3.4/manual/discovery/low_level_discovery/snmp_oidsG" target="_blank" rel="external">https://www.zabbix.com/documentation/3.4/manual/discovery/low_level_discovery/snmp_oidsG</a>: </p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/zabbix/">zabbix</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/12/11/zabbix自动发现交换机接口信息监控网络设备流量模板配置/#comments" class="ds-thread-count comments-count-link" data-thread-key="2017/12/11/zabbix自动发现交换机接口信息监控网络设备流量模板配置/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/11/29/MySQL批量杀连接的几种方法/" title="MySQL批量杀连接的几种方法" itemprop="url">MySQL批量杀连接的几种方法</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
+		
+  <p class="article-time">
+    <time datetime="2017-11-29T07:29:00.000Z" itemprop="datePublished"> 发表于 2017-11-29</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="u65B9_u6CD5_u4E00"><a href="#u65B9_u6CD5_u4E00" class="headerlink" title="方法一"></a>方法一</h1><p>通过information_schema.processlist表中的连接信息生成需要处理掉的MySQL连接的语句临时文件，然后执行临时文件中生成的指令。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select concat(<span class="string">'KILL '</span>,id,<span class="string">';'</span>) from information_schema.processlist <span class="built_in">where</span> user=<span class="string">'root'</span>;</span><br><span class="line">+------------------------+</span><br><span class="line">| concat(<span class="string">'KILL '</span>,id,<span class="string">';'</span>) |</span><br><span class="line">+------------------------+</span><br><span class="line">| KILL <span class="number">3101</span>;             |</span><br><span class="line">| KILL <span class="number">2946</span>;             |</span><br><span class="line">+------------------------+</span><br><span class="line"><span class="number">2</span> rows <span class="keyword">in</span> <span class="built_in">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;select concat(<span class="string">'KILL '</span>,id,<span class="string">';'</span>) from information_schema.processlist <span class="built_in">where</span> user=<span class="string">'root'</span> into outfile <span class="string">'/tmp/a.txt'</span>;</span><br><span class="line">Query OK, <span class="number">2</span> rows affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;<span class="built_in">source</span> /tmp/a.txt;</span><br><span class="line">Query OK, <span class="number">0</span> rows affected (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
+<h1 id="u65B9_u6CD5_u4E8C"><a href="#u65B9_u6CD5_u4E8C" class="headerlink" title="方法二"></a>方法二</h1><p>杀掉当前所有的MySQL连接<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -uroot -p processlist|awk -F <span class="string">"|"</span> <span class="string">'&#123;print $2&#125;'</span>|xargs -n <span class="number">1</span> mysqladmin -uroot -p <span class="built_in">kill</span></span><br></pre></td></tr></table></figure></p>
+<p>杀掉指定用户运行的连接，这里为Mike<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -uroot -p processlist|awk -F <span class="string">"|"</span> <span class="string">'&#123;if($3 == "Mike")print $2&#125;'</span>|xargs -n <span class="number">1</span> mysqladmin -uroot -p <span class="built_in">kill</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="u65B9_u6CD5_u4E09"><a href="#u65B9_u6CD5_u4E09" class="headerlink" title="方法三"></a>方法三</h1><p>通过SHEL脚本实现<br>杀掉锁定的MySQL连接<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="keyword">for</span> id <span class="keyword">in</span> `mysqladmin processlist | grep -i locked | awk <span class="string">'&#123;print $1&#125;'</span>`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">mysqladmin <span class="built_in">kill</span> <span class="variable">$&#123;id&#125;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="u65B9_u6CD5_u56DB"><a href="#u65B9_u6CD5_u56DB" class="headerlink" title="方法四"></a>方法四</h1><p>通过Maatkit工具集中提供的mk-kill命令进行</p>
+<ul>
+<li>杀掉超过60秒的sql<br>mk-kill -busy-time 60 -kill</li>
+<li>如果你想先不杀，先看看有哪些sql运行超过60秒<br>mk-kill -busy-time 60 -print</li>
+<li>如果你想杀掉，同时输出杀掉了哪些进程<br>mk-kill -busy-time 60 -print –kill</li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/linux/">linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/MySQL/">MySQL</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/11/29/MySQL批量杀连接的几种方法/#comments" class="ds-thread-count comments-count-link" data-thread-key="2017/11/29/MySQL批量杀连接的几种方法/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/11/17/nginx配置http2平滑升级/" title="nginx配置http2平滑升级" itemprop="url">nginx配置http2平滑升级</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
+		
+  <p class="article-time">
+    <time datetime="2017-11-17T06:13:00.000Z" itemprop="datePublished"> 发表于 2017-11-17</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="HTTP/2_u4F18_u70B9"><a href="#HTTP/2_u4F18_u70B9" class="headerlink" title="HTTP/2优点"></a>HTTP/2优点</h2><ul>
+<li><p>采用二进制格式传输数据，而非文本格式。二进制格式在协议的解析和优化扩展上带来更多的优势和可能。</p>
+</li>
+<li><p>对消息头进行压缩传输，能够节省消息头占用的网络的流量，而 HTTP 1.1 每次请求，都会携带大量冗余头信息，浪费了很多带宽资源，头压缩能够很好的解决该问题。</p>
+</li>
+<li><p>多路复用，就是多个请求都是通过一个 TCP 连接并发完成， HTTP 1.1 虽然通过 pipeline 也能并发请求，但是多个请求之间的响应会被阻塞的，所以 pipeline 至今也没有被普及应用，而 HTTP/2 做到了真正的并发请求，同时流还支持优先级和流量控制。</p>
+</li>
+<li><p>服务器推送，服务端能够更快的把资源推送给客户端，例如服务端可以主动把 JS 和 CSS 文件推送给客户端，而不需要客户端解析 HTML 再发送这些请求，当客户端需要的时候，它已经在客户端了。</p>
+</li>
+</ul>
+<p>HTTP/2站点的优势</p>
+<ul>
+<li>提升网站访问速度。</li>
+<li>降低服务器压力。</li>
+<li>部分替代异步加载的使用。</li>
+<li>保护网站安全。<h2 id="nginx_u914D_u7F6Ehttp2"><a href="#nginx_u914D_u7F6Ehttp2" class="headerlink" title="nginx配置http2"></a>nginx配置http2</h2>默认编译的 Nginx 并不包含 h2 模块，我们需要加入参数来编译。Nginx 1.9 开发版及以上版本源码需要自己加入编译参数。<br>以下是平滑升级模块过程<br>最后使用源码自带升级命令：make upgrade自动完成平滑<br>根据需求添加编译模块，不过只需要执行到make 不要执行make install！<br>http2需要openss1.0.2e以上版本<br>下载openssl<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https:<span class="comment">//www.openssl.org/source/openssl-1.0.2m.tar.gz</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这里查看我当前nginx编译参数<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx  -V</span><br><span class="line">configure arguments: --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module</span><br></pre></td></tr></table></figure></p>
+<p>到nginx源码下重新编译nginx,解压openssl指定openssl源码路径 –with-openssl=../openssl-1.0.2m<br>加上 –with-http_realip_module –with-http_v2_module   –with-openssl=../openssl-1.0.2<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure  --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module --with-http_v2_module   --with-openssl=../openssl-<span class="number">1.0</span><span class="number">.2</span>m</span><br><span class="line"><span class="comment">#执行到make 不要执行make install</span></span><br><span class="line">make <span class="comment">#执行make 但不要执行make install</span></span><br></pre></td></tr></table></figure></p>
+<p>备份二进制文件<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv  /usr/local/nginx/sbin/nginx /usr/local/nginx/sbin/nginx.back</span><br></pre></td></tr></table></figure></p>
+<p>期间nginx并不会停止服务<br>拷贝新编译的二进制文件<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp objs/nginx /usr/local/nginx/sbin/</span><br></pre></td></tr></table></figure></p>
+<p>在源码目录下执行平滑重新加载配置命令<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">nginx-<span class="number">1.12</span><span class="number">.0</span>]<span class="comment"># make upgrade</span></span><br><span class="line">usr/local/nginx/sbin/nginx -t</span><br><span class="line">nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /etc/nginx/nginx.conf test is successful</span><br><span class="line">kill -USR2 `cat /usr/local/nginx/logs/nginx.pid`</span><br><span class="line">sleep <span class="number">1</span></span><br><span class="line">test -f /usr/local/nginx/logs/nginx.pid.oldbin</span><br><span class="line">kill -QUIT `cat /usr/local/nginx/logs/nginx.pid.oldbin`</span><br></pre></td></tr></table></figure></p>
+<p>验证<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nginx-<span class="number">1.12</span><span class="number">.0</span>]<span class="comment">#/usr/local/nginx/sbin/nginx  -V</span></span><br><span class="line">nginx version: Microsoft-IIS/<span class="number">1.12</span><span class="number">.0</span></span><br><span class="line">built by gcc <span class="number">4.4</span><span class="number">.7</span> <span class="number">20120313</span> (Red Hat <span class="number">4.4</span><span class="number">.7</span>-<span class="number">18</span>) (GCC) </span><br><span class="line">built with OpenSSL <span class="number">1.0</span><span class="number">.2</span>m  <span class="number">2</span> Nov <span class="number">2017</span></span><br><span class="line">TLS SNI support enabled</span><br><span class="line">configure arguments: --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module --with-http_v2_module --with-openssl=../openssl-<span class="number">1.0</span><span class="number">.2</span>m</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/nginx2.png" alt="nginx"><br>http2demo：<a href="https://http2.akamai.com/demo" target="_blank" rel="external">https://http2.akamai.com/demo</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/nginx/">nginx</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/nginx/">nginx</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/11/17/nginx配置http2平滑升级/#comments" class="ds-thread-count comments-count-link" data-thread-key="2017/11/17/nginx配置http2平滑升级/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/10/24/Nginx编译添加后端健康检查模块/" title="Nginx编译添加后端健康检查模块" itemprop="url">Nginx编译添加后端健康检查模块</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
+		
+  <p class="article-time">
+    <time datetime="2017-10-24T06:23:28.000Z" itemprop="datePublished"> 发表于 2017-10-24</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>该模块可以为Tengine提供主动式后端服务器健康检查的功能。可以通过补丁的方式来添加该模块到我们自己的nginx中。</p>
+<h1 id="u4E0B_u8F7Dnginx_upstream_check_module_u6A21_u5757"><a href="#u4E0B_u8F7Dnginx_upstream_check_module_u6A21_u5757" class="headerlink" title="下载nginx_upstream_check_module模块"></a>下载nginx_upstream_check_module模块</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">clone</span> https:<span class="comment">//github.com/yaoweibin/nginx_upstream_check_module.git</span></span><br></pre></td></tr></table></figure>
+<p>编译补丁到nginx，必须使用最新的nginx_upstream_check_module才支持nginx 1.12.2版本<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd ~/nginx-<span class="number">1.12</span><span class="number">.2</span> <span class="comment">##进入nginx的源码目录</span></span><br><span class="line">nginx-<span class="number">1.12</span><span class="number">.2</span>]<span class="comment"># patch -p1 &lt; ../nginx_upstream_check_module/check_1.12.1+.patch </span></span><br><span class="line">patching file src/http/modules/ngx_http_upstream_hash_module.c</span><br><span class="line">patching file src/http/modules/ngx_http_upstream_ip_hash_module.c</span><br><span class="line">patching file src/http/modules/ngx_http_upstream_least_conn_module.c</span><br><span class="line">patching file src/http/ngx_http_upstream_round_robin.c</span><br><span class="line">patching file src/http/ngx_http_upstream_round_robin.h</span><br></pre></td></tr></table></figure></p>
+<h2 id="u67E5_u770B_u4E4B_u524D_u7684nginx_u7F16_u8BD1_u53C2_u6570"><a href="#u67E5_u770B_u4E4B_u524D_u7684nginx_u7F16_u8BD1_u53C2_u6570" class="headerlink" title="查看之前的nginx编译参数"></a>查看之前的nginx编译参数</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /usr/local/nginx/sbin/nginx -V</span></span><br><span class="line">nginx version: nginx/<span class="number">1.10</span><span class="number">.1</span></span><br><span class="line">built by gcc <span class="number">4.4</span><span class="number">.7</span> <span class="number">20120313</span> (Red Hat <span class="number">4.4</span><span class="number">.7</span>-<span class="number">18</span>) (GCC) </span><br><span class="line">built with OpenSSL <span class="number">1.0</span><span class="number">.1</span>e-fips <span class="number">11</span> Feb <span class="number">2013</span></span><br><span class="line">TLS SNI support enabled</span><br><span class="line">configure arguments: --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module</span><br></pre></td></tr></table></figure>
+<p>编译nginx参数，此处只make 不要make install，编译参数需要和之前的一样添加–add-module=<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ./configure --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module --add-module=../nginx_upstream_check_module/</span></span><br><span class="line">make</span><br><span class="line">.....</span><br><span class="line">trueobjs/addon/nginx_upstream_check_module/ngx_http_upstream_check_module.o \</span><br><span class="line">trueobjs/ngx_modules.o \</span><br><span class="line">true-ldl -lpthread -lcrypt -lpcre -lssl -lcrypto -ldl -lz \</span><br><span class="line">true-Wl,-E</span><br><span class="line">sed -e <span class="string">"s|%%PREFIX%%|/usr/local/nginx|"</span> \</span><br><span class="line">truetrue-e <span class="string">"s|%%PID_PATH%%|/usr/local/nginx/logs/nginx.pid|"</span> \</span><br><span class="line">truetrue-e <span class="string">"s|%%CONF_PATH%%|/etc/nginx/nginx.conf|"</span> \</span><br><span class="line">truetrue-e <span class="string">"s|%%ERROR_LOG_PATH%%|/usr/local/nginx/logs/error.log|"</span> \</span><br><span class="line">truetrue&lt; man/nginx<span class="number">.8</span> &gt; objs/nginx<span class="number">.8</span></span><br><span class="line">make[<span class="number">1</span>]: Leaving directory `/root/nginx-<span class="number">1.12</span><span class="number">.2</span><span class="string">'</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">备份旧版本nginx </span><br><span class="line">cp -a /usr/local/nginx/sbin/nginx  /usr/local/nginx/sbin/nginx.back</span><br><span class="line">停止nginx服务，替换nginx执行文件</span><br><span class="line">/usr/local/nginx/sbin/nginx -s stop</span><br><span class="line">nginx-<span class="number">1.12</span><span class="number">.2</span>]<span class="comment"># cp -a objs/nginx /usr/local/nginx/sbin/</span></span><br><span class="line">cp: overwrite `/usr/local/nginx/sbin/nginx<span class="string">'? y</span></span><br></pre></td></tr></table></figure>
+<h3 id="u9A8C_u8BC1_u7248_u672C_u5DF2_u7ECF_u5347_u7EA7_u52301-12-2__u6DFB_u52A0_u4E86nginx_upstream_check_module_u6A21_u5757"><a href="#u9A8C_u8BC1_u7248_u672C_u5DF2_u7ECF_u5347_u7EA7_u52301-12-2__u6DFB_u52A0_u4E86nginx_upstream_check_module_u6A21_u5757" class="headerlink" title="验证版本已经升级到1.12.2 添加了nginx_upstream_check_module模块"></a>验证版本已经升级到1.12.2 添加了nginx_upstream_check_module模块</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> nginx-<span class="number">1.12</span><span class="number">.2</span>]<span class="comment"># /usr/local/nginx/sbin/nginx -V</span></span><br><span class="line">nginx version: nginx/<span class="number">1.12</span><span class="number">.2</span></span><br><span class="line">built by gcc <span class="number">4.4</span><span class="number">.7</span> <span class="number">20120313</span> (Red Hat <span class="number">4.4</span><span class="number">.7</span>-<span class="number">18</span>) (GCC) </span><br><span class="line">built with OpenSSL <span class="number">1.0</span><span class="number">.1</span>e-fips <span class="number">11</span> Feb <span class="number">2013</span></span><br><span class="line">TLS SNI support enabled</span><br><span class="line">configure arguments: --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module --add-module=/root/nginx_upstream_check_module/</span><br></pre></td></tr></table></figure>
+<p>健康检查模块配置:参照官网<a href="http://tengine.taobao.org/document_cn/http_upstream_check_cn.html" target="_blank" rel="external">http://tengine.taobao.org/document_cn/http_upstream_check_cn.html</a><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">upstream cluster2 &#123;&#10;        # simple round-robin&#10;        server 192.168.0.3:80;&#10;        server 192.168.0.4:80;&#10;        check interval=3000 rise=2 fall=5 timeout=1000 type=http;&#10;        check_keepalive_requests 100;&#10;        check_http_send &#34;HEAD / HTTP/1.1\r\nConnection: keep-alive\r\n\r\n&#34;;&#10;        check_http_expect_alive http_2xx http_3xx;&#10;    &#125;</span><br></pre></td></tr></table></figure></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/10/24/Nginx编译添加后端健康检查模块/#comments" class="ds-thread-count comments-count-link" data-thread-key="2017/10/24/Nginx编译添加后端健康检查模块/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/10/20/jenkins-Role-basedauthorization权限管理插件配置/" title="jenkins Role-basedauthorization权限管理插件配置" itemprop="url">jenkins Role-basedauthorization权限管理插件配置</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
+		
+  <p class="article-time">
+    <time datetime="2017-10-20T02:24:14.000Z" itemprop="datePublished"> 发表于 2017-10-20</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>1、安装插件、Role-based Authorization Strategy<br><img src="/img/jenkins11.png" alt="jenkins"><br>2、打开jenkins授权Role-based<br><img src="/img/jenkins22.png" alt="jenkins"><br>3、配置Manage and Assign Roles admin给所以权限 Assign Roles添加jenkinadmin到admin<br><img src="/img/jenkins33.png" alt="jenkins"><br>4、配置全局角色权限和项目角色权限：如设置testTeam全局权限read只允许查看test开始的项目名称,项目权限test-Team  Pattern:test.* </p>
+<p><img src="/img/jenkins44.png" alt="jenkins"><br>5.设置Assign Roles，全局添加用户对于全局testTeam，项目角色添加用户到对于的项目test-Team。<br><img src="/img/jenkins55.png" alt="jenkins"><br>6、验证也test-Tame成员登录<br><img src="/img/jenkins66.png" alt="jenkins"></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/10/20/jenkins-Role-basedauthorization权限管理插件配置/#comments" class="ds-thread-count comments-count-link" data-thread-key="2017/10/20/jenkins-Role-basedauthorization权限管理插件配置/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/10/20/jenkins-HTML-publisher-plugin插件无法显示解决办法/" title="jenkins HTML publisher plugin插件无法显示解决办法" itemprop="url">jenkins HTML publisher plugin插件无法显示解决办法</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
+		
+  <p class="article-time">
+    <time datetime="2017-10-20T02:11:19.000Z" itemprop="datePublished"> 发表于 2017-10-20</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>tomcat部署jenkins解决方法</p>
+<p>vim apache-tomcat-7.0.61/bin/catalina.sh </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JAVA_OPTS=<span class="string">"-Djava.awt.headless=true -Dhudson.model.DirectoryBrowserSupport.CSP=\"\""</span></span><br><span class="line">export JAVA_OPTS</span><br></pre></td></tr></table></figure>
+<p>重启tomcat 刷新页面</p>
+<p>jenkins HTML publisher plugin配置<br><img src="/img/jenkins1.png" alt="jenkins"><br><img src="/img/jenkins2.png" alt="jenkins"></p>
+<p><a href="https://wiki.jenkins.io/display/JENKINS/Configuring+Content+Security+Policy" target="_blank" rel="external">https://wiki.jenkins.io/display/JENKINS/Configuring+Content+Security+Policy</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/10/20/jenkins-HTML-publisher-plugin插件无法显示解决办法/#comments" class="ds-thread-count comments-count-link" data-thread-key="2017/10/20/jenkins-HTML-publisher-plugin插件无法显示解决办法/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/09/07/docker搭建registry私有仓库/" title="docker搭建registry私有仓库" itemprop="url">docker搭建registry私有仓库</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
+		
+  <p class="article-time">
+    <time datetime="2017-09-07T02:44:39.000Z" itemprop="datePublished"> 发表于 2017-09-07</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>生成私有ssl证书<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/registry/certs</span><br><span class="line"> cd ~/registry/certs</span><br><span class="line"> openssl genrsa -out registry.wting.com.key <span class="number">1024</span></span><br><span class="line"> openssl req -newkey rsa:<span class="number">4096</span> -nodes -sha256 -keyout registry.wting.com.key -x509 -days <span class="number">365</span> -out registry.wting.com.crt</span><br><span class="line"> Generating a <span class="number">4096</span> bit RSA <span class="keyword">private</span> key</span><br><span class="line">.........................++</span><br><span class="line">.....................................................................................................................++</span><br><span class="line">writing <span class="keyword">new</span> <span class="keyword">private</span> key to <span class="string">'registry.wting.com.key'</span></span><br><span class="line">-----</span><br><span class="line">You are about to be asked to enter information that will be incorporated</span><br><span class="line">into your certificate request.</span><br><span class="line">What you are about to enter is what is called a Distinguished Name <span class="keyword">or</span> a DN.</span><br><span class="line">There are quite a few fields but you can leave some blank</span><br><span class="line"><span class="keyword">For</span> some fields there will be a <span class="keyword">default</span> value,</span><br><span class="line"><span class="keyword">If</span> you enter <span class="string">'.'</span>, the field will be left blank.</span><br><span class="line">-----</span><br><span class="line">Country Name (<span class="number">2</span> letter code) [AU]:cn <span class="comment">//← 国家代号</span></span><br><span class="line">State <span class="keyword">or</span> Province Name (full name) [Some-State]:sc \\← 省的全名</span><br><span class="line">Locality Name (eg, city) []:cd \\ ← 市的全名</span><br><span class="line">Organization Name (eg, company) [Internet Widgits Pty Ltd]:wt \\公司英文</span><br><span class="line">Organizational Unit Name (eg, section) []:it \\</span><br><span class="line">Common Name (e.g. server FQDN <span class="keyword">or</span> YOUR name) []:it \\</span><br><span class="line">Email Address []:<span class="number">123</span>@<span class="number">123.</span>com <span class="comment">//← 电子邮箱</span></span><br></pre></td></tr></table></figure></p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2017/09/07/docker搭建registry私有仓库/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/09/07/docker搭建registry私有仓库/#comments" class="ds-thread-count comments-count-link" data-thread-key="2017/09/07/docker搭建registry私有仓库/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/09/06/Linux挂载已分区的LVM磁盘/" title="Linux挂载已分区的LVM磁盘" itemprop="url">Linux挂载已分区的LVM磁盘</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
+		
+  <p class="article-time">
+    <time datetime="2017-09-06T01:09:53.000Z" itemprop="datePublished"> 发表于 2017-09-06</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>查看新挂载的lvm磁盘<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">[root@tomcat-node5 /]<span class="comment"># fdisk  -l</span></span><br><span class="line"></span><br><span class="line">Disk /dev/xvda: <span class="number">42.9</span> GB, <span class="number">42949672960</span> bytes</span><br><span class="line"><span class="number">255</span> heads, <span class="number">63</span> sectors/track, <span class="number">5221</span> cylinders</span><br><span class="line">Units = cylinders of <span class="number">16065</span> * <span class="number">512</span> = <span class="number">8225280</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disk identifier: <span class="number">0x00078f9c</span></span><br><span class="line"></span><br><span class="line">    Device Boot      Start         End      Blocks   Id  System</span><br><span class="line">/dev/xvda1   *           <span class="number">1</span>        <span class="number">5222</span>    <span class="number">41940992</span>   <span class="number">83</span>  Linux</span><br><span class="line"></span><br><span class="line">Disk /dev/xvdb: <span class="number">107.4</span> GB, <span class="number">107374182400</span> bytes</span><br><span class="line"><span class="number">255</span> heads, <span class="number">63</span> sectors/track, <span class="number">13054</span> cylinders</span><br><span class="line">Units = cylinders of <span class="number">16065</span> * <span class="number">512</span> = <span class="number">8225280</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disk identifier: <span class="number">0x00000000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disk /dev/mapper/jhjhome1-lv_home: <span class="number">32.2</span> GB, <span class="number">32212254720</span> bytes</span><br><span class="line"><span class="number">255</span> heads, <span class="number">63</span> sectors/track, <span class="number">3916</span> cylinders</span><br><span class="line">Units = cylinders of <span class="number">16065</span> * <span class="number">512</span> = <span class="number">8225280</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disk identifier: <span class="number">0x00000000</span></span><br><span class="line">.....</span><br><span class="line"></span><br><span class="line">Disk /dev/xvdc: <span class="number">107.4</span> GB, <span class="number">107374182400</span> bytes</span><br><span class="line"><span class="number">255</span> heads, <span class="number">63</span> sectors/track, <span class="number">13054</span> cylinders</span><br><span class="line">Units = cylinders of <span class="number">16065</span> * <span class="number">512</span> = <span class="number">8225280</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disk identifier: <span class="number">0x00000000</span></span><br></pre></td></tr></table></figure></p>
+<p>Disk /dev/xvdc是新挂载上去磁盘</p>
+<p>直接挂着目录报错<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@jhjapp-tomcat-node5 ~]<span class="comment"># mount /dev/xvdc /mnt</span></span><br><span class="line">mount: unknown filesystem type <span class="string">'LVM2_member'</span></span><br></pre></td></tr></table></figure></p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2017/09/06/Linux挂载已分区的LVM磁盘/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/09/06/Linux挂载已分区的LVM磁盘/#comments" class="ds-thread-count comments-count-link" data-thread-key="2017/09/06/Linux挂载已分区的LVM磁盘/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/09/01/Oracle自动删除归档日志shell脚本/" title="Oracle自动删除归档日志shell脚本" itemprop="url">Oracle自动删除归档日志shell脚本</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
+		
+  <p class="article-time">
+    <time datetime="2017-09-01T03:16:19.000Z" itemprop="datePublished"> 发表于 2017-09-01</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>Oraclr归档日志清理脚本<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="keyword">if</span> [ -f ~/.bash_profile ]; then</span><br><span class="line">    . ~/.bash_profile</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"><span class="comment">#set env</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"Oracle home:"</span><span class="variable">$ORACLE_HOME</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"Oracle SID:"</span><span class="variable">$ORACLE_SID</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$ORACLE_HOME</span>/bin/rman target sys/oracle@rac log=/oracle/logs/rman.log &lt;&lt;EOF</span><br><span class="line">crosscheck archivelog all;</span><br><span class="line">delete noprompt expired archivelog all;</span><br><span class="line">delete noprompt archivelog all completed before <span class="string">'sysdate - 5'</span>;</span><br><span class="line"><span class="keyword">exit</span>;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>正式环境<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br><span class="line"><span class="comment">#Author wang.t</span></span><br><span class="line"><span class="comment">#date 2017-9-1</span></span><br><span class="line">ORACLE_HOME=/data/u01/app/oracle/product/<span class="number">11.2</span><span class="number">.0</span>/dbhome_1</span><br><span class="line"><span class="variable">$ORACLE_HOME</span>/bin/rman  target / log=/data/backup/logs/rman.log &lt;&lt; EOF</span><br><span class="line">crosscheck archivelog all;</span><br><span class="line">DELETE noprompt  ARCHIVELOG ALL COMPLETED BEFORE <span class="string">'SYSDATE-15'</span>;</span><br><span class="line"><span class="keyword">exit</span>;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
+<p>mkdir -p /data/backup/logs/</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/09/01/Oracle自动删除归档日志shell脚本/#comments" class="ds-thread-count comments-count-link" data-thread-key="2017/09/01/Oracle自动删除归档日志shell脚本/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/09/01/Nginx-内核参数优化参考/" title="Nginx+内核参数优化参考" itemprop="url">Nginx+内核参数优化参考</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
+		
+  <p class="article-time">
+    <time datetime="2017-09-01T03:15:11.000Z" itemprop="datePublished"> 发表于 2017-09-01</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>#内核优化<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">net.ipv4.ip_forward = <span class="number">0</span></span><br><span class="line">net.ipv4.conf.<span class="keyword">default</span>.rp_filter = <span class="number">1</span></span><br><span class="line">net.ipv4.conf.<span class="keyword">default</span>.accept_source_route = <span class="number">0</span></span><br><span class="line">kernel.sysrq = <span class="number">0</span></span><br><span class="line">kernel.core_uses_pid = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_syncookies = <span class="number">1</span></span><br><span class="line">kernel.msgmnb = <span class="number">65536</span></span><br><span class="line">kernel.msgmax = <span class="number">65536</span></span><br><span class="line">kernel.shmmax = <span class="number">68719476736</span></span><br><span class="line">kernel.shmall = <span class="number">4294967296</span></span><br><span class="line">net.ipv4.tcp_max_tw_buckets = <span class="number">6000</span></span><br><span class="line">net.ipv4.tcp_sack = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_window_scaling = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_rmem = <span class="number">4096</span>        <span class="number">87380</span>    <span class="number">4194304</span></span><br><span class="line">net.ipv4.tcp_wmem = <span class="number">4096</span>        <span class="number">16384</span>    <span class="number">4194304</span></span><br><span class="line">net.core.wmem_default = <span class="number">8388608</span></span><br><span class="line">net.core.rmem_default = <span class="number">8388608</span></span><br><span class="line">net.core.rmem_max = <span class="number">16777216</span></span><br><span class="line">net.core.wmem_max = <span class="number">16777216</span></span><br><span class="line">net.core.netdev_max_backlog = <span class="number">262144</span></span><br><span class="line">net.core.somaxconn = <span class="number">262144</span></span><br><span class="line">net.ipv4.tcp_max_orphans = <span class="number">3276800</span></span><br><span class="line">net.ipv4.tcp_max_syn_backlog = <span class="number">262144</span></span><br><span class="line">net.ipv4.tcp_timestamps = <span class="number">0</span></span><br><span class="line">net.ipv4.tcp_synack_retries = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_syn_retries = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_tw_recycle = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_tw_reuse = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_mem = <span class="number">94500000</span> <span class="number">915000000</span> <span class="number">927000000</span></span><br><span class="line">net.ipv4.tcp_fin_timeout = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_keepalive_time = <span class="number">30</span></span><br><span class="line">net.ipv4.ip_local_port_range = <span class="number">1024</span>    <span class="number">65000</span></span><br></pre></td></tr></table></figure></p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2017/09/01/Nginx-内核参数优化参考/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/09/01/Nginx-内核参数优化参考/#comments" class="ds-thread-count comments-count-link" data-thread-key="2017/09/01/Nginx-内核参数优化参考/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+  <nav id="page-nav" class="clearfix">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
+  </nav>
+
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+  <iframe width="100%" height="200" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=4&isTitle=1&noborder=0&isWeibo=0&isFans=0&uid=3857079413&verifier=f23b343c&dpc=1"></iframe>
+  </div>
+
+
+  
+
+  <div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/nginx/" title="nginx">nginx<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/shell/" title="shell">shell<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tomcat/" title="tomcat">tomcat<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络/" title="网络">网络<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/集群/" style="font-size: 10px;">-集群</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/VRRP/" style="font-size: 10px;">VRRP</a> <a href="/tags/lvs/" style="font-size: 10px;">lvs</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/ssl/" style="font-size: 10px;">ssl</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/tags/zabbix/" style="font-size: 15px;">zabbix</a>
+    </div>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.g5od.com" target="_blank" title="Goooood的技术博客">Goooood的技术博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.sky-oracle.com" target="_blank" title="Oracle 自学手册">Oracle 自学手册</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ytniu.com" target="_blank" title="SRE杂谈">SRE杂谈</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello, this is wang&#39;T blog. <br/>
+			Hosted in GitHub.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/3857079413" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/Hwting" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:wang.t.nace@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Wang&#39;T">Wang&#39;T</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"wtingnet"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?36d5a879adb375c2431070b83481fdf5";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+ </html>

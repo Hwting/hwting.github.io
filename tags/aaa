@@ -1,0 +1,70 @@
+user-interface con 0   
+ authentication-mode password  //配置Console口登录的用户验证方式为密码验证
+ set authentication password cipher
+
+
+ aaa
+ local-user admin password cipher admin
+local-user admin service-type ssh
+local-user admin privilege level 3
+stelnet server enable 
+user-interface vty 0 4
+ authentication-mode aaa  //配置VTY类型用户界面的验证方式为AAA
+ protocol inbound ssh 
+
+
+  int GigabitEthernet 0/0/6
+ port link-type access
+
+
+ vlan batch 2 to 5 100
+
+
+[CORE_A]local-user admin 
+password simple admin
+]service-type telnet 
+RE_A]user-interface vty 0 4
+authentication-mode scheme 
+
+
+_B]local-user admin
+[CORE_B]local-user admin
+[CORE_B-luser-manage-admin]ser
+[CORE_B-luser-manage-admin]service-type  tel
+[CORE_B-luser-manage-admin]service-type  telnet  ht
+[CORE_B-luser-manage-admin]service-type  telnet  http
+[CORE_B-luser-manage-admin]pass
+[CORE_B-luser-manage-admin]password si
+[CORE_B-luser-manage-admin]password simple admin
+[CORE_B-luser-manage-admin]
+
+# 配置本地认证所需参数：创建本地用户monitor，密码为123，可使用的服务类型为telnet，用户角色为level-1。
+[Device] local-user monitor
+[Device-luser-manage-admin] password cipher 123
+[Device-luser-manage-admin] service-type telnet
+[Device-luser-manage-admin] authorization-attribute user-role level-1
+
+
+[DeviceA] interface ten-gigabitethernet 3/0/24
+[DeviceA-Ten-GigabitEthernet3/0/24] port link-type trunk
+[DeviceA-Ten-GigabitEthernet3/0/24] undo port trunk permit vlan 1
+[DeviceA-Ten-GigabitEthernet3/0/24] port trunk permit vlan 101 to 102
+[DeviceA-Ten-GigabitEthernet3/0/24] port trunk pvid vlan 101
+[DeviceA-Ten-GigabitEthernet3/0/24] quit
+
+
+DeviceA] track 1 interface ten-gigabitethernet 3/0/2
+# 配置监视Track项1，Track项的状态为Negative时，Device A在VRRP备份组1中的优先级降低的数值为50。
+[DeviceA] interface vlan-interface 101
+[DeviceA-Vlan-interface101] vrrp vrid 1 track 1 priority reduced 50
+[DeviceA-Vlan-interface101] quit
+# 配置MSTP，将VLAN101映射到MSI 1，VLAN102映射到MSI 2，并将Device A作为MSI 1的根桥。
+[DeviceA] stp region-configuration
+[DeviceA-mst-region] region-name vrrp
+[DeviceA-mst-region] instance 1 vlan 101
+[DeviceA-mst-region] instance 2 vlan 102
+[DeviceA-mst-region] active region-configuration
+[DeviceA-mst-region] quit
+[DeviceA] stp instance 1 root primary
+[DeviceA] stp instance 2 root secondary
+[DeviceA] stp global enable
