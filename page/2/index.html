@@ -89,6 +89,60 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2017/09/01/Nginx-内核参数优化参考/" title="Nginx+内核参数优化参考" itemprop="url">Nginx+内核参数优化参考</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
+		
+  <p class="article-time">
+    <time datetime="2017-09-01T03:15:11.000Z" itemprop="datePublished"> 发表于 2017-09-01</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>#内核优化<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">net.ipv4.ip_forward = <span class="number">0</span></span><br><span class="line">net.ipv4.conf.<span class="keyword">default</span>.rp_filter = <span class="number">1</span></span><br><span class="line">net.ipv4.conf.<span class="keyword">default</span>.accept_source_route = <span class="number">0</span></span><br><span class="line">kernel.sysrq = <span class="number">0</span></span><br><span class="line">kernel.core_uses_pid = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_syncookies = <span class="number">1</span></span><br><span class="line">kernel.msgmnb = <span class="number">65536</span></span><br><span class="line">kernel.msgmax = <span class="number">65536</span></span><br><span class="line">kernel.shmmax = <span class="number">68719476736</span></span><br><span class="line">kernel.shmall = <span class="number">4294967296</span></span><br><span class="line">net.ipv4.tcp_max_tw_buckets = <span class="number">6000</span></span><br><span class="line">net.ipv4.tcp_sack = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_window_scaling = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_rmem = <span class="number">4096</span>        <span class="number">87380</span>    <span class="number">4194304</span></span><br><span class="line">net.ipv4.tcp_wmem = <span class="number">4096</span>        <span class="number">16384</span>    <span class="number">4194304</span></span><br><span class="line">net.core.wmem_default = <span class="number">8388608</span></span><br><span class="line">net.core.rmem_default = <span class="number">8388608</span></span><br><span class="line">net.core.rmem_max = <span class="number">16777216</span></span><br><span class="line">net.core.wmem_max = <span class="number">16777216</span></span><br><span class="line">net.core.netdev_max_backlog = <span class="number">262144</span></span><br><span class="line">net.core.somaxconn = <span class="number">262144</span></span><br><span class="line">net.ipv4.tcp_max_orphans = <span class="number">3276800</span></span><br><span class="line">net.ipv4.tcp_max_syn_backlog = <span class="number">262144</span></span><br><span class="line">net.ipv4.tcp_timestamps = <span class="number">0</span></span><br><span class="line">net.ipv4.tcp_synack_retries = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_syn_retries = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_tw_recycle = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_tw_reuse = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_mem = <span class="number">94500000</span> <span class="number">915000000</span> <span class="number">927000000</span></span><br><span class="line">net.ipv4.tcp_fin_timeout = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_keepalive_time = <span class="number">30</span></span><br><span class="line">net.ipv4.ip_local_port_range = <span class="number">1024</span>    <span class="number">65000</span></span><br></pre></td></tr></table></figure></p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2017/09/01/Nginx-内核参数优化参考/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/09/01/Nginx-内核参数优化参考/#comments" class="ds-thread-count comments-count-link" data-thread-key="2017/09/01/Nginx-内核参数优化参考/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2017/09/01/zookeeper集群部署/" title="zookeeper集群部署" itemprop="url">zookeeper集群部署</a>
   </h1>
   <p class="article-author">By
@@ -597,71 +651,6 @@
 	
 	  	<span></span>
 		<a href="/2016/11/09/apache2-4-23编译安装/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/11/09/apache2-4-23编译安装/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/09/02/tomcat性能优化实例/" title="tomcat性能优化实例" itemprop="url">tomcat性能优化实例</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
-		
-  <p class="article-time">
-    <time datetime="2016-09-02T09:49:00.000Z" itemprop="datePublished"> 发表于 2016-09-02</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>生产配置实例：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;Connectorport=<span class="string">"8080"</span>protocol=<span class="string">"org.apache.coyote.http11.Http11NioProtocol"</span></span><br><span class="line">               maxThreads=<span class="string">"1000"</span></span><br><span class="line">               minSpareThreads=<span class="string">"100"</span></span><br><span class="line">               maxSpareThreads=<span class="string">"200"</span></span><br><span class="line">               acceptCount=<span class="string">"900"</span></span><br><span class="line">               disableUploadTimeout=<span class="string">"true"</span></span><br><span class="line">              connectionTimeout=<span class="string">"20000"</span></span><br><span class="line">               URIEncoding=<span class="string">"UTF-8"</span></span><br><span class="line">               enableLookups=<span class="string">"false"</span></span><br><span class="line">               redirectPort=<span class="string">"8443"</span></span><br><span class="line">               compression=<span class="string">"on"</span></span><br><span class="line">              compressionMinSize=<span class="string">"1024"</span></span><br><span class="line">              compressableMimeType=<span class="string">"text/html,text/xml,text/css,text/javascript"</span>/&gt;</span><br></pre></td></tr></table></figure></p>
-<p>参数说明：<br>org.apache.coyote.http11.Http11NioProtocol：调整工作模式为Nio<br>有三种工作模式：Bio、Nio和Apr<br>Bio(Blocking I/O)：默认工作模式，阻塞式I/O操作，没有任何优化技术处理，性能比较低。<br>Nio(New I/O or Non-Blocking)：非阻塞式I/O操作，有Bio有更好的并发处理性能。<br>Apr(Apache Portable Runtime，Apache可移植运行库)：首选工作模式，主要为上层的应用程序提供一个可以跨越多操作系统平台使用的底层支持接口库。<br>tomcat利用基于Apr库tomcat-native来实现操作系统级别控制，提供一种优化技术和非阻塞式I/O操作，大大提高并发处理能力。但是需要安装apr和tomcat-native库。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">maxThreads：最大线程数，默认<span class="number">150</span>。增大值避免队列请求过多，导致响应缓慢。</span><br><span class="line">minSpareThreads：最小空闲线程数。</span><br><span class="line">maxSpareThreads：最大空闲线程数，如果超过这个值，会关闭无用的线程。</span><br><span class="line">acceptCount：当处理请求超过此值时，将后来请求放到队列中等待。</span><br><span class="line">disableUploadTimeout：禁用上传超时时间</span><br><span class="line">connectionTimeout：连接超时，单位毫秒，<span class="number">0</span>代表不限制</span><br><span class="line">URIEncoding：URI地址编码使用UTF-<span class="number">8</span></span><br><span class="line">enableLookups：关闭dns解析，提高响应时间</span><br><span class="line">compression：启用压缩功能</span><br><span class="line">compressionMinSize：最小压缩大小，单位Byte</span><br><span class="line">compressableMimeType：压缩的文件类型</span><br></pre></td></tr></table></figure></p>
-<p>调整JVM内存大小：<br>在catalina.sh增加JAVA_OPTS=’-Xms512m -Xmx1024m -XX:PermSize=128m-XX:MaxPermSize=256m’<br>-Xms JVM初始最小堆内存，默认为物理内存1/64，不要设置过大，否则增加回收时间（暂停应用），相对频率少，相反，频率高。<br>-Xmx JVM最大允许堆内存大小，默认为物理内存1/4<br>-XX:PermSize JVM初始分配非堆内存大小<br>-XX:MaxPermSize  JVM最大允许分配的非堆内存</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/tomcat/">tomcat</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/tomcat/">tomcat</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/09/02/tomcat性能优化实例/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/09/02/tomcat性能优化实例/" data-count-type="comments">&nbsp;</a>
 	
 </div>
 

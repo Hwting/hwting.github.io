@@ -1,0 +1,506 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>jenkins与sonar集成自动化代码质量检查 | Wang&#39;T博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Wang&#39;T">
+    
+
+    
+    <meta name="description" content="安装jenkins,mysql：省略
+安装sonarmysql创建数据库user并授权(测试可以使用自带数据库)1234&amp;gt;CREATE DATABASE sonarqube SET utf8 COLLATE utf8_general_ci;&amp;gt; CREATE USER &apos;sonar’@&apos;%&apos; IDENTIFIED BY &apos;password&apos;;&amp;gt; GRANT all privileg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jenkins与sonar集成自动化代码质量检查">
+<meta property="og:url" content="http://wting.tk/2017/12/13/jenkins与sonar集成自动化代码质量检查/index.html">
+<meta property="og:site_name" content="Wang'T博客">
+<meta property="og:description" content="安装jenkins,mysql：省略
+安装sonarmysql创建数据库user并授权(测试可以使用自带数据库)1234&amp;gt;CREATE DATABASE sonarqube SET utf8 COLLATE utf8_general_ci;&amp;gt; CREATE USER &apos;sonar’@&apos;%&apos; IDENTIFIED BY &apos;password&apos;;&amp;gt; GRANT all privileg">
+<meta property="og:image" content="http://wting.tk/img/sonar1.png">
+<meta property="og:image" content="http://wting.tk/img/sonar2.png">
+<meta property="og:image" content="http://wting.tk/img/sonar3.png">
+<meta property="og:image" content="http://wting.tk/img/sonar4.png">
+<meta property="og:image" content="http://wting.tk/img/sonar5.png">
+<meta property="og:image" content="http://wting.tk/img/sonar6.png">
+<meta property="og:image" content="http://wting.tk/img/sonar7.png">
+<meta property="og:image" content="http://wting.tk/img/sonar8.png">
+<meta property="og:image" content="http://wting.tk/img/sonar9.png">
+<meta property="og:updated_time" content="2017-12-13T08:30:51.676Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jenkins与sonar集成自动化代码质量检查">
+<meta name="twitter:description" content="安装jenkins,mysql：省略
+安装sonarmysql创建数据库user并授权(测试可以使用自带数据库)1234&amp;gt;CREATE DATABASE sonarqube SET utf8 COLLATE utf8_general_ci;&amp;gt; CREATE USER &apos;sonar’@&apos;%&apos; IDENTIFIED BY &apos;password&apos;;&amp;gt; GRANT all privileg">
+
+    
+    <link rel="alternative" href="atom.xml" title="Wang&#39;T博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Wang&#39;T博客" title="Wang&#39;T博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Wang&#39;T博客">Wang&#39;T博客</a></h1>
+				<h2 class="blog-motto">_入网络深似海,从此节操是路人.</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页|Home</a></li>
+					
+						<li><a href="/linux">Linux</a></li>
+					
+						<li><a href="/运维">运维</a></li>
+					
+						<li><a href="/网络">网络</a></li>
+					
+						<li><a href="/虚拟化">虚拟化</a></li>
+					
+						<li><a href="/archives">归档|Archives</a></li>
+					
+						<li><a href="/about">关于|About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:wting.tk">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/12/13/jenkins与sonar集成自动化代码质量检查/" title="jenkins与sonar集成自动化代码质量检查" itemprop="url">jenkins与sonar集成自动化代码质量检查</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
+		
+  <p class="article-time">
+    <time datetime="2017-12-13T06:35:11.000Z" itemprop="datePublished"> 发表于 2017-12-13</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u5B89_u88C5sonar"><span class="toc-number">1.</span> <span class="toc-text">安装sonar</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql_u521B_u5EFA_u6570_u636E_u5E93user_u5E76_u6388_u6743_28_u6D4B_u8BD5_u53EF_u4EE5_u4F7F_u7528_u81EA_u5E26_u6570_u636E_u5E93_29"><span class="toc-number">1.1.</span> <span class="toc-text">mysql创建数据库user并授权(测试可以使用自带数据库)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E0B_u8F7D_u5B89_u88C5"><span class="toc-number">1.2.</span> <span class="toc-text">下载安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5B89_u88C5sonar-runner"><span class="toc-number">2.</span> <span class="toc-text">安装sonar-runner</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E0B_u8F7D_u5B89_u88C5-1"><span class="toc-number">2.1.</span> <span class="toc-text">下载安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#github_u4E0B_u8F7D_u4E00_u4E2A_u63D0_u4F9B_u6D4B_u8BD5_u9879_u76EE"><span class="toc-number">3.</span> <span class="toc-text">github下载一个提供测试项目</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5728_u6E90_u4EE3_u7801_u6839_u76EE_u5F55_u6267_u884C_sonar-runner_-X__u6D4B_u8BD5_u6210_u529F"><span class="toc-number">3.1.</span> <span class="toc-text">在源代码根目录执行 sonar-runner -X 测试成功</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u8BBE_u7F6Ejenkins+sonar_u81EA_u52A8_u5316"><span class="toc-number">4.</span> <span class="toc-text">设置jenkins+sonar自动化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5B89_u88C5_u63D2_u4EF6"><span class="toc-number">4.1.</span> <span class="toc-text">安装插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jenkins_u8BBE_u7F6Esonar_u8DEF_u5F84"><span class="toc-number">4.2.</span> <span class="toc-text">jenkins设置sonar路径</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jenkins_u4E0A_u914D_u7F6Esonar_u7684_u4FE1_u606F"><span class="toc-number">4.2.1.</span> <span class="toc-text">jenkins上配置sonar的信息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u9879_u76EE_u91CC_u9762_u914D_u7F6Esonar"><span class="toc-number">4.2.1.1.</span> <span class="toc-text">项目里面配置sonar</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u6784_u5EFA"><span class="toc-number">5.</span> <span class="toc-text">构建</span></a></li></ol>
+		
+		</div>
+		
+		<p>安装jenkins,mysql：省略</p>
+<h1 id="u5B89_u88C5sonar"><a href="#u5B89_u88C5sonar" class="headerlink" title="安装sonar"></a>安装sonar</h1><h2 id="mysql_u521B_u5EFA_u6570_u636E_u5E93user_u5E76_u6388_u6743_28_u6D4B_u8BD5_u53EF_u4EE5_u4F7F_u7528_u81EA_u5E26_u6570_u636E_u5E93_29"><a href="#mysql_u521B_u5EFA_u6570_u636E_u5E93user_u5E76_u6388_u6743_28_u6D4B_u8BD5_u53EF_u4EE5_u4F7F_u7528_u81EA_u5E26_u6570_u636E_u5E93_29" class="headerlink" title="mysql创建数据库user并授权(测试可以使用自带数据库)"></a>mysql创建数据库user并授权(测试可以使用自带数据库)</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;CREATE DATABASE sonarqube SET utf8 COLLATE utf8_general_ci;</span><br><span class="line">&gt; CREATE USER <span class="string">'sonar’@'</span>%<span class="string">' IDENTIFIED BY '</span>password<span class="string">';</span><br><span class="line">&gt; GRANT all privileges ON sonarqube.* TO sonar’@‘%'</span> IDENTIFIED BY <span class="string">'password'</span>;</span><br><span class="line">&gt; flush privileges;</span><br></pre></td></tr></table></figure>
+<h2 id="u4E0B_u8F7D_u5B89_u88C5"><a href="#u4E0B_u8F7D_u5B89_u88C5" class="headerlink" title="下载安装"></a>下载安装</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//sonarsource.bintray.com/Distribution/sonarqube/sonarqube-6.7.zip</span></span><br><span class="line">unzip sonarqube-<span class="number">6.7</span><span class="class">.zip</span>  -d /usr/local/</span><br><span class="line">cd /usr/local/sonarqube-<span class="number">6.7</span>/</span><br><span class="line">vim conf/sonar<span class="class">.properties</span>  /配置文件</span><br><span class="line">sonar<span class="class">.web</span><span class="class">.host</span>=<span class="number">0.0</span>.<span class="number">0.0</span></span><br><span class="line">sonar<span class="class">.web</span><span class="class">.port</span>=<span class="number">9000</span></span><br><span class="line">sonar<span class="class">.jdbc</span><span class="class">.username</span>=sonar</span><br><span class="line">sonar<span class="class">.jdbc</span><span class="class">.password</span>=password</span><br><span class="line">sonar<span class="class">.jdbc</span><span class="class">.url</span>=jdbc:mysql:<span class="comment">//localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;useConfigs=maxPerformance&amp;useSSL=false</span></span><br><span class="line"> ./bin/linux-x86-<span class="number">64</span>/sonar<span class="class">.sh</span>  start 启动sonar 需要使用非root启动</span><br><span class="line"> 中文插件下载解压到下目录</span><br><span class="line">wget https:<span class="comment">//github.com/SonarQubeCommunity/sonar-l10n-zh/releases/download/sonar-l10n-zh-plugin-1.18/sonar-l10n-zh-plugin-1.18.jar</span></span><br><span class="line"> /usr/local/sonarqube-<span class="number">6.7</span>/extensions/plugins/</span><br><span class="line"> ./bin/linux-x86-<span class="number">64</span>/sonar<span class="class">.sh</span>  restart</span><br></pre></td></tr></table></figure>
+<h1 id="u5B89_u88C5sonar-runner"><a href="#u5B89_u88C5sonar-runner" class="headerlink" title="安装sonar-runner"></a>安装sonar-runner</h1><h2 id="u4E0B_u8F7D_u5B89_u88C5-1"><a href="#u4E0B_u8F7D_u5B89_u88C5-1" class="headerlink" title="下载安装"></a>下载安装</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist/2.4/sonar-runner-dist-2.4.zip</span></span><br><span class="line">unzip sonar-runner-dist-<span class="number">2.4</span>.zip -d /usr/local/</span><br><span class="line">cd /usr/local/sonar-runner-dist-<span class="number">2.4</span></span><br><span class="line">vim conf/sonar-runner.properties </span><br><span class="line">sonar.host.url=http:<span class="comment">//172.18.8.32:9000</span></span><br><span class="line">sonar.sourceEncoding=UTF-<span class="number">8</span></span><br><span class="line">sonar.login=admin</span><br><span class="line">sonar.password=admi</span><br><span class="line">配置环境配置</span><br><span class="line">vim /etc/profile</span><br><span class="line">export SONAR_HOME=/usr/local/sonarqube-<span class="number">6.7</span></span><br><span class="line">PATH=<span class="variable">$PATH</span>:/usr/local/sonar-runner-<span class="number">2.4</span>/bin   </span><br><span class="line">export PATH</span><br><span class="line">source  /etc/profile</span><br><span class="line">测试ok</span><br><span class="line">sonar-scanner -h</span><br></pre></td></tr></table></figure>
+<h1 id="github_u4E0B_u8F7D_u4E00_u4E2A_u63D0_u4F9B_u6D4B_u8BD5_u9879_u76EE"><a href="#github_u4E0B_u8F7D_u4E00_u4E2A_u63D0_u4F9B_u6D4B_u8BD5_u9879_u76EE" class="headerlink" title="github下载一个提供测试项目"></a>github下载一个提供测试项目</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">clone</span> https:<span class="comment">//github.com/SonarSource/sonar-scanning-examples.git</span></span><br><span class="line">cd sonar-scanning-examples/sonarqube-scanner</span><br><span class="line">如果是直接在linux客服端测试需要在代码根目录创建sonar-project.properties文件</span><br><span class="line"> cat sonar-project.properties </span><br><span class="line">sonar.projectKey=org.sonarqube:sonarqube-scanner</span><br><span class="line">sonar.projectName=Example of SonarQube Scanner Usage</span><br><span class="line">sonar.projectVersion=<span class="number">1.0</span></span><br><span class="line">sonar.sources=src,copybooks</span><br><span class="line">sonar.sourceEncoding=UTF-<span class="number">8</span></span><br><span class="line"><span class="comment">## Cobol Specific Properties</span></span><br><span class="line"><span class="comment"># comma-separated paths to directories with copybooks</span></span><br><span class="line">sonar.cobol.copy.directories=copybooks</span><br><span class="line"><span class="comment"># comma-separated list of suffixes</span></span><br><span class="line">sonar.cobol.file.suffixes=cbl,cpy</span><br><span class="line">sonar.cobol.copy.suffixes=cpy</span><br><span class="line"><span class="comment">## Flex Specific Properties</span></span><br><span class="line"><span class="comment"># retrieve code coverage data from the Cobertura report</span></span><br><span class="line">sonar.flex.cobertura.reportPath=coverage-report/coverage-cobertua-flex.xml</span><br><span class="line"><span class="comment"># PL/I Specific Properties</span></span><br><span class="line">sonar.pli.marginLeft=<span class="number">2</span></span><br><span class="line">sonar.pli.marginRight=<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h2 id="u5728_u6E90_u4EE3_u7801_u6839_u76EE_u5F55_u6267_u884C_sonar-runner_-X__u6D4B_u8BD5_u6210_u529F"><a href="#u5728_u6E90_u4EE3_u7801_u6839_u76EE_u5F55_u6267_u884C_sonar-runner_-X__u6D4B_u8BD5_u6210_u529F" class="headerlink" title="在源代码根目录执行 sonar-runner -X 测试成功"></a>在源代码根目录执行 sonar-runner -X 测试成功</h2><p><img src="/img/sonar1.png" alt="jenkins"><br>访问<a href="http://ip:9000查看结果" target="_blank" rel="external">http://ip:9000查看结果</a><br><img src="/img/sonar2.png" alt="jenkins"><br>ok现在sonar环境配置好</p>
+<h1 id="u8BBE_u7F6Ejenkins+sonar_u81EA_u52A8_u5316"><a href="#u8BBE_u7F6Ejenkins+sonar_u81EA_u52A8_u5316" class="headerlink" title="设置jenkins+sonar自动化"></a>设置jenkins+sonar自动化</h1><h2 id="u5B89_u88C5_u63D2_u4EF6"><a href="#u5B89_u88C5_u63D2_u4EF6" class="headerlink" title="安装插件"></a>安装插件</h2><p>SonarQube Scanner for Jenkins<br><img src="/img/sonar3.png" alt="jenkins"></p>
+<h2 id="jenkins_u8BBE_u7F6Esonar_u8DEF_u5F84"><a href="#jenkins_u8BBE_u7F6Esonar_u8DEF_u5F84" class="headerlink" title="jenkins设置sonar路径"></a>jenkins设置sonar路径</h2><p><img src="/img/sonar4.png" alt="jenkins"></p>
+<h3 id="jenkins_u4E0A_u914D_u7F6Esonar_u7684_u4FE1_u606F"><a href="#jenkins_u4E0A_u914D_u7F6Esonar_u7684_u4FE1_u606F" class="headerlink" title="jenkins上配置sonar的信息"></a>jenkins上配置sonar的信息</h3><p>这里可以在sonarweb界面生成使用token<br><img src="/img/sonar5.png" alt="jenkins"></p>
+<h4 id="u9879_u76EE_u91CC_u9762_u914D_u7F6Esonar"><a href="#u9879_u76EE_u91CC_u9762_u914D_u7F6Esonar" class="headerlink" title="项目里面配置sonar"></a>项目里面配置sonar</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sonar.projectKey=java-api <span class="comment">//key需要唯一</span></span><br><span class="line">sonar.projectName=java-api <span class="comment">//项目名称</span></span><br><span class="line">sonar.projectVersion=<span class="number">4.3</span>   <span class="comment">//版本</span></span><br><span class="line">sonar.sources=src <span class="comment">//源码路径</span></span><br><span class="line">sonar.language=java</span><br><span class="line">sonar.sourceEncoding=UTF-<span class="number">8</span></span><br><span class="line">sonar.java.binaries=target/classes</span><br></pre></td></tr></table></figure>
+<p><img src="/img/sonar6.png" alt="jenkins"></p>
+<h1 id="u6784_u5EFA"><a href="#u6784_u5EFA" class="headerlink" title="构建"></a>构建</h1><p><img src="/img/sonar7.png" alt="jenkins"><br><img src="/img/sonar8.png" alt="jenkins"><br><img src="/img/sonar9.png" alt="jenkins"><br>sonar.java.binaries报错参考：<br><a href="https://docs.sonarqube.org/display/PLUG/Java+Plugin+and+Bytecode" target="_blank" rel="external">https://docs.sonarqube.org/display/PLUG/Java+Plugin+and+Bytecode</a><br>如：<br>sonar.java.test.libraries=path/to/specific/Library.jar,path/to/libs/<em>.jar,directory/**/</em>.jar</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/12/11/zabbix自动发现交换机接口信息监控网络设备流量模板配置/"  title="zabbix自动发现交换机接口信息监控网络设备流量模板配置">
+ <strong>下一篇：</strong><br/> 
+ <span>zabbix自动发现交换机接口信息监控网络设备流量模板配置
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/12/13/jenkins与sonar集成自动化代码质量检查/" data-title="jenkins与sonar集成自动化代码质量检查" data-url="http://wting.tk/2017/12/13/jenkins与sonar集成自动化代码质量检查/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u5B89_u88C5sonar"><span class="toc-number">1.</span> <span class="toc-text">安装sonar</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql_u521B_u5EFA_u6570_u636E_u5E93user_u5E76_u6388_u6743_28_u6D4B_u8BD5_u53EF_u4EE5_u4F7F_u7528_u81EA_u5E26_u6570_u636E_u5E93_29"><span class="toc-number">1.1.</span> <span class="toc-text">mysql创建数据库user并授权(测试可以使用自带数据库)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E0B_u8F7D_u5B89_u88C5"><span class="toc-number">1.2.</span> <span class="toc-text">下载安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5B89_u88C5sonar-runner"><span class="toc-number">2.</span> <span class="toc-text">安装sonar-runner</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E0B_u8F7D_u5B89_u88C5-1"><span class="toc-number">2.1.</span> <span class="toc-text">下载安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#github_u4E0B_u8F7D_u4E00_u4E2A_u63D0_u4F9B_u6D4B_u8BD5_u9879_u76EE"><span class="toc-number">3.</span> <span class="toc-text">github下载一个提供测试项目</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5728_u6E90_u4EE3_u7801_u6839_u76EE_u5F55_u6267_u884C_sonar-runner_-X__u6D4B_u8BD5_u6210_u529F"><span class="toc-number">3.1.</span> <span class="toc-text">在源代码根目录执行 sonar-runner -X 测试成功</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u8BBE_u7F6Ejenkins+sonar_u81EA_u52A8_u5316"><span class="toc-number">4.</span> <span class="toc-text">设置jenkins+sonar自动化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5B89_u88C5_u63D2_u4EF6"><span class="toc-number">4.1.</span> <span class="toc-text">安装插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jenkins_u8BBE_u7F6Esonar_u8DEF_u5F84"><span class="toc-number">4.2.</span> <span class="toc-text">jenkins设置sonar路径</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jenkins_u4E0A_u914D_u7F6Esonar_u7684_u4FE1_u606F"><span class="toc-number">4.2.1.</span> <span class="toc-text">jenkins上配置sonar的信息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u9879_u76EE_u91CC_u9762_u914D_u7F6Esonar"><span class="toc-number">4.2.1.1.</span> <span class="toc-text">项目里面配置sonar</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u6784_u5EFA"><span class="toc-number">5.</span> <span class="toc-text">构建</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+  <iframe width="100%" height="200" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=4&isTitle=1&noborder=0&isWeibo=0&isFans=0&uid=3857079413&verifier=f23b343c&dpc=1"></iframe>
+  </div>
+
+
+  
+
+  <div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/linux/" title="linux">linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/nginx/" title="nginx">nginx<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/shell/" title="shell">shell<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/tomcat/" title="tomcat">tomcat<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/网络/" title="网络">网络<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/集群/" style="font-size: 10px;">-集群</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/VRRP/" style="font-size: 10px;">VRRP</a> <a href="/tags/lvs/" style="font-size: 10px;">lvs</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/ssl/" style="font-size: 10px;">ssl</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/tags/zabbix/" style="font-size: 15px;">zabbix</a>
+    </div>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.g5od.com" target="_blank" title="Goooood的技术博客">Goooood的技术博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.sky-oracle.com" target="_blank" title="Oracle 自学手册">Oracle 自学手册</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ytniu.com" target="_blank" title="SRE杂谈">SRE杂谈</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello, this is wang&#39;T blog. <br/>
+			Hosted in GitHub.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/3857079413" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/Hwting" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:wang.t.nace@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Wang&#39;T">Wang&#39;T</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"wtingnet"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?36d5a879adb375c2431070b83481fdf5";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
