@@ -89,6 +89,62 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2017/09/01/Oracle自动删除归档日志shell脚本/" title="Oracle自动删除归档日志shell脚本" itemprop="url">Oracle自动删除归档日志shell脚本</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
+		
+  <p class="article-time">
+    <time datetime="2017-09-01T03:16:19.000Z" itemprop="datePublished"> 发表于 2017-09-01</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>Oraclr归档日志清理脚本<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="keyword">if</span> [ -f ~/.bash_profile ]; then</span><br><span class="line">    . ~/.bash_profile</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"><span class="comment">#set env</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"Oracle home:"</span><span class="variable">$ORACLE_HOME</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"Oracle SID:"</span><span class="variable">$ORACLE_SID</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$ORACLE_HOME</span>/bin/rman target sys/oracle@rac log=/oracle/logs/rman.log &lt;&lt;EOF</span><br><span class="line">crosscheck archivelog all;</span><br><span class="line">delete noprompt expired archivelog all;</span><br><span class="line">delete noprompt archivelog all completed before <span class="string">'sysdate - 5'</span>;</span><br><span class="line"><span class="keyword">exit</span>;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>正式环境<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br><span class="line"><span class="comment">#Author wang.t</span></span><br><span class="line"><span class="comment">#date 2017-9-1</span></span><br><span class="line">ORACLE_HOME=/data/u01/app/oracle/product/<span class="number">11.2</span><span class="number">.0</span>/dbhome_1</span><br><span class="line"><span class="variable">$ORACLE_HOME</span>/bin/rman  target / log=/data/backup/logs/rman.log &lt;&lt; EOF</span><br><span class="line">crosscheck archivelog all;</span><br><span class="line">DELETE noprompt  ARCHIVELOG ALL COMPLETED BEFORE <span class="string">'SYSDATE-15'</span>;</span><br><span class="line"><span class="keyword">exit</span>;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
+<p>mkdir -p /data/backup/logs/</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/09/01/Oracle自动删除归档日志shell脚本/#comments" class="ds-thread-count comments-count-link" data-thread-key="2017/09/01/Oracle自动删除归档日志shell脚本/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2017/09/01/Nginx-内核参数优化参考/" title="Nginx+内核参数优化参考" itemprop="url">Nginx+内核参数优化参考</a>
   </h1>
   <p class="article-author">By
@@ -595,62 +651,6 @@
 	
 	  	<span></span>
 		<a href="/2016/11/09/自己签发ssl证书生成/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/11/09/自己签发ssl证书生成/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/11/09/apache2-4-23编译安装/" title="apache2.4.23编译安装" itemprop="url">apache2.4.23编译安装</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
-		
-  <p class="article-time">
-    <time datetime="2016-11-09T07:24:07.000Z" itemprop="datePublished"> 发表于 2016-11-09</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>apache2.4.23编译安装<br>下载apache<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http:<span class="comment">//apache.fayea.com//httpd/httpd-2.4.23.tar.gz</span></span><br><span class="line">tar zxvf httpd-<span class="number">2.4</span>.<span class="number">23</span><span class="class">.tar</span><span class="class">.gz</span></span><br></pre></td></tr></table></figure></p>
-<p>下载安装apr<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http:<span class="comment">//mirrors.tuna.tsinghua.edu.cn/apache//apr/apr-1.5.2.tar.gz</span></span><br><span class="line">tar zxvf apr-<span class="number">1.5</span><span class="number">.2</span>.tar.gz </span><br><span class="line">cd apr-<span class="number">1.5</span><span class="number">.2</span></span><br><span class="line"> ./configure --prefix=/usr/local/apr</span><br><span class="line">make &amp;install make</span><br><span class="line">cp ../apr-<span class="number">1.5</span><span class="number">.2</span> ../httpd-<span class="number">2.4</span><span class="number">.23</span>/srclib/apr</span><br></pre></td></tr></table></figure></p>
-<p>下载apr-util编译安装apache<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> wget http:<span class="comment">//mirrors.hust.edu.cn/apache//apr/apr-util-1.5.4.tar.gz</span></span><br><span class="line">tar zxvf  apr-util-<span class="number">1.5</span><span class="number">.4</span>.tar.gz</span><br><span class="line">cp -r apr-util-<span class="number">1.5</span><span class="number">.4</span> httpd-<span class="number">2.4</span><span class="number">.23</span>/srclib/apr-util</span><br><span class="line"></span><br><span class="line">cd httpd-<span class="number">2.4</span><span class="number">.23</span></span><br><span class="line"> ./configure --prefix=/usr/local/apache   --with-apr=/usr/local/apr --with-included-apr</span><br><span class="line"> make &amp;&amp; make install</span><br></pre></td></tr></table></figure></p>
- <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apahce启动命令：</span><br><span class="line">/usr/<span class="built_in">local</span>/apache/bin/aachectl  <span class="built_in">start</span> |<span class="built_in">stop</span>|restart</span><br></pre></td></tr></table></figure>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/11/09/apache2-4-23编译安装/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/11/09/apache2-4-23编译安装/" data-count-type="comments">&nbsp;</a>
 	
 </div>
 
