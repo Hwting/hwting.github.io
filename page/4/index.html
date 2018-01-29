@@ -89,6 +89,77 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/06/24/CentOS-2-6版本内核升级至3-10-yum版/" title="CentOS 2.6版本内核升级至3.10 yum版 " itemprop="url">CentOS 2.6版本内核升级至3.10 yum版 </a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
+		
+  <p class="article-time">
+    <time datetime="2016-06-24T05:24:11.000Z" itemprop="datePublished"> 发表于 2016-06-24</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>升级前系统镜像：CentOS 6.5 64位  </p>
+<p>内核版本：2.6.32-431.23.3.el6_x86_64</p>
+<p>1、导入public key</p>
+<p>rpm –import <a href="https://www.elrepo.org/RPM-GPG-KEY-elrepo.org" target="_blank" rel="external">https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</a></p>
+<p>2、安装elrepo到内核为2.6.32的CentOS中</p>
+<p>rpm -Uvh <a href="http://www.elrepo.org/elrepo-release-6-8.el6.elrepo.noarch.rpm" target="_blank" rel="external">http://www.elrepo.org/elrepo-release-6-8.el6.elrepo.noarch.rpm</a></p>
+<p>3、安装kernel-lt(long term support)长期支持版本</p>
+<p>yum –enablerepo=elrepo-kernel install kernel-lt -y</p>
+<p>注：</p>
+<p>1)</p>
+<p>如果直接通过yum方式使用elrepo源速度会较慢(该源在国外)。</p>
+<p>推荐采用rpm的方式安装kernel-lt：</p>
+<p>访问<a href="http://elrepo.org/linux/kernel/el6/x86_64/RPMS/下载对应的rpm包，通过rpm方式安装：" target="_blank" rel="external">http://elrepo.org/linux/kernel/el6/x86_64/RPMS/下载对应的rpm包，通过rpm方式安装：</a></p>
+<p>rpm -ivh kernel-lt-3.10.93-1.el6.elrepo.x86_64.rpm</p>
+<p>2)</p>
+<p>关于kernel-lt的介绍可以参考elrepo官网介绍：<a href="http://elrepo.org/tiki/kernel-lt" target="_blank" rel="external">http://elrepo.org/tiki/kernel-lt</a></p>
+<p>4、编辑grub.conf文件，修改Grub引导顺序</p>
+<p>vim /etc/grub.conf</p>
+<p>确认安装的新内核的位置，将default的值调整为新内核的顺序，如本次升级案例中新装的内核位置为0，所以将default修改为0，保存退出，reboot重启服务器。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/06/24/CentOS-2-6版本内核升级至3-10-yum版/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/06/24/CentOS-2-6版本内核升级至3-10-yum版/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/06/24/CentOS-6-5-内核升级2-6-32-3-12-61过程记录/" title="CentOS 6.5 内核升级2.6.32 -&gt; 3.12.61过程记录 " itemprop="url">CentOS 6.5 内核升级2.6.32 -&gt; 3.12.61过程记录 </a>
   </h1>
   <p class="article-author">By
@@ -670,85 +741,6 @@
 	
 	  	<span></span>
 		<a href="/2015/12/26/heartbeata安装配置/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/12/26/heartbeata安装配置/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/12/17/centos7-zabbix3-0完整安装/" title="centos7+zabbix3.0完整安装" itemprop="url">centos7+zabbix3.0完整安装</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
-		
-  <p class="article-time">
-    <time datetime="2015-12-17T11:25:00.000Z" itemprop="datePublished"> 发表于 2015-12-17</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="u5B89_u88C5_u524D_u7684_u51C6_u5907_u5DE5_u4F5C"><a href="#u5B89_u88C5_u524D_u7684_u51C6_u5907_u5DE5_u4F5C" class="headerlink" title="安装前的准备工作"></a>安装前的准备工作</h1><p>1、操作系统要求</p>
-<p>2、配置编译环境以及安装一些依赖包</p>
-<p>3、关闭selinux、firewall </p>
-<pre><code>setenforce 0
-systemctl stop firewalld.service
-</code></pre><p>4、安装依赖软件包</p>
-<pre><code>yum install gcc net-snmp-devel libxml2-devel mysql-devel  -y
-</code></pre><h1 id="u642D_u5EFAlamp"><a href="#u642D_u5EFAlamp" class="headerlink" title="搭建lamp"></a>搭建lamp</h1><p>*1.安装mysql</p>
-<p>*2.安装apache</p>
-<p>*3安装php</p>
-<h1 id="u4E0B_u8F7Dzabbix3-0"><a href="#u4E0B_u8F7Dzabbix3-0" class="headerlink" title="下载zabbix3.0"></a>下载zabbix3.0</h1><pre><code>wge thttp://sourceforge.net/projects/zabbix/files/ZABBIX%20Latest%20Development/3.0.0alpha4/zabbix-3.0.0alpha4.tar.gz
-
-tar zxvf  zabbix-3.0.0alpha4.tar.gz
-
-cd zabbix-3.0.0alpha4
-
-./configure  --prefix=/usr/local/zabbix --with-mysql --with-libxml2 --with-net-snmp --with-libcurl  --enable-server --enable-agent
-make
-make install
-//所需参数 ./configuer -h
-</code></pre>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/12/17/centos7-zabbix3-0完整安装/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/zabbix/">zabbix</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/12/17/centos7-zabbix3-0完整安装/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/12/17/centos7-zabbix3-0完整安装/" data-count-type="comments">&nbsp;</a>
 	
 </div>
 

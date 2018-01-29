@@ -89,6 +89,65 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/11/09/自己签发ssl证书生成/" title="自己签发ssl证书生成" itemprop="url">自己签发ssl证书生成</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
+		
+  <p class="article-time">
+    <time datetime="2016-11-09T07:25:00.000Z" itemprop="datePublished"> 发表于 2016-11-09</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#生成一个RSA密钥 </span><br><span class="line"></span><br><span class="line">$ openssl genrsa -des3 -out server<span class="class">.key</span> <span class="number">1024</span></span><br><span class="line">#拷贝一个不需要输入密码的密钥文件</span><br><span class="line"></span><br><span class="line">$ openssl rsa -<span class="keyword">in</span> server<span class="class">.key</span> -out server_nopass<span class="class">.key</span></span><br><span class="line">#生成一个证书请求</span><br><span class="line"></span><br><span class="line">$ openssl req -new -key server<span class="class">.key</span> -out server<span class="class">.csr</span></span><br><span class="line">#自己签发证书</span><br><span class="line"></span><br><span class="line">$ openssl x509 -req -days <span class="number">3650</span> -<span class="keyword">in</span> server<span class="class">.csr</span> -signkey server<span class="class">.key</span> -out server.crt</span><br></pre></td></tr></table></figure>
+<p>nginx 配置ssl<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssl_certificate <span class="regexp">/etc/</span>nginx<span class="regexp">/ssl/</span>xxx.com.crt;</span><br><span class="line">ssl_certificate_key <span class="regexp">/etc/</span>nginx<span class="regexp">/ssl/</span>xxx.com.key;</span><br></pre></td></tr></table></figure></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/ssl/">ssl</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/11/09/自己签发ssl证书生成/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/11/09/自己签发ssl证书生成/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/11/09/apache2-4-23编译安装/" title="apache2.4.23编译安装" itemprop="url">apache2.4.23编译安装</a>
   </h1>
   <p class="article-author">By
@@ -696,77 +755,6 @@
 	
 	  	<span></span>
 		<a href="/2016/07/01/nginx编译参数详细说明/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/07/01/nginx编译参数详细说明/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/06/24/CentOS-2-6版本内核升级至3-10-yum版/" title="CentOS 2.6版本内核升级至3.10 yum版 " itemprop="url">CentOS 2.6版本内核升级至3.10 yum版 </a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
-		
-  <p class="article-time">
-    <time datetime="2016-06-24T05:24:11.000Z" itemprop="datePublished"> 发表于 2016-06-24</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>升级前系统镜像：CentOS 6.5 64位  </p>
-<p>内核版本：2.6.32-431.23.3.el6_x86_64</p>
-<p>1、导入public key</p>
-<p>rpm –import <a href="https://www.elrepo.org/RPM-GPG-KEY-elrepo.org" target="_blank" rel="external">https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</a></p>
-<p>2、安装elrepo到内核为2.6.32的CentOS中</p>
-<p>rpm -Uvh <a href="http://www.elrepo.org/elrepo-release-6-8.el6.elrepo.noarch.rpm" target="_blank" rel="external">http://www.elrepo.org/elrepo-release-6-8.el6.elrepo.noarch.rpm</a></p>
-<p>3、安装kernel-lt(long term support)长期支持版本</p>
-<p>yum –enablerepo=elrepo-kernel install kernel-lt -y</p>
-<p>注：</p>
-<p>1)</p>
-<p>如果直接通过yum方式使用elrepo源速度会较慢(该源在国外)。</p>
-<p>推荐采用rpm的方式安装kernel-lt：</p>
-<p>访问<a href="http://elrepo.org/linux/kernel/el6/x86_64/RPMS/下载对应的rpm包，通过rpm方式安装：" target="_blank" rel="external">http://elrepo.org/linux/kernel/el6/x86_64/RPMS/下载对应的rpm包，通过rpm方式安装：</a></p>
-<p>rpm -ivh kernel-lt-3.10.93-1.el6.elrepo.x86_64.rpm</p>
-<p>2)</p>
-<p>关于kernel-lt的介绍可以参考elrepo官网介绍：<a href="http://elrepo.org/tiki/kernel-lt" target="_blank" rel="external">http://elrepo.org/tiki/kernel-lt</a></p>
-<p>4、编辑grub.conf文件，修改Grub引导顺序</p>
-<p>vim /etc/grub.conf</p>
-<p>确认安装的新内核的位置，将default的值调整为新内核的顺序，如本次升级案例中新装的内核位置为0，所以将default修改为0，保存退出，reboot重启服务器。</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/06/24/CentOS-2-6版本内核升级至3-10-yum版/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/06/24/CentOS-2-6版本内核升级至3-10-yum版/" data-count-type="comments">&nbsp;</a>
 	
 </div>
 
