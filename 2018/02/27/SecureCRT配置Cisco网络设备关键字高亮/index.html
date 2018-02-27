@@ -4,26 +4,36 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>解决Linux 出现大量TIME_WAIT连接问题 | Wang&#39;T博客</title>
+    <title>SecureCRT配置Cisco网络设备关键字高亮 | Wang&#39;T博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Wang&#39;T">
     
 
     
-    <meta name="description" content="1netstat -n|awk &apos;/^tcp/&amp;#123;++S[$NF]&amp;#125;END&amp;#123;for (a in S) print a,S[a]&amp;#125;&apos;    #得到当前服务器的所有TCP连接数状态
-修改/etc/sysctl.conf文件参数1234vim /etc/sysctl.confnet.ipv4.tcp_tw_reuse = 1  #表示开启重用。允许将TIME-WAI">
+    <meta name="description" content="##效果图：下载思科关键字文件解压到C:\Users\Administrator\AppData\Roaming\VanDyke\Config(根据自己的用户路径)链接: https://pan.baidu.com/s/1c3BZb8k 密码: xv7h
+##设置 options-eitdefault-appearance
+##设置配置文件路径options-Globaloptions
+#下拉菜单">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解决Linux 出现大量TIME_WAIT连接问题">
-<meta property="og:url" content="http://wting.tk/2018/01/29/解决Linux-出现大量TIME-WAIT连接问题/index.html">
+<meta property="og:title" content="SecureCRT配置Cisco网络设备关键字高亮">
+<meta property="og:url" content="http://wting.tk/2018/02/27/SecureCRT配置Cisco网络设备关键字高亮/index.html">
 <meta property="og:site_name" content="Wang'T博客">
-<meta property="og:description" content="1netstat -n|awk &apos;/^tcp/&amp;#123;++S[$NF]&amp;#125;END&amp;#123;for (a in S) print a,S[a]&amp;#125;&apos;    #得到当前服务器的所有TCP连接数状态
-修改/etc/sysctl.conf文件参数1234vim /etc/sysctl.confnet.ipv4.tcp_tw_reuse = 1  #表示开启重用。允许将TIME-WAI">
-<meta property="og:updated_time" content="2018-01-29T03:40:27.409Z">
+<meta property="og:description" content="##效果图：下载思科关键字文件解压到C:\Users\Administrator\AppData\Roaming\VanDyke\Config(根据自己的用户路径)链接: https://pan.baidu.com/s/1c3BZb8k 密码: xv7h
+##设置 options-eitdefault-appearance
+##设置配置文件路径options-Globaloptions
+#下拉菜单">
+<meta property="og:image" content="http://wting.tk/img/crt1.png">
+<meta property="og:image" content="http://wting.tk/img/crt2.png">
+<meta property="og:image" content="http://wting.tk/img/crt3.png">
+<meta property="og:image" content="http://wting.tk/img/crt4.png">
+<meta property="og:updated_time" content="2018-02-27T08:02:56.871Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解决Linux 出现大量TIME_WAIT连接问题">
-<meta name="twitter:description" content="1netstat -n|awk &apos;/^tcp/&amp;#123;++S[$NF]&amp;#125;END&amp;#123;for (a in S) print a,S[a]&amp;#125;&apos;    #得到当前服务器的所有TCP连接数状态
-修改/etc/sysctl.conf文件参数1234vim /etc/sysctl.confnet.ipv4.tcp_tw_reuse = 1  #表示开启重用。允许将TIME-WAI">
+<meta name="twitter:title" content="SecureCRT配置Cisco网络设备关键字高亮">
+<meta name="twitter:description" content="##效果图：下载思科关键字文件解压到C:\Users\Administrator\AppData\Roaming\VanDyke\Config(根据自己的用户路径)链接: https://pan.baidu.com/s/1c3BZb8k 密码: xv7h
+##设置 options-eitdefault-appearance
+##设置配置文件路径options-Globaloptions
+#下拉菜单">
 
     
     <link rel="alternative" href="atom.xml" title="Wang&#39;T博客" type="application/atom+xml">
@@ -91,14 +101,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/01/29/解决Linux-出现大量TIME-WAIT连接问题/" title="解决Linux 出现大量TIME_WAIT连接问题" itemprop="url">解决Linux 出现大量TIME_WAIT连接问题</a>
+      <a href="/2018/02/27/SecureCRT配置Cisco网络设备关键字高亮/" title="SecureCRT配置Cisco网络设备关键字高亮" itemprop="url">SecureCRT配置Cisco网络设备关键字高亮</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
 		
   <p class="article-time">
-    <time datetime="2018-01-29T03:30:59.000Z" itemprop="datePublished"> 发表于 2018-01-29</time>
+    <time datetime="2018-02-27T07:34:35.000Z" itemprop="datePublished"> 发表于 2018-02-27</time>
     
   </p>
 </header>
@@ -111,9 +121,10 @@
 		
 		</div>
 		
-		<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -n|awk <span class="string">'/^tcp/&#123;++S[$NF]&#125;END&#123;for (a in S) print a,S[a]&#125;'</span>    <span class="comment">#得到当前服务器的所有TCP连接数状态</span></span><br></pre></td></tr></table></figure>
-<p>修改/etc/sysctl.conf文件参数<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysctl.conf</span><br><span class="line">net.ipv4.tcp_tw_reuse = <span class="number">1</span>  <span class="comment">#表示开启重用。允许将TIME-WAIT sockets重新用于新的TCP连接，默认为0，表示关闭；</span></span><br><span class="line">net.ipv4.tcp_tw_recycle = <span class="number">1</span>  <span class="comment">#表示开启TCP连接中TIME-WAIT sockets的快速回收，默认为0，表示关闭。</span></span><br><span class="line">net.ipv4.tcp_fin_timeout = <span class="number">30</span>  <span class="comment">#修改系統默认的TIMEOUT时间</span></span><br></pre></td></tr></table></figure></p>
-<p>TIME_WAIT 的默认时间是 2倍的 MLS，即 240 秒，最低为 30 秒，最高为 300 秒。MLS 是 TCP 片在网上的最长存活时间。TIME_WAIT的主要作用是保证关闭的TCP端口不立即被使用。因为当网络存在延迟时，可能当某个端口被关闭后，网络中还有一些重传的TCP片在发向这个端口，如果这个端口立即建立新的TCP连接，则可能会有影响。所以使用2倍的MSL时间来限制这个端口立即被使用。</p>
+		<p>##效果图：<br><img src="/img/crt1.png" alt="crt"><br>下载思科关键字文件解压到C:\Users\Administrator\AppData\Roaming\VanDyke\Config(根据自己的用户路径)<br>链接: <a href="https://pan.baidu.com/s/1c3BZb8k" target="_blank" rel="external">https://pan.baidu.com/s/1c3BZb8k</a> 密码: xv7h</p>
+<p>##设置 options-eitdefault-appearance<br><img src="/img/crt2.png" alt="crt"></p>
+<p>##设置配置文件路径options-Globaloptions<br><img src="/img/crt3.png" alt="crt"></p>
+<p>#下拉菜单选择解压好的关键字文件<br><img src="/img/crt4.png" alt="crt"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -161,19 +172,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2018/02/27/SecureCRT配置Cisco网络设备关键字高亮/" title="SecureCRT配置Cisco网络设备关键字高亮">
-  <strong>上一篇：</strong><br/>
-  <span>
-  SecureCRT配置Cisco网络设备关键字高亮</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/12/15/zabbix-shell脚本钉钉机器人报警/"  title="zabbix+shell脚本钉钉机器人报警">
+<a href="/2018/01/29/解决Linux-出现大量TIME-WAIT连接问题/"  title="解决Linux 出现大量TIME_WAIT连接问题">
  <strong>下一篇：</strong><br/> 
- <span>zabbix+shell脚本钉钉机器人报警
+ <span>解决Linux 出现大量TIME_WAIT连接问题
 </span>
 </a>
 </div>
@@ -182,7 +185,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2018/01/29/解决Linux-出现大量TIME-WAIT连接问题/" data-title="解决Linux 出现大量TIME_WAIT连接问题" data-url="http://wting.tk/2018/01/29/解决Linux-出现大量TIME-WAIT连接问题/"></div>
+	<div class="ds-thread" data-thread-key="2018/02/27/SecureCRT配置Cisco网络设备关键字高亮/" data-title="SecureCRT配置Cisco网络设备关键字高亮" data-url="http://wting.tk/2018/02/27/SecureCRT配置Cisco网络设备关键字高亮/"></div>
 </section>
 
 

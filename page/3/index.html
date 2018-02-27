@@ -89,6 +89,59 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/11/09/nginx日志自动切割脚本/" title="nginx日志自动切割脚本" itemprop="url">nginx日志自动切割脚本</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
+		
+  <p class="article-time">
+    <time datetime="2016-11-09T07:26:27.000Z" itemprop="datePublished"> 发表于 2016-11-09</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>nginx日志按日期自动切割脚本如下<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#nginx日志切割脚本</span></span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="comment">#设置日志文件存放目录</span></span><br><span class="line">logs_path=<span class="string">"/usr/local/nginx/logs/"</span></span><br><span class="line"><span class="comment">#设置pid文件</span></span><br><span class="line">pid_path=<span class="string">"/usr/local/nginx/nginx.pid"</span></span><br><span class="line"><span class="comment">#重命名日志文件</span></span><br><span class="line">mv $&#123;logs_path&#125;access.log $&#123;logs_path&#125;access_$(date -d <span class="string">"yesterday"</span> +<span class="string">"%Y%m%d"</span>).log</span><br><span class="line"><span class="comment">#向nginx主进程发信号重新打开日志</span></span><br><span class="line">kill -USR1 `cat $&#123;pid_path&#125;`</span><br><span class="line">crontab -e 设置作业</span><br><span class="line"><span class="number">0</span> <span class="number">0</span> * * * bash /usr/local/nginx/nginx_log.sh</span><br><span class="line">这样就每天的<span class="number">0</span>点<span class="number">0</span>分把nginx日志重命名为日期格式，并重新生成今天的新日志文件。</span><br></pre></td></tr></table></figure></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/11/09/nginx日志自动切割脚本/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/11/09/nginx日志自动切割脚本/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/11/09/自己签发ssl证书生成/" title="自己签发ssl证书生成" itemprop="url">自己签发ssl证书生成</a>
   </h1>
   <p class="article-author">By
@@ -697,64 +750,6 @@
 	
 	  	<span></span>
 		<a href="/2016/07/01/nginx安装与负载均衡配置/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/07/01/nginx安装与负载均衡配置/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/07/01/nginx编译参数详细说明/" title="nginx编译参数详细说明" itemprop="url">nginx编译参数详细说明</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
-		
-  <p class="article-time">
-    <time datetime="2016-07-01T09:47:00.000Z" itemprop="datePublished"> 发表于 2016-07-01</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>nginx编译参数详细说明<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#8211;prefix=&#60;path&#62; &#8211; &#23433;&#35013;&#36335;&#24452;&#65292;&#22914;&#26524;&#27809;&#26377;&#25351;&#23450;&#65292;&#40664;&#35748;&#20026;/usr/local/nginx&#12290;&#10;&#10;&#8211;sbin-path=&#60;path&#62; &#8211; nginx&#21487;&#25191;&#34892;&#21629;&#20196;&#30340;&#25991;&#20214;&#65292;&#22914;&#26524;&#27809;&#26377;&#25351;&#23450;&#65292;&#40664;&#35748;&#20026;&#60;prefix&#62;/sbin/nginx&#12290;&#10;&#10;&#8211;conf-path=&#60;path&#62; &#8211; &#22312;&#27809;&#26377;&#20351;&#29992;-c&#21442;&#25968;&#25351;&#23450;&#30340;&#24773;&#20917;&#19979;nginx.conf&#30340;&#40664;&#35748;&#20301;&#32622;&#65292;&#22914;&#26524;&#27809;&#26377;&#25351;&#23450;&#65292;&#40664;&#35748;&#20026;&#60;prefix&#62;/conf/nginx.conf&#12290;&#10;&#10;&#8211;pid-path=&#60;path&#62; &#8211; nginx.pid&#30340;&#36335;&#24452;&#65292;&#22914;&#26524;&#27809;&#26377;&#22312;nginx.conf&#20013;&#36890;&#36807;&#8220;pid&#8221;&#25351;&#20196;&#25351;&#23450;&#65292;&#40664;&#35748;&#20026;&#60;prefix&#62;/logs/nginx.pid&#12290;&#10;&#10;&#8211;lock-path=&#60;path&#62; &#8211; nginx.lock&#25991;&#20214;&#36335;&#24452;&#65292;&#22914;&#26524;&#27809;&#26377;&#25351;&#23450;&#65292;&#40664;&#35748;&#20026;&#60;prefix&#62;/logs/nginx.lock&#12290;&#10;&#10;&#8211;error-log-path=&#60;path&#62; &#8211; &#24403;&#27809;&#26377;&#22312;nginx.conf&#20013;&#20351;&#29992;&#8220;error_log&#8221;&#25351;&#20196;&#25351;&#23450;&#26102;&#30340;&#38169;&#35823;&#26085;&#24535;&#20301;&#32622;&#65292;&#22914;&#26524;&#27809;&#26377;&#25351;&#23450;&#65292;&#40664;&#35748;&#20026;&#60;prefix&#62;/logs/error.log&#12290;&#10;&#10;&#8211;http-log-path=&#60;path&#62; &#8211; &#24403;&#27809;&#26377;&#22312;nginx.conf&#20013;&#20351;&#29992;&#8220;access_log&#8221;&#25351;&#20196;&#25351;&#23450;&#26102;&#30340;&#35775;&#38382;&#26085;&#24535;&#20301;&#32622;&#65292;&#22914;&#26524;&#27809;&#26377;&#25351;&#23450;&#65292;&#40664;&#35748;&#20026;&#60;prefix&#62;/logs/access.log&#12290;&#10;&#10;&#8211;user=&#60;user&#62; &#8211; &#24403;&#27809;&#26377;&#22312;nginx.conf&#20013;&#20351;&#29992;&#8220;user&#8221;&#25351;&#20196;&#25351;&#23450;&#26102;nginx&#36816;&#34892;&#30340;&#29992;&#25143;&#65292;&#22914;&#26524;&#27809;&#26377;&#25351;&#23450;&#65292;&#40664;&#35748;&#20026;&#8220;nobody&#8221;&#12290;&#10;&#10;&#8211;group=&#60;group&#62; &#8211; &#24403;&#27809;&#26377;&#22312;nginx.conf&#20013;&#20351;&#29992;&#8220;user&#8221;&#25351;&#20196;&#25351;&#23450;&#26102;nginx&#36816;&#34892;&#30340;&#32452;&#65292;&#22914;&#26524;&#27809;&#26377;&#25351;&#23450;&#65292;&#40664;&#35748;&#20026;&#8220;nobody&#8221;&#12290;&#10;&#10;&#8211;builddir=DIR &#8211; &#35774;&#32622;&#26500;&#24314;&#30446;&#24405;&#12290;&#10;&#10;&#8211;with-rtsig_module &#8211; &#21551;&#29992;rtsig&#27169;&#22359;&#12290;&#10;&#10;&#8211;with-select_module &#8211;without-select_module &#8211; &#22914;&#26524;&#22312;configure&#30340;&#26102;&#20505;&#27809;&#26377;&#21457;&#29616;kqueue, epoll, rtsig&#25110;/dev/poll&#20854;&#20013;&#20043;&#19968;&#65292;select&#27169;&#22359;&#22987;&#32456;&#20026;&#21551;&#29992;&#29366;&#24577;&#12290;&#10;&#10;&#8211;with-poll_module &#8211;without-poll_module &#8211; &#22914;&#26524;&#22312;configure&#30340;&#26102;&#20505;&#27809;&#26377;&#21457;&#29616;kqueue, epoll, rtsig&#25110;/dev/poll&#20854;&#20013;&#20043;&#19968;&#65292;poll&#27169;&#22359;&#22987;&#32456;&#20026;&#21551;&#29992;&#29366;&#24577;&#12290;&#10;&#10;&#8211;with-http_ssl_module &#8211; &#21551;&#29992;ngx_http_ssl_module&#65292;&#21551;&#29992;SSL&#25903;&#25345;&#24182;&#19988;&#33021;&#22815;&#22788;&#29702;HTTPS&#35831;&#27714;&#12290;&#38656;&#35201;OpenSSL&#65292;&#22312;Debian&#31995;&#32479;&#20013;&#65292;&#23545;&#24212;&#30340;&#21253;&#20026;libssl-dev&#12290;&#10;&#10;&#8211;with-http_realip_module &#8211; &#21551;&#29992;ngx_http_realip_module&#10;&#10;&#8211;with-http_addition_module &#8211; &#21551;&#29992;ngx_http_addition_module&#10;&#10;&#8211;with-http_sub_module &#8211; &#21551;&#29992;ngx_http_sub_module&#10;&#10;&#8211;with-http_dav_module &#8211; &#21551;&#29992;ngx_http_dav_module&#10;&#10;&#8211;with-http_flv_module &#8211; &#21551;&#29992;ngx_http_flv_module&#10;&#10;&#8211;with-http_stub_status_module &#8211; &#21551;&#29992;&#8221;server status&#8221;&#65288;&#26381;&#21153;&#29366;&#24577;&#65289;&#39029;&#10;&#10;&#8211;without-http_charset_module &#8211; &#31105;&#29992;ngx_http_charset_module&#10;&#10;&#8211;without-http_gzip_module &#8211; &#31105;&#29992;ngx_http_gzip_module&#65292;&#22914;&#26524;&#21551;&#29992;&#65292;&#38656;&#35201;zlib&#21253;&#12290;&#10;&#10;&#8211;without-http_ssi_module &#8211; &#31105;&#29992;ngx_http_ssi_module&#10;&#10;&#8211;without-http_userid_module &#8211; &#31105;&#29992;ngx_http_userid_module&#10;&#10;&#8211;without-http_access_module &#8211; &#31105;&#29992;ngx_http_access_module&#10;&#10;&#8211;without-http_auth_basic_module &#8211; &#31105;&#29992;ngx_http_auth_basic_module&#10;&#10;&#8211;without-http_autoindex_module &#8211; &#31105;&#29992;ngx_http_autoindex_module&#10;&#10;&#8211;without-http_geo_module &#8211; &#31105;&#29992;ngx_http_geo_module&#10;&#10;&#8211;without-http_map_module &#8211; &#31105;&#29992;ngx_http_map_module&#10;&#10;&#8211;without-http_referer_module &#8211; &#31105;&#29992;ngx_http_referer_module&#10;&#10;&#8211;without-http_rewrite_module &#8211; &#31105;&#29992;ngx_http_rewrite_module&#12290;&#22914;&#26524;&#21551;&#29992;&#65292;&#38656;&#35201;PCRE&#21253;&#12290;&#10;&#10;&#8211;without-http_proxy_module &#8211; &#31105;&#29992;ngx_http_proxy_module&#10;&#10;&#8211;without-http_fastcgi_module &#8211; &#31105;&#29992;ngx_http_fastcgi_module&#10;&#10;&#8211;without-http_memcached_module &#8211; &#31105;&#29992;ngx_http_memcached_module&#10;&#10;&#8211;without-http_limit_zone_module &#8211; &#31105;&#29992;ngx_http_limit_zone_module&#10;&#10;&#8211;without-http_empty_gif_module &#8211; &#31105;&#29992;ngx_http_empty_gif_module&#10;&#10;&#8211;without-http_browser_module &#8211; &#31105;&#29992;ngx_http_browser_module&#10;&#10;&#8211;without-http_upstream_ip_hash_module &#8211; &#31105;&#29992;ngx_http_upstream_ip_hash_module&#10;&#10;&#8211;with-http_perl_module &#8211; &#21551;&#29992;ngx_http_perl_module&#10;&#10;&#8211;with-perl_modules_path=PATH &#8211; &#20026;perl&#27169;&#22359;&#35774;&#32622;&#36335;&#24452;&#10;&#10;&#8211;with-perl=PATH &#8211; &#20026;perl&#24211;&#35774;&#32622;&#36335;&#24452;&#10;&#10;&#8211;http-client-body-temp-path=PATH &#8211; &#20026;http&#36830;&#25509;&#30340;&#35831;&#27714;&#23454;&#20307;&#20020;&#26102;&#25991;&#20214;&#35774;&#32622;&#36335;&#24452;&#65292;&#22914;&#26524;&#27809;&#26377;&#25351;&#23450;&#65292;&#40664;&#35748;&#20026;&#60;prefix&#62;/client_body_temp&#10;&#10;&#8211;http-proxy-temp-path=PATH &#8211; &#20026;http&#20195;&#29702;&#20020;&#26102;&#25991;&#20214;&#35774;&#32622;&#36335;&#24452;&#65292;&#22914;&#26524;&#27809;&#26377;&#25351;&#23450;&#65292;&#40664;&#35748;&#20026;&#60;prefix&#62;/proxy_temp&#10;&#10;&#8211;http-fastcgi-temp-path=PATH - &#20026;http fastcgi&#20020;&#26102;&#25991;&#20214;&#35774;&#32622;&#36335;&#24452;&#65292;&#22914;&#26524;&#27809;&#26377;&#25351;&#23450;&#65292;&#40664;&#35748;&#20026;&#60;prefix&#62;/fastcgi_temp&#10;&#10;&#8211;without-http &#8211; &#31105;&#29992;HTTP&#26381;&#21153;&#10;&#10;&#8211;with-mail &#8211; &#21551;&#29992;IMAP4/POP3/SMTP&#20195;&#29702;&#27169;&#22359;&#10;&#10;&#8211;with-mail_ssl_module &#8211; &#21551;&#29992;ngx_mail_ssl_module&#10;&#10;&#8211;with-cc=PATH &#8211; &#35774;&#32622;C&#32534;&#35793;&#22120;&#36335;&#24452;&#10;&#10;&#8211;with-cpp=PATH &#8211; &#35774;&#32622;C&#39044;&#22788;&#29702;&#22120;&#36335;&#24452;&#10;&#10;&#8211;with-cc-opt=OPTIONS &#8211; &#21464;&#37327;CFLAGS&#20013;&#38468;&#21152;&#30340;&#21442;&#25968;&#65292;&#29992;&#20110;FreeBSD&#20013;&#30340;PCRE&#24211;&#65292;&#21516;&#26679;&#38656;&#35201;&#25351;&#23450;&#8211;with-cc-opt=&#8221;-I /usr/local/include&#8221;&#65292;&#22914;&#26524;&#25105;&#20204;&#20351;&#29992;select()&#20989;&#25968;&#21017;&#38656;&#35201;&#21516;&#26102;&#22686;&#21152;&#25991;&#20214;&#25551;&#36848;&#31526;&#25968;&#37327;&#65292;&#21487;&#20197;&#36890;&#36807;&#8211;with-cc-opt=&#8221;-D FD_SETSIZE=2048&#8221;&#25351;&#23450;&#12290;&#10;&#10;&#8211;with-ld-opt=OPTIONS &#8211; &#36890;&#36807;&#36830;&#25509;&#22120;&#30340;&#38468;&#21152;&#21442;&#25968;&#65292;&#29992;&#20110;FreeBSD&#20013;&#30340;PCRE&#24211;&#65292;&#21516;&#26679;&#38656;&#35201;&#25351;&#23450;&#8211;with-ld-opt=&#8221;-L /usr/local/lib&#8221;&#12290;&#10;&#10;&#8211;with-cpu-opt=CPU &#8211; &#25351;&#23450;&#32534;&#35793;&#30340;CPU&#65292;&#21487;&#29992;&#30340;&#20540;&#20026;: pentium, pentiumpro, pentium3, pentium4, athlon, opteron, amd64, sparc32, sparc64, ppc64&#10;&#10;&#8211;without-pcre &#8211; &#31105;&#29992;PCRE&#24211;&#25991;&#20214;&#65292;&#21516;&#26102;&#23558;&#31105;&#29992;HTTP rewrite &#27169;&#22359;&#65292;&#22914;&#26524;&#35201;&#22312;&#8221;location&#8221;&#25351;&#20196;&#20013;&#20351;&#29992;&#27491;&#21017;&#34920;&#36798;&#24335;&#65292;&#21516;&#26679;&#38656;&#35201;PCRE&#24211;&#12290;&#10;&#10;&#8211;with-pcre=DIR &#8211; &#35774;&#32622;PCRE&#24211;&#28304;&#25991;&#20214;&#36335;&#24452;&#12290;&#10;&#10;&#8211;with-pcre-opt=OPTIONS &#8211; &#22312;&#32534;&#35793;&#26102;&#20026;PCRE&#35774;&#32622;&#38468;&#21152;&#21442;&#25968;&#12290;&#10;&#10;&#8211;with-md5=DIR &#8211; &#35774;&#32622;md5&#24211;&#28304;&#25991;&#20214;&#36335;&#24452;&#12290;&#10;&#10;&#8211;with-md5-opt=OPTIONS &#8211; &#22312;&#32534;&#35793;&#26102;&#20026;md5&#35774;&#32622;&#38468;&#21152;&#21442;&#25968;&#12290;&#10;&#10;&#8211;with-md5-asm &#8211; &#20351;&#29992;md5&#27719;&#32534;&#28304;&#12290;&#10;&#10;&#8211;with-sha1=DIR &#8211; &#35774;&#32622;sha1&#24211;&#28304;&#25991;&#20214;&#36335;&#24452;&#12290;&#10;&#10;&#8211;with-sha1-opt=OPTIONS &#8211; &#22312;&#32534;&#35793;&#26102;&#20026;sha1&#35774;&#32622;&#38468;&#21152;&#21442;&#25968;&#12290;&#10;&#10;&#8211;with-sha1-asm &#8211; &#20351;&#29992;sha1&#27719;&#32534;&#28304;&#12290;&#10;&#10;&#8211;with-zlib=DIR &#8211; &#35774;&#32622;zlib&#24211;&#28304;&#25991;&#20214;&#36335;&#24452;&#12290;&#10;&#10;&#8211;with-zlib-opt=OPTIONS &#8211; &#22312;&#32534;&#35793;&#26102;&#20026;zlib&#35774;&#32622;&#38468;&#21152;&#21442;&#25968;&#12290;&#10;&#10;&#8211;with-zlib-asm=CPU &#8211; &#20026;&#25351;&#23450;&#30340;CPU&#20351;&#29992;zlib&#27719;&#32534;&#28304;&#36827;&#34892;&#20248;&#21270;&#65292;&#21487;&#29992;&#20540;&#20026;: pentium, pentiumpro&#12290;&#10;&#10;&#8211;with-openssl=DIR &#8211; &#35774;&#32622;openssl&#24211;&#28304;&#25991;&#20214;&#36335;&#24452;&#12290;&#10;&#10;&#8211;with-openssl-opt=OPTIONS &#8211; &#22312;&#32534;&#35793;&#26102;&#20026;openssl&#35774;&#32622;&#38468;&#21152;&#21442;&#25968;&#12290;&#10;&#10;&#8211;with-debug &#8211; &#21551;&#29992;debug&#35760;&#24405;&#12290;&#10;&#10;&#8211;add-module=PATH &#8211; &#22686;&#21152;&#19968;&#20010;&#22312;PATH&#20013;&#30340;&#31532;&#19977;&#26041;&#27169;&#22359;&#12290;</span><br></pre></td></tr></table></figure></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/nginx/">nginx</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/07/01/nginx编译参数详细说明/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/07/01/nginx编译参数详细说明/" data-count-type="comments">&nbsp;</a>
 	
 </div>
 
