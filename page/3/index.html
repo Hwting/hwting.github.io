@@ -85,6 +85,59 @@
 
    
     
+    <article class="post-expand “zabbi" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/02/23/zabbix改中文/" title="zabbix改中文" itemprop="url">zabbix改中文</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
+		
+  <p class="article-time">
+    <time datetime="2017-02-23T01:09:51.000Z" itemprop="datePublished"> 发表于 2017-02-23</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>找到本地C:\Windows\Fonts\simkai.ttf（楷体）上传到服务器zabbix网站目录fonts目录下<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">zabbix网站根目录下面</span><br><span class="line">sed -i <span class="string">'s/DejaVuSans/simkai/g'</span> ./<span class="keyword">include</span>/defines.inc.php</span><br><span class="line">vim /<span class="keyword">include</span>/locales.inc.php </span><br><span class="line"><span class="string">'zh_CN'</span> =&gt; [<span class="string">'name'</span> =&gt; _(<span class="string">'Chinese (zh_CN)'</span>),<span class="string">'display'</span> =&gt; <span class="keyword">true</span>],</span><br></pre></td></tr></table></figure></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/02/23/zabbix改中文/#comments" class="ds-thread-count comments-count-link" data-thread-key="2017/02/23/zabbix改中文/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
     <article class="post-expand post" itemprop="articleBody"> 
         <header class="article-info clearfix">
   <h1 itemprop="name">
@@ -645,64 +698,6 @@
 	
 	  	<span></span>
 		<a href="/2016/07/27/windows下配置java环境/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/07/27/windows下配置java环境/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/07/05/SVN-apache搭建/" title="SVN+apache搭建" itemprop="url">SVN+apache搭建</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
-		
-  <p class="article-time">
-    <time datetime="2016-07-05T02:42:14.000Z" itemprop="datePublished"> 发表于 2016-07-05</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>1.安装软件包<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install httpd</span><br><span class="line">yum install mod_dav_svn</span><br><span class="line">yum install subversion</span><br></pre></td></tr></table></figure></p>
-<p>2、创建仓库<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> mkdir /var/svn/svnrepos</span><br><span class="line">svnadmin create /var/svnrepos/jktest</span><br></pre></td></tr></table></figure></p>
-<p>3、配置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/var/svn/svnrepos/jktest</span><br><span class="line">conf目录下找到svnserve.conf</span><br><span class="line">password-db = passwd，将前面的<span class="comment">#删除，</span></span><br><span class="line">authz-db = authz   将前面的<span class="comment">#删除</span></span><br><span class="line">realm = /var/svn/svnrepos/jktest   将前面的<span class="comment">#删除改自己的库地址</span></span><br><span class="line">：wq</span><br><span class="line">vim /var/svn/svnrepos/jktest/conf/authz  添加用户名密码</span><br><span class="line">[/]</span><br><span class="line"><span class="built_in">test</span> = rw</span><br><span class="line">：wq</span><br><span class="line"> vim /var/svn/svnrepos/jktest/conf/passwd </span><br><span class="line"> [user]</span><br><span class="line"> <span class="built_in">test</span> = <span class="number">123456</span></span><br></pre></td></tr></table></figure></p>
-<p>4、配置svn关联到apache:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/httpd/conf.d/subversion.conf //添加下面内容</span><br><span class="line">LoadModule dav_svn_module     modules/mod_dav_svn.so  </span><br><span class="line"><span class="number">02</span>.LoadModule authz_svn_module   modules/mod_authz_svn.so  </span><br><span class="line"></span><br><span class="line">&lt;Location /svnrepos&gt;</span><br><span class="line">   DAV svn</span><br><span class="line">   SVNParentPath /var/svn/svnrepos</span><br><span class="line"></span><br><span class="line">   <span class="comment"># Limit write permission to list of valid users.</span></span><br><span class="line"><span class="comment">#   &lt;LimitExcept GET PROPFIND OPTIONS REPORT&gt;</span></span><br><span class="line">      <span class="comment"># Require SSL connection for password protection.</span></span><br><span class="line">      <span class="comment"># SSLRequireSSL</span></span><br><span class="line"></span><br><span class="line">      AuthType Basic</span><br><span class="line">      AuthName <span class="string">"Authorization svn"</span></span><br><span class="line">      AuthUserFile /var/svn/svnrepos/jktest/pwdfile</span><br><span class="line">      AuthzSVNAccessFile /var/svn/svnrepos/jktest/conf/authz</span><br><span class="line"><span class="string">"/etc/httpd/conf.d/subversion.conf"</span> <span class="number">41</span>L, <span class="number">1109</span>C</span><br></pre></td></tr></table></figure></p>
-<p>添加<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/httpd/conf/httpd.conf </span><br><span class="line">include conf.d/*.conf</span><br></pre></td></tr></table></figure></p>
-<p>添加http访问用户<br>htpasswd -c /var/svn/svnrepos/jktest/pwdfile test<br>这里用到参数-c，是因为pwdfile文件不存在，如果文件存在，则无需该参数！否则，将覆盖掉原有密码文件<br>启动svn服务<br>svnserve -d -r /var/www/svn/project<br>启动httpd</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/07/05/SVN-apache搭建/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/07/05/SVN-apache搭建/" data-count-type="comments">&nbsp;</a>
 	
 </div>
 

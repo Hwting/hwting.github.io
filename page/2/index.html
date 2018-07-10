@@ -89,6 +89,60 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2017/10/20/jenkins-Role-basedauthorization权限管理插件配置/" title="jenkins Role-basedauthorization权限管理插件配置" itemprop="url">jenkins Role-basedauthorization权限管理插件配置</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
+		
+  <p class="article-time">
+    <time datetime="2017-10-20T02:24:14.000Z" itemprop="datePublished"> 发表于 2017-10-20</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>1、安装插件、Role-based Authorization Strategy<br><img src="/img/jenkins11.png" alt="jenkins"><br>2、打开jenkins授权Role-based<br><img src="/img/jenkins22.png" alt="jenkins"><br>3、配置Manage and Assign Roles admin给所以权限 Assign Roles添加jenkinadmin到admin<br><img src="/img/jenkins33.png" alt="jenkins"><br>4、配置全局角色权限和项目角色权限：如设置testTeam全局权限read只允许查看test开始的项目名称,项目权限test-Team  Pattern:test.* </p>
+<p><img src="/img/jenkins44.png" alt="jenkins"><br>5.设置Assign Roles，全局添加用户对于全局testTeam，项目角色添加用户到对于的项目test-Team。<br><img src="/img/jenkins55.png" alt="jenkins"><br>6、验证也test-Tame成员登录<br><img src="/img/jenkins66.png" alt="jenkins"></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/10/20/jenkins-Role-basedauthorization权限管理插件配置/#comments" class="ds-thread-count comments-count-link" data-thread-key="2017/10/20/jenkins-Role-basedauthorization权限管理插件配置/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2017/10/20/jenkins-HTML-publisher-plugin插件无法显示解决办法/" title="jenkins HTML publisher plugin插件无法显示解决办法" itemprop="url">jenkins HTML publisher plugin插件无法显示解决办法</a>
   </h1>
   <p class="article-author">By
@@ -584,59 +638,6 @@
 	
 	  	<span></span>
 		<a href="/2017/03/23/Centos下mysql5-6编译安装/#comments" class="ds-thread-count comments-count-link" data-thread-key="2017/03/23/Centos下mysql5-6编译安装/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand “zabbi" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/02/23/zabbix改中文/" title="zabbix改中文" itemprop="url">zabbix改中文</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
-		
-  <p class="article-time">
-    <time datetime="2017-02-23T01:09:51.000Z" itemprop="datePublished"> 发表于 2017-02-23</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>找到本地C:\Windows\Fonts\simkai.ttf（楷体）上传到服务器zabbix网站目录fonts目录下<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">zabbix网站根目录下面</span><br><span class="line">sed -i <span class="string">'s/DejaVuSans/simkai/g'</span> ./<span class="keyword">include</span>/defines.inc.php</span><br><span class="line">vim /<span class="keyword">include</span>/locales.inc.php </span><br><span class="line"><span class="string">'zh_CN'</span> =&gt; [<span class="string">'name'</span> =&gt; _(<span class="string">'Chinese (zh_CN)'</span>),<span class="string">'display'</span> =&gt; <span class="keyword">true</span>],</span><br></pre></td></tr></table></figure></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2017/02/23/zabbix改中文/#comments" class="ds-thread-count comments-count-link" data-thread-key="2017/02/23/zabbix改中文/" data-count-type="comments">&nbsp;</a>
 	
 </div>
 
