@@ -89,6 +89,66 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2017/10/24/Nginx编译添加后端健康检查模块/" title="Nginx编译添加后端健康检查模块" itemprop="url">Nginx编译添加后端健康检查模块</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
+		
+  <p class="article-time">
+    <time datetime="2017-10-24T06:23:28.000Z" itemprop="datePublished"> 发表于 2017-10-24</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>该模块可以为Tengine提供主动式后端服务器健康检查的功能。可以通过补丁的方式来添加该模块到我们自己的nginx中。</p>
+<h1 id="u4E0B_u8F7Dnginx_upstream_check_module_u6A21_u5757"><a href="#u4E0B_u8F7Dnginx_upstream_check_module_u6A21_u5757" class="headerlink" title="下载nginx_upstream_check_module模块"></a>下载nginx_upstream_check_module模块</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">clone</span> https:<span class="comment">//github.com/yaoweibin/nginx_upstream_check_module.git</span></span><br></pre></td></tr></table></figure>
+<p>编译补丁到nginx，必须使用最新的nginx_upstream_check_module才支持nginx 1.12.2版本<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd ~/nginx-<span class="number">1.12</span><span class="number">.2</span> <span class="comment">##进入nginx的源码目录</span></span><br><span class="line">nginx-<span class="number">1.12</span><span class="number">.2</span>]<span class="comment"># patch -p1 &lt; ../nginx_upstream_check_module/check_1.12.1+.patch </span></span><br><span class="line">patching file src/http/modules/ngx_http_upstream_hash_module.c</span><br><span class="line">patching file src/http/modules/ngx_http_upstream_ip_hash_module.c</span><br><span class="line">patching file src/http/modules/ngx_http_upstream_least_conn_module.c</span><br><span class="line">patching file src/http/ngx_http_upstream_round_robin.c</span><br><span class="line">patching file src/http/ngx_http_upstream_round_robin.h</span><br></pre></td></tr></table></figure></p>
+<h2 id="u67E5_u770B_u4E4B_u524D_u7684nginx_u7F16_u8BD1_u53C2_u6570"><a href="#u67E5_u770B_u4E4B_u524D_u7684nginx_u7F16_u8BD1_u53C2_u6570" class="headerlink" title="查看之前的nginx编译参数"></a>查看之前的nginx编译参数</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /usr/local/nginx/sbin/nginx -V</span></span><br><span class="line">nginx version: nginx/<span class="number">1.10</span><span class="number">.1</span></span><br><span class="line">built by gcc <span class="number">4.4</span><span class="number">.7</span> <span class="number">20120313</span> (Red Hat <span class="number">4.4</span><span class="number">.7</span>-<span class="number">18</span>) (GCC) </span><br><span class="line">built with OpenSSL <span class="number">1.0</span><span class="number">.1</span>e-fips <span class="number">11</span> Feb <span class="number">2013</span></span><br><span class="line">TLS SNI support enabled</span><br><span class="line">configure arguments: --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module</span><br></pre></td></tr></table></figure>
+<p>编译nginx参数，此处只make 不要make install，编译参数需要和之前的一样添加–add-module=<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ./configure --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module --add-module=../nginx_upstream_check_module/</span></span><br><span class="line">make</span><br><span class="line">.....</span><br><span class="line">trueobjs/addon/nginx_upstream_check_module/ngx_http_upstream_check_module.o \</span><br><span class="line">trueobjs/ngx_modules.o \</span><br><span class="line">true-ldl -lpthread -lcrypt -lpcre -lssl -lcrypto -ldl -lz \</span><br><span class="line">true-Wl,-E</span><br><span class="line">sed -e <span class="string">"s|%%PREFIX%%|/usr/local/nginx|"</span> \</span><br><span class="line">truetrue-e <span class="string">"s|%%PID_PATH%%|/usr/local/nginx/logs/nginx.pid|"</span> \</span><br><span class="line">truetrue-e <span class="string">"s|%%CONF_PATH%%|/etc/nginx/nginx.conf|"</span> \</span><br><span class="line">truetrue-e <span class="string">"s|%%ERROR_LOG_PATH%%|/usr/local/nginx/logs/error.log|"</span> \</span><br><span class="line">truetrue&lt; man/nginx<span class="number">.8</span> &gt; objs/nginx<span class="number">.8</span></span><br><span class="line">make[<span class="number">1</span>]: Leaving directory `/root/nginx-<span class="number">1.12</span><span class="number">.2</span><span class="string">'</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">备份旧版本nginx </span><br><span class="line">cp -a /usr/local/nginx/sbin/nginx  /usr/local/nginx/sbin/nginx.back</span><br><span class="line">停止nginx服务，替换nginx执行文件</span><br><span class="line">/usr/local/nginx/sbin/nginx -s stop</span><br><span class="line">nginx-<span class="number">1.12</span><span class="number">.2</span>]<span class="comment"># cp -a objs/nginx /usr/local/nginx/sbin/</span></span><br><span class="line">cp: overwrite `/usr/local/nginx/sbin/nginx<span class="string">'? y</span></span><br></pre></td></tr></table></figure>
+<h3 id="u9A8C_u8BC1_u7248_u672C_u5DF2_u7ECF_u5347_u7EA7_u52301-12-2__u6DFB_u52A0_u4E86nginx_upstream_check_module_u6A21_u5757"><a href="#u9A8C_u8BC1_u7248_u672C_u5DF2_u7ECF_u5347_u7EA7_u52301-12-2__u6DFB_u52A0_u4E86nginx_upstream_check_module_u6A21_u5757" class="headerlink" title="验证版本已经升级到1.12.2 添加了nginx_upstream_check_module模块"></a>验证版本已经升级到1.12.2 添加了nginx_upstream_check_module模块</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> nginx-<span class="number">1.12</span><span class="number">.2</span>]<span class="comment"># /usr/local/nginx/sbin/nginx -V</span></span><br><span class="line">nginx version: nginx/<span class="number">1.12</span><span class="number">.2</span></span><br><span class="line">built by gcc <span class="number">4.4</span><span class="number">.7</span> <span class="number">20120313</span> (Red Hat <span class="number">4.4</span><span class="number">.7</span>-<span class="number">18</span>) (GCC) </span><br><span class="line">built with OpenSSL <span class="number">1.0</span><span class="number">.1</span>e-fips <span class="number">11</span> Feb <span class="number">2013</span></span><br><span class="line">TLS SNI support enabled</span><br><span class="line">configure arguments: --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module --add-module=/root/nginx_upstream_check_module/</span><br></pre></td></tr></table></figure>
+<p>健康检查模块配置:参照官网<a href="http://tengine.taobao.org/document_cn/http_upstream_check_cn.html" target="_blank" rel="external">http://tengine.taobao.org/document_cn/http_upstream_check_cn.html</a><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">upstream cluster2 &#123;&#10;        # simple round-robin&#10;        server 192.168.0.3:80;&#10;        server 192.168.0.4:80;&#10;        check interval=3000 rise=2 fall=5 timeout=1000 type=http;&#10;        check_keepalive_requests 100;&#10;        check_http_send &#34;HEAD / HTTP/1.1\r\nConnection: keep-alive\r\n\r\n&#34;;&#10;        check_http_expect_alive http_2xx http_3xx;&#10;    &#125;</span><br></pre></td></tr></table></figure></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/10/24/Nginx编译添加后端健康检查模块/#comments" class="ds-thread-count comments-count-link" data-thread-key="2017/10/24/Nginx编译添加后端健康检查模块/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2017/10/20/jenkins-Role-basedauthorization权限管理插件配置/" title="jenkins Role-basedauthorization权限管理插件配置" itemprop="url">jenkins Role-basedauthorization权限管理插件配置</a>
   </h1>
   <p class="article-author">By
@@ -588,69 +648,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/03/23/Centos下mysql5-6编译安装/" title="Centos下mysql5.6编译安装" itemprop="url">Centos下mysql5.6编译安装</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
-		
-  <p class="article-time">
-    <time datetime="2017-03-23T03:35:40.000Z" itemprop="datePublished"> 发表于 2017-03-23</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>安装目录：/usr/local/mysql<br>数据库目录：/usr/local/mysql/data<br>一、安装前面</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">添加用户</span><br><span class="line">groupadd mysql</span><br><span class="line">useradd -g mysql -s /sbin/nologin mysql</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum安装依赖包</span><br><span class="line">yum -y install gcc* ncurses-devel cmake bison</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">解压创建目录</span><br><span class="line">tar zxf mysql-<span class="number">5.6</span><span class="number">.13</span>.tar.gz </span><br><span class="line">cd mysql-<span class="number">5.6</span><span class="number">.13</span></span><br><span class="line">mkdir -p /usr/local/mysql/data</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cmake配置以及编译安装mysql</span><br><span class="line">cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_UNIX_ADDR=/usr/local/mysql/mysql.sock -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DWITH_MYISAM_STORAGE_ENGING=<span class="number">1</span> -DWITH_INNOBASE_STORAGE_ENGING=<span class="number">1</span> -DWITH_MEMORY_STORAGE_ENGING=<span class="number">1</span> -DWITH_READLINE=<span class="number">1</span> -DENABLED_LOCAL_INFILE=<span class="number">1</span> -DMYSQL_DATADIR=/usr/local/mysql/data -DMYSQL_USER=mysql -DMYSQL_TCP_PORT=<span class="number">3306</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">拷贝配置文件</span><br><span class="line">cp support-files/my-<span class="keyword">default</span>.cnf /usr/local/mysql/my.cnf</span><br><span class="line">初始化数据库</span><br><span class="line">cd /usr/local/mysql/scripts/</span><br><span class="line">./mysql_install_db --user=mysql --datadir=/usr/local/mysql/data/ --basedir=/usr/local/mysql/</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R mysql:mysql /usr/local/mysql/</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">修改my.cnf配置</span><br><span class="line">[mysqld]</span><br><span class="line">basedir = /usr/local/mysql</span><br><span class="line">datadir = /usr/local/mysql/data</span><br><span class="line">log-error = /usr/local/mysql/mysql_error.log</span><br><span class="line">pid-file = /usr/local/mysql/mysql.pid</span><br><span class="line">user = mysql</span><br><span class="line">tmpdir = /tmp</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">拷贝启动文件配置安全启动向导初始化</span><br><span class="line">cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld</span><br><span class="line">chmod +X  /etc/init.d/mysqld</span><br><span class="line">ln -s /usr/local/mysql/my.cnf /etc</span><br><span class="line">bin/mysql_secure_installation </span><br><span class="line">`</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">设置软连接</span><br><span class="line">ln -s /usr/local/mysql/bin<span class="comment">/* /usr/local/bin/</span><br><span class="line">ln -s /usr/local/mysql/include/mysql/* /usr/include/</span><br><span class="line">ln -s /usr/local/mysql/lib/* /usr/lib/</span><br><span class="line">`</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">启动 </span><br><span class="line">/etc/init.d/mysqld start</span><br></pre></td></tr></table></figure>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2017/03/23/Centos下mysql5-6编译安装/#comments" class="ds-thread-count comments-count-link" data-thread-key="2017/03/23/Centos下mysql5-6编译安装/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next<span></span></a>
@@ -676,6 +673,10 @@
   <div class="categorieslist">
 	<p class="asidetitle">分类</p>
 		<ul>
+		
+		  
+			<li><a href="/categories/activemq/" title="activemq">activemq<sup>1</sup></a></li>
+		  
 		
 		  
 			<li><a href="/categories/linux/" title="linux">linux<sup>2</sup></a></li>
@@ -704,7 +705,7 @@
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/集群/" style="font-size: 10px;">-集群</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/VRRP/" style="font-size: 10px;">VRRP</a> <a href="/tags/crt/" style="font-size: 10px;">crt</a> <a href="/tags/fastdfs/" style="font-size: 10px;">fastdfs</a> <a href="/tags/k8s/" style="font-size: 10px;">k8s</a> <a href="/tags/lvs/" style="font-size: 10px;">lvs</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/ssl/" style="font-size: 10px;">ssl</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/tags/zabbix/" style="font-size: 15px;">zabbix</a>
+       <a href="/tags/集群/" style="font-size: 10px;">-集群</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/VRRP/" style="font-size: 10px;">VRRP</a> <a href="/tags/activemq/" style="font-size: 10px;">activemq</a> <a href="/tags/crt/" style="font-size: 10px;">crt</a> <a href="/tags/fastdfs/" style="font-size: 10px;">fastdfs</a> <a href="/tags/k8s/" style="font-size: 10px;">k8s</a> <a href="/tags/lvs/" style="font-size: 10px;">lvs</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/ssl/" style="font-size: 10px;">ssl</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/tags/zabbix/" style="font-size: 15px;">zabbix</a>
     </div>
 </div>
 

@@ -89,6 +89,62 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/03/16/centos配置pppoe服务器/" title="centos配置pppoe服务器" itemprop="url">centos配置pppoe服务器</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wang&#39;T" target="_blank" itemprop="author">Wang&#39;T</a>
+		
+  <p class="article-time">
+    <time datetime="2016-03-16T13:01:31.000Z" itemprop="datePublished"> 发表于 2016-03-16</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>#安装软件<br>rpm –qa| grep ppp rp-pppoe<br>ppp<br>rp-pppoe<br>rp-pppoe下载<br>wget <a href="https://www.roaringpenguin.com/files/download/rp-pppoe-3.12.tar.gz">https://www.roaringpenguin.com/files/download/rp-pppoe-3.12.tar.gz</a><br>拓扑图<br>xp-linux网卡1-linux网卡0-路由器-lnternet</p>
+<p>1、配置好eth0网卡外网ip，eth1不用配置ip可以配置0.0.0.0<br>vim /etc/sysconfig/network-scripts/ifcfg-eth0<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">DEVICE=eth0</span><br><span class="line">HWADDR=<span class="number">00</span>:<span class="number">0</span>C:<span class="number">29</span>:<span class="number">11</span>:DE:D1</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">UUID=<span class="number">4</span>f6db293-c442-<span class="number">4163</span>-<span class="number">94</span>c7-aac0a05901e8</span><br><span class="line">ONBOOT=yes</span><br><span class="line">NM_CONTROLLED=yes</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">DNS1=<span class="number">61.139</span><span class="number">.2</span><span class="number">.69</span></span><br><span class="line">IPADDR=<span class="number">10.39</span><span class="number">.100</span><span class="number">.222</span></span><br><span class="line">NETMASK=<span class="number">255.255</span><span class="number">.254</span><span class="number">.0</span></span><br><span class="line">GATEWAY=<span class="number">10.39</span><span class="number">.100</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></p>
+<p>vim /etc/sysconfig/network-scripts/ifcfg-eth1<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">DEVICE=eth1</span><br><span class="line">HWADDR=<span class="number">00</span>:<span class="number">0</span>C:<span class="number">29</span>:<span class="number">11</span>:DE:DB</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">ONBOOT=yes</span><br><span class="line">NM_CONTROLLED=no</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">DNS1=</span><br><span class="line">IPADDR=<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line">NETMASK=<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br></pre></td></tr></table></figure></p>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2016/03/16/centos配置pppoe服务器/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/03/16/centos配置pppoe服务器/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/03/16/centos配置pppoe服务器/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/03/14/nginx-php-mysql配置/" title="nginx+php+mysql配置" itemprop="url">nginx+php+mysql配置</a>
   </h1>
   <p class="article-author">By
@@ -575,6 +631,10 @@ make install
 		<ul>
 		
 		  
+			<li><a href="/categories/activemq/" title="activemq">activemq<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/linux/" title="linux">linux<sup>2</sup></a></li>
 		  
 		
@@ -601,7 +661,7 @@ make install
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/集群/" style="font-size: 10px;">-集群</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/VRRP/" style="font-size: 10px;">VRRP</a> <a href="/tags/crt/" style="font-size: 10px;">crt</a> <a href="/tags/fastdfs/" style="font-size: 10px;">fastdfs</a> <a href="/tags/k8s/" style="font-size: 10px;">k8s</a> <a href="/tags/lvs/" style="font-size: 10px;">lvs</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/ssl/" style="font-size: 10px;">ssl</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/tags/zabbix/" style="font-size: 15px;">zabbix</a>
+       <a href="/tags/集群/" style="font-size: 10px;">-集群</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/VRRP/" style="font-size: 10px;">VRRP</a> <a href="/tags/activemq/" style="font-size: 10px;">activemq</a> <a href="/tags/crt/" style="font-size: 10px;">crt</a> <a href="/tags/fastdfs/" style="font-size: 10px;">fastdfs</a> <a href="/tags/k8s/" style="font-size: 10px;">k8s</a> <a href="/tags/lvs/" style="font-size: 10px;">lvs</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/ssl/" style="font-size: 10px;">ssl</a> <a href="/tags/tomcat/" style="font-size: 10px;">tomcat</a> <a href="/tags/zabbix/" style="font-size: 15px;">zabbix</a>
     </div>
 </div>
 
