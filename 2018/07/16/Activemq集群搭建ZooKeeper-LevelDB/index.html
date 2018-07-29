@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next pisces use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -135,7 +135,7 @@ openwire端口
 192.168.1.300
 61619
 61616">
-<meta property="og:updated_time" content="2018-07-16T15:03:37.319Z">
+<meta property="og:updated_time" content="2018-07-29T12:26:07.295Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Activemq集群搭建ZooKeeper+LevelDB">
 <meta name="twitter:description" content="ZooKeeper搭建略MQ高可用集群部署参考http://activemq.apache.org/replicated-leveldb-store.html
@@ -171,7 +171,7 @@ openwire端口
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -205,6 +205,16 @@ openwire端口
 
 
 
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?7db1c0024aed11205f1c466a133de827";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -264,12 +274,62 @@ openwire端口
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站點地圖
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
           </a>
         </li>
       
@@ -425,6 +485,7 @@ openwire端口
 </tbody>
 </table>
 <h1 id="u4E00_u3001_u4FEE_u6539_vim_conf/activemq-xml"><a href="#u4E00_u3001_u4FEE_u6539_vim_conf/activemq-xml" class="headerlink" title="一、修改 vim conf/activemq.xml"></a>一、修改 vim conf/activemq.xml</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">所以节点brokerName必须一致</span><br><span class="line"> &lt;broker xmlns=<span class="string">"http://activemq.apache.org/schema/core"</span> brokerName=<span class="string">"mybroker"</span> dataDirectory=<span class="string">"$&#123;activemq.data&#125;"</span>&gt;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="u4E8C_u3001_u6301_u4E45_u5316_u914D_u7F6E"><a href="#u4E8C_u3001_u6301_u4E45_u5316_u914D_u7F6E" class="headerlink" title="二、持久化配置"></a>二、持久化配置</h2><h2 id="node1-100"><a href="#node1-100" class="headerlink" title="node1.100"></a>node1.100</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;persistenceAdapter&gt;</span><br><span class="line">        &lt;replicatedLevelDB</span><br><span class="line">            directory=<span class="string">"$&#123;activemq.data&#125;/leveldb"</span></span><br><span class="line">            replicas=<span class="string">"3"</span></span><br><span class="line">            bind=<span class="string">"tcp://0.0.0.0:61619"</span></span><br><span class="line">            zkAddress=<span class="string">"x.x.x.x:2181,x.x.x.x:2181,x.x.x.x:2181"</span></span><br><span class="line">            zkPassword=<span class="string">""</span></span><br><span class="line">            hostname=<span class="string">"192.168.1.100"</span> <span class="comment">//本机地址或者hostname</span></span><br><span class="line">            zkPath=<span class="string">"/activemq/leveldb-stores"</span> /&gt;</span><br><span class="line">    &lt;/persistenceAdapter&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="node21-200"><a href="#node21-200" class="headerlink" title="node21.200"></a>node21.200</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;persistenceAdapter&gt;</span><br><span class="line">            &lt;replicatedLevelDB</span><br><span class="line">                directory=<span class="string">"$&#123;activemq.data&#125;/leveldb"</span></span><br><span class="line">                replicas=<span class="string">"3"</span></span><br><span class="line">                bind=<span class="string">"tcp://0.0.0.0:61619"</span></span><br><span class="line">                zkAddress=<span class="string">"x.x.x.x:2181,x.x.x.x:2181,x.x.x.x:2181"</span></span><br><span class="line">                zkPassword=<span class="string">""</span></span><br><span class="line">                hostname=<span class="string">"192.168.1.200"</span> <span class="comment">//本机地址或者hostname</span></span><br><span class="line">                zkPath=<span class="string">"/activemq/leveldb-stores"</span> /&gt;</span><br><span class="line">        &lt;/persistenceAdapter&gt;</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
 <h2 id="node31-300"><a href="#node31-300" class="headerlink" title="node31.300"></a>node31.300</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;persistenceAdapter&gt;</span><br><span class="line">            &lt;replicatedLevelDB</span><br><span class="line">                directory=<span class="string">"$&#123;activemq.data&#125;/leveldb"</span></span><br><span class="line">                replicas=<span class="string">"3"</span></span><br><span class="line">                bind=<span class="string">"tcp://0.0.0.0:61619"</span></span><br><span class="line">                zkAddress=<span class="string">"x.x.x.x:2181,x.x.x.x:2181,x.x.x.x:2181"</span></span><br><span class="line">                zkPassword=<span class="string">""</span></span><br><span class="line">                hostname=<span class="string">"192.168.1.300"</span> <span class="comment">//本机地址或者hostname</span></span><br><span class="line">                zkPath=<span class="string">"/activemq/leveldb-stores"</span> /&gt;</span><br><span class="line">        &lt;/persistenceAdapter&gt;</span><br></pre></td></tr></table></figure>
@@ -455,6 +516,21 @@ openwire端口
       
 
       
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
       
       
 
@@ -535,6 +611,10 @@ openwire端口
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="Wang'T" />
             
               <p class="site-author-name" itemprop="name">Wang'T</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -640,7 +720,7 @@ openwire端口
 
 
 
-  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
@@ -664,6 +744,12 @@ openwire端口
       </div>
     
 
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
     
 
   </div>
@@ -740,6 +826,13 @@ openwire端口
   
   
 
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
@@ -799,6 +892,43 @@ openwire端口
   
 
   
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
   
 
   
