@@ -291,6 +291,257 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wting.tk/2017/09/01/zookeeper集群部署/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang'T">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wang'T博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/01/zookeeper集群部署/" itemprop="url">zookeeper集群部署</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-01T11:13:06+08:00">
+                2017-09-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>#ZooKeeper集群安装#<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//mirrors.hust.edu.cn/apache/zookeeper/</span></span><br><span class="line">http:<span class="comment">//mirrors.hust.edu.cn/apache/zookeeper/zookeeper-3.4.9/zookeeper-3.4.9.tar.gz</span></span><br><span class="line">tar  -zxvf  zookeeper-<span class="number">3.4</span><span class="number">.9</span>.tar.gz  -C  /usr/local/</span><br></pre></td></tr></table></figure></p>
+<p>进入conf目录下复制并修改配置文件<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">cp zoo_sample.cfg zoo.cfg</span><br><span class="line">vim zoo.cfg</span><br><span class="line">tickTime是zookeeper中的基本时间单位，此处用于定义一个ticktime是多长，单位毫秒</span><br><span class="line">tickTime=<span class="number">2000</span></span><br><span class="line">存储内存中的数据库快照的位置，如果没有指定dataLogDir，还将存储数据库更新的事务日志</span><br><span class="line">dataDir=<span class="comment">//usr/local/zookeeper-3.4.9/data</span></span><br><span class="line">这里的data文件夹需要自己创建</span><br><span class="line">数据库事务日志的位置</span><br><span class="line">dataLogDir=/usr/local/zookeeper-<span class="number">3.4</span><span class="number">.9</span>/log</span><br><span class="line">这里的log文件夹需要自己创建</span><br><span class="line">为了客户端连接而侦听的端口</span><br><span class="line">clientPort=<span class="number">2181</span></span><br><span class="line">允许Follower连接并与Leader同步的时长，单位是tickTime</span><br><span class="line">initLimit=<span class="number">5</span></span><br><span class="line">允许Follower与ZooKeeper同步的时长，单位是tickTime</span><br><span class="line">syncLimit=<span class="number">2</span></span><br><span class="line">组成ZooKeeper的成员服务器。server.x的x是服务器号，与对应服务器dataDir中myid文件内的号码一致。</span><br><span class="line">指定两个端口号，前一个用于Follower连接Leader，后一个用于Leader选举。</span><br><span class="line">server<span class="number">.1</span>=<span class="number">192.168</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">2888</span>:<span class="number">3888</span></span><br><span class="line">server<span class="number">.2</span>=<span class="number">192.168</span><span class="number">.0</span><span class="number">.2</span>:<span class="number">2888</span>:<span class="number">3888</span></span><br><span class="line">server<span class="number">.3</span>=<span class="number">192.168</span><span class="number">.0</span><span class="number">.3</span>:<span class="number">2888</span>:<span class="number">3888</span></span><br><span class="line">这是分布式环境的配置，如果是在单机上配置，则需要修改成不同的端口号</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/09/01/zookeeper集群部署/#thêm" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wting.tk/2017/06/06/LVS-DR-keepalived负载均衡配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang'T">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wang'T博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/06/LVS-DR-keepalived负载均衡配置/" itemprop="url">LVS DR+keepalived负载均衡配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-06T10:36:00+08:00">
+                2017-06-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><img src="/img/lvs.png" alt="拓扑"></p>
+<p>lvs安装部署：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost~]<span class="comment"># uname -r  #查看linux内核版本  </span></span><br><span class="line"><span class="number">2.6</span><span class="number">.32</span>-<span class="number">573.</span>el6.x86_64</span><br><span class="line">[root@localhost~]<span class="comment"># lsmod | grep ip_vs</span></span><br><span class="line">[root@localhost~]<span class="comment">#</span></span><br><span class="line"></span><br><span class="line">[root@localhost~]<span class="comment">#wget http://www.linuxvirtualserver.org/software/kernel-2.6/ipvsadm-1.26.tar.gz</span></span><br></pre></td></tr></table></figure></p>
+<p>安装lvs安装<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost~]<span class="comment">#yum install -y gcc gcc-c++ makepcre pcre-devel kernel-devel openssl-devel libnl-devel popt-devel popt-static</span></span><br><span class="line">[root@localhost~]tar -zxvf ipvsadm-<span class="number">1.26</span>.tar.gz</span><br><span class="line">[root@localhost~]cd ipvsadm-<span class="number">1.26</span></span><br><span class="line">[root@localhostipvsadm-<span class="number">1.26</span>]make &amp;&amp; make install</span><br><span class="line">[root@localhostipvsadm-<span class="number">1.26</span>]<span class="comment"># ipvsadm #执行ipvsadm命令，把LVS添加到linux内核中</span></span><br><span class="line">IP Virtual Server version <span class="number">1.2</span><span class="number">.1</span> (size=<span class="number">4096</span>)</span><br><span class="line">Prot LocalAddress:Port Scheduler Flags</span><br><span class="line">  -&gt; RemoteAddress:Port           Forward Weight ActiveConn InActConn</span><br><span class="line">[root@localhostipvsadm-<span class="number">1.26</span>]<span class="comment"># lsmod | grep ip_vs #查看LVS是否已经添加到linux内核了，如果有如下输出表示已经成功。   </span></span><br><span class="line">ip_vs                 <span class="number">126534</span>  <span class="number">0</span> </span><br><span class="line">libcrc32c               <span class="number">1246</span>  <span class="number">1</span> ip_vs</span><br><span class="line">ipv6                  <span class="number">335589</span>  <span class="number">39</span> ip_vs,cnic,ip6t_REJECT,nf_conntrack_ipv6,nf_defrag_ipv6</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/06/LVS-DR-keepalived负载均衡配置/#thêm" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://wting.tk/2017/05/05/MySQL-5-6-24-linux-glibc2-5-x86-64安装记录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1314,308 +1565,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wting.tk/2016/09/02/shell编程中if的语法和常见判断用法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/02/shell编程中if的语法和常见判断用法/" itemprop="url">shell编程中if的语法和常见判断用法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-02T15:25:00+08:00">
-                2016-09-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/shell/" itemprop="url" rel="index">
-                    <span itemprop="name">shell</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一. if的基本语法</p>
-<ol>
-<li>if与[之间要有空格</li>
-<li>[]与判断条件之间也必须有空格</li>
-<li>]与;之间不能有空格</li>
-</ol>
-<p>二. 对字符串的判断</p>
-<ol>
-<li>if [ str1=str2 ];then fi #当两个字符串相同时返回真</li>
-<li>if [ str1!=str2 ];then fi #当两个字符串不相等时返回真</li>
-<li>if [ -n str1 ];then fi #当字符串的长度大于0时返回真 (判断变量是否有值)</li>
-<li>if [ -z str1 ];then fi #当字符串的长度为0时返回真</li>
-</ol>
-<p>三. 对数字的判断</p>
-<ol>
-<li>int1 -eq int2 #int1和int2相等</li>
-<li>int1 -ne int2 #int1不相等int2</li>
-<li>int1 -gt int2 #int1大于int2</li>
-<li>int1 -ge int2 #int1大于等于int2</li>
-<li>int1 -lt int2 #int1小于int2</li>
-<li>int1 -le int2 #int1小于等于int2</li>
-</ol>
-<p>四. 对文件属性的判断</p>
-<ol>
-<li>-r file #用户可读为真</li>
-<li>-w file #用户可写为真</li>
-<li>-x file #用户可执行为真</li>
-<li>-f file #文件存在且为正规文件为真</li>
-<li>-d file #如果是存在目录为真</li>
-<li>-c file #文件存在且为字符设备文件</li>
-<li>-b file #文件存在且为块设备文件</li>
-<li>-s file #文件大小为非0为真，可以判断文件是否为空</li>
-<li>-e file #如果文件存在为真</li>
-</ol>
-<p>五. 逻辑判断</p>
-<ol>
-<li>-a #与</li>
-<li>-o #或</li>
-<li>! #非</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wting.tk/2016/08/24/linux用户登录报““su-cannot-set-user-id-resource-temporarily-unavalable/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/08/24/linux用户登录报““su-cannot-set-user-id-resource-temporarily-unavalable/" itemprop="url">linux用户登录报““su :cannot set user id: resource temporarily unavalable</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-24T09:48:21+08:00">
-                2016-08-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>/etc/security/limits.d/90-nproc.conf<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">*          soft    nproc     <span class="number">1024</span></span><br><span class="line">root       soft    nproc     unlimited</span><br></pre></td></tr></table></figure></p>
-<p>更改为65535后，再su - user时，问题解决!</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1670,7 +1619,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1692,7 +1641,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
