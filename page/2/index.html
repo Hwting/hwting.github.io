@@ -291,6 +291,139 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wting.tk/2017/12/15/zabbix-shell脚本钉钉机器人报警/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang'T">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wang'T博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/15/zabbix-shell脚本钉钉机器人报警/" itemprop="url">zabbix+shell脚本钉钉机器人报警</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T09:45:34+08:00">
+                2017-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="u5185_u5BB9_u539F_u521B_2C_u7981_u6B62_u8F6C_u8F7D_21"><a href="#u5185_u5BB9_u539F_u521B_2C_u7981_u6B62_u8F6C_u8F7D_21" class="headerlink" title="内容原创,禁止转载!"></a>内容原创,禁止转载!</h1><h2 id="u6548_u679C_u56FE_u5982_u4E0B_uFF1A"><a href="#u6548_u679C_u56FE_u5982_u4E0B_uFF1A" class="headerlink" title="效果图如下："></a>效果图如下：</h2><p><img src="/img/dingding1.jpg" alt="jenkins"></p>
+<h3 id="u81EA_u5B9A_u4E49_u8B66_u62A5_u63D0_u793A"><a href="#u81EA_u5B9A_u4E49_u8B66_u62A5_u63D0_u793A" class="headerlink" title="自定义警报提示"></a>自定义警报提示</h3><p>自定义告警脚本在zabbix_server.conf中配置，默认为： AlertScriptsPath=/usr/lib/zabbix/alertscripts<br>警报脚本在Zabbix服务器上执行。 这些脚本位于服务器配置文件中定义的目录中AlertScriptsPath.</p>
+<p>这是一个示例警报脚本：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line">to=$<span class="number">1</span></span><br><span class="line">messages=`<span class="keyword">echo</span> $<span class="number">3</span> | tr <span class="string">'\r\n'</span> <span class="string">'\n'</span>`</span><br><span class="line">subject=`<span class="keyword">echo</span> $<span class="number">2</span> | tr <span class="string">'\r\n'</span> <span class="string">'\n'</span>`</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"$&#123;messages&#125;"</span> | mail -s <span class="string">"$&#123;subject&#125;"</span> <span class="string">"$&#123;to&#125;"</span> &gt;&gt;/tmp/mail.log <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>Zabbix-Server 在调用脚本的时候，会传递三个变量参数给脚本作为位置参数：$1, $2, $3。 其中：$1 表示收件人，$2 表示主题，$3 表示内容。</p>
+<h1 id="u914D_u7F6E"><a href="#u914D_u7F6E" class="headerlink" title="配置"></a>配置</h1><p>选择 报警媒介类型，创建自定义告警方式，<br>Type 选择 Script，Script name 指定自定义的告警脚本，<br>Script parameters 一般设置如下三个：</p>
+<ul>
+<li>{ALERT.SENDTO}</li>
+<li>{ALERT.SUBJECT}</li>
+<li>{ALERT.MESSAGE}<br><img src="/img/dingding2.png" alt="jenkins"><br>其他配置省略<br>shell+钉钉机器人脚本<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="comment">#date:2017-12-14</span></span><br><span class="line"><span class="comment">#by wang.t</span></span><br><span class="line"><span class="comment">#Revision: 1.0</span></span><br><span class="line"><span class="comment"># Email:837479851@qq.com</span></span><br><span class="line"><span class="comment"># Website:idcsec.com</span></span><br><span class="line">LOGFILE=<span class="string">"/tmp/dingding.log"</span></span><br><span class="line">:&gt;<span class="string">"$LOGFILE"</span></span><br><span class="line">exec <span class="number">1</span>&gt;<span class="string">"$LOGFILE"</span></span><br><span class="line">exec <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br><span class="line"></span><br><span class="line">url=<span class="string">"http://127.0.0.1/zabbix"</span></span><br><span class="line">CURL=<span class="string">"/usr/bin/curl"</span></span><br><span class="line">to=$<span class="number">1</span></span><br><span class="line">subject=`<span class="keyword">echo</span> $<span class="number">2</span> | tr <span class="string">'\r\n'</span> <span class="string">'\n'</span>`</span><br><span class="line">body=`<span class="keyword">echo</span> $<span class="number">3</span> | tr <span class="string">'\r\n'</span> <span class="string">'\n'</span>`</span><br><span class="line">$&#123;CURL&#125;  <span class="string">'https://oapi.dingtalk.com/robot/send?access_token=XXXXXXXXX'</span> \</span><br><span class="line">   -H <span class="string">'Content-Type: application/json'</span> \</span><br><span class="line">   -d <span class="string">""</span><span class="string">"</span><br><span class="line"> &#123;</span><br><span class="line">     \"msgtype\": \"markdown\",</span><br><span class="line">     \"markdown\": &#123;</span><br><span class="line">         \"title\":\"$&#123;subject&#125;@18******5\",</span><br><span class="line">         \"text\": \"$&#123;body&#125;\"</span><br><span class="line">     &#125;,</span><br><span class="line">    \"at\": &#123;</span><br><span class="line">        \"atMobiles\": [ </span><br><span class="line">            \"18*******5\",</span><br><span class="line">        ], </span><br><span class="line">        \"isAtAll\": false</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;"</span><span class="string">""</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Github:<a href="https://github.com/Hwting/script/blob/master/zabbix_dingding.sh" target="_blank" rel="external">https://github.com/Hwting/script/blob/master/zabbix_dingding.sh</a><br>测试测试 zabbix_dingding.sh  “” 2 3</p>
+<h1 id="u52A8_u4F5C_u8BBE_u7F6E"><a href="#u52A8_u4F5C_u8BBE_u7F6E" class="headerlink" title="动作设置"></a>动作设置</h1><p>到配置-》动作-》创建动作（触发器）</p>
+<h2 id="zabbix_u62A5_u8B66_u6D88_u606F_u6A21_u677F"><a href="#zabbix_u62A5_u8B66_u6D88_u606F_u6A21_u677F" class="headerlink" title="zabbix报警消息模板"></a>zabbix报警消息模板</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">标题：故障&#123;TRIGGER.STATUS&#125;,服务器:&#123;HOSTNAME1&#125;发生: &#123;TRIGGER.NAME&#125;故障!</span><br><span class="line">告警主机:&#123;HOSTNAME1&#125;</span><br><span class="line"></span><br><span class="line">告警IP:&#123;HOST.IP&#125;</span><br><span class="line"></span><br><span class="line">告警时间:&#123;EVENT.DATE&#125; &#123;EVENT.TIME&#125;</span><br><span class="line"></span><br><span class="line">等级:&#123;TRIGGER.SEVERITY&#125;</span><br><span class="line"></span><br><span class="line">告警信息: &#123;TRIGGER.NAME&#125;</span><br><span class="line"></span><br><span class="line">告警项目:&#123;TRIGGER.KEY1&#125;</span><br><span class="line"></span><br><span class="line">问题详情:&#123;ITEM.NAME&#125;:&#123;ITEM.VALUE&#125;</span><br><span class="line"></span><br><span class="line">持续时间:&#123;EVENT.AGE&#125;</span><br><span class="line"></span><br><span class="line">当前状态:&#123;TRIGGER.STATUS&#125;:&#123;ITEM.VALUE1&#125;</span><br><span class="line"></span><br><span class="line">事件ID:&#123;EVENT.ID&#125;</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">标题：恢复&#123;TRIGGER.STATUS&#125;, 服务器:&#123;HOSTNAME1&#125;: &#123;TRIGGER.NAME&#125;已恢复!</span><br><span class="line">告警主机:&#123;HOSTNAME1&#125;</span><br><span class="line"></span><br><span class="line">告警IP:&#123;HOST.IP&#125;</span><br><span class="line"></span><br><span class="line">恢复时间:&#123;EVENT.DATE&#125;&#123;EVENT.RECOVERY.TIME&#125;</span><br><span class="line"></span><br><span class="line">告警等级:&#123;TRIGGER.SEVERITY&#125;</span><br><span class="line"></span><br><span class="line">告警信息: &#123;TRIGGER.NAME&#125;</span><br><span class="line"></span><br><span class="line">告警项目:&#123;TRIGGER.KEY1&#125;</span><br><span class="line"></span><br><span class="line">问题详情:&#123;ITEM.NAME&#125;:&#123;ITEM.VALUE&#125;</span><br><span class="line"></span><br><span class="line">持续时间:&#123;EVENT.AGE&#125;</span><br><span class="line"></span><br><span class="line">当前状态:&#123;TRIGGER.STATUS&#125;:&#123;ITEM.VALUE1&#125;</span><br><span class="line"></span><br><span class="line">事件ID:&#123;EVENT.ID&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://wting.tk/2017/12/13/jenkins与sonar集成自动化代码质量检查/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -367,7 +500,7 @@
 <h1 id="u5B89_u88C5sonar-runner"><a href="#u5B89_u88C5sonar-runner" class="headerlink" title="安装sonar-runner"></a>安装sonar-runner</h1><h2 id="u4E0B_u8F7D_u5B89_u88C5-1"><a href="#u4E0B_u8F7D_u5B89_u88C5-1" class="headerlink" title="下载安装"></a>下载安装</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist/2.4/sonar-runner-dist-2.4.zip</span></span><br><span class="line">unzip sonar-runner-dist-<span class="number">2.4</span>.zip -d /usr/local/</span><br><span class="line">cd /usr/local/sonar-runner-dist-<span class="number">2.4</span></span><br><span class="line">vim conf/sonar-runner.properties </span><br><span class="line">sonar.host.url=http:<span class="comment">//172.18.8.32:9000</span></span><br><span class="line">sonar.sourceEncoding=UTF-<span class="number">8</span></span><br><span class="line">sonar.login=admin</span><br><span class="line">sonar.password=admi</span><br><span class="line">配置环境配置</span><br><span class="line">vim /etc/profile</span><br><span class="line">export SONAR_HOME=/usr/local/sonarqube-<span class="number">6.7</span></span><br><span class="line">PATH=<span class="variable">$PATH</span>:/usr/local/sonar-runner-<span class="number">2.4</span>/bin   </span><br><span class="line">export PATH</span><br><span class="line">source  /etc/profile</span><br><span class="line">测试ok</span><br><span class="line">sonar-scanner -h</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/13/jenkins与sonar集成自动化代码质量检查/#thêm" rel="contents">
+            <a class="btn" href="/2017/12/13/jenkins与sonar集成自动化代码质量检查/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -492,7 +625,7 @@
 <h1 id="u914D_u7F6E_u53D1_u73B0_u89C4_u5219__u8FD9_u91CC_u4F7F_u7528_u6DF1_u4FE1_u670D_u8BBE_u5907"><a href="#u914D_u7F6E_u53D1_u73B0_u89C4_u5219__u8FD9_u91CC_u4F7F_u7528_u6DF1_u4FE1_u670D_u8BBE_u5907" class="headerlink" title="配置发现规则 这里使用深信服设备"></a>配置发现规则 这里使用深信服设备</h1><p>配置 → 模板→点击适当模板行中的发现<br><img src="/img/zabbix1.png" alt="zabbix"><br>点击屏幕右上角的创建发现规则<br>填写发现规则表单，具体细节如下面的屏幕截图所示<br><img src="/img/zabbix2.png" alt="zabbix"><br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">名称 Network interfaces</span><br><span class="line">类型  SNMPv2 agent</span><br><span class="line">键值 ifDescr</span><br><span class="line">SNMP OID discovery[&#123;#SNMPVALUE&#125;,IF-MIB::ifDescr]</span><br><span class="line">SNMP community &#123;<span class="variable">$SNMP</span>_COMMUNITY&#125;</span><br><span class="line">端口 <span class="number">161</span></span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/11/zabbix自动发现交换机接口信息监控网络设备流量模板配置/#thêm" rel="contents">
+            <a class="btn" href="/2017/12/11/zabbix自动发现交换机接口信息监控网络设备流量模板配置/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1306,7 +1439,7 @@
           <p>生成私有ssl证书<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/registry/certs</span><br><span class="line"> cd ~/registry/certs</span><br><span class="line"> openssl genrsa -out registry.wting.com.key <span class="number">1024</span></span><br><span class="line"> openssl req -newkey rsa:<span class="number">4096</span> -nodes -sha256 -keyout registry.wting.com.key -x509 -days <span class="number">365</span> -out registry.wting.com.crt</span><br><span class="line"> Generating a <span class="number">4096</span> bit RSA <span class="keyword">private</span> key</span><br><span class="line">.........................++</span><br><span class="line">.....................................................................................................................++</span><br><span class="line">writing <span class="keyword">new</span> <span class="keyword">private</span> key to <span class="string">'registry.wting.com.key'</span></span><br><span class="line">-----</span><br><span class="line">You are about to be asked to enter information that will be incorporated</span><br><span class="line">into your certificate request.</span><br><span class="line">What you are about to enter is what is called a Distinguished Name <span class="keyword">or</span> a DN.</span><br><span class="line">There are quite a few fields but you can leave some blank</span><br><span class="line"><span class="keyword">For</span> some fields there will be a <span class="keyword">default</span> value,</span><br><span class="line"><span class="keyword">If</span> you enter <span class="string">'.'</span>, the field will be left blank.</span><br><span class="line">-----</span><br><span class="line">Country Name (<span class="number">2</span> letter code) [AU]:cn <span class="comment">//← 国家代号</span></span><br><span class="line">State <span class="keyword">or</span> Province Name (full name) [Some-State]:sc \\← 省的全名</span><br><span class="line">Locality Name (eg, city) []:cd \\ ← 市的全名</span><br><span class="line">Organization Name (eg, company) [Internet Widgits Pty Ltd]:wt \\公司英文</span><br><span class="line">Organizational Unit Name (eg, section) []:it \\</span><br><span class="line">Common Name (e.g. server FQDN <span class="keyword">or</span> YOUR name) []:it \\</span><br><span class="line">Email Address []:<span class="number">123</span>@<span class="number">123.</span>com <span class="comment">//← 电子邮箱</span></span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/09/07/docker搭建registry私有仓库/#thêm" rel="contents">
+            <a class="btn" href="/2017/09/07/docker搭建registry私有仓库/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1432,134 +1565,11 @@
 <p>直接挂着目录报错<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@jhjapp-tomcat-node5 ~]<span class="comment"># mount /dev/xvdc /mnt</span></span><br><span class="line">mount: unknown filesystem type <span class="string">'LVM2_member'</span></span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/09/06/Linux挂载已分区的LVM磁盘/#thêm" rel="contents">
+            <a class="btn" href="/2017/09/06/Linux挂载已分区的LVM磁盘/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
           <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wting.tk/2017/09/01/Oracle自动删除归档日志shell脚本/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/01/Oracle自动删除归档日志shell脚本/" itemprop="url">Oracle自动删除归档日志shell脚本</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-01T11:16:19+08:00">
-                2017-09-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Oraclr归档日志清理脚本<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="keyword">if</span> [ -f ~/.bash_profile ]; then</span><br><span class="line">    . ~/.bash_profile</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"><span class="comment">#set env</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"Oracle home:"</span><span class="variable">$ORACLE_HOME</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"Oracle SID:"</span><span class="variable">$ORACLE_SID</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$ORACLE_HOME</span>/bin/rman target sys/oracle@rac log=/oracle/logs/rman.log &lt;&lt;EOF</span><br><span class="line">crosscheck archivelog all;</span><br><span class="line">delete noprompt expired archivelog all;</span><br><span class="line">delete noprompt archivelog all completed before <span class="string">'sysdate - 5'</span>;</span><br><span class="line"><span class="keyword">exit</span>;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>正式环境<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br><span class="line"><span class="comment">#Author wang.t</span></span><br><span class="line"><span class="comment">#date 2017-9-1</span></span><br><span class="line">ORACLE_HOME=/data/u01/app/oracle/product/<span class="number">11.2</span><span class="number">.0</span>/dbhome_1</span><br><span class="line"><span class="variable">$ORACLE_HOME</span>/bin/rman  target / log=/data/backup/logs/rman.log &lt;&lt; EOF</span><br><span class="line">crosscheck archivelog all;</span><br><span class="line">DELETE noprompt  ARCHIVELOG ALL COMPLETED BEFORE <span class="string">'SYSDATE-15'</span>;</span><br><span class="line"><span class="keyword">exit</span>;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
-<p>mkdir -p /data/backup/logs/</p>
-
-          
         
       
     </div>
@@ -1647,7 +1657,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

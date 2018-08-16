@@ -291,6 +291,146 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wting.tk/2016/06/24/CentOS-6-5-内核升级2-6-32-3-12-61过程记录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang'T">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wang'T博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/06/24/CentOS-6-5-内核升级2-6-32-3-12-61过程记录/" itemprop="url">CentOS 6.5 内核升级2.6.32 -> 3.12.61过程记录 </a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-24T12:46:00+08:00">
+                2016-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一. 准备工作<br>确认内核及版本信息<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># uname -r</span></span><br><span class="line"><span class="number">2.6</span><span class="number">.32</span>-<span class="number">220.</span>el6.x86_64</span><br></pre></td></tr></table></figure></p>
+<p>安装编译安装新内核，依赖于开发环境和开发库<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum grouplist  <span class="comment">//查看已经安装的和未安装的软件包组，来判断我们是否安装了相应的开发环境和开发库；</span></span><br><span class="line">yum groupinstall <span class="string">"Development Tools"</span>  <span class="comment">//一般是安装这两个软件包组，这样做会确定你拥有编译时所需的一切</span></span><br><span class="line">工具</span><br><span class="line">yum install ncurses-devel <span class="comment">//你必须这样才能让 make *config 这个指令正确地执行</span></span><br><span class="line">yum install qt-devel <span class="comment">//如果你没有 X 环境，这一条可以不用</span></span><br><span class="line">yum install hmaccalc zlib-devel binutils-devel elfutils-libelf-devel <span class="comment">//创建 CentOS-6 内核时需要它们</span></span><br></pre></td></tr></table></figure></p>
+<p>二. 编译内核</p>
+<p>Linux内核版本有两种：稳定版和开发版 ，Linux内核版本号由3个数字组成：r.x.y<br>•r: 主版本号</p>
+<p>•x: 次版本号，偶数表示稳定版本；奇数表示开发中版本。</p>
+<p>•y: 修订版本号 ， 表示修改的次数</p>
+<p>获取并解压内核源码，配置编译项<br>去 <a href="http://www.kernel.org" target="_blank" rel="external">http://www.kernel.org</a> 首页，可以看到有stable, longterm等版本，longterm是比stable更稳定的版本，会长时间更新，选择 3.12.61。</p>
+<p>Linux内核版本有两种：稳定版和开发版 ，Linux内核版本号由3个数字组成：r.x.y<br>•r: 主版本号<br>•x: 次版本号，偶数表示稳定版本；奇数表示开发中版本。<br>•y: 修订版本号 ， 表示修改的次数</p>
+<p>在系统原有的内核配置文件的基础上建立新的编译选项，所以复制一份到当前目录下，命名为.config<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@localhost linux-<span class="number">3.12</span><span class="number">.61</span>]<span class="comment">#tar -xf linux-3.12.61.tar.xz -C /usr/src/kernels/</span></span><br><span class="line">root@localhost linux-<span class="number">3.12</span><span class="number">.61</span>]<span class="comment">#cd /usr/src/kernels/linux-3.12.61/</span></span><br><span class="line">root@localhost linux-<span class="number">3.12</span><span class="number">.61</span>]<span class="comment">#cp /boot/config-2.6.32-220.el6.x86_64 .config</span></span><br></pre></td></tr></table></figure></p>
+<p> 通过菜单方式配置内核使用make memuconfig，它便是根据需要定制模块<br> <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@localhost linux-<span class="number">3.12</span><span class="number">.61</span>]<span class="comment"># cd /usr/src/kernels/linux-3.12.61</span></span><br><span class="line">root@localhost linux-<span class="number">3.12</span><span class="number">.61</span>]<span class="comment"># make menuconfig</span></span><br></pre></td></tr></table></figure></p>
+<p>\\需要安装yum -y install ncurses-devel</p>
+<p>这里使用下面方式继续配置：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment">#sh -c 'yes "" | make oldconfig' //使用旧内核配置，并自动接受每个新增选项的默认设置</span></span><br><span class="line">  HOSTCC  scripts/basic/fixdep</span><br><span class="line">  HOSTCC  scripts/kconfig/conf.o</span><br><span class="line">  SHIPPED scripts/kconfig/zconf.tab.c</span><br><span class="line">  SHIPPED scripts/kconfig/zconf.lex.c</span><br><span class="line">  SHIPPED scripts/kconfig/zconf.hash.c</span><br><span class="line">  HOSTCC  scripts/kconfig/zconf.tab.o</span><br><span class="line">  HOSTLD  scripts/kconfig/conf</span><br><span class="line">scripts/kconfig/conf --oldconfig Kconfig</span><br><span class="line">.config:<span class="number">555</span>:warning: symbol value <span class="string">'m'</span> invalid <span class="keyword">for</span> PCCARD_NONSTATIC</span><br><span class="line">.config:<span class="number">2567</span>:warning: symbol value <span class="string">'m'</span> invalid <span class="keyword">for</span> MFD_WM8400</span><br><span class="line">.config:<span class="number">2568</span>:warning: symbol value <span class="string">'m'</span> invalid <span class="keyword">for</span> MFD_WM831X</span><br><span class="line">.config:<span class="number">2569</span>:warning: symbol value <span class="string">'m'</span> invalid <span class="keyword">for</span> MFD_WM8350</span><br><span class="line">.config:<span class="number">2582</span>:warning: symbol value <span class="string">'m'</span> invalid <span class="keyword">for</span> MFD_WM8350_I2C</span><br><span class="line">.config:<span class="number">2584</span>:warning: symbol value <span class="string">'m'</span> invalid <span class="keyword">for</span> AB3100_CORE</span><br><span class="line">.config:<span class="number">3502</span>:warning: symbol value <span class="string">'m'</span> invalid <span class="keyword">for</span> MMC_RICOH_MMC</span><br><span class="line">*</span><br><span class="line">* Restart config...</span><br><span class="line">*</span><br><span class="line">*</span><br><span class="line">* General setup</span><br><span class="line">*</span><br><span class="line"></span><br><span class="line">... ...</span><br><span class="line">XZ decompressor tester (XZ_DEC_TEST) [N/m/y/?] (<span class="keyword">NEW</span>) </span><br><span class="line">Averaging functions (AVERAGE) [Y/?] (<span class="keyword">NEW</span>) y</span><br><span class="line">CORDIC algorithm (CORDIC) [N/m/y/?] (<span class="keyword">NEW</span>) </span><br><span class="line">JEDEC DDR data (DDR) [N/y/?] (<span class="keyword">NEW</span>) </span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># configuration written to .config</span></span><br><span class="line"><span class="comment">#</span></span><br></pre></td></tr></table></figure></p>
+<p>开始编译<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@localhost linux-<span class="number">3.12</span><span class="number">.61</span>]<span class="comment"># make -j4 bzImage  //生成内核文件</span></span><br><span class="line">root@localhost linux-<span class="number">3.12</span><span class="number">.61</span>]<span class="comment"># make -j4 modules  //编译模块</span></span><br><span class="line">root@localhost linux-<span class="number">3.12</span><span class="number">.61</span>]<span class="comment"># make -j4 modules_install  //编译安装模块</span></span><br></pre></td></tr></table></figure></p>
+<p>安装</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@localhost linux-<span class="number">3.12</span><span class="number">.61</span>]<span class="comment">#make install</span></span><br></pre></td></tr></table></figure>
+<p>如果出现了 ERROR: modinfo: could not find module xxx，数量少的话，可以忽略</p>
+<p>修改grub引导，重启</p>
+<p>安装完成后，需要修改Grub引导顺序，让新安装的内核作为默认内核。 编辑 grub.conf文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/grub.conf</span><br><span class="line"><span class="comment">#boot=/dev/sda1</span></span><br><span class="line">device (hd0) HD(<span class="number">1</span>,<span class="number">800</span>,<span class="number">200000</span>,b99f9008-<span class="number">34</span>a9-<span class="number">4</span>d88-<span class="number">8288</span>-<span class="number">177</span>f4cf74dc2)</span><br><span class="line"><span class="keyword">default</span>=<span class="number">0</span></span><br><span class="line">timeout=<span class="number">5</span></span><br><span class="line">splashimage=(hd0,<span class="number">1</span>)/grub/splash.xpm.gz</span><br><span class="line">hiddenmenu</span><br><span class="line">title CentOS (<span class="number">3.12</span><span class="number">.61</span>)</span><br><span class="line">        root (hd0,<span class="number">1</span>)</span><br><span class="line">        kernel /vmlinuz-<span class="number">3.12</span><span class="number">.61</span> ro root=/dev/mapper/VolGroup-lv_root rd_NO_LUKS rd_NO_MD rd_LVM_LV=VolGroup/lv_swap LANG=zh_CN.UTF-<span class="number">8</span> rd_LVM_LV=VolGroup/lv_root  KEYBOARDTYPE=pc KEYTABLE=us rd_NO_DM rhgb quiet crashkernel=auto SYSFONT=latarcyrheb-sun16</span><br><span class="line">        initrd /initramfs-<span class="number">3.12</span><span class="number">.61</span>.img</span><br><span class="line">title CentOS (<span class="number">2.6</span><span class="number">.32</span>-<span class="number">573.8</span><span class="number">.1</span>.el6.x86_64)</span><br><span class="line">        root (hd0,<span class="number">1</span>)</span><br><span class="line">        kernel /vmlinuz-<span class="number">2.6</span><span class="number">.32</span>-<span class="number">573.8</span><span class="number">.1</span>.el6.x86_64 ro root=/dev/mapper/VolGroup-lv_root rd_NO_LUKS rd_NO_MD rd_LVM_LV=VolGroup/lv_swap LANG=zh_CN.UTF-<span class="number">8</span> rd_LVM_LV=VolGroup/lv_root  KEYBOARDTYPE=pc KEYTABLE=us rd_NO_DM rhgb quiet crashkernel=auto</span><br><span class="line">        initrd /initramfs-<span class="number">2.6</span><span class="number">.32</span>-<span class="number">573.8</span><span class="number">.1</span>.el6.x86_64.img</span><br><span class="line">title CentOS (<span class="number">2.6</span><span class="number">.32</span>-<span class="number">431.</span>el6.x86_64)</span><br><span class="line">        root (hd0,<span class="number">1</span>)</span><br><span class="line">        kernel /vmlinuz-<span class="number">2.6</span><span class="number">.32</span>-<span class="number">431.</span>el6.x86_64 ro root=/dev/mapper/VolGroup-lv_root rd_NO_LUKS rd_NO_MD rd_LVM_LV=VolGroup/lv_swap LANG=zh_CN.UTF-<span class="number">8</span> rd_LVM_LV=VolGroup/lv_root  KEYBOARDTYPE=pc KEYTABLE=us rd_NO_DM rhgb quiet</span><br><span class="line">        initrd /initramfs-<span class="number">2.6</span><span class="number">.32</span>-<span class="number">431.</span>el6.x86_64.img</span><br><span class="line">        `</span><br></pre></td></tr></table></figure>
+<p>在 grub.conf 文件中决定开机使用哪个内核版本做启动的参数是 default，默认为 0（代表从最新的内核启动，代表的内核版本从上往下依次是 0，1, 2 等）<br>reboot<br>[root@localhost ~]# uname -r<br>3.12.61</p>
+<p>如果安装失败执行以下命令重新编译<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># make mrproper         #完成或者安装过程出错，可以清理上次编译的现场</span></span><br><span class="line"><span class="comment"># make clean</span></span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://wting.tk/2016/06/23/Tomcat部署配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -762,7 +902,7 @@
 <p>先在conifg.php中配置公众账号信息:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="variable">$G_CONFIG</span>[<span class="string">"weiXin"</span>] = <span class="keyword">array</span>(</span><br><span class="line">       <span class="string">'account'</span> =&gt; <span class="string">'公众平台账号'</span>,</span><br><span class="line">       <span class="string">'password'</span> =&gt; <span class="string">'密码'</span>,</span><br><span class="line">       <span class="string">'cookiePath'</span> =&gt; <span class="variable">$G_ROOT</span>. <span class="string">'/cache/cookie'</span>, <span class="comment">// cookie缓存文件路径</span></span><br><span class="line">       <span class="string">'webTokenPath'</span> =&gt; <span class="variable">$G_ROOT</span>. <span class="string">'/cache/webToken'</span>, <span class="comment">// webToken缓存文件路径</span></span><br><span class="line">   );</span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/04/19/zabbix微信告警/#thêm" rel="contents">
+            <a class="btn" href="/2016/04/19/zabbix微信告警/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -888,7 +1028,7 @@
 <p>vim /etc/sysconfig/network-scripts/ifcfg-eth1<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">DEVICE=eth1</span><br><span class="line">HWADDR=<span class="number">00</span>:<span class="number">0</span>C:<span class="number">29</span>:<span class="number">11</span>:DE:DB</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">ONBOOT=yes</span><br><span class="line">NM_CONTROLLED=no</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">DNS1=</span><br><span class="line">IPADDR=<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line">NETMASK=<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/03/16/centos配置pppoe服务器/#thêm" rel="contents">
+            <a class="btn" href="/2016/03/16/centos配置pppoe服务器/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1035,7 +1175,7 @@
 <p>配置文件<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">一、配置nginx支持php</span><br><span class="line">cp /etc/nginx/nginx.conf  /etc/nginx/nginx.confbak<span class="comment">#备份原有配置文件</span></span><br><span class="line">vi /etc/nginx/nginx.conf <span class="comment">#编辑</span></span><br><span class="line">user nginx nginx; <span class="comment">#修改nginx运行账号为：nginx组的nginx用户</span></span><br><span class="line">:wq  <span class="comment">#保存退出</span></span><br><span class="line">cp /etc/nginx/conf.d/<span class="keyword">default</span>.conf /etc/nginx/conf.d/<span class="keyword">default</span>.confbak <span class="comment">#备份原有配置文件</span></span><br><span class="line">vi /etc/nginx/conf.d/<span class="keyword">default</span>.conf <span class="comment">#编辑</span></span><br><span class="line"></span><br><span class="line">index index.php index.html index.htm; <span class="comment">#增加index.php#pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">location ~ \.php$ &#123;</span><br><span class="line">root html;</span><br><span class="line">fastcgi_pass <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9000</span>;</span><br><span class="line">fastcgi_index index.php;</span><br><span class="line">fastcgi_param SCRIPT_FILENAME <span class="variable">$document_root</span><span class="variable">$fastcgi_script_name</span>;</span><br><span class="line"><span class="keyword">include</span> fastcgi_params;</span><br><span class="line">&#125;<span class="comment">#取消FastCGI server部分location的注释,并要注意fastcgi_param行的参数,改为$document_root$fastcgi_script_name,或者使用绝对路径</span></span><br><span class="line">service nginx restart <span class="comment">#重启nginx</span></span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/03/14/nginx-php-mysql配置/#thêm" rel="contents">
+            <a class="btn" href="/2016/03/14/nginx-php-mysql配置/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1182,7 +1322,7 @@
 <p>主上面配置</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/01/11/H3C双核心交换机VRRP协议+DHCP配置/#thêm" rel="contents">
+            <a class="btn" href="/2016/01/11/H3C双核心交换机VRRP协议+DHCP配置/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1337,7 +1477,7 @@
 <p>1，修改配置文件ha.cf,ha.cf 文件是heartbeat的主要配置文件， 可以对heartbeat的多数性能与状态进行配置.<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@web]<span class="comment">#  cat /etc/ha.d/ha.cf |awk '&#123;if($0 !~ /^$/ &amp;&amp; $0 !~ /^#/) &#123;print $0&#125;&#125;'  </span></span><br><span class="line">logfile /<span class="keyword">var</span>/log/ha-log              <span class="comment">//设置heartbeat日志存放位置  </span></span><br><span class="line">keepalive <span class="number">2</span>                         <span class="comment">//设定心跳(监测)时间时间为2秒  </span></span><br><span class="line">deadtime <span class="number">30</span>                          <span class="comment">//设置监测不到，并认定其死机的时间是30  </span></span><br><span class="line">warntime <span class="number">10</span>                          <span class="comment">//设置监测到的警告时间为10  </span></span><br><span class="line">udpport <span class="number">694</span>                          <span class="comment">//设置heartbeat监听端口  </span></span><br><span class="line">initdead <span class="number">120</span>                           <span class="comment">//主机死掉后预留的恢复时间  </span></span><br><span class="line">bcast   eth0                          <span class="comment">//设置heartbeat监听的网卡  </span></span><br><span class="line">ucast   eth0 <span class="number">192.168</span><span class="number">.60</span><span class="number">.137</span>           <span class="comment">//单播，现在是主服务上，在这里填写从服务器IP，如果在从的上面，就填写主的IP  </span></span><br><span class="line">baud    <span class="number">19200</span>                          <span class="comment">//设置串行通讯的波特率  </span></span><br><span class="line">auto_failback on                           <span class="comment">//主服务恢复后从从服务器切换到主服务器  </span></span><br><span class="line">node ha-<span class="number">1</span>                          <span class="comment">//主服务器名，下面会提到如果何设置这个参数  </span></span><br><span class="line">node ha-<span class="number">2</span>                          <span class="comment">//从服务器名，这二个名字必须根uname -n一样，不然报错。  </span></span><br><span class="line">ping <span class="number">192.168</span><span class="number">.60</span><span class="number">.1</span>                            <span class="comment">//网关  </span></span><br><span class="line">respawn hacluster /usr/lib/heartbeat/ipfail    <span class="comment">//可选，列出和heartbeat一起启动和关闭的进程  </span></span><br><span class="line">apiauth ipfail gid=haclient uid=hacluster      <span class="comment">//启动用户和组</span></span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2015/12/26/heartbeata安装配置/#thêm" rel="contents">
+            <a class="btn" href="/2015/12/26/heartbeata安装配置/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1481,131 +1621,11 @@ make install
 </code></pre>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2015/12/17/centos7-zabbix3-0完整安装/#thêm" rel="contents">
+            <a class="btn" href="/2015/12/17/centos7-zabbix3-0完整安装/#далее" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
           <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wting.tk/2015/12/12/test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/12/12/test/" itemprop="url">test</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-12T00:19:12+08:00">
-                2015-12-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <embed src="http://i1.hunantv.com/ui/swf/share/player.swf?video_id=1089920" quality="high" width="580" height="425" align="middle" allowscriptaccess="always" allowfullscreen="true" type="application/x-shockwave-flash">
-
-          
         
       
     </div>
@@ -1693,7 +1713,7 @@ make install
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
