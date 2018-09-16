@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ingress-nginx,nginx," />
 
 
 
@@ -79,49 +79,16 @@
 
 
 
-<meta name="description" content="一. if的基本语法
-
-if与[之间要有空格
-[]与判断条件之间也必须有空格
-]与;之间不能有空格
-
-二. 对字符串的判断
-
-if [ str1=str2 ];then fi #当两个字符串相同时返回真
-if [ str1!=str2 ];then fi #当两个字符串不相等时返回真
-if [ -n str1 ];then fi #当字符串的长度大于0时返回真 (判断变量是否有值)
-if [ -z">
+<meta name="description" content="解决方法比较多主要根据自己的环境找到合适的解决方式，ingress-nginx默认监听443,80，这里的环境主要是因为路由器映射到非80端口导致跳转的Heather的Request丢失端口跳转到了默认的80参考http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_redirecthttps://www.nginx.com/r">
 <meta property="og:type" content="article">
-<meta property="og:title" content="shell编程中if的语法和常见判断用法">
-<meta property="og:url" content="http://www.idcsec.com/2016/09/02/shell编程中if的语法和常见判断用法/index.html">
+<meta property="og:title" content="解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx">
+<meta property="og:url" content="http://www.idcsec.com/2018/09/16/解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx/index.html">
 <meta property="og:site_name" content="Wang'T博客">
-<meta property="og:description" content="一. if的基本语法
-
-if与[之间要有空格
-[]与判断条件之间也必须有空格
-]与;之间不能有空格
-
-二. 对字符串的判断
-
-if [ str1=str2 ];then fi #当两个字符串相同时返回真
-if [ str1!=str2 ];then fi #当两个字符串不相等时返回真
-if [ -n str1 ];then fi #当字符串的长度大于0时返回真 (判断变量是否有值)
-if [ -z">
-<meta property="og:updated_time" content="2016-09-02T07:27:13.698Z">
+<meta property="og:description" content="解决方法比较多主要根据自己的环境找到合适的解决方式，ingress-nginx默认监听443,80，这里的环境主要是因为路由器映射到非80端口导致跳转的Heather的Request丢失端口跳转到了默认的80参考http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_redirecthttps://www.nginx.com/r">
+<meta property="og:updated_time" content="2018-09-16T14:48:51.761Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="shell编程中if的语法和常见判断用法">
-<meta name="twitter:description" content="一. if的基本语法
-
-if与[之间要有空格
-[]与判断条件之间也必须有空格
-]与;之间不能有空格
-
-二. 对字符串的判断
-
-if [ str1=str2 ];then fi #当两个字符串相同时返回真
-if [ str1!=str2 ];then fi #当两个字符串不相等时返回真
-if [ -n str1 ];then fi #当字符串的长度大于0时返回真 (判断变量是否有值)
-if [ -z">
+<meta name="twitter:title" content="解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx">
+<meta name="twitter:description" content="解决方法比较多主要根据自己的环境找到合适的解决方式，ingress-nginx默认监听443,80，这里的环境主要是因为路由器映射到非80端口导致跳转的Heather的Request丢失端口跳转到了默认的80参考http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_redirecthttps://www.nginx.com/r">
 
 
 
@@ -151,13 +118,13 @@ if [ -z">
 
 
 
-  <link rel="canonical" href="http://www.idcsec.com/2016/09/02/shell编程中if的语法和常见判断用法/"/>
+  <link rel="canonical" href="http://www.idcsec.com/2018/09/16/解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx/"/>
 
 
 
 
 
-  <title>shell编程中if的语法和常见判断用法 | Wang'T博客</title>
+  <title>解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx | Wang'T博客</title>
   
 
 
@@ -324,7 +291,7 @@ if [ -z">
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/09/02/shell编程中if的语法和常见判断用法/">
+    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/16/解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Wang'T">
@@ -341,7 +308,7 @@ if [ -z">
 
         
         
-          <h1 class="post-title" itemprop="name headline">shell编程中if的语法和常见判断用法</h1>
+          <h1 class="post-title" itemprop="name headline">解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx</h1>
         
 
         <div class="post-meta">
@@ -353,8 +320,8 @@ if [ -z">
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-02T15:25:00+08:00">
-                2016-09-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-16T22:05:00+08:00">
+                2018-09-16
               </time>
             
 
@@ -376,8 +343,8 @@ if [ -z">
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/shell/" itemprop="url" rel="index">
-                    <span itemprop="name">shell</span>
+                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
+                    <span itemprop="name">kubernetes</span>
                   </a>
                 </span>
 
@@ -413,46 +380,24 @@ if [ -z">
       
 
       
-        <p>一. if的基本语法</p>
-<ol>
-<li>if与[之间要有空格</li>
-<li>[]与判断条件之间也必须有空格</li>
-<li>]与;之间不能有空格</li>
-</ol>
-<p>二. 对字符串的判断</p>
-<ol>
-<li>if [ str1=str2 ];then fi #当两个字符串相同时返回真</li>
-<li>if [ str1!=str2 ];then fi #当两个字符串不相等时返回真</li>
-<li>if [ -n str1 ];then fi #当字符串的长度大于0时返回真 (判断变量是否有值)</li>
-<li>if [ -z str1 ];then fi #当字符串的长度为0时返回真</li>
-</ol>
-<p>三. 对数字的判断</p>
-<ol>
-<li>int1 -eq int2 #int1和int2相等</li>
-<li>int1 -ne int2 #int1不相等int2</li>
-<li>int1 -gt int2 #int1大于int2</li>
-<li>int1 -ge int2 #int1大于等于int2</li>
-<li>int1 -lt int2 #int1小于int2</li>
-<li>int1 -le int2 #int1小于等于int2</li>
-</ol>
-<p>四. 对文件属性的判断</p>
-<ol>
-<li>-r file #用户可读为真</li>
-<li>-w file #用户可写为真</li>
-<li>-x file #用户可执行为真</li>
-<li>-f file #文件存在且为正规文件为真</li>
-<li>-d file #如果是存在目录为真</li>
-<li>-c file #文件存在且为字符设备文件</li>
-<li>-b file #文件存在且为块设备文件</li>
-<li>-s file #文件大小为非0为真，可以判断文件是否为空</li>
-<li>-e file #如果文件存在为真</li>
-</ol>
-<p>五. 逻辑判断</p>
-<ol>
-<li>-a #与</li>
-<li>-o #或</li>
-<li>! #非</li>
-</ol>
+        <ul>
+<li>解决方法比较多主要根据自己的环境找到合适的解决方式，ingress-nginx默认监听443,80，这里的环境主要是因为路由器映射到非80端口导致跳转的Heather的Request丢失端口跳转到了默认的80<br>参考<br><a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_redirect" target="_blank" rel="external">http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_redirect</a><br><a href="https://www.nginx.com/resources/wiki/start/topics/examples/fullexample2/" target="_blank" rel="external">https://www.nginx.com/resources/wiki/start/topics/examples/fullexample2/</a><br><a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#proxy-redirect" target="_blank" rel="external">https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#proxy-redirect</a><h1 id="nginx_u914D_u7F6E"><a href="#nginx_u914D_u7F6E" class="headerlink" title="nginx配置"></a>nginx配置</h1><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">  upstream tomcat &#123;</span><br><span class="line">    server <span class="number">127.0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">9090</span> weight=<span class="number">1</span> max_fails=<span class="number">3</span> fail_timeout=<span class="number">30</span>s;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  server &#123;</span><br><span class="line">    listen <span class="number">80</span>;</span><br><span class="line">    server_name example.com *.example.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">      proxy_next_upstream http_502 http_504 error timeout invalid_header;</span><br><span class="line"></span><br><span class="line">      proxy_set_header Host  <span class="variable">$host</span>:<span class="variable">$server</span>_port;</span><br><span class="line">      proxy_set_header X-Real-IP <span class="variable">$remote</span>_addr;</span><br><span class="line">      proxy_set_header X-Forwarded-For <span class="variable">$proxy</span>_add_x_forwarded_for;</span><br><span class="line">      proxy_redirect http://<span class="variable">$host</span> http://<span class="variable">$host</span>:<span class="variable">$server</span>_port;//由于是路由器上面配置映射非<span class="number">80</span>端口到<span class="number">80</span>端口这里就不能使用<span class="variable">$server</span>_port需要直接写端口号</span><br><span class="line">      proxy_redirect off;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="ingress-nginx_u914D_u7F6E"><a href="#ingress-nginx_u914D_u7F6E" class="headerlink" title="ingress-nginx配置"></a>ingress-nginx配置</h1><p>默认ingress-nginx 代理重定向是OFF<br>``<br>[root@centos-master ~]# kubectl exec -it nginx-ingress-controller-1971110253-0rcjw  -n kube-system – cat /etc/nginx/nginx.conf   | grep “proxy_redirect” | head -n 1<br>            proxy_redirect                          off;<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># ingress代理重定向配置</span></span><br></pre></td></tr></table></figure></p>
+<p>kind: Ingress<br>apiVersion: extensions/v1beta1<br>metadata:<br>  name: ${projectSvc}<br>  annotations:<br>    nginx.ingress.kubernetes.io/proxy-redirect-from: “test.cn:9090”<br>    nginx.ingress.kubernetes.io/proxy-redirect-to: “test.cn:9090”<br>spec:<br>  rules:</p>
+<ul>
+<li>host:  ${projectUrl}<br>http:<br>  paths:<ul>
+<li>path: /<br>backend:<br>  serviceName: ${projectSvc}<br>  servicePort: 80</li>
+</ul>
+</li>
+<li>host: ${projectUrl/test.loca/test.cn}<br>http:<br>  paths: <ul>
+<li>path: /<br>backend:<br>  serviceName: ${projectSvc}<br>  servicePort: 80</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">- </span>重点</span><br></pre></td></tr></table></figure>
+<p> nginx.ingress.kubernetes.io/proxy-redirect-from: “idcsec.com”<br> nginx.ingress.kubernetes.io/proxy-redirect-to: “idcsec.com”<br>```</p>
 
       
     </div>
@@ -462,6 +407,37 @@ if [ -z">
 	<div>
       
         
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript"  src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/2018/09/16/解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx/">解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Wang'T 的个人博客">Wang'T</a></p>
+  <p><span>发布时间:</span>2018年09月16日 - 22:09</p>
+  <p><span>最后更新:</span>2018年09月16日 - 22:09</p>
+  <p><span>原始链接:</span><a href="/2018/09/16/解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx/" title="解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx">http://www.idcsec.com/2018/09/16/解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://www.idcsec.com/2018/09/16/解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
       
 	  </div>
     
@@ -479,6 +455,14 @@ if [ -z">
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ingress-nginx/" rel="tag"># ingress-nginx</a>
+          
+            <a href="/tags/nginx/" rel="tag"># nginx</a>
+          
+        </div>
       
 
       
@@ -504,8 +488,8 @@ if [ -z">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/24/linux用户登录报““su-cannot-set-user-id-resource-temporarily-unavalable/" rel="next" title="linux用户登录报““su :cannot set user id: resource temporarily unavalable">
-                <i class="fa fa-chevron-left"></i> linux用户登录报““su :cannot set user id: resource temporarily unavalable
+              <a href="/2018/09/14/HARBOR仓库安装部署/" rel="next" title="HARBOR仓库安装部署">
+                <i class="fa fa-chevron-left"></i> HARBOR仓库安装部署
               </a>
             
           </div>
@@ -513,10 +497,6 @@ if [ -z">
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/02/tomcat性能优化实例/" rel="prev" title="tomcat性能优化实例">
-                tomcat性能优化实例 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -573,8 +553,17 @@ if [ -z">
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -660,6 +649,22 @@ if [ -z">
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#nginx_u914D_u7F6E"><span class="nav-number">1.</span> <span class="nav-text">nginx配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ingress-nginx_u914D_u7F6E"><span class="nav-number">2.</span> <span class="nav-text">ingress-nginx配置</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

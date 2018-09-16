@@ -291,6 +291,167 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/16/解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang'T">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wang'T博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/16/解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx/" itemprop="url">解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-16T22:05:00+08:00">
+                2018-09-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
+                    <span itemprop="name">kubernetes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>解决方法比较多主要根据自己的环境找到合适的解决方式，ingress-nginx默认监听443,80，这里的环境主要是因为路由器映射到非80端口导致跳转的Heather的Request丢失端口跳转到了默认的80<br>参考<br><a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_redirect" target="_blank" rel="external">http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_redirect</a><br><a href="https://www.nginx.com/resources/wiki/start/topics/examples/fullexample2/" target="_blank" rel="external">https://www.nginx.com/resources/wiki/start/topics/examples/fullexample2/</a><br><a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#proxy-redirect" target="_blank" rel="external">https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#proxy-redirect</a><h1 id="nginx_u914D_u7F6E"><a href="#nginx_u914D_u7F6E" class="headerlink" title="nginx配置"></a>nginx配置</h1><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">  upstream tomcat &#123;</span><br><span class="line">    server <span class="number">127.0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">9090</span> weight=<span class="number">1</span> max_fails=<span class="number">3</span> fail_timeout=<span class="number">30</span>s;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  server &#123;</span><br><span class="line">    listen <span class="number">80</span>;</span><br><span class="line">    server_name example.com *.example.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">      proxy_next_upstream http_502 http_504 error timeout invalid_header;</span><br><span class="line"></span><br><span class="line">      proxy_set_header Host  <span class="variable">$host</span>:<span class="variable">$server</span>_port;</span><br><span class="line">      proxy_set_header X-Real-IP <span class="variable">$remote</span>_addr;</span><br><span class="line">      proxy_set_header X-Forwarded-For <span class="variable">$proxy</span>_add_x_forwarded_for;</span><br><span class="line">      proxy_redirect http://<span class="variable">$host</span> http://<span class="variable">$host</span>:<span class="variable">$server</span>_port;//由于是路由器上面配置映射非<span class="number">80</span>端口到<span class="number">80</span>端口这里就不能使用<span class="variable">$server</span>_port需要直接写端口号</span><br><span class="line">      proxy_redirect off;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="ingress-nginx_u914D_u7F6E"><a href="#ingress-nginx_u914D_u7F6E" class="headerlink" title="ingress-nginx配置"></a>ingress-nginx配置</h1><p>默认ingress-nginx 代理重定向是OFF<br>``<br>[root@centos-master ~]# kubectl exec -it nginx-ingress-controller-1971110253-0rcjw  -n kube-system – cat /etc/nginx/nginx.conf   | grep “proxy_redirect” | head -n 1<br>            proxy_redirect                          off;<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># ingress代理重定向配置</span></span><br></pre></td></tr></table></figure></p>
+<p>kind: Ingress<br>apiVersion: extensions/v1beta1<br>metadata:<br>  name: ${projectSvc}<br>  annotations:<br>    nginx.ingress.kubernetes.io/proxy-redirect-from: “test.cn:9090”<br>    nginx.ingress.kubernetes.io/proxy-redirect-to: “test.cn:9090”<br>spec:<br>  rules:</p>
+<ul>
+<li>host:  ${projectUrl}<br>http:<br>  paths:<ul>
+<li>path: /<br>backend:<br>  serviceName: ${projectSvc}<br>  servicePort: 80</li>
+</ul>
+</li>
+<li>host: ${projectUrl/test.loca/test.cn}<br>http:<br>  paths: <ul>
+<li>path: /<br>backend:<br>  serviceName: ${projectSvc}<br>  servicePort: 80</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">- </span>重点</span><br></pre></td></tr></table></figure>
+<p> nginx.ingress.kubernetes.io/proxy-redirect-from: “idcsec.com”<br> nginx.ingress.kubernetes.io/proxy-redirect-to: “idcsec.com”<br>```</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	<div>
+      
+	  </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/14/HARBOR仓库安装部署/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -392,7 +553,7 @@
 <h4 id="u4FEE_u6539docker_u52A0_u901F"><a href="#u4FEE_u6539docker_u52A0_u901F" class="headerlink" title="修改docker加速"></a>修改docker加速</h4><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/docker/daemon.json </span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"registry-mirrors"</span>: [ <span class="string">"https://registry.docker-cn.com"</span>,], </span><br><span class="line">  <span class="string">"max-concurrent-downloads"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"log-driver"</span>: <span class="string">"json-file"</span>,</span><br><span class="line">  <span class="string">"log-level"</span>: <span class="string">"warn"</span>,</span><br><span class="line">  <span class="string">"log-opts"</span>: &#123;</span><br><span class="line">    <span class="string">"max-size"</span>: <span class="string">"10m"</span>,</span><br><span class="line">    <span class="string">"max-file"</span>: <span class="string">"3"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/09/14/HARBOR仓库安装部署/#далее" rel="contents">
+            <a class="btn" href="/2018/09/14/HARBOR仓库安装部署/#thêm" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -972,7 +1133,7 @@
 <p><img src="/img/ingress1.png" alt="crt"><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">镜像v0<span class="number">.17</span><span class="number">.1</span>:docker pull wtingdocker/nginx-ingress-controller</span><br><span class="line">https:<span class="comment">//github.com/kubernetes/ingress-nginx/releases</span></span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/09/Kubernetes1-11-nginx-ingress安装部署/#далее" rel="contents">
+            <a class="btn" href="/2018/08/09/Kubernetes1-11-nginx-ingress安装部署/#thêm" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1121,7 +1282,7 @@
 <h1 id="u6267_u884Cheapster-yaml_u6587_u4EF6"><a href="#u6267_u884Cheapster-yaml_u6587_u4EF6" class="headerlink" title="执行heapster.yaml文件"></a>执行heapster.yaml文件</h1><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">修改:</span> <span class="literal">-</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">source=</span> <span class="comment">、</span><span class="literal">-</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">sink、images</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/09/Kubernetes-Heapster安装部署/#далее" rel="contents">
+            <a class="btn" href="/2018/08/09/Kubernetes-Heapster安装部署/#thêm" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1298,7 +1459,7 @@
 <h1 id="u4E00_u3001_u4FEE_u6539_vim_conf/activemq-xml"><a href="#u4E00_u3001_u4FEE_u6539_vim_conf/activemq-xml" class="headerlink" title="一、修改 vim conf/activemq.xml"></a>一、修改 vim conf/activemq.xml</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">所以节点brokerName必须一致</span><br><span class="line"> &lt;broker xmlns=<span class="string">"http://activemq.apache.org/schema/core"</span> brokerName=<span class="string">"mybroker"</span> dataDirectory=<span class="string">"$&#123;activemq.data&#125;"</span>&gt;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/07/16/Activemq集群搭建ZooKeeper-LevelDB/#далее" rel="contents">
+            <a class="btn" href="/2018/07/16/Activemq集群搭建ZooKeeper-LevelDB/#thêm" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1426,7 +1587,7 @@
 <p>kubectl  kubectl  create -f pv.yaml<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-master pv]<span class="comment"># kubectl get pv</span></span><br><span class="line">NAME           CAPACITY   ACCESSMODES   RECLAIMPOLICY   STATUS      CLAIM     STORAGECLASS   REASON    AGE</span><br><span class="line">datadir-zk-<span class="number">0</span>   <span class="number">10</span>Gi       RWX           Recycle         Available             slow                     <span class="number">25</span>s</span><br><span class="line">datadir-zk-<span class="number">1</span>   <span class="number">10</span>Gi       RWX           Recycle         Available             slow                     <span class="number">25</span>s</span><br><span class="line">datadir-zk-<span class="number">2</span>   <span class="number">10</span>Gi       RWX           Recycle         Available             slow                     <span class="number">25</span>s</span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/07/10/8s-statefulsets部署zookeeper/#далее" rel="contents">
+            <a class="btn" href="/2018/07/10/8s-statefulsets部署zookeeper/#thêm" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1608,131 +1769,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/02/27/ecureCRT配置Cisco网络设备关键字高亮/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/27/ecureCRT配置Cisco网络设备关键字高亮/" itemprop="url">SecureCRT配置Cisco网络设备关键字高亮</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-27T15:34:00+08:00">
-                2018-02-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>##效果图：<br><img src="/img/securecrt1.png" alt="crt"><br>下载思科关键字文件解C:\Users\Administrator\AppData\Roaming\VanDyke\Config\Keywords(根据自己的用户路径)<br>链接: <a href="https://pan.baidu.com/s/1c3BZb8k" target="_blank" rel="external">https://pan.baidu.com/s/1c3BZb8k</a> 密码: xv7h</p>
-<p>##设置 options-eitdefault-appearance<br><img src="/img/securecrt2.png" alt="crt"></p>
-<p>##设置配置文件路径options-Globaloptions<br><img src="/img/securecrt3.png" alt="crt"></p>
-<p>#下拉菜单选择解压好的关键字文件<br><img src="/img/securecrt4.png" alt="crt"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1787,7 +1823,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1809,7 +1845,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
