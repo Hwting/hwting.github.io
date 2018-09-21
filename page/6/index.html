@@ -291,6 +291,432 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/03/16/centos配置pppoe服务器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang'T">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wang'T博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/03/16/centos配置pppoe服务器/" itemprop="url">centos配置pppoe服务器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-16T21:01:31+08:00">
+                2016-03-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>#安装软件<br>rpm –qa| grep ppp rp-pppoe<br>ppp<br>rp-pppoe<br>rp-pppoe下载<br>wget <a href="https://www.roaringpenguin.com/files/download/rp-pppoe-3.12.tar.gz">https://www.roaringpenguin.com/files/download/rp-pppoe-3.12.tar.gz</a><br>拓扑图<br>xp-linux网卡1-linux网卡0-路由器-lnternet</p>
+<p>1、配置好eth0网卡外网ip，eth1不用配置ip可以配置0.0.0.0<br>vim /etc/sysconfig/network-scripts/ifcfg-eth0<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">DEVICE=eth0</span><br><span class="line">HWADDR=<span class="number">00</span>:<span class="number">0</span>C:<span class="number">29</span>:<span class="number">11</span>:DE:D1</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">UUID=<span class="number">4</span>f6db293-c442-<span class="number">4163</span>-<span class="number">94</span>c7-aac0a05901e8</span><br><span class="line">ONBOOT=yes</span><br><span class="line">NM_CONTROLLED=yes</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">DNS1=<span class="number">61.139</span><span class="number">.2</span><span class="number">.69</span></span><br><span class="line">IPADDR=<span class="number">10.39</span><span class="number">.100</span><span class="number">.222</span></span><br><span class="line">NETMASK=<span class="number">255.255</span><span class="number">.254</span><span class="number">.0</span></span><br><span class="line">GATEWAY=<span class="number">10.39</span><span class="number">.100</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></p>
+<p>vim /etc/sysconfig/network-scripts/ifcfg-eth1<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">DEVICE=eth1</span><br><span class="line">HWADDR=<span class="number">00</span>:<span class="number">0</span>C:<span class="number">29</span>:<span class="number">11</span>:DE:DB</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">ONBOOT=yes</span><br><span class="line">NM_CONTROLLED=no</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">DNS1=</span><br><span class="line">IPADDR=<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line">NETMASK=<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/03/16/centos配置pppoe服务器/#thêm" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+	<div>
+      
+	  </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/03/14/nginx-php-mysql配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang'T">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wang'T博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/03/14/nginx-php-mysql配置/" itemprop="url">nginx+php+mysql配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-14T13:59:00+08:00">
+                2016-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>nginx安装<br>略<br>mysql安装<br>略<br>php-fpm安装<br>略</p>
+<p>配置文件<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">一、配置nginx支持php</span><br><span class="line">cp /etc/nginx/nginx.conf  /etc/nginx/nginx.confbak<span class="comment">#备份原有配置文件</span></span><br><span class="line">vi /etc/nginx/nginx.conf <span class="comment">#编辑</span></span><br><span class="line">user nginx nginx; <span class="comment">#修改nginx运行账号为：nginx组的nginx用户</span></span><br><span class="line">:wq  <span class="comment">#保存退出</span></span><br><span class="line">cp /etc/nginx/conf.d/<span class="keyword">default</span>.conf /etc/nginx/conf.d/<span class="keyword">default</span>.confbak <span class="comment">#备份原有配置文件</span></span><br><span class="line">vi /etc/nginx/conf.d/<span class="keyword">default</span>.conf <span class="comment">#编辑</span></span><br><span class="line"></span><br><span class="line">index index.php index.html index.htm; <span class="comment">#增加index.php#pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">location ~ \.php$ &#123;</span><br><span class="line">root html;</span><br><span class="line">fastcgi_pass <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9000</span>;</span><br><span class="line">fastcgi_index index.php;</span><br><span class="line">fastcgi_param SCRIPT_FILENAME <span class="variable">$document_root</span><span class="variable">$fastcgi_script_name</span>;</span><br><span class="line"><span class="keyword">include</span> fastcgi_params;</span><br><span class="line">&#125;<span class="comment">#取消FastCGI server部分location的注释,并要注意fastcgi_param行的参数,改为$document_root$fastcgi_script_name,或者使用绝对路径</span></span><br><span class="line">service nginx restart <span class="comment">#重启nginx</span></span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/03/14/nginx-php-mysql配置/#thêm" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+	<div>
+      
+	  </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/01/11/H3C双核心交换机VRRP协议+DHCP配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang'T">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wang'T博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/01/11/H3C双核心交换机VRRP协议+DHCP配置/" itemprop="url">H3C交换机VRRP协议DHCP配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-01-11T12:02:00+08:00">
+                2016-01-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络/" itemprop="url" rel="index">
+                    <span itemprop="name">网络</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>拓扑图如下：<br><img src="/img/top.jpg" alt="拓扑"></p>
+<p>主上面配置</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/01/11/H3C双核心交换机VRRP协议+DHCP配置/#thêm" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+	<div>
+      
+	  </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2015/12/26/heartbeata安装配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -878,7 +1304,7 @@ make install
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -900,7 +1326,7 @@ make install
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

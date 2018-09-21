@@ -291,6 +291,461 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/07/27/windows下配置java环境/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang'T">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wang'T博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/27/windows下配置java环境/" itemprop="url">windows下配置java环境</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-27T11:31:10+08:00">
+                2016-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Windows下配置Java环境变量</p>
+<p>下载java se development kit - JDK</p>
+<p>java官网： www.oracle.com</p>
+<p> 环境变量配置：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">JAVA_HOME</span><span class="symbol">:D</span><span class="symbol">:/Program</span> <span class="constant">Files</span>/<span class="constant">Java</span>/jdk1.<span class="number">6.0_10</span></span><br><span class="line"><span class="constant">PATH</span><span class="symbol">:%JAVA_HOME<span class="string">%/bin;%JAVA_HOME%/</span>jre/bin</span></span><br><span class="line"><span class="constant">CLASSPATH</span><span class="symbol">:</span>.;%<span class="constant">JAVA_HOME</span><span class="string">%/lib/</span>dt.jar;%<span class="constant">JAVA_HOME</span><span class="string">%/lib/</span>tools.jar</span><br></pre></td></tr></table></figure></p>
+<p>说明：</p>
+<p>1）JAVA_HOME指明JDK安装路径</p>
+<p>2）PATH使得系统可以在任何路径下识别java命令</p>
+<p>3）为java加载类(class or lib)路径，只有类在classpath中，java命令才能识别。</p>
+<p>linux下环境变量：<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/java/jdk1.<span class="number">8.0_77</span></span><br><span class="line">export CLASSPATH=<span class="variable">$JAVA</span>_HOME/lib/tools.jar:<span class="variable">$JAVA</span>_HOME/lib/dt.jar:<span class="variable">$JAVA</span>_HOME/lib</span><br><span class="line">export PATH=<span class="variable">$JAVA</span>_HOME/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	<div>
+      
+	  </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/07/05/SVN-apache搭建/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang'T">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wang'T博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/05/SVN-apache搭建/" itemprop="url">SVN+apache搭建</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-05T10:42:14+08:00">
+                2016-07-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1.安装软件包<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install httpd</span><br><span class="line">yum install mod_dav_svn</span><br><span class="line">yum install subversion</span><br></pre></td></tr></table></figure></p>
+<p>2、创建仓库<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> mkdir /var/svn/svnrepos</span><br><span class="line">svnadmin create /var/svnrepos/jktest</span><br></pre></td></tr></table></figure></p>
+<p>3、配置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/var/svn/svnrepos/jktest</span><br><span class="line">conf目录下找到svnserve.conf</span><br><span class="line">password-db = passwd，将前面的<span class="comment">#删除，</span></span><br><span class="line">authz-db = authz   将前面的<span class="comment">#删除</span></span><br><span class="line">realm = /var/svn/svnrepos/jktest   将前面的<span class="comment">#删除改自己的库地址</span></span><br><span class="line">：wq</span><br><span class="line">vim /var/svn/svnrepos/jktest/conf/authz  添加用户名密码</span><br><span class="line">[/]</span><br><span class="line"><span class="built_in">test</span> = rw</span><br><span class="line">：wq</span><br><span class="line"> vim /var/svn/svnrepos/jktest/conf/passwd </span><br><span class="line"> [user]</span><br><span class="line"> <span class="built_in">test</span> = <span class="number">123456</span></span><br></pre></td></tr></table></figure></p>
+<p>4、配置svn关联到apache:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/httpd/conf.d/subversion.conf //添加下面内容</span><br><span class="line">LoadModule dav_svn_module     modules/mod_dav_svn.so  </span><br><span class="line"><span class="number">02</span>.LoadModule authz_svn_module   modules/mod_authz_svn.so  </span><br><span class="line"></span><br><span class="line">&lt;Location /svnrepos&gt;</span><br><span class="line">   DAV svn</span><br><span class="line">   SVNParentPath /var/svn/svnrepos</span><br><span class="line"></span><br><span class="line">   <span class="comment"># Limit write permission to list of valid users.</span></span><br><span class="line"><span class="comment">#   &lt;LimitExcept GET PROPFIND OPTIONS REPORT&gt;</span></span><br><span class="line">      <span class="comment"># Require SSL connection for password protection.</span></span><br><span class="line">      <span class="comment"># SSLRequireSSL</span></span><br><span class="line"></span><br><span class="line">      AuthType Basic</span><br><span class="line">      AuthName <span class="string">"Authorization svn"</span></span><br><span class="line">      AuthUserFile /var/svn/svnrepos/jktest/pwdfile</span><br><span class="line">      AuthzSVNAccessFile /var/svn/svnrepos/jktest/conf/authz</span><br><span class="line"><span class="string">"/etc/httpd/conf.d/subversion.conf"</span> <span class="number">41</span>L, <span class="number">1109</span>C</span><br></pre></td></tr></table></figure></p>
+<p>添加<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/httpd/conf/httpd.conf </span><br><span class="line">include conf.d/*.conf</span><br></pre></td></tr></table></figure></p>
+<p>添加http访问用户<br>htpasswd -c /var/svn/svnrepos/jktest/pwdfile test<br>这里用到参数-c，是因为pwdfile文件不存在，如果文件存在，则无需该参数！否则，将覆盖掉原有密码文件<br>启动svn服务<br>svnserve -d -r /var/www/svn/project<br>启动httpd</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	<div>
+      
+	  </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/07/01/nginx安装与负载均衡配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang'T">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wang'T博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/01/nginx安装与负载均衡配置/" itemprop="url">nginx安装与负载均衡配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-01T17:58:00+08:00">
+                2016-07-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="u5B89_u88C5nginx"><a href="#u5B89_u88C5nginx" class="headerlink" title="安装nginx"></a>安装nginx</h1><p>选择稳定版本</p>
+<p>我们编译安装nginx来定制自己的模块。<br>•机器CentOS 6.6 x86_64。<br>•软件版本：Nginx 1.9.9</p>
+<h2 id="yum__u4E00_u952E_u5B89_u88C5nginx"><a href="#yum__u4E00_u952E_u5B89_u88C5nginx" class="headerlink" title="yum 一键安装nginx"></a>yum 一键安装nginx</h2><p>yum安装rpm包会比编译安装简单很多，默认会安装许多模块，帮我们解决到很多依赖的安装包，但缺点是如果你想以后安装第三方模块那就没办法了。</p>
+<p>使用Nginx官方源,Epel扩展库和remi源,remi源基于epel,必须先安装epel源,remi包含php-fpm,mysql-server5.5,如果只需要php-fpm可以单独安装php-fpm后禁用此源. </p>
+<p>第一种方法:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vi /etc/yum.repo.d/nginx.repo</span></span><br><span class="line">[nginx]</span><br><span class="line">name=nginx repo</span><br><span class="line">baseurl=http:<span class="comment">//nginx.org/packages/centos/$releasever/$basearch/</span></span><br><span class="line">gpgcheck=<span class="number">0</span></span><br><span class="line">enabled=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>剩下的就yum install nginx搞定，也可以yum install nginx-1.9.9安装指定版本（前提是你去packages里看到有对应的版本，默认是最新版稳定版）</p>
+<p>第二种方法:</p>
+<p>各节点时间同步<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@nginx ~]<span class="comment"># ntpdate 202.120.2.101</span></span><br><span class="line">安装EPEL源:</span><br><span class="line">rpm -Uvh  http:<span class="comment">//dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm</span></span><br><span class="line"> yum clean all</span><br><span class="line"> yum makecache</span><br><span class="line"> yum install -y nginx</span><br><span class="line"> service nginx start</span><br></pre></td></tr></table></figure></p>
+<h1 id="nginx_u7F16_u8BD1_u5B89_u88C5_uFF1A"><a href="#nginx_u7F16_u8BD1_u5B89_u88C5_uFF1A" class="headerlink" title="nginx编译安装："></a>nginx编译安装：</h1><p>首先安装缺少的依赖包：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc gcc-c++ make libtool zlib zlib-devel openssl openssl-devel pcre pcre-devel</span><br><span class="line">```   </span><br><span class="line">这些软件包如果yum上没有的话可以下载源码来编译安装，只是要注意编译时默认安装的目录，确保下面在安装nginx时能够找到这些动态库文件（ldconfig）。</span><br><span class="line"></span><br><span class="line">下载nginx地址:[nginx](http:<span class="comment">//nginx.org/en/download.html)</span></span><br><span class="line"></span><br><span class="line"> 新建nginx用户与组</span><br><span class="line">``` bash</span><br><span class="line"> groupadd www</span><br><span class="line"> useradd -s /sbin/nologin -g www www </span><br><span class="line"></span><br><span class="line">编译配置文件</span><br><span class="line">tar -zxvf nginx-<span class="number">1.9</span><span class="number">.9</span>.tar.gz</span><br><span class="line">cd nginx-<span class="number">1.9</span><span class="number">.9</span>/</span><br><span class="line"> ./configure --user=www --group=www </span><br><span class="line"> --prefix=/usr/local/nginx </span><br><span class="line"> --error-log-path=/<span class="keyword">var</span>/log/nginx/error.log </span><br><span class="line"> --http-log-path=/<span class="keyword">var</span>/log/nginx/access.log </span><br><span class="line"> --with-http_stub_status_module </span><br><span class="line"> --with-http_ssl_module</span><br><span class="line"> --with-http_gzip_static_module </span><br><span class="line"> --with-http_realip_module</span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">常用编译选项说明</span><br><span class="line"></span><br><span class="line">nginx大部分常用模块，编译时./configure –help以–without开头的都默认安装。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">--prefix=PATH ： 指定nginx的安装目录。默认 /usr/local/nginx</span><br><span class="line">--conf-path=PATH ： 设置nginx.conf配置文件的路径。nginx允许使用不同的配置文件启动，通过命令行中的-c选项。默认为prefix/conf/nginx.conf</span><br><span class="line">--user=name： 设置nginx工作进程的用户。安装完成后，可以随时在nginx.conf配置文件更改user指令。默认的用户名是nobody。--group=name类似</span><br><span class="line">--with-pcre ： 设置PCRE库的源码路径，如果已通过yum方式安装，使用--with-pcre自动找到库文件。使用--with-pcre=PATH时，需要从PCRE网站下载pcre库的源码（版本<span class="number">4.4</span> - <span class="number">8.30</span>）并解压，剩下的就交给Nginx的./configure和make来完成。perl正则表达式使用在location指令和 ngx_http_rewrite_module模块中。</span><br><span class="line">--with-zlib=PATH ： 指定 zlib（版本<span class="number">1.1</span><span class="number">.3</span> - <span class="number">1.2</span><span class="number">.5</span>）的源码解压目录。在默认就启用的网络传输压缩模块ngx_http_gzip_module时需要使用zlib 。</span><br><span class="line">--with-http_ssl_module ： 使用https协议模块。默认情况下，该模块没有被构建。前提是openssl与openssl-devel已安装</span><br><span class="line">--with-http_stub_status_module ： 用来监控 Nginx 的当前状态</span><br><span class="line">--with-http_realip_module ： 通过这个模块允许我们改变客户端请求头中客户端IP地址值(例如X-Real-IP 或 X-Forwarded-<span class="keyword">For</span>)，意义在于能够使得后台服务器记录原始客户端的IP地址</span><br><span class="line">--add-module=PATH ： 添加第三方外部模块，如nginx-sticky-module-ng或缓存模块。每次添加新的模块都要重新编译（Tengine可以在新加入module时无需重新编译）</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">再提供一种编译方案：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">./configure \</span><br><span class="line"> --prefix=/usr \</span><br><span class="line"> --sbin-path=/usr/sbin/nginx \</span><br><span class="line"> --conf-path=/etc/nginx/nginx.conf \</span><br><span class="line"> --error-log-path=/<span class="keyword">var</span>/log/nginx/error.log \</span><br><span class="line"> --http-log-path=/<span class="keyword">var</span>/log/nginx/access.log \</span><br><span class="line"> --pid-path=/<span class="keyword">var</span>/run/nginx/nginx.pid  \</span><br><span class="line"> --lock-path=/<span class="keyword">var</span>/lock/nginx.lock \   </span><br><span class="line"> --user=nginx \</span><br><span class="line"> --group=nginx \</span><br><span class="line"> --with-http_ssl_module \</span><br><span class="line"> --with-http_stub_status_module \</span><br><span class="line">--with-http_gzip_static_module \</span><br><span class="line"> --http-client-body-temp-path=/<span class="keyword">var</span>/tmp/nginx/client/ \</span><br><span class="line"> --http-proxy-temp-path=/<span class="keyword">var</span>/tmp/nginx/proxy/ \</span><br><span class="line"> --http-fastcgi-temp-path=/<span class="keyword">var</span>/tmp/nginx/fcgi/ \</span><br><span class="line"> --http-uwsgi-temp-path=/<span class="keyword">var</span>/tmp/nginx/uwsgi \</span><br><span class="line"> --with-pcre=../pcre-<span class="number">7.8</span></span><br><span class="line"> --with-zlib=../zlib-<span class="number">1.2</span><span class="number">.3</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">启动nginx服务</span><br><span class="line">/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</span><br><span class="line">ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx   <span class="comment">##做软连接</span></span><br><span class="line">cp nginx.init /etc/init.d/nginx  启动脚本</span><br><span class="line">chmod +x /etc/init.d/nginx</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">nginx启动脚本</span><br><span class="line">nginx</span><br><span class="line">```php</span><br><span class="line"><span class="comment">#!/bin/sh</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># nginx - this script starts and stops the nginx daemon</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># chkconfig:   - 85 15</span></span><br><span class="line"><span class="comment"># description:  Nginx is an HTTP(S) server, HTTP(S) reverse \</span></span><br><span class="line"><span class="comment">#               proxy and IMAP/POP3 proxy server</span></span><br><span class="line"><span class="comment"># processname: nginx</span></span><br><span class="line"><span class="comment"># config:      /etc/nginx/nginx.conf</span></span><br><span class="line"><span class="comment"># config:      /etc/sysconfig/nginx</span></span><br><span class="line"><span class="comment"># pidfile:     /var/run/nginx.pid</span></span><br><span class="line">                                    </span><br><span class="line"><span class="comment"># Source function library.</span></span><br><span class="line">. /etc/rc.d/init.d/functions</span><br><span class="line">                                    </span><br><span class="line"><span class="comment"># Source networking configuration.</span></span><br><span class="line">. /etc/sysconfig/network</span><br><span class="line">                                    </span><br><span class="line"><span class="comment"># Check that networking is up.</span></span><br><span class="line">[ <span class="string">"$NETWORKING"</span> = <span class="string">"no"</span> ] &amp;&amp; <span class="keyword">exit</span> <span class="number">0</span></span><br><span class="line">                                    </span><br><span class="line">nginx=<span class="string">"/usr/sbin/nginx"</span></span><br><span class="line">prog=$(basename <span class="variable">$nginx</span>)</span><br><span class="line">                                    </span><br><span class="line">sysconfig=<span class="string">"/etc/sysconfig/$prog"</span></span><br><span class="line">lockfile=<span class="string">"/var/lock/subsys/nginx"</span></span><br><span class="line">pidfile=<span class="string">"/var/run/$&#123;prog&#125;.pid"</span></span><br><span class="line">                                    </span><br><span class="line">NGINX_CONF_FILE=<span class="string">"/etc/nginx/nginx.conf"</span></span><br><span class="line">                                    </span><br><span class="line">[ -f <span class="variable">$sysconfig</span> ] &amp;&amp; . <span class="variable">$sysconfig</span></span><br><span class="line">                                    </span><br><span class="line">                                    </span><br><span class="line">start() &#123;</span><br><span class="line">    [ -x <span class="variable">$nginx</span> ] || <span class="keyword">exit</span> <span class="number">5</span></span><br><span class="line">    [ -f <span class="variable">$NGINX_CONF_FILE</span> ] || <span class="keyword">exit</span> <span class="number">6</span></span><br><span class="line">    <span class="keyword">echo</span> -n $<span class="string">"Starting $prog: "</span></span><br><span class="line">    daemon <span class="variable">$nginx</span> -c <span class="variable">$NGINX_CONF_FILE</span></span><br><span class="line">    retval=$?</span><br><span class="line">    <span class="keyword">echo</span></span><br><span class="line">    [ <span class="variable">$retval</span> -eq <span class="number">0</span> ] &amp;&amp; touch <span class="variable">$lockfile</span></span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$retval</span></span><br><span class="line">&#125;</span><br><span class="line">                                    </span><br><span class="line">stop() &#123;</span><br><span class="line">    <span class="keyword">echo</span> -n $<span class="string">"Stopping $prog: "</span></span><br><span class="line">    killproc -p <span class="variable">$pidfile</span> <span class="variable">$prog</span></span><br><span class="line">    retval=$?</span><br><span class="line">    <span class="keyword">echo</span></span><br><span class="line">    [ <span class="variable">$retval</span> -eq <span class="number">0</span> ] &amp;&amp; rm -f <span class="variable">$lockfile</span></span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$retval</span></span><br><span class="line">&#125;</span><br><span class="line">                                    </span><br><span class="line">restart() &#123;</span><br><span class="line">    configtest_q || <span class="keyword">return</span> <span class="number">6</span></span><br><span class="line">    stop</span><br><span class="line">    start</span><br><span class="line">&#125;</span><br><span class="line">                                    </span><br><span class="line">reload() &#123;</span><br><span class="line">    configtest_q || <span class="keyword">return</span> <span class="number">6</span></span><br><span class="line">    <span class="keyword">echo</span> -n $<span class="string">"Reloading $prog: "</span></span><br><span class="line">    killproc -p <span class="variable">$pidfile</span> <span class="variable">$prog</span> -HUP</span><br><span class="line">    <span class="keyword">echo</span></span><br><span class="line">&#125;</span><br><span class="line">                                    </span><br><span class="line">configtest() &#123;</span><br><span class="line">    <span class="variable">$nginx</span> -t -c <span class="variable">$NGINX_CONF_FILE</span></span><br><span class="line">&#125;</span><br><span class="line">                                    </span><br><span class="line">configtest_q() &#123;</span><br><span class="line">    <span class="variable">$nginx</span> -t -q -c <span class="variable">$NGINX_CONF_FILE</span></span><br><span class="line">&#125;</span><br><span class="line">                                    </span><br><span class="line">rh_status() &#123;</span><br><span class="line">    status <span class="variable">$prog</span></span><br><span class="line">&#125;</span><br><span class="line">                                    </span><br><span class="line">rh_status_q() &#123;</span><br><span class="line">    rh_status &gt;/dev/<span class="keyword">null</span> <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line">                                    </span><br><span class="line"><span class="comment"># Upgrade the binary with no downtime.</span></span><br><span class="line">upgrade() &#123;</span><br><span class="line">    local oldbin_pidfile=<span class="string">"$&#123;pidfile&#125;.oldbin"</span></span><br><span class="line">                                    </span><br><span class="line">    configtest_q || <span class="keyword">return</span> <span class="number">6</span></span><br><span class="line">    <span class="keyword">echo</span> -n $<span class="string">"Upgrading $prog: "</span></span><br><span class="line">    killproc -p <span class="variable">$pidfile</span> <span class="variable">$prog</span> -USR2</span><br><span class="line">    retval=$?</span><br><span class="line">    sleep <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> [[ -f $&#123;oldbin_pidfile&#125; &amp;&amp; -f $&#123;pidfile&#125; ]];  then</span><br><span class="line">        killproc -p <span class="variable">$oldbin_pidfile</span> <span class="variable">$prog</span> -QUIT</span><br><span class="line">        success $<span class="string">"$prog online upgrade"</span></span><br><span class="line">        <span class="keyword">echo</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        failure $<span class="string">"$prog online upgrade"</span></span><br><span class="line">        <span class="keyword">echo</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    fi</span><br><span class="line">&#125;</span><br><span class="line">                                    </span><br><span class="line"><span class="comment"># Tell nginx to reopen logs</span></span><br><span class="line">reopen_logs() &#123;</span><br><span class="line">    configtest_q || <span class="keyword">return</span> <span class="number">6</span></span><br><span class="line">    <span class="keyword">echo</span> -n $<span class="string">"Reopening $prog logs: "</span></span><br><span class="line">    killproc -p <span class="variable">$pidfile</span> <span class="variable">$prog</span> -USR1</span><br><span class="line">    retval=$?</span><br><span class="line">    <span class="keyword">echo</span></span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$retval</span></span><br><span class="line">&#125;</span><br><span class="line">                                    </span><br><span class="line"><span class="keyword">case</span> <span class="string">"$1"</span> in</span><br><span class="line">    start)</span><br><span class="line">        rh_status_q &amp;&amp; <span class="keyword">exit</span> <span class="number">0</span></span><br><span class="line">        $<span class="number">1</span></span><br><span class="line">        ;;</span><br><span class="line">    stop)</span><br><span class="line">        rh_status_q || <span class="keyword">exit</span> <span class="number">0</span></span><br><span class="line">        $<span class="number">1</span></span><br><span class="line">        ;;</span><br><span class="line">    restart|configtest|reopen_logs)</span><br><span class="line">        $<span class="number">1</span></span><br><span class="line">        ;;</span><br><span class="line">    force-reload|upgrade) </span><br><span class="line">        rh_status_q || <span class="keyword">exit</span> <span class="number">7</span></span><br><span class="line">        upgrade</span><br><span class="line">        ;;</span><br><span class="line">    reload)</span><br><span class="line">        rh_status_q || <span class="keyword">exit</span> <span class="number">7</span></span><br><span class="line">        $<span class="number">1</span></span><br><span class="line">        ;;</span><br><span class="line">    status|status_q)</span><br><span class="line">        rh_$<span class="number">1</span></span><br><span class="line">        ;;</span><br><span class="line">    condrestart|<span class="keyword">try</span>-restart)</span><br><span class="line">        rh_status_q || <span class="keyword">exit</span> <span class="number">7</span></span><br><span class="line">        restart</span><br><span class="line">        ;;</span><br><span class="line">    *)</span><br><span class="line">        <span class="keyword">echo</span> $<span class="string">"Usage: $0 &#123;start|stop|reload|configtest|status|force-reload|upgrade|restart|reopen_logs&#125;"</span></span><br><span class="line">        <span class="keyword">exit</span> <span class="number">2</span></span><br><span class="line">esac</span><br></pre></td></tr></table></figure></p>
+<h1 id="u542F_u52A8_u5173_u95EDnginx"><a href="#u542F_u52A8_u5173_u95EDnginx" class="headerlink" title="启动关闭nginx"></a>启动关闭nginx</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查配置文件是否正确</span></span><br><span class="line"><span class="comment"># /usr/local/nginx-1.6/sbin/nginx -t </span></span><br><span class="line"><span class="comment"># ./sbin/nginx -V     # 可以看到编译选项</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 启动、关闭</span></span><br><span class="line"><span class="comment"># ./sbin/nginx        # 默认配置文件 conf/nginx.conf，-c 指定</span></span><br><span class="line"><span class="comment"># ./sbin/nginx -s stop</span></span><br><span class="line">或 pkill nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">## 重启，不会改变启动时指定的配置文件</span></span><br><span class="line"><span class="comment"># ./sbin/nginx -s reload</span></span><br><span class="line">或 kill -HUP `cat /usr/local/nginx-<span class="number">1.6</span>/logs/nginx.pid`</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">设置开机启动</span><br><span class="line">chkconfig --level <span class="number">345</span> nginx on</span><br><span class="line">chkconfig nginx on </span><br><span class="line">chkconfig nginx --<span class="keyword">list</span> </span><br><span class="line">  nginx              <span class="number">0</span>:关闭    <span class="number">1</span>:关闭    <span class="number">2</span>:启用    <span class="number">3</span>:启用    <span class="number">4</span>:启用    <span class="number">5</span>:启用    <span class="number">6</span>:关闭</span><br><span class="line"></span><br><span class="line">当然也可以将 nginx 作为系统服务管理，下载 nginx 到/etc/init.d/，修改里面的路径然后赋予可执行权限。</span><br><span class="line">service nginx &#123;start|stop|status|restart|reload|configtest&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="nginx-conf_u914D_u7F6E_u6587_u4EF6"><a href="#nginx-conf_u914D_u7F6E_u6587_u4EF6" class="headerlink" title="nginx.conf配置文件"></a>nginx.conf配置文件</h1><p>Nginx配置文件主要分成四部分：main（全局设置）、server（主机设置）、upstream（上游服务器设置，主要为反向代理、负载均衡相关配置）和 location（URL匹配特定位置后的设置），每部分包含若干个指令。main部分设置的指令将影响其它所有部分的设置；server部分的指令主要用于指定虚拟主机域名、IP和端口；upstream的指令用于设置一系列的后端服务器，设置反向代理及后端服务器的负载均衡；location部分用于匹配网页位置（比如，根目录“/”,“/images”,等等）。他们之间的关系式：server继承main，location继承server；upstream既不会继承指令也不会被继承。它有自己的特殊指令，不需要在其他地方的应用。</p>
+<p>当前nginx支持的几个指令上下文：</p>
+<p>配置文件<br>下面的nginx.conf简单的实现nginx在前端做反向代理服务器的例子，处理js、png等静态文件，jsp等动态请求转发到其它服务器tomcat：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">user  www www;</span><br><span class="line">worker_processes  <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">error_log  logs/error.log;</span><br><span class="line"><span class="comment">#error_log  logs/error.log  notice;</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log  info;</span></span><br><span class="line"></span><br><span class="line">pid        logs/nginx.pid;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    <span class="keyword">use</span> <span class="title">epoll</span>;</span><br><span class="line">    worker_connections  <span class="number">2048</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    <span class="keyword">include</span>       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '</span></span><br><span class="line">    <span class="comment">#                  '$status $body_bytes_sent "$http_referer" '</span></span><br><span class="line">    <span class="comment">#                  '"$http_user_agent" "$http_x_forwarded_for"';</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#access_log  logs/access.log  main;</span></span><br><span class="line"></span><br><span class="line">    sendfile        on;</span><br><span class="line">    <span class="comment"># tcp_nopush     on;</span></span><br><span class="line"></span><br><span class="line">    keepalive_timeout  <span class="number">65</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment"># gzip压缩功能设置</span></span><br><span class="line">    gzip on;</span><br><span class="line">    gzip_min_length <span class="number">1</span>k;</span><br><span class="line">    gzip_buffers    <span class="number">4</span> <span class="number">16</span>k;</span><br><span class="line">    gzip_http_version <span class="number">1.0</span>;</span><br><span class="line">    gzip_comp_level <span class="number">6</span>;</span><br><span class="line">    gzip_types text/html text/plain text/css text/javascript application/json application/javascript application/x-javascript application/xml;</span><br><span class="line">    gzip_vary on;</span><br><span class="line">  </span><br><span class="line">  <span class="comment"># http_proxy 设置</span></span><br><span class="line">    client_max_body_size   <span class="number">10</span>m;</span><br><span class="line">    client_body_buffer_size   <span class="number">128</span>k;</span><br><span class="line">    proxy_connect_timeout   <span class="number">75</span>;</span><br><span class="line">    proxy_send_timeout   <span class="number">75</span>;</span><br><span class="line">    proxy_read_timeout   <span class="number">75</span>;</span><br><span class="line">    proxy_buffer_size   <span class="number">4</span>k;</span><br><span class="line">    proxy_buffers   <span class="number">4</span> <span class="number">32</span>k;</span><br><span class="line">    proxy_busy_buffers_size   <span class="number">64</span>k;</span><br><span class="line">    proxy_temp_file_write_size  <span class="number">64</span>k;</span><br><span class="line">    proxy_temp_path   /usr/local/nginx/proxy_temp <span class="number">1</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment"># 设定负载均衡后台服务器列表 </span></span><br><span class="line">    upstream  backend  &#123; </span><br><span class="line">              <span class="comment">#ip_hash; </span></span><br><span class="line">              server   <span class="number">192.168</span><span class="number">.10</span><span class="number">.100</span>:<span class="number">8080</span> max_fails=<span class="number">2</span> fail_timeout=<span class="number">30</span>s ;  </span><br><span class="line">              server   <span class="number">192.168</span><span class="number">.10</span><span class="number">.101</span>:<span class="number">8080</span> max_fails=<span class="number">2</span> fail_timeout=<span class="number">30</span>s ;  </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment"># 很重要的虚拟主机配置</span></span><br><span class="line">    server &#123;</span><br><span class="line">        listen       <span class="number">80</span>;</span><br><span class="line">        server_name  itoatest.example.com;</span><br><span class="line">        root   /apps/oaapp;</span><br><span class="line"></span><br><span class="line">        charset utf-<span class="number">8</span>;</span><br><span class="line">        access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#对 / 所有做负载均衡+反向代理</span></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   /apps/oaapp;</span><br><span class="line">            index  index.jsp index.html index.htm;</span><br><span class="line"></span><br><span class="line">            proxy_pass        http:<span class="comment">//backend;  </span></span><br><span class="line">            proxy_redirect off;</span><br><span class="line">            <span class="comment"># 后端的Web服务器可以通过X-Forwarded-For获取用户真实IP</span></span><br><span class="line">            proxy_set_header  Host  <span class="variable">$host</span>;</span><br><span class="line">            proxy_set_header  X-Real-IP  <span class="variable">$remote_addr</span>;  </span><br><span class="line">            proxy_set_header  X-Forwarded-<span class="keyword">For</span>  <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">            proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#静态文件，nginx自己处理，不去backend请求tomcat</span></span><br><span class="line">        location  ~* /download/ &#123;  </span><br><span class="line">            root /apps/oa/fs;  </span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        location ~ .*\.(gif|jpg|jpeg|bmp|png|ico|txt|js|css)$   </span><br><span class="line">        &#123;   </span><br><span class="line">            root /apps/oaapp;   </span><br><span class="line">            expires      <span class="number">7</span>d; </span><br><span class="line">        &#125;</span><br><span class="line">       	location /nginx_status &#123;</span><br><span class="line">            stub_status on;</span><br><span class="line">            access_log off;</span><br><span class="line">            allow <span class="number">192.168</span><span class="number">.10</span><span class="number">.0</span>/<span class="number">24</span>;</span><br><span class="line">            deny all;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        location ~ ^/(WEB-INF)/ &#123;   </span><br><span class="line">            deny all;   </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">#error_page  404              /404.html;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># redirect server error pages to the static page /50x.html</span></span><br><span class="line">        <span class="comment">#</span></span><br><span class="line">        error_page   <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span>  /<span class="number">50</span>x.html;</span><br><span class="line">        location = /<span class="number">50</span>x.html &#123;</span><br><span class="line">            root   html;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">## 其它虚拟主机，server 指令开始</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">这里我整理了一份每个含义的详解：</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义Nginx运行的用户和用户</span></span><br><span class="line">user www www;</span><br><span class="line"></span><br><span class="line"><span class="comment">#nginx进程数，建议设置为等于CPU总核心数。</span></span><br><span class="line">worker_processes <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">#全局错误日志定义类型，[ debug | info | notice | warn | error | crit ]</span></span><br><span class="line">error_log /<span class="keyword">var</span>/log/nginx/error.log info;</span><br><span class="line"></span><br><span class="line"><span class="comment">#进程文件</span></span><br><span class="line">pid /<span class="keyword">var</span>/run/nginx.pid;</span><br><span class="line"></span><br><span class="line"><span class="comment">#一个nginx进程打开的最多文件描述符数目，理论值应该是最多打开文件数（系统的值ulimit -n）与nginx进程数相除，但是nginx分配请求并不均匀，所以建议与ulimit -n的值保持一致。</span></span><br><span class="line">worker_rlimit_nofile <span class="number">65535</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">#工作模式与连接数上限</span></span><br><span class="line">events</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">#参考事件模型，use [ kqueue | rtsig | epoll | /dev/poll | select | poll ]; epoll模型是Linux 2.6以上版本内核中的高性能网络I/O模型，如果跑在FreeBSD上面，就用kqueue模型。</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">epoll</span>;</span><br><span class="line"><span class="comment">#单个进程最大连接数（最大连接数=连接数*进程数）</span></span><br><span class="line">worker_connections <span class="number">65535</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#设定http服务器</span></span><br><span class="line">http</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">include</span> mime.types; <span class="comment">#文件扩展名与文件类型映射表</span></span><br><span class="line">default_type application/octet-stream; <span class="comment">#默认文件类型</span></span><br><span class="line"><span class="comment">#charset utf-8; #默认编码</span></span><br><span class="line">server_names_hash_bucket_size <span class="number">128</span>; <span class="comment">#服务器名字的hash表大小</span></span><br><span class="line">client_header_buffer_size <span class="number">32</span>k; <span class="comment">#上传文件大小限制</span></span><br><span class="line">large_client_header_buffers <span class="number">4</span> <span class="number">64</span>k; <span class="comment">#设定请求缓</span></span><br><span class="line">client_max_body_size <span class="number">8</span>m; <span class="comment">#设定请求缓</span></span><br><span class="line">sendfile on; <span class="comment">#开启高效文件传输模式，sendfile指令指定nginx是否调用sendfile函数来输出文件，对于普通应用设为 on，如果用来进行下载等应用磁盘IO重负载应用，可设置为off，以平衡磁盘与网络I/O处理速度，降低系统的负载。注意：如果图片显示不正常把这个改成off。</span></span><br><span class="line">autoindex on; <span class="comment">#开启目录列表访问，合适下载服务器，默认关闭。</span></span><br><span class="line">tcp_nopush on; <span class="comment">#防止网络阻塞</span></span><br><span class="line">tcp_nodelay on; <span class="comment">#防止网络阻塞</span></span><br><span class="line">keepalive_timeout <span class="number">120</span>; <span class="comment">#长连接超时时间，单位是秒</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#FastCGI相关参数是为了改善网站的性能：减少资源占用，提高访问速度。下面参数看字面意思都能理解。</span></span><br><span class="line">fastcgi_connect_timeout <span class="number">300</span>;</span><br><span class="line">fastcgi_send_timeout <span class="number">300</span>;</span><br><span class="line">fastcgi_read_timeout <span class="number">300</span>;</span><br><span class="line">fastcgi_buffer_size <span class="number">64</span>k;</span><br><span class="line">fastcgi_buffers <span class="number">4</span> <span class="number">64</span>k;</span><br><span class="line">fastcgi_busy_buffers_size <span class="number">128</span>k;</span><br><span class="line">fastcgi_temp_file_write_size <span class="number">128</span>k;</span><br><span class="line"></span><br><span class="line"><span class="comment">#gzip模块设置</span></span><br><span class="line">gzip on; <span class="comment">#开启gzip压缩输出</span></span><br><span class="line">gzip_min_length <span class="number">1</span>k; <span class="comment">#最小压缩文件大小</span></span><br><span class="line">gzip_buffers <span class="number">4</span> <span class="number">16</span>k; <span class="comment">#压缩缓冲区</span></span><br><span class="line">gzip_http_version <span class="number">1.0</span>; <span class="comment">#压缩版本（默认1.1，前端如果是squid2.5请使用1.0）</span></span><br><span class="line">gzip_comp_level <span class="number">2</span>; <span class="comment">#压缩等级</span></span><br><span class="line">gzip_types text/plain application/x-javascript text/css application/xml;</span><br><span class="line"><span class="comment">#压缩类型，默认就已经包含text/html，所以下面就不用再写了，写上去也不会有问题，但是会有一个warn。</span></span><br><span class="line">gzip_vary on;</span><br><span class="line"><span class="comment">#limit_zone crawler $binary_remote_addr 10m; #开启限制IP连接数的时候需要使用</span></span><br><span class="line"></span><br><span class="line">upstream blog.kern.com &#123;</span><br><span class="line"><span class="comment">#upstream的负载均衡，weight是权重，可以根据机器配置定义权重。weigth参数表示权值，权值越高被分配到的几率越大。</span></span><br><span class="line">server <span class="number">192.168</span><span class="number">.80</span><span class="number">.121</span>:<span class="number">80</span> weight=<span class="number">3</span>;</span><br><span class="line">server <span class="number">192.168</span><span class="number">.80</span><span class="number">.122</span>:<span class="number">80</span> weight=<span class="number">2</span>;</span><br><span class="line">server <span class="number">192.168</span><span class="number">.80</span><span class="number">.123</span>:<span class="number">80</span> weight=<span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#虚拟主机的配置</span></span><br><span class="line">server</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">#监听端口</span></span><br><span class="line">listen <span class="number">80</span>;</span><br><span class="line"><span class="comment">#域名可以有多个，用空格隔开</span></span><br><span class="line">server_name www.kern.com ;   <span class="comment">##(服务器名)</span></span><br><span class="line">index index.html index.htm index.php;</span><br><span class="line">root /data/www/ha97; </span><br><span class="line">location ~ .*\.(php|php5)?$</span><br><span class="line">&#123;</span><br><span class="line">fastcgi_pass <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9000</span>;</span><br><span class="line">fastcgi_index index.php;</span><br><span class="line"><span class="keyword">include</span> fastcgi.conf;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#图片缓存时间设置</span></span><br><span class="line">location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$</span><br><span class="line">&#123;</span><br><span class="line">expires <span class="number">10</span>d;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#JS和CSS缓存时间设置</span></span><br><span class="line">location ~ .*\.(js|css)?$</span><br><span class="line">&#123;</span><br><span class="line">expires <span class="number">1</span>h;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#日志格式设定</span></span><br><span class="line">log_format access <span class="string">'$remote_addr - $remote_user [$time_local] "$request" '</span></span><br><span class="line"><span class="string">'$status $body_bytes_sent "$http_referer" '</span></span><br><span class="line"><span class="string">'"$http_user_agent" $http_x_forwarded_for'</span>;</span><br><span class="line"><span class="comment">#定义本虚拟主机的访问日志</span></span><br><span class="line">access_log /<span class="keyword">var</span>/log/nginx/ha97access.log access;</span><br><span class="line"></span><br><span class="line"><span class="comment">#对 "/" 启用反向代理</span></span><br><span class="line">location / &#123;</span><br><span class="line">proxy_pass http:<span class="comment">//127.0.0.1:88;</span></span><br><span class="line">proxy_redirect off;</span><br><span class="line">proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line"><span class="comment">#后端的Web服务器可以通过X-Forwarded-For获取用户真实IP</span></span><br><span class="line">proxy_set_header X-Forwarded-<span class="keyword">For</span> <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line"><span class="comment">#以下是一些反向代理的配置，可选。</span></span><br><span class="line">proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">client_max_body_size <span class="number">10</span>m; <span class="comment">#允许客户端请求的最大单文件字节数</span></span><br><span class="line">client_body_buffer_size <span class="number">128</span>k; <span class="comment">#缓冲区代理缓冲用户端请求的最大字节数，</span></span><br><span class="line">proxy_connect_timeout <span class="number">90</span>; <span class="comment">#nginx跟后端服务器连接超时时间(代理连接超时)</span></span><br><span class="line">proxy_send_timeout <span class="number">90</span>; <span class="comment">#后端服务器数据回传时间(代理发送超时)</span></span><br><span class="line">proxy_read_timeout <span class="number">90</span>; <span class="comment">#连接成功后，后端服务器响应时间(代理接收超时)</span></span><br><span class="line">proxy_buffer_size <span class="number">4</span>k; <span class="comment">#设置代理服务器（nginx）保存用户头信息的缓冲区大小</span></span><br><span class="line">proxy_buffers <span class="number">4</span> <span class="number">32</span>k; <span class="comment">#proxy_buffers缓冲区，网页平均在32k以下的设置</span></span><br><span class="line">proxy_busy_buffers_size <span class="number">64</span>k; <span class="comment">#高负荷下缓冲大小（proxy_buffers*2）</span></span><br><span class="line">proxy_temp_file_write_size <span class="number">64</span>k;</span><br><span class="line"><span class="comment">#设定缓存文件夹大小，大于这个值，将从upstream服务器传</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#设定查看Nginx状态的地址</span></span><br><span class="line">location /NginxStatus &#123;</span><br><span class="line">stub_status on;</span><br><span class="line">access_log on;</span><br><span class="line">auth_basic <span class="string">"NginxStatus"</span>;</span><br><span class="line">auth_basic_user_file conf/htpasswd;</span><br><span class="line"><span class="comment">#htpasswd文件的内容可以用apache提供的htpasswd工具来产生。</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#本地动静分离反向代理配置</span></span><br><span class="line"><span class="comment">#所有jsp的页面均交由tomcat或resin处理</span></span><br><span class="line">location ~ .(jsp|jspx|<span class="keyword">do</span>)?$ &#123;</span><br><span class="line">proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">proxy_set_header X-Forwarded-<span class="keyword">For</span> <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">proxy_pass http:<span class="comment">//127.0.0.1:8080;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#所有静态文件由nginx直接读取不经过tomcat或resin</span></span><br><span class="line">location ~ .*.(htm|html|gif|jpg|jpeg|png|bmp|swf|ioc|rar|zip|txt|flv|mid|doc|ppt|pdf|xls|mp3|wma)$</span><br><span class="line">&#123; expires <span class="number">15</span>d; &#125;</span><br><span class="line">location ~ .*.(js|css)?$</span><br><span class="line">&#123; expires <span class="number">1</span>h; &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="Nginx_+_Tomcat_u505A_u8D1F_u8F7D_u5747_u8861"><a href="#Nginx_+_Tomcat_u505A_u8D1F_u8F7D_u5747_u8861" class="headerlink" title="Nginx + Tomcat做负载均衡"></a>Nginx + Tomcat做负载均衡</h1><p>Nginx负载均衡，其实主要就是用upstream、server指令，再配以权重等等参数。如果为了让nginx支持session共享，还需要额外增加一个模块。</p>
+<h2 id="u4E00_u3001Nginx_u8D1F_u8F7D_u5747_u8861"><a href="#u4E00_u3001Nginx_u8D1F_u8F7D_u5747_u8861" class="headerlink" title="一、Nginx负载均衡"></a>一、Nginx负载均衡</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">在http&#123;…&#125;中配置一个upstream&#123;…&#125;，参考如下：</span><br><span class="line">引用</span><br><span class="line">upstream tomcat-account &#123;</span><br><span class="line">    server <span class="number">10.11</span><span class="number">.155</span><span class="number">.26</span>:<span class="number">8080</span> weight=<span class="number">1</span>;    </span><br><span class="line">    server <span class="number">10.11</span><span class="number">.155</span><span class="number">.41</span>:<span class="number">8080</span> weight=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">接着修改location节点，配置代理：</span><br><span class="line"></span><br><span class="line">引用</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">        listen       <span class="number">80</span>;</span><br><span class="line">        server_name  <span class="number">10001.</span>test.intranet;</span><br><span class="line">        location / &#123;</span><br><span class="line">           index        index.html index.php index.jsp index.htm;</span><br><span class="line">           proxy_pass           http:<span class="comment">//tomcat-account;</span></span><br><span class="line">           proxy_ignore_client_abort on;</span><br><span class="line">           proxy_redirect               off;</span><br><span class="line">           proxy_set_header     Host    <span class="variable">$host</span>;</span><br><span class="line">           proxy_set_header     X-Real-IP       <span class="variable">$remote_addr</span>;</span><br><span class="line">           proxy_set_header     X-Forwarded-<span class="keyword">For</span> <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">```   </span><br><span class="line">这里可以写自己的内网域名也可以写IP</span><br><span class="line">当访问根路径时，会轮播路由到两台服务器上，至于后端服务器是tomcat还是jetty之类的，都无所谓，照葫芦画瓢就是了。</span><br><span class="line"></span><br><span class="line">当然，有的机器性能好，或者负载低，可以承担高负荷访问量，可以通过权重（weight），提升访问频率。数值越高，被分配到的请求数越多。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">server指令参数如下：</span><br><span class="line"></span><br><span class="line">``` bash </span><br><span class="line">- weight   ——权重，数值越大，分得的请求数就越多，默认值为<span class="number">1</span>。</span><br><span class="line">- max_fails ——对访问失败的后端服务器尝试访问的次数。默认值为<span class="number">1</span>，当设置为<span class="number">0</span>时将关闭检查。</span><br><span class="line">- fail_timeout——失效超时时间，当多次访问失败后，对该节点暂停访问。</span><br><span class="line">- down——标记服务器为永久离线状态，用于ip_hash指令。</span><br><span class="line">- backup——仅当非backup服务器全部宕机或繁忙时启用。</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">例如，可以这样配置：</span><br><span class="line"></span><br><span class="line">引用</span><br><span class="line">upstream tomcat &#123;</span><br><span class="line">    server <span class="number">10.11</span><span class="number">.155</span><span class="number">.26</span>:<span class="number">8080</span> weight=<span class="number">5</span>;</span><br><span class="line">    server <span class="number">10.11</span><span class="number">.155</span><span class="number">.41</span>:<span class="number">8080</span> weight=<span class="number">10</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>后者分得的请求数就会较高。</p>
+<p>详细点的负载均衡配置nginx.conf:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">user  www;</span><br><span class="line">worker_processes  <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">#error_log  logs/error.log;</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log  notice;</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log  info;</span></span><br><span class="line">error_log  /opt/logs/nginx/error.log  crit;</span><br><span class="line"></span><br><span class="line"><span class="comment"># pid        /usr/local/nginx/nginx.pid;</span></span><br><span class="line">pid         /<span class="keyword">var</span>/run/nginx.pid;</span><br><span class="line"></span><br><span class="line">worker_rlimit_nofile <span class="number">1024</span>;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    <span class="keyword">use</span> <span class="title">epoll</span>;</span><br><span class="line">    worker_connections  <span class="number">65535</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#设定http服务器，利用它的反向代理功能提供负载均衡支持</span></span><br><span class="line">http &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#设定mime类型,类型由mime.type文件定义</span></span><br><span class="line">    <span class="keyword">include</span>             /etc/nginx/mime.types;</span><br><span class="line">    default_type    application/octet-stream;</span><br><span class="line">    </span><br><span class="line"> <span class="comment">#access_log  logs/access.log  main;</span></span><br><span class="line">    server_names_hash_bucket_size <span class="number">128</span>;</span><br><span class="line">    client_header_buffer_size <span class="number">32</span>k;</span><br><span class="line">    large_client_header_buffers <span class="number">4</span> <span class="number">32</span>k;</span><br><span class="line"></span><br><span class="line">    sendfile        on;</span><br><span class="line">    tcp_nopush  on;</span><br><span class="line">    tcp_nodelay on;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#keepalive_timeout  0;</span></span><br><span class="line">    keepalive_timeout  <span class="number">65</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#gzip  on;</span></span><br><span class="line">    log_format access <span class="string">'$remote_addr - $remote_user [$time_local] "$request" '</span></span><br><span class="line">                      <span class="string">'$status $body_bytes_sent "$http_referer" '</span></span><br><span class="line">                      <span class="string">'"$http_user_agent" "$http_x_forwarded_for"'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">#设定日志格式</span></span><br><span class="line">    access_log        /<span class="keyword">var</span>/log/nginx/access.log;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#省略上文有的一些配置节点</span></span><br><span class="line">    <span class="comment">#。。。。。。。。。。</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#设定负载均衡的服务器列表</span></span><br><span class="line">    upstream tomcat-account &#123;</span><br><span class="line">        <span class="comment">#weigth参数表示权值，权值越高被分配到的几率越大</span></span><br><span class="line">        server <span class="number">192.168</span><span class="number">.8</span><span class="number">.1</span>x:<span class="number">3128</span> weight=<span class="number">5</span>;</span><br><span class="line">        <span class="comment">#本机上的Squid开启3128端口,不是必须要squid</span></span><br><span class="line">        server <span class="number">192.168</span><span class="number">.8</span><span class="number">.2</span>x:<span class="number">80</span>    weight=<span class="number">1</span>;</span><br><span class="line">        server <span class="number">192.168</span><span class="number">.8</span><span class="number">.3</span>x:<span class="number">80</span>    weight=<span class="number">6</span>;</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    upstream mysvr2 &#123;</span><br><span class="line">        <span class="comment">#weigth参数表示权值，权值越高被分配到的几率越大</span></span><br><span class="line">        server <span class="number">192.168</span><span class="number">.8</span>.x:<span class="number">80</span>    weight=<span class="number">1</span>;</span><br><span class="line">        server <span class="number">192.168</span><span class="number">.8</span>.x:<span class="number">80</span>    weight=<span class="number">6</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#第一个虚拟服务器</span></span><br><span class="line">    server &#123;</span><br><span class="line">        <span class="comment">#侦听192.168.8.x的80端口</span></span><br><span class="line">        listen             <span class="number">80</span>;</span><br><span class="line">        server_name    <span class="number">192.168</span><span class="number">.8</span>.x;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#对aspx后缀的进行负载均衡请求</span></span><br><span class="line">        location ~ .*.aspx$ &#123;</span><br><span class="line">            <span class="comment">#定义服务器的默认网站根目录位置</span></span><br><span class="line">            root     /root; </span><br><span class="line">            <span class="comment">#定义首页索引文件的名称</span></span><br><span class="line">            index index.php index.html index.htm;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">#请求转向mysvr 定义的服务器列表</span></span><br><span class="line">            proxy_pass   http:<span class="comment">//tomcat-account;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">#以下是一些反向代理的配置可删除.所以可以按nginx+tomcat 做负载均衡即可。</span></span><br><span class="line"></span><br><span class="line">            proxy_redirect off;</span><br><span class="line"></span><br><span class="line">            <span class="comment">#后端的Web服务器可以通过X-Forwarded-For获取用户真实IP</span></span><br><span class="line">            proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">            proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">            proxy_set_header X-Forwarded-<span class="keyword">For</span> <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">#允许客户端请求的最大单文件字节数</span></span><br><span class="line">            client_max_body_size <span class="number">10</span>m; </span><br><span class="line"></span><br><span class="line">            <span class="comment">#缓冲区代理缓冲用户端请求的最大字节数，</span></span><br><span class="line">            client_body_buffer_size <span class="number">128</span>k;</span><br><span class="line"></span><br><span class="line">            <span class="comment">#nginx跟后端服务器连接超时时间(代理连接超时)</span></span><br><span class="line">            proxy_connect_timeout <span class="number">90</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">#连接成功后，后端服务器响应时间(代理接收超时)</span></span><br><span class="line">            proxy_read_timeout <span class="number">90</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">#设置代理服务器（nginx）保存用户头信息的缓冲区大小</span></span><br><span class="line">            proxy_buffer_size <span class="number">4</span>k;</span><br><span class="line"></span><br><span class="line">            <span class="comment">#proxy_buffers缓冲区，网页平均在32k以下的话，这样设置</span></span><br><span class="line">            proxy_buffers <span class="number">4</span> <span class="number">32</span>k;</span><br><span class="line"></span><br><span class="line">            <span class="comment">#高负荷下缓冲大小（proxy_buffers*2）</span></span><br><span class="line">            proxy_busy_buffers_size <span class="number">64</span>k; </span><br><span class="line"></span><br><span class="line">            <span class="comment">#设定缓存文件夹大小，大于这个值，将从upstream服务器传</span></span><br><span class="line">            proxy_temp_file_write_size <span class="number">64</span>k;    </span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>常用指令说明</p>
+<p>nginx在运行时与具体业务功能（比如http服务或者email服务代理）无关的一些参数，比如工作进程数，运行的身份等。</p>
+<p>woker_processes 2<br>在配置文件的顶级main部分，worker角色的工作进程的个数，master进程是接收并分配请求给worker处理。这个数值简单一点可以设置为cpu的核数grep ^processor /proc/cpuinfo | wc -l，也是 auto 值，如果开启了ssl和gzip更应该设置成与逻辑CPU数量一样甚至为2倍，可以减少I/O操作。如果nginx服务器还有其它服务，可以考虑适当减少。</p>
+<p>worker_cpu_affinity<br>也是写在main部分。在高并发情况下，通过设置cpu粘性来降低由于多CPU核切换造成的寄存器等现场重建带来的性能损耗。如worker_cpu_affinity 0001 0010 0100 1000; （四核）。</p>
+<p>worker_connections 2048<br>写在events部分。每一个worker进程能并发处理（发起）的最大连接数（包含与客户端或后端被代理服务器间等所有连接数）。nginx作为反向代理服务器，计算公式 最大连接数 = worker_processes * worker_connections/4，所以这里客户端最大连接数是1024，这个可以增到到8192都没关系，看情况而定，但不能超过后面的worker_rlimit_nofile。当nginx作为http服务器时，计算公式里面是除以2。</p>
+<p>worker_rlimit_nofile 10240<br>写在main部分。默认是没有设置，可以限制为操作系统最大的限制65535。</p>
+<p>use epoll<br>写在events部分。在Linux操作系统下，nginx默认使用epoll事件模型，得益于此，nginx在Linux操作系统下效率相当高。同时Nginx在OpenBSD或FreeBSD操作系统上采用类似于epoll的高效事件模型kqueue。在操作系统不支持这些高效模型时才使用select。</p>
+<p>2.2.2 http服务器</p>
+<p>与提供http服务相关的一些配置参数。例如：是否使用keepalive啊，是否使用gzip进行压缩等。</p>
+<p>sendfile on<br>开启高效文件传输模式，sendfile指令指定nginx是否调用sendfile函数来输出文件，减少用户空间到内核空间的上下文切换。对于普通应用设为 on，如果用来进行下载等应用磁盘IO重负载应用，可设置为off，以平衡磁盘与网络I/O处理速度，降低系统的负载。</p>
+<p>keepalive_timeout 65 : 长连接超时时间，单位是秒，这个参数很敏感，涉及浏览器的种类、后端服务器的超时设置、操作系统的设置，可以另外起一片文章了。长连接请求大量小文件的时候，可以减少重建连接的开销，但假如有大文件上传，65s内没上传完成会导致失败。如果设置时间过长，用户又多，长时间保持连接会占用大量资源。</p>
+<p>send_timeout : 用于指定响应客户端的超时时间。这个超时仅限于两个连接活动之间的时间，如果超过这个时间，客户端没有任何活动，Nginx将会关闭连接。</p>
+<p>client_max_body_size 10m<br>允许客户端请求的最大单文件字节数。如果有上传较大文件，请设置它的限制值</p>
+<p>client_body_buffer_size 128k<br>缓冲区代理缓冲用户端请求的最大字节数<br>模块http_proxy：<br>这个模块实现的是nginx作为反向代理服务器的功能，包括缓存功能（另见文章）</p>
+<p>proxy_connect_timeout 60<br>nginx跟后端服务器连接超时时间(代理连接超时)<br>proxy_read_timeout 60<br>连接成功后，与后端服务器两个成功的响应操作之间超时时间(代理接收超时)</p>
+<p>proxy_buffer_size 4k<br>设置代理服务器（nginx）从后端realserver读取并保存用户头信息的缓冲区大小，默认与proxy_buffers大小相同，其实可以将这个指令值设的小一点</p>
+<p>proxy_buffers 4 32k<br>proxy_buffers缓冲区，nginx针对单个连接缓存来自后端realserver的响应，网页平均在32k以下的话，这样设置</p>
+<p>proxy_busy_buffers_size 64k<br>高负荷下缓冲大小（proxy_buffers*2）</p>
+<p>proxy_max_temp_file_size<br>当 proxy_buffers 放不下后端服务器的响应内容时，会将一部分保存到硬盘的临时文件中，这个值用来设置最大临时文件大小，默认1024M，它与 proxy_cache 没有关系。大于这个值，将从upstream服务器传回。设置为0禁用。</p>
+<p>proxy_temp_file_write_size 64k<br>当缓存被代理的服务器响应到临时文件时，这个选项限制每次写临时文件的大小。proxy_temp_path（可以在编译的时候）指定写到哪那个目录。</p>
+<p>proxy_pass，proxy_redirect见 location 部分。</p>
+<p>模块http_gzip：</p>
+<p>gzip on : 开启gzip压缩输出，减少网络传输。<br>gzip_min_length 1k ： 设置允许压缩的页面最小字节数，页面字节数从header头得content-length中进行获取。默认值是20。建议设置成大于1k的字节数，小于1k可能会越压越大。<br>gzip_buffers 4 16k ： 设置系统获取几个单位的缓存用于存储gzip的压缩结果数据流。4 16k代表以16k为单位，安装原始数据大小以16k为单位的4倍申请内存。<br>gzip_http_version 1.0 ： 用于识别 http 协议的版本，早期的浏览器不支持 Gzip 压缩，用户就会看到乱码，所以为了支持前期版本加上了这个选项，如果你用了 Nginx 的反向代理并期望也启用 Gzip 压缩的话，由于末端通信是 http/1.0，故请设置为 1.0。<br>gzip_comp_level 6 ： gzip压缩比，1压缩比最小处理速度最快，9压缩比最大但处理速度最慢(传输快但比较消耗cpu)<br>gzip_types ：匹配mime类型进行压缩，无论是否指定,”text/html”类型总是会被压缩的。<br>gzip_proxied any ： Nginx作为反向代理的时候启用，决定开启或者关闭后端服务器返回的结果是否压缩，匹配的前提是后端服务器必须要返回包含”Via”的 header头。<br>gzip_vary on ： 和http头有关系，会在响应头加个 Vary: Accept-Encoding ，可以让前端的缓存服务器缓存经过gzip压缩的页面，例如，用Squid缓存经过Nginx压缩的数据。。<br>2.2.3 server虚拟主机</p>
+<p>http服务上支持若干虚拟主机。每个虚拟主机一个对应的server配置项，配置项里面包含该虚拟主机相关的配置。在提供mail服务的代理时，也可以建立若干server。每个server通过监听地址或端口来区分。</p>
+<p>listen<br>监听端口，默认80，小于1024的要以root启动。可以为listen *:80、listen 127.0.0.1:80等形式。</p>
+<p>server_name<br>服务器名，如localhost、www.example.com，可以通过正则匹配。</p>
+<p>模块http_stream<br>这个模块通过一个简单的调度算法来实现客户端IP到后端服务器的负载均衡，upstream后接负载均衡器的名字，后端realserver以 host:port options; 方式组织在 {} 中。如果后端被代理的只有一台，也可以直接写在 proxy_pass 。</p>
+<p>2.2.4 location</p>
+<p>http服务中，某些特定的URL对应的一系列配置项。</p>
+<p>root /var/www/html<br>定义服务器的默认网站根目录位置。如果locationURL匹配的是子目录或文件，root没什么作用，一般放在server指令里面或/下。</p>
+<p>index index.jsp index.html index.htm<br>定义路径下默认访问的文件名，一般跟着root放</p>
+<p>proxy_pass http:/backend<br>请求转向backend定义的服务器列表，即反向代理，对应upstream负载均衡器。也可以proxy_pass <a href="http://ip:port。" target="_blank" rel="external">http://ip:port。</a></p>
+<p>proxy_redirect off;<br>proxy_set_header Host $host;<br>proxy_set_header X-Real-IP $remote_addr;<br>proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;<br>这四个暂且这样设，如果深究的话，每一个都涉及到很复杂的内容，也将通过另一篇文章来解读。</p>
+<h1 id="u8BBF_u95EE_u63A7_u5236_allow/deny"><a href="#u8BBF_u95EE_u63A7_u5236_allow/deny" class="headerlink" title="访问控制 allow/deny"></a>访问控制 allow/deny</h1><p>Nginx 的访问控制模块默认就会安装，而且写法也非常简单，可以分别有多个allow,deny，允许或禁止某个ip或ip段访问，依次满足任何一个规则就停止往下匹配。如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">location /nginx-status &#123;</span><br><span class="line">  stub_status on;</span><br><span class="line">  access_log off;</span><br><span class="line"><span class="comment">#  auth_basic   "NginxStatus";</span></span><br><span class="line"><span class="comment">#  auth_basic_user_file   /usr/local/nginx-1.6/htpasswd;</span></span><br><span class="line"></span><br><span class="line">  allow <span class="number">192.168</span><span class="number">.1</span><span class="number">.100</span>;</span><br><span class="line">  allow <span class="number">172.29</span><span class="number">.73</span><span class="number">.0</span>/<span class="number">24</span>;</span><br><span class="line">  deny all;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们也常用 httpd-devel 工具的 htpasswd 来为访问的路径设置登录密码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># htpasswd -c htpasswd admin</span></span><br><span class="line"><span class="keyword">New</span> passwd:</span><br><span class="line">Re-type <span class="keyword">new</span> password:</span><br><span class="line">Adding password <span class="keyword">for</span> user admin</span><br><span class="line"></span><br><span class="line"><span class="comment"># htpasswd htpasswd admin    //修改admin密码</span></span><br><span class="line"><span class="comment"># htpasswd htpasswd sean    //多添加一个认证用户</span></span><br><span class="line">这样就生成了默认使用CRYPT加密的密码文件。打开上面nginx-status的两行注释，重启nginx生效。</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+	<div>
+      
+	  </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/07/01/nginx编译参数详细说明/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1212,432 +1667,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/03/16/centos配置pppoe服务器/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/03/16/centos配置pppoe服务器/" itemprop="url">centos配置pppoe服务器</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-16T21:01:31+08:00">
-                2016-03-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>#安装软件<br>rpm –qa| grep ppp rp-pppoe<br>ppp<br>rp-pppoe<br>rp-pppoe下载<br>wget <a href="https://www.roaringpenguin.com/files/download/rp-pppoe-3.12.tar.gz">https://www.roaringpenguin.com/files/download/rp-pppoe-3.12.tar.gz</a><br>拓扑图<br>xp-linux网卡1-linux网卡0-路由器-lnternet</p>
-<p>1、配置好eth0网卡外网ip，eth1不用配置ip可以配置0.0.0.0<br>vim /etc/sysconfig/network-scripts/ifcfg-eth0<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">DEVICE=eth0</span><br><span class="line">HWADDR=<span class="number">00</span>:<span class="number">0</span>C:<span class="number">29</span>:<span class="number">11</span>:DE:D1</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">UUID=<span class="number">4</span>f6db293-c442-<span class="number">4163</span>-<span class="number">94</span>c7-aac0a05901e8</span><br><span class="line">ONBOOT=yes</span><br><span class="line">NM_CONTROLLED=yes</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">DNS1=<span class="number">61.139</span><span class="number">.2</span><span class="number">.69</span></span><br><span class="line">IPADDR=<span class="number">10.39</span><span class="number">.100</span><span class="number">.222</span></span><br><span class="line">NETMASK=<span class="number">255.255</span><span class="number">.254</span><span class="number">.0</span></span><br><span class="line">GATEWAY=<span class="number">10.39</span><span class="number">.100</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></p>
-<p>vim /etc/sysconfig/network-scripts/ifcfg-eth1<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">DEVICE=eth1</span><br><span class="line">HWADDR=<span class="number">00</span>:<span class="number">0</span>C:<span class="number">29</span>:<span class="number">11</span>:DE:DB</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">ONBOOT=yes</span><br><span class="line">NM_CONTROLLED=no</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">DNS1=</span><br><span class="line">IPADDR=<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line">NETMASK=<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/03/16/centos配置pppoe服务器/#thêm" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/03/14/nginx-php-mysql配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/03/14/nginx-php-mysql配置/" itemprop="url">nginx+php+mysql配置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-14T13:59:00+08:00">
-                2016-03-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">nginx</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>nginx安装<br>略<br>mysql安装<br>略<br>php-fpm安装<br>略</p>
-<p>配置文件<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">一、配置nginx支持php</span><br><span class="line">cp /etc/nginx/nginx.conf  /etc/nginx/nginx.confbak<span class="comment">#备份原有配置文件</span></span><br><span class="line">vi /etc/nginx/nginx.conf <span class="comment">#编辑</span></span><br><span class="line">user nginx nginx; <span class="comment">#修改nginx运行账号为：nginx组的nginx用户</span></span><br><span class="line">:wq  <span class="comment">#保存退出</span></span><br><span class="line">cp /etc/nginx/conf.d/<span class="keyword">default</span>.conf /etc/nginx/conf.d/<span class="keyword">default</span>.confbak <span class="comment">#备份原有配置文件</span></span><br><span class="line">vi /etc/nginx/conf.d/<span class="keyword">default</span>.conf <span class="comment">#编辑</span></span><br><span class="line"></span><br><span class="line">index index.php index.html index.htm; <span class="comment">#增加index.php#pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">location ~ \.php$ &#123;</span><br><span class="line">root html;</span><br><span class="line">fastcgi_pass <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9000</span>;</span><br><span class="line">fastcgi_index index.php;</span><br><span class="line">fastcgi_param SCRIPT_FILENAME <span class="variable">$document_root</span><span class="variable">$fastcgi_script_name</span>;</span><br><span class="line"><span class="keyword">include</span> fastcgi_params;</span><br><span class="line">&#125;<span class="comment">#取消FastCGI server部分location的注释,并要注意fastcgi_param行的参数,改为$document_root$fastcgi_script_name,或者使用绝对路径</span></span><br><span class="line">service nginx restart <span class="comment">#重启nginx</span></span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/03/14/nginx-php-mysql配置/#thêm" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/01/11/H3C双核心交换机VRRP协议+DHCP配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/01/11/H3C双核心交换机VRRP协议+DHCP配置/" itemprop="url">H3C交换机VRRP协议DHCP配置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-01-11T12:02:00+08:00">
-                2016-01-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络/" itemprop="url" rel="index">
-                    <span itemprop="name">网络</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>拓扑图如下：<br><img src="/img/top.jpg" alt="拓扑"></p>
-<p>主上面配置</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/01/11/H3C双核心交换机VRRP协议+DHCP配置/#thêm" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1692,7 +1721,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1714,7 +1743,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

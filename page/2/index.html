@@ -291,6 +291,453 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/07/16/Activemq集群搭建ZooKeeper-LevelDB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang'T">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wang'T博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/16/Activemq集群搭建ZooKeeper-LevelDB/" itemprop="url">Activemq集群搭建ZooKeeper+LevelDB</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-16T22:19:00+08:00">
+                2018-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/activemq/" itemprop="url" rel="index">
+                    <span itemprop="name">activemq</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>ZooKeeper搭建<br>略<br>MQ高可用集群部署<br>参考<a href="http://activemq.apache.org/replicated-leveldb-store.html">http://activemq.apache.org/replicated-leveldb-store.html</a></p>
+<table>
+<thead>
+<tr>
+<th>ip</th>
+<th>集群通信端口</th>
+<th>openwire端口</th>
+<th>管理端口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.1.100</td>
+<td>61619</td>
+<td>61616</td>
+<td>8161</td>
+</tr>
+<tr>
+<td>192.168.1.200</td>
+<td>61619</td>
+<td>61616</td>
+</tr>
+<tr>
+<td>192.168.1.300</td>
+<td>61619</td>
+<td>61616</td>
+</tr>
+</tbody>
+</table>
+<h1 id="u4E00_u3001_u4FEE_u6539_vim_conf/activemq-xml"><a href="#u4E00_u3001_u4FEE_u6539_vim_conf/activemq-xml" class="headerlink" title="一、修改 vim conf/activemq.xml"></a>一、修改 vim conf/activemq.xml</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">所以节点brokerName必须一致</span><br><span class="line"> &lt;broker xmlns=<span class="string">"http://activemq.apache.org/schema/core"</span> brokerName=<span class="string">"mybroker"</span> dataDirectory=<span class="string">"$&#123;activemq.data&#125;"</span>&gt;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/16/Activemq集群搭建ZooKeeper-LevelDB/#thêm" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+	<div>
+      
+	  </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/07/10/8s-statefulsets部署zookeeper/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang'T">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wang'T博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/10/8s-statefulsets部署zookeeper/" itemprop="url">k8s statefulsets部署zookeeper</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-10T23:06:00+08:00">
+                2018-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="u4F7F_u7528NFS_u914D_u7F6Epv_u3001pvc"><a href="#u4F7F_u7528NFS_u914D_u7F6Epv_u3001pvc" class="headerlink" title="使用NFS配置pv、pvc"></a>使用NFS配置pv、pvc</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;root@centos-master pv]<span class="comment"># cat /etc/exports | grep /opt/zkdata/zk-data-</span></span><br><span class="line">/opt/zkdata/zk-data-<span class="number">0</span> *(rw,no_root_squash,no_all_squash,sync)</span><br><span class="line">/opt/zkdata/zk-data-<span class="number">1</span> *(rw,no_root_squash,no_all_squash,sync)</span><br><span class="line">/opt/zkdata/zk-data-<span class="number">2</span> *(rw,no_root_squash,no_all_squash,sync)</span><br></pre></td></tr></table></figure>
+<h2 id="u521B_u5EFAk8spv_uFF1Apv-yaml"><a href="#u521B_u5EFAk8spv_uFF1Apv-yaml" class="headerlink" title="创建k8spv：pv.yaml"></a>创建k8spv：pv.yaml</h2><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">apiVersion</span>: v1</span><br><span class="line"><span class="attribute">kind</span>: PersistentVolume</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: datadir-zk-<span class="number">0</span></span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">capacity</span>:</span><br><span class="line">    <span class="attribute">storage</span>: <span class="number">10</span>Gi </span><br><span class="line">  <span class="attribute">accessModes</span>:</span><br><span class="line">    - ReadWriteOnce </span><br><span class="line">  <span class="attribute">persistentVolumeReclaimPolicy</span>: Recycle </span><br><span class="line">  <span class="attribute">storageClassName</span>: slow</span><br><span class="line">  <span class="attribute">nfs</span>: </span><br><span class="line">    <span class="attribute">path</span>: /opt/zkdata/zk-data-<span class="number">0</span> </span><br><span class="line">    <span class="attribute">server</span>: x.x.x.x</span><br><span class="line">    <span class="attribute">readOnly</span>: false</span><br><span class="line">---</span><br><span class="line"><span class="attribute">apiVersion</span>: v1</span><br><span class="line"><span class="attribute">kind</span>: PersistentVolume</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: datadir-zk-<span class="number">1</span></span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">capacity</span>:</span><br><span class="line">    <span class="attribute">storage</span>: <span class="number">10</span>Gi</span><br><span class="line">  <span class="attribute">accessModes</span>:</span><br><span class="line">    - RReadWriteOnce</span><br><span class="line">  <span class="attribute">persistentVolumeReclaimPolicy</span>: Recycle</span><br><span class="line">  <span class="attribute">storageClassName</span>: slow</span><br><span class="line">  <span class="attribute">nfs</span>:</span><br><span class="line">    <span class="attribute">path</span>: /opt/zkdata/zk-data-<span class="number">1</span></span><br><span class="line">    <span class="attribute">server</span>: x.x.x.x</span><br><span class="line">    <span class="attribute">readOnly</span>: false</span><br><span class="line">---</span><br><span class="line"><span class="attribute">apiVersion</span>: v1</span><br><span class="line"><span class="attribute">kind</span>: PersistentVolume</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: datadir-zk-<span class="number">2</span></span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">capacity</span>:</span><br><span class="line">    <span class="attribute">storage</span>: <span class="number">10</span>Gi</span><br><span class="line">  <span class="attribute">accessModes</span>:</span><br><span class="line">    - ReadWriteOnce</span><br><span class="line">  <span class="attribute">persistentVolumeReclaimPolicy</span>: Recycle</span><br><span class="line">  <span class="attribute">storageClassName</span>: slow</span><br><span class="line">  <span class="attribute">nfs</span>:</span><br><span class="line">    <span class="attribute">path</span>: /opt/zkdata/zk-data-<span class="number">2</span></span><br><span class="line">    <span class="attribute">server</span>: x.x.x.x</span><br><span class="line">    <span class="attribute">readOnly</span>: false</span><br></pre></td></tr></table></figure>
+<p>kubectl  kubectl  create -f pv.yaml<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-master pv]<span class="comment"># kubectl get pv</span></span><br><span class="line">NAME           CAPACITY   ACCESSMODES   RECLAIMPOLICY   STATUS      CLAIM     STORAGECLASS   REASON    AGE</span><br><span class="line">datadir-zk-<span class="number">0</span>   <span class="number">10</span>Gi       RWX           Recycle         Available             slow                     <span class="number">25</span>s</span><br><span class="line">datadir-zk-<span class="number">1</span>   <span class="number">10</span>Gi       RWX           Recycle         Available             slow                     <span class="number">25</span>s</span><br><span class="line">datadir-zk-<span class="number">2</span>   <span class="number">10</span>Gi       RWX           Recycle         Available             slow                     <span class="number">25</span>s</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/10/8s-statefulsets部署zookeeper/#thêm" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+	<div>
+      
+	  </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/03/23/fastDFS-Nginx分布式图片服务器搭建/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang'T">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wang'T博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/23/fastDFS-Nginx分布式图片服务器搭建/" itemprop="url">fastDFS+Nginx分布式图片服务器搭建</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-23T10:38:00+08:00">
+                2018-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="u5B89_u88C5_u4F9D_u8D56_u5305"><a href="#u5B89_u88C5_u4F9D_u8D56_u5305" class="headerlink" title="安装依赖包"></a>安装依赖包</h1><p>系统：centos7.4<br><img src="/img/dfs8.png" alt="crt"><br>tracker和storage节点建议部署分别部署<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install -y libevent</span><br><span class="line">yum install gcc-c++  openssl-devel  pcre-devel zlib-devel</span><br></pre></td></tr></table></figure></p>
+<p>下载需要的包<br><a href="https://github.com/happyfish100" target="_blank" rel="external">https://github.com/happyfish100</a><br>nginx官网<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fastdfs5<span class="number">.11</span>.zip</span><br><span class="line">fastdfs-nginx-module.zip</span><br><span class="line">libfastcommon.zip</span><br><span class="line">nginx-<span class="number">1.12</span><span class="number">.2</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h1><h2 id="libfastcommon"><a href="#libfastcommon" class="headerlink" title="libfastcommon"></a>libfastcommon</h2><p>首先第一步是安装libfastcommon<br>unzip libfastcommon-master.zip<br>解压成功后进入目录看一下压缩包的文件：<br><img src="/img/dfs1.png" alt="dfs"><br>解压完成后就可以进行编译安装了，执行./make.sh  &amp;&amp; ./make.sh  install<br><img src="/img/dfs2.png" alt="crt"><br>至此libfastcommon就已经安装成功了，但注意一下上图中红色框标注的内容，libfastcommon.so 默认安装到了/usr/lib64/libfastcommon.so，但是FastDFS主程序设置的lib目录是/usr/local/lib，所以此处需要重新设置软链接<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/lib64/libfastcommon.so /usr/local/lib/libfastcommon.so</span><br><span class="line">ln -s /usr/lib64/libfastcommon.so /usr/lib/libfastcommon.so</span><br><span class="line">ln -s /usr/lib64/libfdfsclient.so /usr/local/lib/libfdfsclient.so</span><br><span class="line">ln -s /usr/lib64/libfdfsclient.so /usr/lib/libfdfsclient.so</span><br></pre></td></tr></table></figure></p>
+<h1 id="u5B89_u88C5fastdfs"><a href="#u5B89_u88C5fastdfs" class="headerlink" title="安装fastdfs"></a>安装fastdfs</h1><p>unzip fastdfs5.11.zip<br>解压完成后进入目录 fastdfs-5.11，执行<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">./make.sh  &amp;&amp; ./make.sh  install</span><br><span class="line">cd /etc/fdfs/</span><br><span class="line">[root@hjlc-storage-nodeA fdfs]<span class="comment"># cp client.conf.sample  client.conf</span></span><br><span class="line">[root@hjlc-storage-nodeA fdfs]<span class="comment"># cp storage.conf.sample storage.conf</span></span><br><span class="line">[root@hjlc-storage-nodeA fdfs]<span class="comment"># cp tracker.conf.sample tracker.conf</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/dfs3.png" alt="crt"></p>
+<h2 id="Tracker_u670D_u52A1_u914D_u7F6E"><a href="#Tracker_u670D_u52A1_u914D_u7F6E" class="headerlink" title="Tracker服务配置"></a>Tracker服务配置</h2><p>mkdir -p /home/hjlc/app/fastdfs/fastdfs_tracker<br>编辑/etc/fdfs目录下的tracker.conf配置文件<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">disabled=<span class="keyword">false</span> <span class="comment">#启用配置文件（默认启用）</span></span><br><span class="line">port=<span class="number">22122</span> <span class="comment">#设置tracker的端口号，通常采用22122这个默认端口</span></span><br><span class="line">base_path=/home/hjlc/app/fastdfs/fastdfs_tracker <span class="comment">#设置tracker的数据文件和日志目录</span></span><br><span class="line">http.server_port=<span class="number">6666</span> <span class="comment">#设置http端口号，默认为8080这个不需要了</span></span><br></pre></td></tr></table></figure></p>
+<p>为启动脚本创建软引用<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@hjlc-storage-nodeA fastdfs]<span class="comment"># ln -s /usr/bin/fdfs_trackerd /usr/local/bin</span></span><br><span class="line">[root@hjlc-storage-nodeA fastdfs]<span class="comment"># ln -s /usr/bin/stop.sh /usr/local/bin</span></span><br><span class="line">[root@hjlc-storage-nodeA fastdfs]<span class="comment"># ln -s /usr/bin/restart.sh /usr/local/bin</span></span><br><span class="line">启动tracker服务</span><br><span class="line">root@hjlc-storage-nodeA fastdfs]<span class="comment"># service  fdfs_trackerd start</span></span><br><span class="line">Reloading systemd:                                         [  OK  ]</span><br><span class="line">Starting fdfs_trackerd (via systemctl):                    [  OK  ]</span><br></pre></td></tr></table></figure></p>
+<p>fastdfs_tracker中就可以看到启动后新生成的data和logs目录，tracker服务的端口也应当被正常监听，最后再通过netstat命令查看一下端口监听情况：<br><img src="/img/dfs4.png" alt="crt"><br>al<br>确认tracker正常启动后可以将tracker设置为开机启动，打开/etc/rc.d/rc.local并在其中加入以下配置：<br>service fdfs_trackerd start</p>
+<h2 id="Storage_u670D_u52A1_u914D_u7F6E"><a href="#Storage_u670D_u52A1_u914D_u7F6E" class="headerlink" title="Storage服务配置"></a>Storage服务配置</h2><p>先是创建Storage服务器的文件目录，需要注意的是同Tracker相比我多建了一个目录，因为Storage还需要一个文件存储路径，用于存放接收的文件：<br>mkdir /home/hjlc/app/fastdfs/fastdfs_storage<br>mkdir /home/hjlc/app/fastdfs/fastdfs_storage_data</p>
+<p>接下来修改/etc/fdfs目录下的storage.conf配置文件<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">disabled=<span class="keyword">false</span> <span class="comment">#启用配置文件（默认启用）</span></span><br><span class="line">group_name=group1 <span class="comment">#组名，根据实际情况修改</span></span><br><span class="line">port=<span class="number">23000</span> <span class="comment">#设置storage的端口号，默认是23000，同一个组的storage端口号必须一致</span></span><br><span class="line">base_path=/home/hjlc/app/fastdfs/fastdfs_storage <span class="comment">#设置storage数据文件和日志目录</span></span><br><span class="line">store_path_count=<span class="number">1</span> <span class="comment">#存储路径个数，需要和store_path个数匹配</span></span><br><span class="line">store_path0=/home/hjlc/app/fastdfs/fastdfs_storage_data <span class="comment">#实际文件存储路径</span></span><br><span class="line">tracker_server=<span class="number">172.16</span><span class="number">.1</span><span class="number">.182</span>:<span class="number">22122</span> <span class="comment">#tracker 服务器的 IP地址和端口号，如果是单机搭建，IP不要写127.0.0.1，否则启动不成功</span></span><br><span class="line">http.server_port=<span class="number">8888</span> <span class="comment">#设置 http 端口号不需要</span></span><br></pre></td></tr></table></figure></p>
+<p>配置完成后同样要为Storage服务器的启动脚本设置软引用：<br>ln -s /usr/bin/fdfs_storaged /usr/local/bin<br>启动Storage服务<br>service fdfs_storaged start<br>如果启动成功，/home/hjlc/app/fastdfs/fastdfs_storage中就可以看到启动后新生成的data和logs目录，端口23000也应被正常监听，还有一点就是文件存储路径下会生成多级存储目录，那么接下来看看是否启动成功了：<br><img src="/img/dfs5.png" alt="crt"><br><img src="/img/dfs6.png" alt="crt"><br>/usr/bin/fdfs_monitor /etc/fdfs/storage.conf<br><img src="/img/dfs7.png" alt="crt"><br>ACTIVE 字样即可说明storage服务器已经成功登记到了tracker服务器<br>开机启动，打开/etc/rc.d/rc.local并将如下配置追加到文件中：<br>echo “service fdfs_storage start” &gt;&gt; /etc/rc.d/rc.local</p>
+<h1 id="u4E0A_u4F20_u6D4B_u8BD5"><a href="#u4E0A_u4F20_u6D4B_u8BD5" class="headerlink" title="上传测试"></a>上传测试</h1><p>编辑/etc/fdfs目录下的client.conf 文件<br>base_path=/home/hjlc/app/fastdfs/fastdfs_tracker #tracker服务器文件路径<br>tracker_server=172.16.1.182:22122 #tracker服务器IP地址和端口号<br>http.tracker_server_port=8080 # tracker 服务器的 http 端口号，必须和tracker的设置对应起来</p>
+<p>然后通过执行客户端上传命令尝试上传：</p>
+<p>[root@hjlc-storage-nodeA ~]# /usr/bin/fdfs_upload_file  /etc/fdfs/client.conf  ~/123.jpg<br>group1/M00/00/00/rBABtlqwYLWATj7XAABOLQixhsQ490.jpg</p>
+<p>此时发现并不能访问，因为FastDFS目前已不支持http协议，我们在FastDFS 4.0.5的版本更新日志中可以看到这样一条信息：<br>使用FastDFS的模块fastdfs-nginx-module，下载地址如下：<a href="https://github.com/happyfish100/fastdfs-nginx-module，这样做最大的好处就是提供了HTTP服务并且解决了group中storage服务器的同步延迟问题" target="_blank" rel="external">https://github.com/happyfish100/fastdfs-nginx-module，这样做最大的好处就是提供了HTTP服务并且解决了group中storage服务器的同步延迟问题</a></p>
+<h1 id="fastdfs-nginx-module+nginx_u5B89_u88C5"><a href="#fastdfs-nginx-module+nginx_u5B89_u88C5" class="headerlink" title="fastdfs-nginx-module+nginx安装"></a>fastdfs-nginx-module+nginx安装</h1><p>在安装nginx之前需要先安装一些模块依赖的lib库<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install pcre pcre-devel  zlib zlib-devel  openssl openssl-devel</span><br></pre></td></tr></table></figure></p>
+<p>storage nginx<br>首先是为storage服务器安装nginx，首先下载nginx和fastdfs-nginx-module的安装包<br> tar -zxvf nginx-1.12.2.tar.gz<br> unzip fastdfs-nginx-module.zip </p>
+<p>解压成功后就可以编译安装nginx了，进入nginx目录<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@hjlc-storage-nodeA nginx-<span class="number">1.12</span><span class="number">.2</span>]<span class="comment"># ./configure --prefix=/home/hjlc/app/nginx --add-module=/root/fastdfs-nginx-module-master/src</span></span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure></p>
+<p>接下来要修改一下nginx的配置文件<br>server {<br>listen       9090;<br>server_name img.xxxx;<br>location ~/group1/M00 {<br>      root /home/hjlc/app/fastdfs/fastdfs_storage_data;<br>      ngx_fastdfs_module;<br>}<br>}<br>然后进入FastDFS的解压目录~/ fastdfs-5.11目录下的conf目录，将http.conf和mime.types拷贝到/etc/fdfs目录下<br>[root@hjlc-storage-nodeA fastdfs-5.11]# cp conf/http.conf /etc/fdfs/<br>[root@hjlc-storage-nodeA fastdfs-5.11]# cp conf/mime.types  /etc/fdfs/<br>把fastdfs-nginx-module解压目录中src目录下的mod_fastdfs.conf也拷贝到/etc/fdfs目录下：<br>[root@hjlc-storage-nodeA ~]# cp fastdfs-nginx-module-master/src/mod_fastdfs.conf  /etc/fdfs/<br>编辑刚拷贝的这个mod_fastdfs.conf文件了<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">base_path=/home/hjlc/app/fastdfs/fastdfs_storage <span class="comment">#保存日志目录</span></span><br><span class="line">tracker_server=<span class="number">172.16</span><span class="number">.1</span><span class="number">.182</span>:<span class="number">22122</span> <span class="comment">#tracker服务器的IP地址以及端口号</span></span><br><span class="line">storage_server_port=<span class="number">23000</span> <span class="comment">#storage服务器的端口号</span></span><br><span class="line">url_have_group_name = <span class="keyword">true</span> <span class="comment">#文件 url 中是否有 group 名</span></span><br><span class="line">store_path0=/home/hjlc/app/fastdfs/fastdfs_storage_data <span class="comment"># 存储路径</span></span><br><span class="line">group_count = <span class="number">3</span> <span class="comment">#设置组的个数，事实上这次只使用了group1</span></span><br><span class="line">设置了group_count = <span class="number">3</span>，接下来就需要在文件尾部追加这<span class="number">3</span>个group setting：</span><br><span class="line">group_count = <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># group settings for group #1</span></span><br><span class="line"><span class="comment"># since v1.14</span></span><br><span class="line"><span class="comment"># when support multi-group on this storage server, uncomment following section</span></span><br><span class="line">[group1]</span><br><span class="line">group_name=group1</span><br><span class="line">storage_server_port=<span class="number">23000</span></span><br><span class="line">store_path_count=<span class="number">1</span></span><br><span class="line">store_path0=/home/hjlc/app/fastdfs/fastdfs_storage_data</span><br><span class="line"></span><br><span class="line">[group2]</span><br><span class="line">group_name=group2</span><br><span class="line">storage_server_port=<span class="number">23000</span></span><br><span class="line">store_path_count=<span class="number">1</span></span><br><span class="line">store_path0=/home/hjlc/app/fastdfs/fastdfs_storage_data</span><br><span class="line"></span><br><span class="line">[group3]</span><br><span class="line">group_name=group3</span><br><span class="line">storage_server_port=<span class="number">23000</span></span><br><span class="line">store_path_count=<span class="number">1</span></span><br><span class="line">store_path0=/home/hjlc/app/fastdfs/fastdfs_storage_data</span><br></pre></td></tr></table></figure></p>
+<p>接下来还需要建立 M00 至存储目录的符号连接：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ln  -s  /home/hjlc/app/fastdfs/fastdfs_storage_data/data  /home/hjlc/app/fastdfs/fastdfs_storage_data/data/M00</span><br><span class="line">[root@hjlc-storage-nodeA ~]<span class="comment"># /home/hjlc/app/nginx/sbin/nginx  -c /home/hjlc/app/nginx/conf/nginx.conf -t</span></span><br><span class="line">ngx_http_fastdfs_set pid=<span class="number">21138</span></span><br><span class="line">nginx: the configuration file /home/hjlc/app/nginx/conf/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /home/hjlc/app/nginx/conf/nginx.conf test is successful</span><br></pre></td></tr></table></figure></p>
+<p>节点2重复一遍storage服务安装和fastdfs-nginx-module+nginx安装即可，然后在安装一台Nginx发现代理服务器配置upstream代理，这我使用的SLB服务器就直接监听nodeA和nodeB的9090端口<br><img src="/img/1.jpg" alt="crt"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	<div>
+      
+	  </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/02/27/ecureCRT配置Cisco网络设备关键字高亮/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1239,385 +1686,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/10/24/Nginx编译添加后端健康检查模块/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/24/Nginx编译添加后端健康检查模块/" itemprop="url">Nginx编译添加后端健康检查模块</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-24T14:23:28+08:00">
-                2017-10-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>该模块可以为Tengine提供主动式后端服务器健康检查的功能。可以通过补丁的方式来添加该模块到我们自己的nginx中。</p>
-<h1 id="u4E0B_u8F7Dnginx_upstream_check_module_u6A21_u5757"><a href="#u4E0B_u8F7Dnginx_upstream_check_module_u6A21_u5757" class="headerlink" title="下载nginx_upstream_check_module模块"></a>下载nginx_upstream_check_module模块</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">clone</span> https:<span class="comment">//github.com/yaoweibin/nginx_upstream_check_module.git</span></span><br></pre></td></tr></table></figure>
-<p>编译补丁到nginx，必须使用最新的nginx_upstream_check_module才支持nginx 1.12.2版本<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd ~/nginx-<span class="number">1.12</span><span class="number">.2</span> <span class="comment">##进入nginx的源码目录</span></span><br><span class="line">nginx-<span class="number">1.12</span><span class="number">.2</span>]<span class="comment"># patch -p1 &lt; ../nginx_upstream_check_module/check_1.12.1+.patch </span></span><br><span class="line">patching file src/http/modules/ngx_http_upstream_hash_module.c</span><br><span class="line">patching file src/http/modules/ngx_http_upstream_ip_hash_module.c</span><br><span class="line">patching file src/http/modules/ngx_http_upstream_least_conn_module.c</span><br><span class="line">patching file src/http/ngx_http_upstream_round_robin.c</span><br><span class="line">patching file src/http/ngx_http_upstream_round_robin.h</span><br></pre></td></tr></table></figure></p>
-<h2 id="u67E5_u770B_u4E4B_u524D_u7684nginx_u7F16_u8BD1_u53C2_u6570"><a href="#u67E5_u770B_u4E4B_u524D_u7684nginx_u7F16_u8BD1_u53C2_u6570" class="headerlink" title="查看之前的nginx编译参数"></a>查看之前的nginx编译参数</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /usr/local/nginx/sbin/nginx -V</span></span><br><span class="line">nginx version: nginx/<span class="number">1.10</span><span class="number">.1</span></span><br><span class="line">built by gcc <span class="number">4.4</span><span class="number">.7</span> <span class="number">20120313</span> (Red Hat <span class="number">4.4</span><span class="number">.7</span>-<span class="number">18</span>) (GCC) </span><br><span class="line">built with OpenSSL <span class="number">1.0</span><span class="number">.1</span>e-fips <span class="number">11</span> Feb <span class="number">2013</span></span><br><span class="line">TLS SNI support enabled</span><br><span class="line">configure arguments: --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module</span><br></pre></td></tr></table></figure>
-<p>编译nginx参数，此处只make 不要make install，编译参数需要和之前的一样添加–add-module=<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ./configure --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module --add-module=../nginx_upstream_check_module/</span></span><br><span class="line">make</span><br><span class="line">.....</span><br><span class="line">trueobjs/addon/nginx_upstream_check_module/ngx_http_upstream_check_module.o \</span><br><span class="line">trueobjs/ngx_modules.o \</span><br><span class="line">true-ldl -lpthread -lcrypt -lpcre -lssl -lcrypto -ldl -lz \</span><br><span class="line">true-Wl,-E</span><br><span class="line">sed -e <span class="string">"s|%%PREFIX%%|/usr/local/nginx|"</span> \</span><br><span class="line">truetrue-e <span class="string">"s|%%PID_PATH%%|/usr/local/nginx/logs/nginx.pid|"</span> \</span><br><span class="line">truetrue-e <span class="string">"s|%%CONF_PATH%%|/etc/nginx/nginx.conf|"</span> \</span><br><span class="line">truetrue-e <span class="string">"s|%%ERROR_LOG_PATH%%|/usr/local/nginx/logs/error.log|"</span> \</span><br><span class="line">truetrue&lt; man/nginx<span class="number">.8</span> &gt; objs/nginx<span class="number">.8</span></span><br><span class="line">make[<span class="number">1</span>]: Leaving directory `/root/nginx-<span class="number">1.12</span><span class="number">.2</span><span class="string">'</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">备份旧版本nginx </span><br><span class="line">cp -a /usr/local/nginx/sbin/nginx  /usr/local/nginx/sbin/nginx.back</span><br><span class="line">停止nginx服务，替换nginx执行文件</span><br><span class="line">/usr/local/nginx/sbin/nginx -s stop</span><br><span class="line">nginx-<span class="number">1.12</span><span class="number">.2</span>]<span class="comment"># cp -a objs/nginx /usr/local/nginx/sbin/</span></span><br><span class="line">cp: overwrite `/usr/local/nginx/sbin/nginx<span class="string">'? y</span></span><br></pre></td></tr></table></figure>
-<h3 id="u9A8C_u8BC1_u7248_u672C_u5DF2_u7ECF_u5347_u7EA7_u52301-12-2__u6DFB_u52A0_u4E86nginx_upstream_check_module_u6A21_u5757"><a href="#u9A8C_u8BC1_u7248_u672C_u5DF2_u7ECF_u5347_u7EA7_u52301-12-2__u6DFB_u52A0_u4E86nginx_upstream_check_module_u6A21_u5757" class="headerlink" title="验证版本已经升级到1.12.2 添加了nginx_upstream_check_module模块"></a>验证版本已经升级到1.12.2 添加了nginx_upstream_check_module模块</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> nginx-<span class="number">1.12</span><span class="number">.2</span>]<span class="comment"># /usr/local/nginx/sbin/nginx -V</span></span><br><span class="line">nginx version: nginx/<span class="number">1.12</span><span class="number">.2</span></span><br><span class="line">built by gcc <span class="number">4.4</span><span class="number">.7</span> <span class="number">20120313</span> (Red Hat <span class="number">4.4</span><span class="number">.7</span>-<span class="number">18</span>) (GCC) </span><br><span class="line">built with OpenSSL <span class="number">1.0</span><span class="number">.1</span>e-fips <span class="number">11</span> Feb <span class="number">2013</span></span><br><span class="line">TLS SNI support enabled</span><br><span class="line">configure arguments: --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module --add-module=/root/nginx_upstream_check_module/</span><br></pre></td></tr></table></figure>
-<p>健康检查模块配置:参照官网<a href="http://tengine.taobao.org/document_cn/http_upstream_check_cn.html" target="_blank" rel="external">http://tengine.taobao.org/document_cn/http_upstream_check_cn.html</a><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">upstream cluster2 &#123;&#10;        # simple round-robin&#10;        server 192.168.0.3:80;&#10;        server 192.168.0.4:80;&#10;        check interval=3000 rise=2 fall=5 timeout=1000 type=http;&#10;        check_keepalive_requests 100;&#10;        check_http_send &#34;HEAD / HTTP/1.1\r\nConnection: keep-alive\r\n\r\n&#34;;&#10;        check_http_expect_alive http_2xx http_3xx;&#10;    &#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/10/20/jenkins-Role-basedauthorization权限管理插件配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/20/jenkins-Role-basedauthorization权限管理插件配置/" itemprop="url">jenkins Role-basedauthorization权限管理插件配置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-20T10:24:14+08:00">
-                2017-10-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1、安装插件、Role-based Authorization Strategy<br><img src="/img/jenkins11.png" alt="jenkins"><br>2、打开jenkins授权Role-based<br><img src="/img/jenkins22.png" alt="jenkins"><br>3、配置Manage and Assign Roles admin给所以权限 Assign Roles添加jenkinadmin到admin<br><img src="/img/jenkins33.png" alt="jenkins"><br>4、配置全局角色权限和项目角色权限：如设置testTeam全局权限read只允许查看test开始的项目名称,项目权限test-Team  Pattern:test.* </p>
-<p><img src="/img/jenkins44.png" alt="jenkins"><br>5.设置Assign Roles，全局添加用户对于全局testTeam，项目角色添加用户到对于的项目test-Team。<br><img src="/img/jenkins55.png" alt="jenkins"><br>6、验证也test-Tame成员登录<br><img src="/img/jenkins66.png" alt="jenkins"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/10/20/jenkins-HTML-publisher-plugin插件无法显示解决办法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/20/jenkins-HTML-publisher-plugin插件无法显示解决办法/" itemprop="url">jenkins HTML publisher plugin插件无法显示解决办法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-20T10:11:19+08:00">
-                2017-10-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>tomcat部署jenkins解决方法</p>
-<p>vim apache-tomcat-7.0.61/bin/catalina.sh </p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JAVA_OPTS=<span class="string">"-Djava.awt.headless=true -Dhudson.model.DirectoryBrowserSupport.CSP=\"\""</span></span><br><span class="line">export JAVA_OPTS</span><br></pre></td></tr></table></figure>
-<p>重启tomcat 刷新页面</p>
-<p>jenkins HTML publisher plugin配置<br><img src="/img/jenkins1.png" alt="jenkins"><br><img src="/img/jenkins2.png" alt="jenkins"></p>
-<p><a href="https://wiki.jenkins.io/display/JENKINS/Configuring+Content+Security+Policy" target="_blank" rel="external">https://wiki.jenkins.io/display/JENKINS/Configuring+Content+Security+Policy</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1672,7 +1740,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1694,7 +1762,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
