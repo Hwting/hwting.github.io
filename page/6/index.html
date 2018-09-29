@@ -291,6 +291,261 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/06/17/使用ssh-keygen和ssh-copy-id三步实现SSH无密码登录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang'T">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wang'T博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/06/17/使用ssh-keygen和ssh-copy-id三步实现SSH无密码登录/" itemprop="url">使用ssh-keygen和ssh-copy-id三步实现SSH无密码登录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-17T10:52:00+08:00">
+                2016-06-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1、在A机器上使用ssh-keygen产生公钥私钥对<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ssh-keygen -t rsa -b 1024</span></span><br><span class="line">Generating <span class="keyword">public</span>/<span class="keyword">private</span> rsa key pair.</span><br><span class="line">Enter file in which to save the key (/root/.ssh/id_rsa): </span><br><span class="line">Enter passphrase (<span class="keyword">empty</span> <span class="keyword">for</span> no passphrase): </span><br><span class="line">Enter same passphrase again: </span><br><span class="line">Your identification has been saved in /root/.ssh/id_rsa.</span><br><span class="line">Your <span class="keyword">public</span> key has been saved in /root/.ssh/id_rsa.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line"><span class="number">0</span>c:f8:<span class="number">73</span>:aa:<span class="number">46</span>:<span class="number">52</span>:<span class="number">06</span>:ba:<span class="number">54</span>:e0:fc:d4:<span class="number">40</span>:<span class="number">58</span>:<span class="number">07</span>:<span class="number">33</span> root@HA-<span class="number">1</span></span><br><span class="line">The key<span class="string">'s randomart image is:</span><br><span class="line">+--[ RSA 1024]----+</span><br><span class="line">| .=E..           |</span><br><span class="line">|o...*.           |</span><br><span class="line">| +.o...          |</span><br><span class="line">|..o o. o         |</span><br><span class="line">|.. +  o S        |</span><br><span class="line">|. . .  +         |</span><br><span class="line">|   o  .          |</span><br><span class="line">|    ..           |</span><br><span class="line">|   ..            |</span><br><span class="line">+-----------------+</span></span><br></pre></td></tr></table></figure></p>
+<p>2、第二步:用ssh-copy-id将公钥复制到远程机器中<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">#ssh-copy-id -i ~/.ssh/id_rsa.pub remote-host</span></span><br><span class="line">jsmith@remote-host<span class="string">'s password:</span><br><span class="line">Now try logging into the machine, with "ssh '</span>remote-host<span class="string">'", and check in:</span><br><span class="line">.ssh/authorized_keys</span><br><span class="line">`</span></span><br></pre></td></tr></table></figure></p>
+<p>ssh-copy-id 将key写到远程机器的 ~/ .ssh/authorized_key.文件中</p>
+<p> #ssh remote-host</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	<div>
+      
+	  </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/04/19/zabbix微信告警/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wang'T">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wang'T博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/04/19/zabbix微信告警/" itemprop="url">zabbix微信告警</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-19T20:46:29+08:00">
+                2016-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>一、注册微信公众号<br><a href="https://mp.weixin.qq.com">https://mp.weixin.qq.com</a></p>
+<p>关注微信号点击用户管理查看用户的微信ID号。在浏览器查看用户的微信ID号</p>
+<p><a href="https://mp.weixin.qq.com/cgi-bin/singlesendpage?t=message/send&amp;action=index&amp;tofakeid=oOHYNvxkEyqwlYZzymXmGMUQxtKk&amp;token=778777510&amp;lang=zh_CN">https://mp.weixin.qq.com/cgi-bin/singlesendpage?t=message/send&amp;action=index&amp;tofakeid=oOHYNvxkEyqwlYZzymXmGMUQxtKk&amp;token=778777510&amp;lang=zh_CN</a></p>
+<p>获取微信接口git clone <a href="https://github.com/lealife/WeiXin-Private-API">https://github.com/lealife/WeiXin-Private-API</a><br>接口配置文件<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@zabbix ~]<span class="comment"># git clone https://github.com/lealife/WeiXin-Private-API</span></span><br><span class="line">[root@zabbix ~]<span class="comment"># cp -r WeiXin-Private-API/ /usr/local/zabbix/share/zabbix/alertscripts/</span></span><br><span class="line">[root@zabbix ~]<span class="comment"># cd /usr/local/zabbix/share/zabbix/alertscripts/WeiXin-Private-API</span></span><br><span class="line">[root@zabbix WeiXin-<span class="keyword">Private</span>-API]<span class="comment"># chown zabbix.zabbix /usr/local/zabbix/share/zabbix/alertscripts/WeiXin-Private-API</span></span><br></pre></td></tr></table></figure></p>
+<p>先在conifg.php中配置公众账号信息:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="variable">$G_CONFIG</span>[<span class="string">"weiXin"</span>] = <span class="keyword">array</span>(</span><br><span class="line">       <span class="string">'account'</span> =&gt; <span class="string">'公众平台账号'</span>,</span><br><span class="line">       <span class="string">'password'</span> =&gt; <span class="string">'密码'</span>,</span><br><span class="line">       <span class="string">'cookiePath'</span> =&gt; <span class="variable">$G_ROOT</span>. <span class="string">'/cache/cookie'</span>, <span class="comment">// cookie缓存文件路径</span></span><br><span class="line">       <span class="string">'webTokenPath'</span> =&gt; <span class="variable">$G_ROOT</span>. <span class="string">'/cache/webToken'</span>, <span class="comment">// webToken缓存文件路径</span></span><br><span class="line">   );</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/04/19/zabbix微信告警/#thêm" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+	<div>
+      
+	  </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/03/16/centos配置pppoe服务器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1304,7 +1559,7 @@ make install
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
