@@ -132,6 +132,45 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/12/13/jenkins与sonar集成自动化代码质量检查/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/12/13/jenkins与sonar集成自动化代码质量检查/" itemprop="url">jenkins与sonar集成自动化代码质量检查</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-12-13T14:35:11+08:00">2017-12-13 14:35:11</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>安装jenkins,mysql：省略</p>
+<h1 id="u5B89_u88C5sonar"><a href="#u5B89_u88C5sonar" class="headerlink" title="安装sonar"></a>安装sonar</h1><h2 id="mysql_u521B_u5EFA_u6570_u636E_u5E93user_u5E76_u6388_u6743_28_u6D4B_u8BD5_u53EF_u4EE5_u4F7F_u7528_u81EA_u5E26_u6570_u636E_u5E93_29"><a href="#mysql_u521B_u5EFA_u6570_u636E_u5E93user_u5E76_u6388_u6743_28_u6D4B_u8BD5_u53EF_u4EE5_u4F7F_u7528_u81EA_u5E26_u6570_u636E_u5E93_29" class="headerlink" title="mysql创建数据库user并授权(测试可以使用自带数据库)"></a>mysql创建数据库user并授权(测试可以使用自带数据库)</h2><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;CREATE DATABASE sonarqube SET utf8 COLLATE utf8_general_ci;</span><br><span class="line">&gt; CREATE USER <span class="string">'sonar’@'</span>%<span class="string">' IDENTIFIED BY '</span>password<span class="string">';</span><br><span class="line">&gt; GRANT all privileges ON sonarqube.* TO sonar’@‘%'</span> IDENTIFIED BY <span class="string">'password'</span>;</span><br><span class="line">&gt; flush privileges;</span><br></pre></td></tr></table></figure>
+<h2 id="u4E0B_u8F7D_u5B89_u88C5"><a href="#u4E0B_u8F7D_u5B89_u88C5" class="headerlink" title="下载安装"></a>下载安装</h2><figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//sonarsource.bintray.com/Distribution/sonarqube/sonarqube-6.7.zip</span></span><br><span class="line">unzip sonarqube-<span class="number">6.7</span><span class="class">.zip</span>  -d /usr/local/</span><br><span class="line">cd /usr/local/sonarqube-<span class="number">6.7</span>/</span><br><span class="line">vim conf/sonar<span class="class">.properties</span>  /配置文件</span><br><span class="line">sonar<span class="class">.web</span><span class="class">.host</span>=<span class="number">0.0</span>.<span class="number">0.0</span></span><br><span class="line">sonar<span class="class">.web</span><span class="class">.port</span>=<span class="number">9000</span></span><br><span class="line">sonar<span class="class">.jdbc</span><span class="class">.username</span>=sonar</span><br><span class="line">sonar<span class="class">.jdbc</span><span class="class">.password</span>=password</span><br><span class="line">sonar<span class="class">.jdbc</span><span class="class">.url</span>=jdbc:mysql:<span class="comment">//localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;useConfigs=maxPerformance&amp;useSSL=false</span></span><br><span class="line"> ./bin/linux-x86-<span class="number">64</span>/sonar<span class="class">.sh</span>  start 启动sonar 需要使用非root启动</span><br><span class="line"> 中文插件下载解压到下目录</span><br><span class="line">wget https:<span class="comment">//github.com/SonarQubeCommunity/sonar-l10n-zh/releases/download/sonar-l10n-zh-plugin-1.18/sonar-l10n-zh-plugin-1.18.jar</span></span><br><span class="line"> /usr/local/sonarqube-<span class="number">6.7</span>/extensions/plugins/</span><br><span class="line"> ./bin/linux-x86-<span class="number">64</span>/sonar<span class="class">.sh</span>  restart</span><br></pre></td></tr></table></figure>
+<h1 id="u5B89_u88C5sonar-runner"><a href="#u5B89_u88C5sonar-runner" class="headerlink" title="安装sonar-runner"></a>安装sonar-runner</h1><h2 id="u4E0B_u8F7D_u5B89_u88C5-1"><a href="#u4E0B_u8F7D_u5B89_u88C5-1" class="headerlink" title="下载安装"></a>下载安装</h2><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist/2.4/sonar-runner-dist-2.4.zip</span></span><br><span class="line">unzip sonar-runner-dist-<span class="number">2.4</span>.zip -d /usr/local/</span><br><span class="line">cd /usr/local/sonar-runner-dist-<span class="number">2.4</span></span><br><span class="line">vim conf/sonar-runner.properties </span><br><span class="line">sonar.host.url=http:<span class="comment">//172.18.8.32:9000</span></span><br><span class="line">sonar.sourceEncoding=UTF-<span class="number">8</span></span><br><span class="line">sonar.login=admin</span><br><span class="line">sonar.password=admi</span><br><span class="line">配置环境配置</span><br><span class="line">vim /etc/profile</span><br><span class="line">export SONAR_HOME=/usr/local/sonarqube-<span class="number">6.7</span></span><br><span class="line">PATH=<span class="variable">$PATH</span>:/usr/local/sonar-runner-<span class="number">2.4</span>/bin   </span><br><span class="line">export PATH</span><br><span class="line">source  /etc/profile</span><br><span class="line">测试ok</span><br><span class="line">sonar-scanner -h</span><br></pre></td></tr></table></figure>
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/12/11/zabbix自动发现交换机接口信息监控网络设备流量模板配置/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -546,45 +585,9 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/09/01/Nginx-内核参数优化参考/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2017/09/01/Nginx-内核参数优化参考/" itemprop="url">Nginx+内核参数优化参考</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-09-01T11:15:11+08:00">2017-09-01 11:15:11</time></span>
-        </span>
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>#内核优化<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">net.ipv4.ip_forward = <span class="number">0</span></span><br><span class="line">net.ipv4.conf.<span class="keyword">default</span>.rp_filter = <span class="number">1</span></span><br><span class="line">net.ipv4.conf.<span class="keyword">default</span>.accept_source_route = <span class="number">0</span></span><br><span class="line">kernel.sysrq = <span class="number">0</span></span><br><span class="line">kernel.core_uses_pid = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_syncookies = <span class="number">1</span></span><br><span class="line">kernel.msgmnb = <span class="number">65536</span></span><br><span class="line">kernel.msgmax = <span class="number">65536</span></span><br><span class="line">kernel.shmmax = <span class="number">68719476736</span></span><br><span class="line">kernel.shmall = <span class="number">4294967296</span></span><br><span class="line">net.ipv4.tcp_max_tw_buckets = <span class="number">6000</span></span><br><span class="line">net.ipv4.tcp_sack = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_window_scaling = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_rmem = <span class="number">4096</span>        <span class="number">87380</span>    <span class="number">4194304</span></span><br><span class="line">net.ipv4.tcp_wmem = <span class="number">4096</span>        <span class="number">16384</span>    <span class="number">4194304</span></span><br><span class="line">net.core.wmem_default = <span class="number">8388608</span></span><br><span class="line">net.core.rmem_default = <span class="number">8388608</span></span><br><span class="line">net.core.rmem_max = <span class="number">16777216</span></span><br><span class="line">net.core.wmem_max = <span class="number">16777216</span></span><br><span class="line">net.core.netdev_max_backlog = <span class="number">262144</span></span><br><span class="line">net.core.somaxconn = <span class="number">262144</span></span><br><span class="line">net.ipv4.tcp_max_orphans = <span class="number">3276800</span></span><br><span class="line">net.ipv4.tcp_max_syn_backlog = <span class="number">262144</span></span><br><span class="line">net.ipv4.tcp_timestamps = <span class="number">0</span></span><br><span class="line">net.ipv4.tcp_synack_retries = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_syn_retries = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_tw_recycle = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_tw_reuse = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_mem = <span class="number">94500000</span> <span class="number">915000000</span> <span class="number">927000000</span></span><br><span class="line">net.ipv4.tcp_fin_timeout = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_keepalive_time = <span class="number">30</span></span><br><span class="line">net.ipv4.ip_local_port_range = <span class="number">1024</span>    <span class="number">65000</span></span><br></pre></td></tr></table></figure></p>
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
   </nav>
   
   
@@ -614,7 +617,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">60</a></div>
+      <div><a href="/archives/">61</a></div>
     </div>
     
     
@@ -623,7 +626,7 @@
     
     <div class="categories-count">
       <div class="site-count-title">分类</div>
-      <div><a href="/categories/">10</a></div>
+      <div><a href="/categories/">12</a></div>
     </div>
     
     
