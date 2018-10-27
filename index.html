@@ -1,2144 +1,831 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-
-
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wang'T博客">
-<meta property="og:url" content="http://www.idcsec.com/index.html">
-<meta property="og:site_name" content="Wang'T博客">
-<meta property="og:description">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wang'T博客">
-<meta name="twitter:description">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://www.idcsec.com/"/>
-
-
-
-
-
-  <title>Wang'T博客</title>
-  
-
-
-
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?7db1c0024aed11205f1c466a133de827";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
     
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo, docker, linux, kubernetes, Nginx, tomcat, Jenkins">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="Wang'T博客" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato|Roboto+Condensed|Skranji|Ubuntu|Ubuntu+Mono">
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
 
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Wang'T博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/solarized-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>Wang'T博客 - _入网络深似海,从此节操是路人.</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">Wang'T博客</a></h1>
+        <h2 class="subtitle">_入网络深似海,从此节操是路人.</h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/img/logo.jpg" alt="logo">
+      </div>
+      
     </div>
-      
-        <p class="site-subtitle">_入网络深似海,从此节操是路人.</p>
-      
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/">首页</a></li>
+        
+        <li role="menuitem"><a href="/archives/">归档</a></li>
+        
+        <li role="menuitem"><a href="/categories/">分类</a></li>
+        
+        <li role="menuitem"><a href="/tags/">标签</a></li>
+        
+        <li role="menuitem"><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
   </div>
+</header>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-sitemap">
-          <a href="/sitemap.xml" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
-            
-            站点地图
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
-            
-            公益404
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
 
     <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
             
-  <section id="posts" class="posts-expand">
-    
-      
 
+<div id="index" class="index page">
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/29/kubernetes-ingress配置HTTPS-TLS证书/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/29/kubernetes-ingress配置HTTPS-TLS证书/" itemprop="url">kubernetes ingress配置HTTPS/TLS证书</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-29T23:14:00+08:00">
-                2018-09-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
-                    <span itemprop="name">kubernetes</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://kubernetes.io/docs/concepts/services-networking/ingress/" target="_blank" rel="external">Ingress是Kubernetes中的一个概念，用于</a>将入站连接路由到不同的服务。这可以通过不同方式实现。<br>生成证书文件<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl req -x509 -nodes -days <span class="number">2920</span> -newkey rsa:<span class="number">2048</span> -keyout tls<span class="class">.key</span> -out tls<span class="class">.crt</span> -subj <span class="string">"/CN=*.idcsec.com/O=nginxsvc"</span></span><br></pre></td></tr></table></figure></p>
-<p>导入证书文件到k8s secret<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl <span class="built_in">create</span> secret tls <span class="keyword">https</span>-secret <span class="comment">--key tls.key --cert tls.crt</span></span><br></pre></td></tr></table></figure></p>
-<p>或者使用yaml<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">apiVersion:</span> v1</span><br><span class="line"><span class="string">kind:</span> Secret</span><br><span class="line"><span class="string">type:</span> kubernetes.io/tls</span><br><span class="line"><span class="string">metadata:</span></span><br><span class="line"><span class="label">  name:</span> mytlssecret</span><br><span class="line"><span class="string">data:</span></span><br><span class="line">  tls.<span class="string">crt:</span> &lt;base64 encoded cert&gt;</span><br><span class="line">  tls.<span class="string">key:</span> &lt;base64 encoded key&gt;</span><br></pre></td></tr></table></figure></p>
-<p>配置ingress<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">kind</span>: Ingress</span><br><span class="line"><span class="attribute">apiVersion</span>: extensions/v1beta1</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: test</span><br><span class="line">  <span class="attribute">annotations</span>:</span><br><span class="line">    ingress.kubernetes.io/<span class="attribute">ssl-redirect</span>: <span class="string">"False"</span>  #设置是否强制跳转 false| true</span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">tls</span>:</span><br><span class="line">  - <span class="attribute">hosts</span>: </span><br><span class="line">    - www.idcsec.com</span><br><span class="line">    <span class="attribute">secretName</span>: https-secret</span><br><span class="line">  <span class="attribute">rules</span>:</span><br><span class="line">  - <span class="attribute">host</span>:  www.idcsec.com</span><br><span class="line">    <span class="attribute">http</span>:</span><br><span class="line">      <span class="attribute">paths</span>:</span><br><span class="line">      - <span class="attribute">path</span>: /</span><br><span class="line">        <span class="attribute">backend</span>:</span><br><span class="line">          <span class="attribute">serviceName</span>: test</span><br><span class="line">          <span class="attribute">servicePort</span>: <span class="number">80</span></span><br></pre></td></tr></table></figure></p>
-<p>校验证书信息<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -<span class="keyword">in</span> tls<span class="class">.crt</span>  -noout -text</span><br></pre></td></tr></table></figure></p>
-<p><a href="https://github.com/kubernetes/ingress-nginx/tree/master/docs/examples/auth/client-certs" target="_blank" rel="external">Client Certificate Authentication</a><br><a href="https://github.com/kubernetes/ingress-nginx/blob/master/docs/examples/PREREQUISITES.md#creating-the-ca-authentication-secret" target="_blank" rel="external">TLS证书</a></p>
-
-          
-        
-      
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/10/27/使用Prometheus监控Oracle系统展示到Grafana/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
     </div>
-    
-    
-    
-	<div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/10/27/使用Prometheus监控Oracle系统展示到Grafana/" itemprop="url">使用Prometheus监控Oracle系统展示到Grafana</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-10-27T21:58:00+08:00">2018-10-27 21:58:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-	  </div>
-    
+      <p>oracledb_exporter参考：<br><a href="https://github.com/iamseth/oracledb_exporter" target="_blank" rel="external">https://github.com/iamseth/oracledb_exporter</a><br>本文直接把oracledb_exporter部署在k8s环境。docker部署方式更为简单<br>我们使用Prometheus在Grafana上为Oracle实现监控仪表板。由于Oracle不支持http通信，它由Oracle Exporter获取指标，它将Oracle的内容发送到Prometheus，并将Prometheus内容输出到Grafana。<br><img src="/img/oracle1.jpg" alt="crt"><br>Oracle DB→Oracle Exporter→Prometheus→Grafana</p>
+<p>Oracle Exporter需要将Oracle与Prometheus连接。Oracle Exporter将有关Oracle的信息传递给Prometheus。<br>创建yaml对象</p>
+<h1 id="u90E8_u7F72oracle-export"><a href="#u90E8_u7F72oracle-export" class="headerlink" title="部署oracle-export"></a>部署oracle-export</h1><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF | kubectl create -f - </span><br><span class="line">apiVersion: extensions/v1beta1</span><br><span class="line">kind: Deployment</span><br><span class="line">metadata:</span><br><span class="line">  labels:</span><br><span class="line">    name: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">  name: oracle-<span class="keyword">export</span>-dm</span><br><span class="line">  <span class="keyword">namespace</span>: monitoring</span><br><span class="line">spec:</span><br><span class="line">  replicas: <span class="number">1</span></span><br><span class="line">  selector:</span><br><span class="line">    matchLabels:</span><br><span class="line">      app: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">  <span class="keyword">template</span>:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        app: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">    spec:</span><br><span class="line">      containers:</span><br><span class="line">      - image: docker  wtingdocker/oracledb_exporter:latest</span><br><span class="line">        name: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">        command:</span><br><span class="line">        - <span class="string">"/oracledb_exporter"</span></span><br><span class="line">        ports:</span><br><span class="line">        - containerPort: <span class="number">9161</span></span><br><span class="line">          protocol: TCP</span><br><span class="line">        env:</span><br><span class="line">        - name: DATA_SOURCE_NAME</span><br><span class="line">          value: <span class="string">"system/oracle@ip:1521/sid"</span>  <span class="preprocessor">#改成自己的数据库信息 定义DATA_SOURCE_NAME变量</span></span><br><span class="line">---</span><br><span class="line">kind: Service</span><br><span class="line">apiVersion: v1</span><br><span class="line">metadata:</span><br><span class="line">  labels:</span><br><span class="line">    app: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">  name: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">  <span class="keyword">namespace</span>: monitoring</span><br><span class="line">spec:</span><br><span class="line">  type: NodePort</span><br><span class="line">  ports:</span><br><span class="line">  - port: <span class="number">9161</span></span><br><span class="line">    targetPort: <span class="number">9161</span></span><br><span class="line">  selector:</span><br><span class="line">    app: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+<h1 id="u4FEE_u6539prometheus-yml_u6587_u4EF6"><a href="#u4FEE_u6539prometheus-yml_u6587_u4EF6" class="headerlink" title="修改prometheus.yml文件"></a>修改prometheus.yml文件</h1><figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">scrape_configs</span>:</span><br><span class="line">- <span class="attribute">job_name</span>: <span class="string">'oracle-198'</span></span><br><span class="line">  <span class="attribute">static_configs</span>:</span><br><span class="line">  - <span class="attribute">targets</span>: [<span class="string">'oracle-export-198:9161'</span>]</span><br></pre></td></tr></table></figure>
+<p>重新加载prometheus配置文件<br><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl  apply <span class="operator">-f</span> configmao.yaml</span><br></pre></td></tr></table></figure></p>
+<p>重新启动prometheus容器以使修改后的内容生效<br><figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XPOST <span class="string">http:</span><span class="comment">//192.168.7.X:30680/-/reload</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="Grafana_u5C55_u793A"><a href="#Grafana_u5C55_u793A" class="headerlink" title="Grafana展示"></a>Grafana展示</h1><p>访问oracle-export端口验证Oracle和Prometheus连接<br><img src="/img/20181027225036.png" alt="oracle1"><br><img src="/img/20181027225445.png" alt="oracle1"><br>Grafana添加Prometheus数据库源<br><img src="/img/0181027230136.png" alt="oracle2"></p>
+<p>仪表板导入3333可以根据自己的需要添加export提供的metrics 展示以及通过alertmanager告警<br><img src="/img/20181027230648.png" alt="oracle2"></p>
 
-    
-
-    
-
+      
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/kubernetes/" rel="tag"><i class="fas fa-tags"></i>kubernetes</a>
+        
+        <a class="post-tag button" href="/tags/prometheus/" rel="tag"><i class="fas fa-tags"></i>prometheus</a>
+        
+      </div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/29/kubernetes-ingres-nginx高级配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/29/kubernetes-ingress配置HTTPS-TLS证书/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/09/29/kubernetes-ingress配置HTTPS-TLS证书/" itemprop="url">kubernetes ingress配置HTTPS/TLS证书</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-29T23:14:00+08:00">2018-09-29 23:14:00</time></span>
+        </span>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/29/kubernetes-ingres-nginx高级配置/" itemprop="url">kubernetes ingres-nginx高级配置</a></h1>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-29T23:03:00+08:00">
-                2018-09-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
-                    <span itemprop="name">kubernetes</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
+        <span class="post-meta-divider divider">|</span>
         
+        <span class="post-categories">
           
-            <h2 id="u901A_u8FC7configmap_u4FEE_u6539nginx_controller_u7684_u4E00_u4E9B_u5168_u5C40_u53D8_u91CF"><a href="#u901A_u8FC7configmap_u4FEE_u6539nginx_controller_u7684_u4E00_u4E9B_u5168_u5C40_u53D8_u91CF" class="headerlink" title="通过configmap修改nginx controller的一些全局变量"></a>通过configmap修改nginx controller的一些全局变量</h2><p>通过启动nginx controller的yaml文件，其实我们可以看出来，在启动controller的时候，向启动命令传递了一大堆参数，包括–default-backend-service以及–apiserver-host等。更多的参数，可以直接参考<a href="https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/multiple-ingress.md" target="_blank" rel="external">相关文档</a></p>
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p><a href="https://kubernetes.io/docs/concepts/services-networking/ingress/" target="_blank" rel="external">Ingress是Kubernetes中的一个概念，用于</a>将入站连接路由到不同的服务。这可以通过不同方式实现。<br>生成证书文件<br><figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl req -x509 -nodes -days <span class="number">2920</span> -newkey rsa:<span class="number">2048</span> -keyout tls<span class="class">.key</span> -out tls<span class="class">.crt</span> -subj <span class="string">"/CN=*.idcsec.com/O=nginxsvc"</span></span><br></pre></td></tr></table></figure></p>
+<p>导入证书文件到k8s secret<br><figure class="hljs highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl <span class="built_in">create</span> secret tls <span class="keyword">https</span>-secret <span class="comment">--key tls.key --cert tls.crt</span></span><br></pre></td></tr></table></figure></p>
+<p>或者使用yaml<br><figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">apiVersion:</span> v1</span><br><span class="line"><span class="string">kind:</span> Secret</span><br><span class="line"><span class="string">type:</span> kubernetes.io/tls</span><br><span class="line"><span class="string">metadata:</span></span><br><span class="line"><span class="label">  name:</span> mytlssecret</span><br><span class="line"><span class="string">data:</span></span><br><span class="line">  tls.<span class="string">crt:</span> &lt;base64 encoded cert&gt;</span><br><span class="line">  tls.<span class="string">key:</span> &lt;base64 encoded key&gt;</span><br></pre></td></tr></table></figure></p>
+<p>配置ingress<br><figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">kind</span>: Ingress</span><br><span class="line"><span class="attribute">apiVersion</span>: extensions/v1beta1</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: test</span><br><span class="line">  <span class="attribute">annotations</span>:</span><br><span class="line">    ingress.kubernetes.io/<span class="attribute">ssl-redirect</span>: <span class="string">"False"</span>  #设置是否强制跳转 false| true</span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">tls</span>:</span><br><span class="line">  - <span class="attribute">hosts</span>: </span><br><span class="line">    - www.idcsec.com</span><br><span class="line">    <span class="attribute">secretName</span>: https-secret</span><br><span class="line">  <span class="attribute">rules</span>:</span><br><span class="line">  - <span class="attribute">host</span>:  www.idcsec.com</span><br><span class="line">    <span class="attribute">http</span>:</span><br><span class="line">      <span class="attribute">paths</span>:</span><br><span class="line">      - <span class="attribute">path</span>: /</span><br><span class="line">        <span class="attribute">backend</span>:</span><br><span class="line">          <span class="attribute">serviceName</span>: test</span><br><span class="line">          <span class="attribute">servicePort</span>: <span class="number">80</span></span><br></pre></td></tr></table></figure></p>
+<p>校验证书信息<br><figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -<span class="keyword">in</span> tls<span class="class">.crt</span>  -noout -text</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/kubernetes/ingress-nginx/tree/master/docs/examples/auth/client-certs" target="_blank" rel="external">Client Certificate Authentication</a><br><a href="https://github.com/kubernetes/ingress-nginx/blob/master/docs/examples/PREREQUISITES.md#creating-the-ca-authentication-secret" target="_blank" rel="external">TLS证书</a></p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/ingress-nginx/" rel="tag"><i class="fas fa-tags"></i>ingress-nginx</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/29/kubernetes-ingres-nginx高级配置/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/09/29/kubernetes-ingres-nginx高级配置/" itemprop="url">kubernetes ingres-nginx高级配置</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-29T23:03:00+08:00">2018-09-29 23:03:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <h2 id="u901A_u8FC7configmap_u4FEE_u6539nginx_controller_u7684_u4E00_u4E9B_u5168_u5C40_u53D8_u91CF"><a href="#u901A_u8FC7configmap_u4FEE_u6539nginx_controller_u7684_u4E00_u4E9B_u5168_u5C40_u53D8_u91CF" class="headerlink" title="通过configmap修改nginx controller的一些全局变量"></a>通过configmap修改nginx controller的一些全局变量</h2><p>通过启动nginx controller的yaml文件，其实我们可以看出来，在启动controller的时候，向启动命令传递了一大堆参数，包括–default-backend-service以及–apiserver-host等。更多的参数，可以直接参考<a href="https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/multiple-ingress.md" target="_blank" rel="external">相关文档</a></p>
 <p>nginx controller本质上就是一个nginx代理，这个代理使用了一大堆nginx默认参数启动。而在某些特定场景下，这些我们需要定制这些参数以更适用于我们的需求。在controller启动的时候，提供了一个–configmap的参数，我们可以将需要定制的参数保存到一个configmap中，并在controller启动的时候，来读取这个configmap，获取其值，应用到controller中。具体哪些值可以通过configmap来传递，可以直接参考<a href="https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/nginx-configuration/configmap.md" target="_blank" rel="external">相关文档</a><br><a href="https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/nginx-configuration/configmap.md" target="_blank" rel="external">https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/nginx-configuration/configmap.md</a></p>
 <h1 id="u4E00_u3001_u4F7F_u7528ConfigMap"><a href="#u4E00_u3001_u4F7F_u7528ConfigMap" class="headerlink" title="一、使用ConfigMap"></a>一、使用ConfigMap</h1><p>确保指定启动Ingress控制器时要使用的configmaps资源。</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">kind</span>: ConfigMap </span><br><span class="line"><span class="attribute">apiVersion</span>: v1</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: nginx-configuration</span><br><span class="line">  <span class="attribute">namespace</span>: ingress-nginx</span><br><span class="line">  <span class="attribute">labels</span>:</span><br><span class="line">    <span class="attribute">app</span>: ingress-nginx</span><br><span class="line"><span class="attribute">data</span>:</span><br><span class="line">  <span class="attribute">client-header-buffer-size</span>: <span class="string">"4k"</span></span><br><span class="line">  <span class="attribute">proxy-connect-timeout</span>: <span class="string">"40"</span></span><br><span class="line">  <span class="attribute">proxy-read-timeout</span>: <span class="string">"110"</span></span><br><span class="line">  <span class="attribute">proxy-send-timeout</span>: <span class="string">"110"</span></span><br></pre></td></tr></table></figure>
-<p>创建配置资源：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> kubectl apply -f nginx-configuration.yaml</span><br><span class="line"> kubectl get cm nginx-configuration -<span class="keyword">n</span> ingress-nginx  -o yaml</span><br><span class="line">[root@k8s-<span class="keyword">m</span> ~]# kubectl  exec -it     nginx-ingress-controller-5f947cc79f-86cvc      -<span class="keyword">n</span> ingress-nginx -- <span class="keyword">cat</span> /etc/nginx/nginx.<span class="keyword">conf</span> | grep    client_header_buffer_size</span><br><span class="line">trueclient_header_buffer_size       4k;</span><br></pre></td></tr></table></figure></p>
-<h3 id="u4FEE_u6539nginx-controller_u7684yml_u6587_u4EF6nginx-ingress-daemonset-yaml_u542F_u52A8_u53C2_u6570_u5982_u4E0B_uFF1A"><a href="#u4FEE_u6539nginx-controller_u7684yml_u6587_u4EF6nginx-ingress-daemonset-yaml_u542F_u52A8_u53C2_u6570_u5982_u4E0B_uFF1A" class="headerlink" title="修改nginx-controller的yml文件nginx-ingress-daemonset.yaml启动参数如下："></a>修改nginx-controller的yml文件nginx-ingress-daemonset.yaml启动参数如下：</h3><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">  -<span class="ruby"> <span class="symbol">args:</span></span><br><span class="line"></span>    -<span class="ruby"> /nginx-ingress-controller</span><br><span class="line"></span>    -<span class="ruby"> --default-backend-service=<span class="variable">$(</span><span class="constant">POD_NAMESPACE</span>)/default-http-backend</span><br><span class="line"></span>    -<span class="ruby"> --configmap=<span class="variable">$(</span><span class="constant">POD_NAMESPACE</span>)/nginx-configuration /<span class="regexp">/例如</span><br><span class="line"></span></span>    -<span class="ruby"><span class="regexp"> --tcp-services-configmap=$(POD_NAMESPACE)/tcp</span>-services</span><br><span class="line"></span>    -<span class="ruby"> --udp-services-configmap=<span class="variable">$(</span><span class="constant">POD_NAMESPACE</span>)/udp-services</span><br><span class="line"></span>    -<span class="ruby"> --publish-service=<span class="variable">$(</span><span class="constant">POD_NAMESPACE</span>)/ingress-nginx</span><br><span class="line"></span>    -<span class="ruby"> --annotations-prefix=nginx.ingress.kubernetes.io</span></span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">kind</span>: ConfigMap </span><br><span class="line"><span class="attribute">apiVersion</span>: v1</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: nginx-configuration</span><br><span class="line">  <span class="attribute">namespace</span>: ingress-nginx</span><br><span class="line">  <span class="attribute">labels</span>:</span><br><span class="line">    <span class="attribute">app</span>: ingress-nginx</span><br><span class="line"><span class="attribute">data</span>:</span><br><span class="line">  <span class="attribute">client-header-buffer-size</span>: <span class="string">"4k"</span></span><br><span class="line">  <span class="attribute">proxy-connect-timeout</span>: <span class="string">"40"</span></span><br><span class="line">  <span class="attribute">proxy-read-timeout</span>: <span class="string">"110"</span></span><br><span class="line">  <span class="attribute">proxy-send-timeout</span>: <span class="string">"110"</span></span><br></pre></td></tr></table></figure>
+<p>创建配置资源：<br><figure class="hljs highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> kubectl apply -f nginx-configuration.yaml</span><br><span class="line"> kubectl get cm nginx-configuration -<span class="keyword">n</span> ingress-nginx  -o yaml</span><br><span class="line">[root@k8s-<span class="keyword">m</span> ~]# kubectl  exec -it     nginx-ingress-controller-5f947cc79f-86cvc      -<span class="keyword">n</span> ingress-nginx -- <span class="keyword">cat</span> /etc/nginx/nginx.<span class="keyword">conf</span> | grep    client_header_buffer_size</span><br><span class="line">trueclient_header_buffer_size       4k;</span><br></pre></td></tr></table></figure></p>
+<h3 id="u4FEE_u6539nginx-controller_u7684yml_u6587_u4EF6nginx-ingress-daemonset-yaml_u542F_u52A8_u53C2_u6570_u5982_u4E0B_uFF1A"><a href="#u4FEE_u6539nginx-controller_u7684yml_u6587_u4EF6nginx-ingress-daemonset-yaml_u542F_u52A8_u53C2_u6570_u5982_u4E0B_uFF1A" class="headerlink" title="修改nginx-controller的yml文件nginx-ingress-daemonset.yaml启动参数如下："></a>修改nginx-controller的yml文件nginx-ingress-daemonset.yaml启动参数如下：</h3><figure class="hljs highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">  -<span class="ruby"> <span class="symbol">args:</span></span><br><span class="line"></span>    -<span class="ruby"> /nginx-ingress-controller</span><br><span class="line"></span>    -<span class="ruby"> --default-backend-service=<span class="variable">$(</span><span class="constant">POD_NAMESPACE</span>)/default-http-backend</span><br><span class="line"></span>    -<span class="ruby"> --configmap=<span class="variable">$(</span><span class="constant">POD_NAMESPACE</span>)/nginx-configuration /<span class="regexp">/例如</span><br><span class="line"></span></span>    -<span class="ruby"><span class="regexp"> --tcp-services-configmap=$(POD_NAMESPACE)/tcp</span>-services</span><br><span class="line"></span>    -<span class="ruby"> --udp-services-configmap=<span class="variable">$(</span><span class="constant">POD_NAMESPACE</span>)/udp-services</span><br><span class="line"></span>    -<span class="ruby"> --publish-service=<span class="variable">$(</span><span class="constant">POD_NAMESPACE</span>)/ingress-nginx</span><br><span class="line"></span>    -<span class="ruby"> --annotations-prefix=nginx.ingress.kubernetes.io</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>如需要生效重启nginx-ingress-controller pod *<h1 id="u4E8C_u3001_u4F7F_u7528Annotations"><a href="#u4E8C_u3001_u4F7F_u7528Annotations" class="headerlink" title="二、使用Annotations"></a>二、使用Annotations</h1>如果只想自定义特定Ingress资源的配置，可以使用Annotations。<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">apiVersion</span>: extensions/v1beta1</span><br><span class="line"><span class="attribute">kind</span>: Ingress</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: cafe-ingress-with-annotations</span><br><span class="line">  <span class="attribute">annotations</span>:</span><br><span class="line">    nginx.org/<span class="attribute">proxy-connect-timeout</span>: <span class="string">"30s"</span></span><br><span class="line">    nginx.org/<span class="attribute">proxy-read-timeout</span>: <span class="string">"20s"</span></span><br><span class="line">    nginx.org/<span class="attribute">client-max-body-size</span>: <span class="string">"4m"</span></span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">rules</span>:</span><br><span class="line">  - <span class="attribute">host</span>: cafe.example.com</span><br><span class="line">    <span class="attribute">http</span>:</span><br><span class="line">      <span class="attribute">paths</span>:</span><br><span class="line">      - <span class="attribute">path</span>: /tea</span><br><span class="line">        <span class="attribute">backend</span>:</span><br><span class="line">          <span class="attribute">serviceName</span>: tea-svc</span><br><span class="line">          <span class="attribute">servicePort</span>: <span class="number">80</span></span><br><span class="line">      - <span class="attribute">path</span>: /coffee</span><br><span class="line">        <span class="attribute">backend</span>:</span><br><span class="line">          <span class="attribute">serviceName</span>: coffee-svc</span><br><span class="line">          <span class="attribute">servicePort</span>: <span class="number">80</span></span><br></pre></td></tr></table></figure>
+<li>如需要生效重启nginx-ingress-controller pod *<h1 id="u4E8C_u3001_u4F7F_u7528Annotations"><a href="#u4E8C_u3001_u4F7F_u7528Annotations" class="headerlink" title="二、使用Annotations"></a>二、使用Annotations</h1>如果只想自定义特定Ingress资源的配置，可以使用Annotations。<figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">apiVersion</span>: extensions/v1beta1</span><br><span class="line"><span class="attribute">kind</span>: Ingress</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: cafe-ingress-with-annotations</span><br><span class="line">  <span class="attribute">annotations</span>:</span><br><span class="line">    nginx.org/<span class="attribute">proxy-connect-timeout</span>: <span class="string">"30s"</span></span><br><span class="line">    nginx.org/<span class="attribute">proxy-read-timeout</span>: <span class="string">"20s"</span></span><br><span class="line">    nginx.org/<span class="attribute">client-max-body-size</span>: <span class="string">"4m"</span></span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">rules</span>:</span><br><span class="line">  - <span class="attribute">host</span>: cafe.example.com</span><br><span class="line">    <span class="attribute">http</span>:</span><br><span class="line">      <span class="attribute">paths</span>:</span><br><span class="line">      - <span class="attribute">path</span>: /tea</span><br><span class="line">        <span class="attribute">backend</span>:</span><br><span class="line">          <span class="attribute">serviceName</span>: tea-svc</span><br><span class="line">          <span class="attribute">servicePort</span>: <span class="number">80</span></span><br><span class="line">      - <span class="attribute">path</span>: /coffee</span><br><span class="line">        <span class="attribute">backend</span>:</span><br><span class="line">          <span class="attribute">serviceName</span>: coffee-svc</span><br><span class="line">          <span class="attribute">servicePort</span>: <span class="number">80</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>Annotations配置优先于ConfigMap<br><a href="https://github.com/nginxinc/kubernetes-ingress/tree/master/examples/customization" target="_blank" rel="external">https://github.com/nginxinc/kubernetes-ingress/tree/master/examples/customization</a><br><a href="https://github.com/nginxinc/kubernetes-ingress/tree/master/examples/customization" target="_blank" rel="external">https://github.com/nginxinc/kubernetes-ingress/tree/master/examples/customization</a></p>
 <h1 id="u9650_u901F"><a href="#u9650_u901F" class="headerlink" title="限速"></a>限速</h1><p>Annotations<code>ingress.kubernetes.io/limit-connections</code>和<code>ingress.kubernetes.io/limit-rps</code>定义可由单个客户端IP地址打开的连接的限制。这可用于缓解<a href="https://www.nginx.com/blog/mitigating-ddos-attacks-with-nginx-and-nginx-plus" target="_blank" rel="external">DDoS攻击</a>。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nginx<span class="class">.ingress</span><span class="class">.kubernetes</span><span class="class">.io</span>/limit-connections：单个IP地址允许的并发连接数。</span><br><span class="line"></span><br><span class="line">nginx<span class="class">.ingress</span><span class="class">.kubernetes</span><span class="class">.io</span>/limit-rps：每秒可从给定IP接受的连接数。</span><br><span class="line"></span><br><span class="line">如果在单个Ingress规则中指定两个Annotations，`limit-rps`则优先。</span><br></pre></td></tr></table></figure>
-          
-        
+<figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nginx<span class="class">.ingress</span><span class="class">.kubernetes</span><span class="class">.io</span>/limit-connections：单个IP地址允许的并发连接数。</span><br><span class="line"></span><br><span class="line">nginx<span class="class">.ingress</span><span class="class">.kubernetes</span><span class="class">.io</span>/limit-rps：每秒可从给定IP接受的连接数。</span><br><span class="line"></span><br><span class="line">如果在单个Ingress规则中指定两个Annotations，`limit-rps`则优先。</span><br></pre></td></tr></table></figure>
       
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/ingress-nginx/" rel="tag"><i class="fas fa-tags"></i>ingress-nginx</a>
+        
+      </div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/21/etcdv3-集群基本操作使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/21/etcdv3-集群基本操作使用/" itemprop="url">etcdv3 集群基本操作使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-21T23:40:27+08:00">
-                2018-09-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://github.com/coreos/etcd" target="_blank" rel="external">etcd</a>是一个开源的分布式键值对数据库，他的每一个节点都有一份数据的copy，当有节点故障时保证了高可用性。etcd使用<a href="https://raft.github.io/" target="_blank" rel="external">Raft</a>算法来保证一致性。</p>
-<p>etcd的apiv3在使用命令时需要在前面加上ETCDCTL_API=3<br>集群成员<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ETCDCTL_API=<span class="number">3</span> etcdctl member <span class="built_in">list</span></span><br></pre></td></tr></table></figure></p>
-<p>更新一个节点ip<br><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">etcdctl <span class="keyword">member</span> list</span><br><span class="line">etcdctl <span class="keyword">member</span> update memberID http:<span class="comment">//ip:2380</span></span><br></pre></td></tr></table></figure></p>
-<p>删除一个节点<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">etcdctl member <span class="keyword">list</span>  </span><br><span class="line">etcdctl member <span class="built_in">remove</span> memberID  </span><br><span class="line">etcdctl member <span class="keyword">list</span>  </span><br><span class="line"><span class="keyword">ps</span> -ef|<span class="keyword">grep</span> etcd //在相关节点上kill掉etcd进程</span><br></pre></td></tr></table></figure></p>
-<p>测试增加一个新节点<br>注意：添加已经删除的需要将etcd3的rm -rf /var/lib/etcd/*必须删除<br>移除节点<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">ETCDCTL_API</span>=<span class="number">3</span>  etcdctl --endpoints=<span class="symbol">https:</span>/<span class="regexp">/192.168.7.93:2379,https:/</span><span class="regexp">/192.168.7.94:2379，https:/</span><span class="regexp">/192.168.7.92:2379   --cacert=/etc</span><span class="regexp">/kubernetes/ssl</span><span class="regexp">/ca.pem   --cert=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd.pem   --key=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd-key.pem  member  list -w table</span><br><span class="line">ETCDCTL_API=3  etcdctl --endpoints=https:/</span><span class="regexp">/192.168.7.93:2379,https:/</span><span class="regexp">/192.168.7.94:2379，https:/</span><span class="regexp">/192.168.7.92:2379   --cacert=/etc</span><span class="regexp">/kubernetes/ssl</span><span class="regexp">/ca.pem   --cert=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd.pem   --key=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd-key.pem  member  remove 7d17ab970f6de141</span></span><br></pre></td></tr></table></figure></p>
-<p>添加节点<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="constant">ETCDCTL_API</span>=<span class="number">3</span>  etcdctl --endpoints=<span class="symbol">https:</span>/<span class="regexp">/192.168.7.93:2379,https:/</span><span class="regexp">/192.168.7.94:2379，https:/</span><span class="regexp">/192.168.7.92:2379   --cacert=/etc</span><span class="regexp">/kubernetes/ssl</span><span class="regexp">/ca.pem   --cert=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd.pem   --key=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd-key.pem  member add  etcd3 --peer-urls="https:/</span><span class="regexp">/192.168.7.92:2380" /</span><span class="regexp">/查看新增成员列表，etcd3状态为unstarted</span><br><span class="line">rm -rf /var</span><span class="regexp">/lib/etcd</span><span class="regexp">/*  /</span><span class="regexp">/etcd3上面操作</span><br><span class="line">vi  /etc</span><span class="regexp">/systemd/system</span><span class="regexp">/etcd.service  /</span><span class="regexp">//etcd</span>3上面操作 修改--initial-cluster-state=existing 不改报错 streaming request ignored (<span class="constant">ID</span> mismatch got <span class="number">7</span>d17ab970f6de141 want <span class="number">58662</span>caff7c6e081)</span><br><span class="line">systemctl daemon-reload &amp;&amp; systemctl  restart   etcd  /<span class="regexp">//etcd</span>3上面操作</span><br><span class="line"><span class="constant">ETCDCTL_API</span>=<span class="number">3</span>  etcdctl --endpoints=<span class="symbol">https:</span>/<span class="regexp">/192.168.7.93:2379,https:/</span><span class="regexp">/192.168.7.94:2379，https:/</span><span class="regexp">/192.168.7.92:2379   --cacert=/etc</span><span class="regexp">/kubernetes/ssl</span><span class="regexp">/ca.pem   --cert=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd.pem   --key=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd-key.pem  member  list -w table</span></span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/21/etcdv3-集群基本操作使用/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
     </div>
-    
-    
-    
-	<div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/09/21/etcdv3-集群基本操作使用/" itemprop="url">etcdv3 集群基本操作使用</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-21T23:40:27+08:00">2018-09-21 23:40:27</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-	  </div>
-    
+      <p><a href="https://github.com/coreos/etcd" target="_blank" rel="external">etcd</a>是一个开源的分布式键值对数据库，他的每一个节点都有一份数据的copy，当有节点故障时保证了高可用性。etcd使用<a href="https://raft.github.io/" target="_blank" rel="external">Raft</a>算法来保证一致性。</p>
+<p>etcd的apiv3在使用命令时需要在前面加上ETCDCTL_API=3<br>集群成员<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ETCDCTL_API=<span class="number">3</span> etcdctl member <span class="built_in">list</span></span><br></pre></td></tr></table></figure></p>
+<p>更新一个节点ip<br><figure class="hljs highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">etcdctl <span class="keyword">member</span> list</span><br><span class="line">etcdctl <span class="keyword">member</span> update memberID http:<span class="comment">//ip:2380</span></span><br></pre></td></tr></table></figure></p>
+<p>删除一个节点<br><figure class="hljs highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">etcdctl member <span class="keyword">list</span>  </span><br><span class="line">etcdctl member <span class="built_in">remove</span> memberID  </span><br><span class="line">etcdctl member <span class="keyword">list</span>  </span><br><span class="line"><span class="keyword">ps</span> -ef|<span class="keyword">grep</span> etcd //在相关节点上kill掉etcd进程</span><br></pre></td></tr></table></figure></p>
+<p>测试增加一个新节点<br>注意：添加已经删除的需要将etcd3的rm -rf /var/lib/etcd/*必须删除<br>移除节点<br><figure class="hljs highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">ETCDCTL_API</span>=<span class="number">3</span>  etcdctl --endpoints=<span class="symbol">https:</span>/<span class="regexp">/192.168.7.93:2379,https:/</span><span class="regexp">/192.168.7.94:2379，https:/</span><span class="regexp">/192.168.7.92:2379   --cacert=/etc</span><span class="regexp">/kubernetes/ssl</span><span class="regexp">/ca.pem   --cert=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd.pem   --key=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd-key.pem  member  list -w table</span><br><span class="line">ETCDCTL_API=3  etcdctl --endpoints=https:/</span><span class="regexp">/192.168.7.93:2379,https:/</span><span class="regexp">/192.168.7.94:2379，https:/</span><span class="regexp">/192.168.7.92:2379   --cacert=/etc</span><span class="regexp">/kubernetes/ssl</span><span class="regexp">/ca.pem   --cert=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd.pem   --key=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd-key.pem  member  remove 7d17ab970f6de141</span></span><br></pre></td></tr></table></figure></p>
+<p>添加节点<br><figure class="hljs highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="constant">ETCDCTL_API</span>=<span class="number">3</span>  etcdctl --endpoints=<span class="symbol">https:</span>/<span class="regexp">/192.168.7.93:2379,https:/</span><span class="regexp">/192.168.7.94:2379，https:/</span><span class="regexp">/192.168.7.92:2379   --cacert=/etc</span><span class="regexp">/kubernetes/ssl</span><span class="regexp">/ca.pem   --cert=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd.pem   --key=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd-key.pem  member add  etcd3 --peer-urls="https:/</span><span class="regexp">/192.168.7.92:2380" /</span><span class="regexp">/查看新增成员列表，etcd3状态为unstarted</span><br><span class="line">rm -rf /var</span><span class="regexp">/lib/etcd</span><span class="regexp">/*  /</span><span class="regexp">/etcd3上面操作</span><br><span class="line">vi  /etc</span><span class="regexp">/systemd/system</span><span class="regexp">/etcd.service  /</span><span class="regexp">//etcd</span>3上面操作 修改--initial-cluster-state=existing 不改报错 streaming request ignored (<span class="constant">ID</span> mismatch got <span class="number">7</span>d17ab970f6de141 want <span class="number">58662</span>caff7c6e081)</span><br><span class="line">systemctl daemon-reload &amp;&amp; systemctl  restart   etcd  /<span class="regexp">//etcd</span>3上面操作</span><br><span class="line"><span class="constant">ETCDCTL_API</span>=<span class="number">3</span>  etcdctl --endpoints=<span class="symbol">https:</span>/<span class="regexp">/192.168.7.93:2379,https:/</span><span class="regexp">/192.168.7.94:2379，https:/</span><span class="regexp">/192.168.7.92:2379   --cacert=/etc</span><span class="regexp">/kubernetes/ssl</span><span class="regexp">/ca.pem   --cert=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd.pem   --key=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd-key.pem  member  list -w table</span></span><br></pre></td></tr></table></figure></p>
 
-    
-
-    
-
+      
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/21/kubernetesk-kubelet证书到期解决方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/21/kubernetesk-kubelet证书到期解决方法/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/09/21/kubernetesk-kubelet证书到期解决方法/" itemprop="url">kubernetesk kubelet证书到期解决方法</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-21T23:31:00+08:00">2018-09-21 23:31:00</time></span>
+        </span>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/21/kubernetesk-kubelet证书到期解决方法/" itemprop="url">kubernetesk kubelet证书到期解决方法</a></h1>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-21T23:31:00+08:00">
-                2018-09-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
-                    <span itemprop="name">kubernetes</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
+        <span class="post-meta-divider divider">|</span>
         
+        <span class="post-categories">
           
-            <p>kubelete 证书默认有效期一年<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -s -L -o <span class="regexp">/bin/</span>cfssl-certinfo <span class="string">https:</span><span class="comment">//pkg.cfssl.org/R1.2/cfssl-certinfo_linux-amd64</span></span><br><span class="line">chmod a+x <span class="regexp">/bin/</span>cfssl-certinfo</span><br><span class="line"> cfssl-certinfo -cert <span class="regexp">/etc/</span>kubernetes<span class="regexp">/ssl/</span>kubelet.crt</span><br></pre></td></tr></table></figure></p>
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>kubelete 证书默认有效期一年<br><figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -s -L -o <span class="regexp">/bin/</span>cfssl-certinfo <span class="string">https:</span><span class="comment">//pkg.cfssl.org/R1.2/cfssl-certinfo_linux-amd64</span></span><br><span class="line">chmod a+x <span class="regexp">/bin/</span>cfssl-certinfo</span><br><span class="line"> cfssl-certinfo -cert <span class="regexp">/etc/</span>kubernetes<span class="regexp">/ssl/</span>kubelet.crt</span><br></pre></td></tr></table></figure></p>
 <p><img src="/img/kubelet1.png" alt="crt"></p>
-<h1 id="u65B9_u6CD5_u4E00"><a href="#u65B9_u6CD5_u4E00" class="headerlink" title="方法一"></a>方法一</h1><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">备份 mkdir  <span class="regexp">~/sslback &amp;&amp; mv /</span>etc<span class="regexp">/kubernetes/</span>kubelet.kubeconfig  <span class="regexp">~/sslback/</span></span><br><span class="line">使用admin证书文件替换</span><br><span class="line">cp <span class="regexp">~/.kube/</span>config <span class="regexp">/etc/</span>kubernetes/kubelet.kubeconfig </span><br><span class="line">systemctl  restart kubelet &amp;&amp; systemctl  status  kubelet</span><br></pre></td></tr></table></figure>
-<h1 id="u65B9_u6CD5_u4E8C_kubelet_u91CD_u65B0_u8BF7_u6C42_u8BC1_u4E66"><a href="#u65B9_u6CD5_u4E8C_kubelet_u91CD_u65B0_u8BF7_u6C42_u8BC1_u4E66" class="headerlink" title="方法二 kubelet重新请求证书"></a>方法二 kubelet重新请求证书</h1><p>手动签发<br>在 kubelet 首次启动后，如果用户 Token 没问题，并且 RBAC 也做了相应的设置，那么此时在集群内应该能看到 kubelet 发起的 CSR 请求 ，必须通过后kubernetes 系统才会将该 Node 加入到集群。<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">在证书过期node删除kubelet相关证书文件</span><br><span class="line">rm -rf <span class="regexp">/etc/</span>kubernetes/kubelet.kubeconfig</span><br><span class="line">rm -rf <span class="regexp">/etc/</span>kubernetes<span class="regexp">/ssl/</span>kubelet.*</span><br><span class="line">systemctl  restart kubelet &amp;&amp; systemctl  status  kubelet</span><br><span class="line">自动生成了kubelet kubeconfig 文件和公私钥</span><br><span class="line">查看未授权的CSR请求</span><br><span class="line">kubectl get csr</span><br><span class="line">通过CSR 请求：</span><br><span class="line">kubectl certificate approve csr-<span class="number">404</span>fc</span><br><span class="line">查看重新生成的证书文件</span><br><span class="line">ll <span class="regexp">/etc/</span>kubernetes<span class="regexp">/ssl/</span>kubelet.*</span><br><span class="line">kubectl  get nodes --show-labels</span><br></pre></td></tr></table></figure></p>
+<h1 id="u65B9_u6CD5_u4E00"><a href="#u65B9_u6CD5_u4E00" class="headerlink" title="方法一"></a>方法一</h1><figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">备份 mkdir  <span class="regexp">~/sslback &amp;&amp; mv /</span>etc<span class="regexp">/kubernetes/</span>kubelet.kubeconfig  <span class="regexp">~/sslback/</span></span><br><span class="line">使用admin证书文件替换</span><br><span class="line">cp <span class="regexp">~/.kube/</span>config <span class="regexp">/etc/</span>kubernetes/kubelet.kubeconfig </span><br><span class="line">systemctl  restart kubelet &amp;&amp; systemctl  status  kubelet</span><br></pre></td></tr></table></figure>
+<h1 id="u65B9_u6CD5_u4E8C_kubelet_u91CD_u65B0_u8BF7_u6C42_u8BC1_u4E66"><a href="#u65B9_u6CD5_u4E8C_kubelet_u91CD_u65B0_u8BF7_u6C42_u8BC1_u4E66" class="headerlink" title="方法二 kubelet重新请求证书"></a>方法二 kubelet重新请求证书</h1><p>手动签发<br>在 kubelet 首次启动后，如果用户 Token 没问题，并且 RBAC 也做了相应的设置，那么此时在集群内应该能看到 kubelet 发起的 CSR 请求 ，必须通过后kubernetes 系统才会将该 Node 加入到集群。<br><figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">在证书过期node删除kubelet相关证书文件</span><br><span class="line">rm -rf <span class="regexp">/etc/</span>kubernetes/kubelet.kubeconfig</span><br><span class="line">rm -rf <span class="regexp">/etc/</span>kubernetes<span class="regexp">/ssl/</span>kubelet.*</span><br><span class="line">systemctl  restart kubelet &amp;&amp; systemctl  status  kubelet</span><br><span class="line">自动生成了kubelet kubeconfig 文件和公私钥</span><br><span class="line">查看未授权的CSR请求</span><br><span class="line">kubectl get csr</span><br><span class="line">通过CSR 请求：</span><br><span class="line">kubectl certificate approve csr-<span class="number">404</span>fc</span><br><span class="line">查看重新生成的证书文件</span><br><span class="line">ll <span class="regexp">/etc/</span>kubernetes<span class="regexp">/ssl/</span>kubelet.*</span><br><span class="line">kubectl  get nodes --show-labels</span><br></pre></td></tr></table></figure></p>
 
-          
-        
       
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/tls/" rel="tag"><i class="fas fa-tags"></i>tls</a>
+        
+      </div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/19/prometheus-alertmanager邮件告警/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/19/prometheus-alertmanager邮件告警/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/09/19/prometheus-alertmanager邮件告警/" itemprop="url">prometheus alertmanager邮件告警</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-19T14:43:00+08:00">2018-09-19 14:43:00</time></span>
+        </span>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/19/prometheus-alertmanager邮件告警/" itemprop="url">prometheus alertmanager邮件告警</a></h1>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-19T14:43:00+08:00">
-                2018-09-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/k8s/" itemprop="url" rel="index">
-                    <span itemprop="name">k8s</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
+        <span class="post-meta-divider divider">|</span>
         
-          <p>prometheus将监测到的异常事件发送给alertmanager，alertmanager发送异常事件的通知（邮件、webhook等）</p>
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/k8s/" itemprop="url" rel="index"><span itemprop="name">k8s</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>prometheus将监测到的异常事件发送给alertmanager，alertmanager发送异常事件的通知（邮件、webhook等）</p>
 <ul>
-<li>参考<br><a href="https://prometheus.io/docs/alerting/configuration/">https://prometheus.io/docs/alerting/configuration/</a><br><a href="https://coreos.com/tectonic/docs/latest/tectonic-prometheus-operator/user-guides/configuring-prometheus-alertmanager.html">https://coreos.com/tectonic/docs/latest/tectonic-prometheus-operator/user-guides/configuring-prometheus-alertmanager.html</a><br><a href="https://github.com/coreos/prometheus-operator/blob/master/contrib/kube-prometheus/manifests/prometheus-rules.yaml">https://github.com/coreos/prometheus-operator/blob/master/contrib/kube-prometheus/manifests/prometheus-rules.yaml</a><br>k8s部署prometheus<br>略<br>k8s部署alertmanager<h1 id="configMAP_yaml_u6587_u4EF6"><a href="#configMAP_yaml_u6587_u4EF6" class="headerlink" title="configMAP yaml文件"></a>configMAP yaml文件</h1><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">apiVersion</span>: v1</span><br><span class="line"><span class="attribute">kind</span>: ConfigMap</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">    <span class="attribute">name</span>: alertmanager</span><br><span class="line">    <span class="attribute">namespace</span>: monitoring</span><br><span class="line"><span class="attribute">data</span>:</span><br><span class="line">  config.<span class="attribute">yml</span>: |-</span><br><span class="line">    <span class="attribute">global</span>:</span><br><span class="line">      <span class="attribute">smtp_smarthost</span>:  <span class="string">'smtp.idcsec.com:25'</span></span><br><span class="line">      <span class="attribute">smtp_from</span>:  <span class="string">'root@idcsec.com'</span></span><br><span class="line">      <span class="attribute">smtp_auth_username</span>:   <span class="string">'root@idcsec.com'</span></span><br><span class="line">      <span class="attribute">smtp_auth_password</span>:  <span class="string">'pwd'</span></span><br><span class="line">      <span class="attribute">resolve_timeout</span>: <span class="number">10</span>m</span><br><span class="line">      <span class="attribute">smtp_require_tls</span>: false</span><br><span class="line">    <span class="attribute">route</span>:</span><br><span class="line">      <span class="attribute">group_by</span>: [<span class="string">'alertname'</span>]</span><br><span class="line">      <span class="attribute">repeat_interval</span>: <span class="number">1</span>h</span><br><span class="line">      <span class="attribute">receiver</span>: monitoring</span><br><span class="line">    <span class="attribute">receivers</span>:</span><br><span class="line">    - <span class="attribute">name</span>: <span class="string">'monitoring'</span></span><br><span class="line">      <span class="attribute">email_configs</span>:</span><br><span class="line">      - <span class="attribute">to</span>: <span class="string">'test@idcsec.com'</span> <span class="comment">//接收邮件'A@.com,B@com'</span></span><br></pre></td></tr></table></figure>
+<li>参考<br><a href="https://prometheus.io/docs/alerting/configuration/">https://prometheus.io/docs/alerting/configuration/</a><br><a href="https://coreos.com/tectonic/docs/latest/tectonic-prometheus-operator/user-guides/configuring-prometheus-alertmanager.html">https://coreos.com/tectonic/docs/latest/tectonic-prometheus-operator/user-guides/configuring-prometheus-alertmanager.html</a><br><a href="https://github.com/coreos/prometheus-operator/blob/master/contrib/kube-prometheus/manifests/prometheus-rules.yaml">https://github.com/coreos/prometheus-operator/blob/master/contrib/kube-prometheus/manifests/prometheus-rules.yaml</a><br>k8s部署prometheus<br>略<br>k8s部署alertmanager<h1 id="configMAP_yaml_u6587_u4EF6"><a href="#configMAP_yaml_u6587_u4EF6" class="headerlink" title="configMAP yaml文件"></a>configMAP yaml文件</h1><figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">apiVersion</span>: v1</span><br><span class="line"><span class="attribute">kind</span>: ConfigMap</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">    <span class="attribute">name</span>: alertmanager</span><br><span class="line">    <span class="attribute">namespace</span>: monitoring</span><br><span class="line"><span class="attribute">data</span>:</span><br><span class="line">  config.<span class="attribute">yml</span>: |-</span><br><span class="line">    <span class="attribute">global</span>:</span><br><span class="line">      <span class="attribute">smtp_smarthost</span>:  <span class="string">'smtp.idcsec.com:25'</span></span><br><span class="line">      <span class="attribute">smtp_from</span>:  <span class="string">'root@idcsec.com'</span></span><br><span class="line">      <span class="attribute">smtp_auth_username</span>:   <span class="string">'root@idcsec.com'</span></span><br><span class="line">      <span class="attribute">smtp_auth_password</span>:  <span class="string">'pwd'</span></span><br><span class="line">      <span class="attribute">resolve_timeout</span>: <span class="number">10</span>m</span><br><span class="line">      <span class="attribute">smtp_require_tls</span>: false</span><br><span class="line">    <span class="attribute">route</span>:</span><br><span class="line">      <span class="attribute">group_by</span>: [<span class="string">'alertname'</span>]</span><br><span class="line">      <span class="attribute">repeat_interval</span>: <span class="number">1</span>h</span><br><span class="line">      <span class="attribute">receiver</span>: monitoring</span><br><span class="line">    <span class="attribute">receivers</span>:</span><br><span class="line">    - <span class="attribute">name</span>: <span class="string">'monitoring'</span></span><br><span class="line">      <span class="attribute">email_configs</span>:</span><br><span class="line">      - <span class="attribute">to</span>: <span class="string">'test@idcsec.com'</span> <span class="comment">//接收邮件'A@.com,B@com'</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/19/prometheus-alertmanager邮件告警/#thêm" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
       
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/prometheus/" rel="tag"><i class="fas fa-tags"></i>prometheus</a>
+        
+      </div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/16/解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/16/解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/09/16/解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx/" itemprop="url">解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-16T22:05:00+08:00">2018-09-16 22:05:00</time></span>
+        </span>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/16/解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx/" itemprop="url">解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx</a></h1>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-16T22:05:00+08:00">
-                2018-09-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
-                    <span itemprop="name">kubernetes</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
+        <span class="post-meta-divider divider">|</span>
         
+        <span class="post-categories">
           
-            <ul>
-<li>解决方法比较多主要根据自己的环境找到合适的解决方式，ingress-nginx默认监听443,80，这里的环境主要是因为路由器映射到非80端口导致跳转的Heather的Request丢失端口跳转到了默认的80<br>参考<br><a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_redirect" target="_blank" rel="external">http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_redirect</a><br><a href="https://www.nginx.com/resources/wiki/start/topics/examples/fullexample2/" target="_blank" rel="external">https://www.nginx.com/resources/wiki/start/topics/examples/fullexample2/</a><br><a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#proxy-redirect" target="_blank" rel="external">https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#proxy-redirect</a><h1 id="nginx_u914D_u7F6E"><a href="#nginx_u914D_u7F6E" class="headerlink" title="nginx配置"></a>nginx配置</h1><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">  upstream tomcat &#123;</span><br><span class="line">    server <span class="number">127.0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">9090</span> weight=<span class="number">1</span> max_fails=<span class="number">3</span> fail_timeout=<span class="number">30</span>s;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  server &#123;</span><br><span class="line">    listen <span class="number">80</span>;</span><br><span class="line">    server_name example.com *.example.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">      proxy_next_upstream http_502 http_504 error timeout invalid_header;</span><br><span class="line"></span><br><span class="line">      proxy_set_header Host  <span class="variable">$host</span>:<span class="variable">$server</span>_port;</span><br><span class="line">      proxy_set_header X-Real-IP <span class="variable">$remote</span>_addr;</span><br><span class="line">      proxy_set_header X-Forwarded-For <span class="variable">$proxy</span>_add_x_forwarded_for;</span><br><span class="line">      proxy_redirect http://<span class="variable">$host</span> http://<span class="variable">$host</span>:<span class="variable">$server</span>_port;//由于是路由器上面配置映射非<span class="number">80</span>端口到<span class="number">80</span>端口这里就不能使用<span class="variable">$server</span>_port需要直接写端口号</span><br><span class="line">      proxy_redirect off;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <ul>
+<li>解决方法比较多主要根据自己的环境找到合适的解决方式，ingress-nginx默认监听443,80，这里的环境主要是因为路由器映射到非80端口导致跳转的Heather的Request丢失端口跳转到了默认的80<br>参考<br><a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_redirect" target="_blank" rel="external">http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_redirect</a><br><a href="https://www.nginx.com/resources/wiki/start/topics/examples/fullexample2/" target="_blank" rel="external">https://www.nginx.com/resources/wiki/start/topics/examples/fullexample2/</a><br><a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#proxy-redirect" target="_blank" rel="external">https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#proxy-redirect</a><h1 id="nginx_u914D_u7F6E"><a href="#nginx_u914D_u7F6E" class="headerlink" title="nginx配置"></a>nginx配置</h1><figure class="hljs highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">  upstream tomcat &#123;</span><br><span class="line">    server <span class="number">127.0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">9090</span> weight=<span class="number">1</span> max_fails=<span class="number">3</span> fail_timeout=<span class="number">30</span>s;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  server &#123;</span><br><span class="line">    listen <span class="number">80</span>;</span><br><span class="line">    server_name example.com *.example.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">      proxy_next_upstream http_502 http_504 error timeout invalid_header;</span><br><span class="line"></span><br><span class="line">      proxy_set_header Host  <span class="variable">$host</span>:<span class="variable">$server</span>_port;</span><br><span class="line">      proxy_set_header X-Real-IP <span class="variable">$remote</span>_addr;</span><br><span class="line">      proxy_set_header X-Forwarded-For <span class="variable">$proxy</span>_add_x_forwarded_for;</span><br><span class="line">      proxy_redirect http://<span class="variable">$host</span> http://<span class="variable">$host</span>:<span class="variable">$server</span>_port;//由于是路由器上面配置映射非<span class="number">80</span>端口到<span class="number">80</span>端口这里就不能使用<span class="variable">$server</span>_port需要直接写端口号</span><br><span class="line">      proxy_redirect off;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1 id="ingress-nginx_u914D_u7F6E"><a href="#ingress-nginx_u914D_u7F6E" class="headerlink" title="ingress-nginx配置"></a>ingress-nginx配置</h1><p>默认ingress-nginx 代理重定向是OFF<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-master ~]<span class="preprocessor"># kubectl exec -it nginx-ingress-controller-<span class="number">1971110253</span>-<span class="number">0</span>rcjw  -n kube-system -- cat /etc/nginx/nginx.conf   | grep <span class="string">"proxy_redirect"</span> | head -n <span class="number">1</span></span></span><br><span class="line">            proxy_redirect                          off;</span><br></pre></td></tr></table></figure></p>
-<h1 id="ingress_u4EE3_u7406_u91CD_u5B9A_u5411_u914D_u7F6E"><a href="#ingress_u4EE3_u7406_u91CD_u5B9A_u5411_u914D_u7F6E" class="headerlink" title="ingress代理重定向配置"></a>ingress代理重定向配置</h1><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">kind:</span> Ingress</span><br><span class="line"><span class="string">apiVersion:</span> extensions/v1beta1</span><br><span class="line"><span class="string">metadata:</span></span><br><span class="line"><span class="label">  name:</span> $&#123;projectSvc&#125;</span><br><span class="line"><span class="label">  annotations:</span></span><br><span class="line">    nginx.ingress.kubernetes.io/proxy-redirect-<span class="string">from:</span> <span class="string">"test.cn:9090"</span></span><br><span class="line">    nginx.ingress.kubernetes.io/proxy-redirect-<span class="string">to:</span> <span class="string">"test.cn:9090"</span></span><br><span class="line"><span class="string">spec:</span></span><br><span class="line"><span class="label">  rules:</span></span><br><span class="line">  - <span class="string">host:</span>  $&#123;projectUrl&#125;</span><br><span class="line"><span class="label">    http:</span></span><br><span class="line"><span class="label">      paths:</span></span><br><span class="line">      - <span class="string">path:</span> /</span><br><span class="line"><span class="label">        backend:</span></span><br><span class="line"><span class="label">          serviceName:</span> $&#123;projectSvc&#125;</span><br><span class="line"><span class="label">          servicePort:</span> <span class="number">80</span></span><br><span class="line">  - <span class="string">host:</span> $&#123;projectUrl<span class="regexp">/test.loca/</span>test.cn&#125;</span><br><span class="line"><span class="label">    http:</span> </span><br><span class="line"><span class="label">      paths:</span> </span><br><span class="line">      - <span class="string">path:</span> /</span><br><span class="line"><span class="label">        backend:</span></span><br><span class="line"><span class="label">          serviceName:</span> $&#123;projectSvc&#125;</span><br><span class="line"><span class="label">          servicePort:</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
+<h1 id="ingress-nginx_u914D_u7F6E"><a href="#ingress-nginx_u914D_u7F6E" class="headerlink" title="ingress-nginx配置"></a>ingress-nginx配置</h1><p>默认ingress-nginx 代理重定向是OFF<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-master ~]<span class="preprocessor"># kubectl exec -it nginx-ingress-controller-<span class="number">1971110253</span>-<span class="number">0</span>rcjw  -n kube-system -- cat /etc/nginx/nginx.conf   | grep <span class="string">"proxy_redirect"</span> | head -n <span class="number">1</span></span></span><br><span class="line">            proxy_redirect                          off;</span><br></pre></td></tr></table></figure></p>
+<h1 id="ingress_u4EE3_u7406_u91CD_u5B9A_u5411_u914D_u7F6E"><a href="#ingress_u4EE3_u7406_u91CD_u5B9A_u5411_u914D_u7F6E" class="headerlink" title="ingress代理重定向配置"></a>ingress代理重定向配置</h1><figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">kind:</span> Ingress</span><br><span class="line"><span class="string">apiVersion:</span> extensions/v1beta1</span><br><span class="line"><span class="string">metadata:</span></span><br><span class="line"><span class="label">  name:</span> $&#123;projectSvc&#125;</span><br><span class="line"><span class="label">  annotations:</span></span><br><span class="line">    nginx.ingress.kubernetes.io/proxy-redirect-<span class="string">from:</span> <span class="string">"test.cn:9090"</span></span><br><span class="line">    nginx.ingress.kubernetes.io/proxy-redirect-<span class="string">to:</span> <span class="string">"test.cn:9090"</span></span><br><span class="line"><span class="string">spec:</span></span><br><span class="line"><span class="label">  rules:</span></span><br><span class="line">  - <span class="string">host:</span>  $&#123;projectUrl&#125;</span><br><span class="line"><span class="label">    http:</span></span><br><span class="line"><span class="label">      paths:</span></span><br><span class="line">      - <span class="string">path:</span> /</span><br><span class="line"><span class="label">        backend:</span></span><br><span class="line"><span class="label">          serviceName:</span> $&#123;projectSvc&#125;</span><br><span class="line"><span class="label">          servicePort:</span> <span class="number">80</span></span><br><span class="line">  - <span class="string">host:</span> $&#123;projectUrl<span class="regexp">/test.loca/</span>test.cn&#125;</span><br><span class="line"><span class="label">    http:</span> </span><br><span class="line"><span class="label">      paths:</span> </span><br><span class="line">      - <span class="string">path:</span> /</span><br><span class="line"><span class="label">        backend:</span></span><br><span class="line"><span class="label">          serviceName:</span> $&#123;projectSvc&#125;</span><br><span class="line"><span class="label">          servicePort:</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>重点</li>
 </ul>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nginx<span class="class">.ingress</span><span class="class">.kubernetes</span><span class="class">.io</span>/proxy-redirect-from: <span class="string">"idcsec.com"</span></span><br><span class="line">nginx<span class="class">.ingress</span><span class="class">.kubernetes</span><span class="class">.io</span>/proxy-redirect-to: <span class="string">"idcsec.com"</span></span><br></pre></td></tr></table></figure>
-          
-        
+<figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nginx<span class="class">.ingress</span><span class="class">.kubernetes</span><span class="class">.io</span>/proxy-redirect-from: <span class="string">"idcsec.com"</span></span><br><span class="line">nginx<span class="class">.ingress</span><span class="class">.kubernetes</span><span class="class">.io</span>/proxy-redirect-to: <span class="string">"idcsec.com"</span></span><br></pre></td></tr></table></figure>
       
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/ingress-nginx/" rel="tag"><i class="fas fa-tags"></i>ingress-nginx</a>
+        
+        <a class="post-tag button" href="/tags/nginx/" rel="tag"><i class="fas fa-tags"></i>nginx</a>
+        
+      </div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/14/HARBOR仓库安装部署/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/14/HARBOR仓库安装部署/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/09/14/HARBOR仓库安装部署/" itemprop="url">HARBOR仓库安装部署</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-14T19:45:00+08:00">2018-09-14 19:45:00</time></span>
+        </span>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/14/HARBOR仓库安装部署/" itemprop="url">HARBOR仓库安装部署</a></h1>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-14T19:45:00+08:00">
-                2018-09-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
+        <span class="post-meta-divider divider">|</span>
         
-          <h1 id="Harbor__u4ECB_u7ECD"><a href="#Harbor__u4ECB_u7ECD" class="headerlink" title="<strong> Harbor 介绍</strong>"></a><strong> Harbor 介绍</strong></h1><p>Harbor 是 Vmwar 公司开源的 企业级的 Docker Registry 管理项目<br>它主要 提供 Dcoker Registry 管理UI，可基于角色访问控制, AD/LDAP 集成，日志审核等功能，完全的支持中文。<br>Harbor 的所有组件都在 Dcoker 中部署，所以 Harbor 可使用 Docker Compose 快速部署。<br>安装方式:<br>-在线安装程序：安装程序从Docker hub下载Harbor的图像。因此，安装程序的尺寸非常小。</p>
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <h1 id="Harbor__u4ECB_u7ECD"><a href="#Harbor__u4ECB_u7ECD" class="headerlink" title="<strong> Harbor 介绍</strong>"></a><strong> Harbor 介绍</strong></h1><p>Harbor 是 Vmwar 公司开源的 企业级的 Docker Registry 管理项目<br>它主要 提供 Dcoker Registry 管理UI，可基于角色访问控制, AD/LDAP 集成，日志审核等功能，完全的支持中文。<br>Harbor 的所有组件都在 Dcoker 中部署，所以 Harbor 可使用 Docker Compose 快速部署。<br>安装方式:<br>-在线安装程序：安装程序从Docker hub下载Harbor的图像。因此，安装程序的尺寸非常小。</p>
 <p>-脱机安装程序：当主机没有Internet连接时使用此安装程序。安装程序包含预先构建的图像，因此其大小更大。</p>
 <h2 id="harbor__u90E8_u7F72"><a href="#harbor__u90E8_u7F72" class="headerlink" title="harbor 部署"></a>harbor 部署</h2><p>开源项目地址：<a href="https://github.com/vmware/harbor">https://github.com/vmware/harbor</a><br>官方安装说明：<a href="https://github.com/vmware/harbor/blob/master/docs/installation_guide.md">https://github.com/vmware/harbor/blob/master/docs/installation_guide.md</a></p>
-<h1 id="Docker_u5B89_u88C5"><a href="#Docker_u5B89_u88C5" class="headerlink" title="Docker安装"></a>Docker安装</h1><h2 id="u5378_u8F7D_u8001docker_u7248_u672C"><a href="#u5378_u8F7D_u8001docker_u7248_u672C" class="headerlink" title="卸载老docker版本"></a>卸载老docker版本</h2><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo yum remove docker <span class="string">\</span></span><br><span class="line">                  docker-client <span class="string">\</span></span><br><span class="line">                  docker-client-latest <span class="string">\</span></span><br><span class="line">                  docker-common <span class="string">\</span></span><br><span class="line">                  docker-latest <span class="string">\</span></span><br><span class="line">                  docker-latest-logrotate <span class="string">\</span></span><br><span class="line">                  docker-logrotate <span class="string">\</span></span><br><span class="line">                  docker-selinux <span class="string">\</span></span><br><span class="line">                  docker-engine-selinux <span class="string">\</span></span><br><span class="line">                  docker-engine</span><br></pre></td></tr></table></figure>
-<h3 id="u5B89_u88C5_docker_repository"><a href="#u5B89_u88C5_docker_repository" class="headerlink" title="安装 docker repository"></a>安装 docker repository</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install -<span class="keyword">y</span> yum-utils \</span><br><span class="line">  device-mapper-persistent-data \</span><br><span class="line">  lvm2</span><br><span class="line">$ sudo yum-config-manager \</span><br><span class="line">    --<span class="built_in">add</span>-repo \</span><br><span class="line">    http<span class="variable">s:</span>//download.docker.<span class="keyword">com</span>/linux/centos/docker-<span class="keyword">ce</span>.repo</span><br><span class="line">$ yum <span class="keyword">list</span> docker-<span class="keyword">ce</span> --showduplicates | <span class="built_in">sort</span> -<span class="keyword">r</span></span><br><span class="line">$ sudo yum install docker-<span class="keyword">ce</span> -<span class="keyword">y</span></span><br><span class="line">$ systemctl   start docker</span><br></pre></td></tr></table></figure>
-<p>安装docker-compose<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@Pro harbor-<span class="number">1.5</span><span class="number">.3</span>]<span class="preprocessor"># yum install python2-pip -y &amp;&amp; yum install docker-compose -y</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="u4FEE_u6539docker_u52A0_u901F"><a href="#u4FEE_u6539docker_u52A0_u901F" class="headerlink" title="修改docker加速"></a>修改docker加速</h4><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/docker/daemon.json </span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"registry-mirrors"</span>: [ <span class="string">"https://registry.docker-cn.com"</span>,], </span><br><span class="line">  <span class="string">"max-concurrent-downloads"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"log-driver"</span>: <span class="string">"json-file"</span>,</span><br><span class="line">  <span class="string">"log-level"</span>: <span class="string">"warn"</span>,</span><br><span class="line">  <span class="string">"log-opts"</span>: &#123;</span><br><span class="line">    <span class="string">"max-size"</span>: <span class="string">"10m"</span>,</span><br><span class="line">    <span class="string">"max-file"</span>: <span class="string">"3"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/14/HARBOR仓库安装部署/#thêm" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+<h1 id="Docker_u5B89_u88C5"><a href="#Docker_u5B89_u88C5" class="headerlink" title="Docker安装"></a>Docker安装</h1><h2 id="u5378_u8F7D_u8001docker_u7248_u672C"><a href="#u5378_u8F7D_u8001docker_u7248_u672C" class="headerlink" title="卸载老docker版本"></a>卸载老docker版本</h2><figure class="hljs highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo yum remove docker <span class="string">\</span></span><br><span class="line">                  docker-client <span class="string">\</span></span><br><span class="line">                  docker-client-latest <span class="string">\</span></span><br><span class="line">                  docker-common <span class="string">\</span></span><br><span class="line">                  docker-latest <span class="string">\</span></span><br><span class="line">                  docker-latest-logrotate <span class="string">\</span></span><br><span class="line">                  docker-logrotate <span class="string">\</span></span><br><span class="line">                  docker-selinux <span class="string">\</span></span><br><span class="line">                  docker-engine-selinux <span class="string">\</span></span><br><span class="line">                  docker-engine</span><br></pre></td></tr></table></figure>
+<h3 id="u5B89_u88C5_docker_repository"><a href="#u5B89_u88C5_docker_repository" class="headerlink" title="安装 docker repository"></a>安装 docker repository</h3><figure class="hljs highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install -<span class="keyword">y</span> yum-utils \</span><br><span class="line">  device-mapper-persistent-data \</span><br><span class="line">  lvm2</span><br><span class="line">$ sudo yum-config-manager \</span><br><span class="line">    --<span class="built_in">add</span>-repo \</span><br><span class="line">    http<span class="variable">s:</span>//download.docker.<span class="keyword">com</span>/linux/centos/docker-<span class="keyword">ce</span>.repo</span><br><span class="line">$ yum <span class="keyword">list</span> docker-<span class="keyword">ce</span> --showduplicates | <span class="built_in">sort</span> -<span class="keyword">r</span></span><br><span class="line">$ sudo yum install docker-<span class="keyword">ce</span> -<span class="keyword">y</span></span><br><span class="line">$ systemctl   start docker</span><br></pre></td></tr></table></figure>
+<p>安装docker-compose<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@Pro harbor-<span class="number">1.5</span><span class="number">.3</span>]<span class="preprocessor"># yum install python2-pip -y &amp;&amp; yum install docker-compose -y</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="u4FEE_u6539docker_u52A0_u901F"><a href="#u4FEE_u6539docker_u52A0_u901F" class="headerlink" title="修改docker加速"></a>修改docker加速</h4><figure class="hljs highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/docker/daemon.json </span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"registry-mirrors"</span>: [ <span class="string">"https://registry.docker-cn.com"</span>,], </span><br><span class="line">  <span class="string">"max-concurrent-downloads"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"log-driver"</span>: <span class="string">"json-file"</span>,</span><br><span class="line">  <span class="string">"log-level"</span>: <span class="string">"warn"</span>,</span><br><span class="line">  <span class="string">"log-opts"</span>: &#123;</span><br><span class="line">    <span class="string">"max-size"</span>: <span class="string">"10m"</span>,</span><br><span class="line">    <span class="string">"max-file"</span>: <span class="string">"3"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/docker/" rel="tag"><i class="fas fa-tags"></i>docker</a>
+        
+        <a class="post-tag button" href="/tags/harbor/" rel="tag"><i class="fas fa-tags"></i>harbor</a>
+        
+        <a class="post-tag button" href="/tags/k8s/" rel="tag"><i class="fas fa-tags"></i>k8s</a>
+        
+      </div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/08/16/kubernetes基于StorageClass的NFS动态卷/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/08/16/kubernetes基于StorageClass的NFS动态卷/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/08/16/kubernetes基于StorageClass的NFS动态卷/" itemprop="url">kubernetes基于StorageClass的NFS动态卷</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-08-16T22:19:00+08:00">2018-08-16 22:19:00</time></span>
+        </span>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/16/kubernetes基于StorageClass的NFS动态卷/" itemprop="url">kubernetes基于StorageClass的NFS动态卷</a></h1>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-16T22:19:00+08:00">
-                2018-08-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
-                    <span itemprop="name">kubernetes</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
+        <span class="post-meta-divider divider">|</span>
         
+        <span class="post-categories">
           
-            <p>NFS搭建略..</p>
-<h1 id="u521B_u5EFAnfs_u6587_u4EF6"><a href="#u521B_u5EFAnfs_u6587_u4EF6" class="headerlink" title="创建nfs文件"></a>创建nfs文件</h1><p>安装部署<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> /<span class="keyword">opt</span>/k8s-nfs-storage</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"/opt/k8s-nfs-storage *(rw,no_root_squash,no_all_squash,sync)"</span> &gt; /etc/exports</span><br><span class="line">exportfs  -vr</span><br></pre></td></tr></table></figure></p>
-<p>所需要的yaml文件github：<br>修改deployment文件并部署deployment.yaml<br>需要修改的地方只有NFS服务器所在的IP地址（192.168.7.206），以及NFS服务器共享的路径（/opt/k8s-nfs-storage），两处都需要修改为你实际的NFS服务器和共享目录<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">kind</span>: Deployment</span><br><span class="line"><span class="attribute">apiVersion</span>: extensions/v1beta1</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: nfs-client-provisioner</span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">replicas</span>: <span class="number">1</span></span><br><span class="line">  <span class="attribute">strategy</span>:</span><br><span class="line">    <span class="attribute">type</span>: Recreate</span><br><span class="line">  <span class="attribute">template</span>:</span><br><span class="line">    <span class="attribute">metadata</span>:</span><br><span class="line">      <span class="attribute">labels</span>:</span><br><span class="line">        <span class="attribute">app</span>: nfs-client-provisioner</span><br><span class="line">    <span class="attribute">spec</span>:</span><br><span class="line">      <span class="attribute">serviceAccountName</span>: nfs-client-provisioner</span><br><span class="line">      <span class="attribute">containers</span>:</span><br><span class="line">        - <span class="attribute">name</span>: nfs-client-provisioner</span><br><span class="line">          <span class="attribute">image</span>: <span class="number">192.168</span>.<span class="number">19.111</span>/gc/<span class="attribute">nfs-client-provisioner</span>:latest</span><br><span class="line">          <span class="attribute">volumeMounts</span>:</span><br><span class="line">            - <span class="attribute">name</span>: nfs-client-root</span><br><span class="line">              <span class="attribute">mountPath</span>: /persistentvolumes</span><br><span class="line">          <span class="attribute">env</span>:</span><br><span class="line">            - <span class="attribute">name</span>: PROVISIONER_NAME</span><br><span class="line">              <span class="attribute">value</span>: idcsec.lan/nfs</span><br><span class="line">            - <span class="attribute">name</span>: NFS_SERVER</span><br><span class="line">              <span class="attribute">value</span>: <span class="number">192.168</span>.<span class="number">7.206</span></span><br><span class="line">            - <span class="attribute">name</span>: NFS_PATH</span><br><span class="line">              <span class="attribute">value</span>: /opt/k8s-nfs-storage</span><br><span class="line">      <span class="attribute">volumes</span>:</span><br><span class="line">        - <span class="attribute">name</span>: nfs-client-root</span><br><span class="line">          <span class="attribute">nfs</span>:</span><br><span class="line">            <span class="attribute">server</span>: <span class="number">192.168</span>.<span class="number">7.206</span></span><br><span class="line">            <span class="attribute">path</span>: /opt/k8s-nfs-storage</span><br></pre></td></tr></table></figure></p>
-<p>修改StorageClass文件并部署class.yaml<br>此处可以不修改，或者修改provisioner的名字，需要与上面的deployment的PROVISIONER_NAME名字一致。<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">apiVersion</span>: storage.k8s.io/v1</span><br><span class="line"><span class="attribute">kind</span>: StorageClass</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: k8s-nfs-storage</span><br><span class="line"><span class="attribute">provisioner</span>: idcsec.lan/nf</span><br></pre></td></tr></table></figure></p>
-<p>授权<br>RBAC授权文件在auth目录下面<br>如果您的集群启用了RBAC，必须授权provisioner。<br>设置 k8s-nfs-storage作为默认存储类<br><figure class="highlight scilab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl patch storageclass  k8s-nfs-storage -p <span class="string">'&#123;"</span>metadata<span class="string">": &#123;"</span>annotations<span class="string">":&#123;"</span><span class="transposed_variable">storageclass.</span><span class="transposed_variable">kubernetes.</span>io/is-default-class<span class="string">":"</span>true<span class="string">"&#125;&#125;&#125;'</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="/img/nfs1.png" alt="crt"><br>实例：<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">apiVersion</span>: apps/v1beta1</span><br><span class="line"><span class="attribute">kind</span>: StatefulSet</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: k8sapp</span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">serviceName</span>: <span class="string">"k8sapp"</span></span><br><span class="line">  <span class="attribute">replicas</span>: <span class="number">1</span></span><br><span class="line">  <span class="attribute">volumeClaimTemplates</span>:</span><br><span class="line">  - <span class="attribute">metadata</span>:</span><br><span class="line">      <span class="attribute">name</span>: test </span><br><span class="line">      <span class="attribute">annotations</span>:</span><br><span class="line">        volume.beta.kubernetes.io/<span class="attribute">storage-class</span>: <span class="string">"k8s-nfs-storage"</span></span><br><span class="line">    <span class="attribute">spec</span>:</span><br><span class="line">      <span class="attribute">accessModes</span>: [ <span class="string">"ReadWriteOnce"</span> ]</span><br><span class="line">      <span class="attribute">resources</span>:</span><br><span class="line">        <span class="attribute">requests</span>:</span><br><span class="line">          <span class="attribute">storage</span>: <span class="number">2</span>Gi</span><br></pre></td></tr></table></figure></p>
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>NFS搭建略..</p>
+<h1 id="u521B_u5EFAnfs_u6587_u4EF6"><a href="#u521B_u5EFAnfs_u6587_u4EF6" class="headerlink" title="创建nfs文件"></a>创建nfs文件</h1><p>安装部署<br><figure class="hljs highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> /<span class="keyword">opt</span>/k8s-nfs-storage</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"/opt/k8s-nfs-storage *(rw,no_root_squash,no_all_squash,sync)"</span> &gt; /etc/exports</span><br><span class="line">exportfs  -vr</span><br></pre></td></tr></table></figure></p>
+<p>所需要的yaml文件github：<br>修改deployment文件并部署deployment.yaml<br>需要修改的地方只有NFS服务器所在的IP地址（192.168.7.206），以及NFS服务器共享的路径（/opt/k8s-nfs-storage），两处都需要修改为你实际的NFS服务器和共享目录<br><figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">kind</span>: Deployment</span><br><span class="line"><span class="attribute">apiVersion</span>: extensions/v1beta1</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: nfs-client-provisioner</span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">replicas</span>: <span class="number">1</span></span><br><span class="line">  <span class="attribute">strategy</span>:</span><br><span class="line">    <span class="attribute">type</span>: Recreate</span><br><span class="line">  <span class="attribute">template</span>:</span><br><span class="line">    <span class="attribute">metadata</span>:</span><br><span class="line">      <span class="attribute">labels</span>:</span><br><span class="line">        <span class="attribute">app</span>: nfs-client-provisioner</span><br><span class="line">    <span class="attribute">spec</span>:</span><br><span class="line">      <span class="attribute">serviceAccountName</span>: nfs-client-provisioner</span><br><span class="line">      <span class="attribute">containers</span>:</span><br><span class="line">        - <span class="attribute">name</span>: nfs-client-provisioner</span><br><span class="line">          <span class="attribute">image</span>: <span class="number">192.168</span>.<span class="number">19.111</span>/gc/<span class="attribute">nfs-client-provisioner</span>:latest</span><br><span class="line">          <span class="attribute">volumeMounts</span>:</span><br><span class="line">            - <span class="attribute">name</span>: nfs-client-root</span><br><span class="line">              <span class="attribute">mountPath</span>: /persistentvolumes</span><br><span class="line">          <span class="attribute">env</span>:</span><br><span class="line">            - <span class="attribute">name</span>: PROVISIONER_NAME</span><br><span class="line">              <span class="attribute">value</span>: idcsec.lan/nfs</span><br><span class="line">            - <span class="attribute">name</span>: NFS_SERVER</span><br><span class="line">              <span class="attribute">value</span>: <span class="number">192.168</span>.<span class="number">7.206</span></span><br><span class="line">            - <span class="attribute">name</span>: NFS_PATH</span><br><span class="line">              <span class="attribute">value</span>: /opt/k8s-nfs-storage</span><br><span class="line">      <span class="attribute">volumes</span>:</span><br><span class="line">        - <span class="attribute">name</span>: nfs-client-root</span><br><span class="line">          <span class="attribute">nfs</span>:</span><br><span class="line">            <span class="attribute">server</span>: <span class="number">192.168</span>.<span class="number">7.206</span></span><br><span class="line">            <span class="attribute">path</span>: /opt/k8s-nfs-storage</span><br></pre></td></tr></table></figure></p>
+<p>修改StorageClass文件并部署class.yaml<br>此处可以不修改，或者修改provisioner的名字，需要与上面的deployment的PROVISIONER_NAME名字一致。<br><figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">apiVersion</span>: storage.k8s.io/v1</span><br><span class="line"><span class="attribute">kind</span>: StorageClass</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: k8s-nfs-storage</span><br><span class="line"><span class="attribute">provisioner</span>: idcsec.lan/nf</span><br></pre></td></tr></table></figure></p>
+<p>授权<br>RBAC授权文件在auth目录下面<br>如果您的集群启用了RBAC，必须授权provisioner。<br>设置 k8s-nfs-storage作为默认存储类<br><figure class="hljs highlight scilab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl patch storageclass  k8s-nfs-storage -p <span class="string">'&#123;"</span>metadata<span class="string">": &#123;"</span>annotations<span class="string">":&#123;"</span><span class="transposed_variable">storageclass.</span><span class="transposed_variable">kubernetes.</span>io/is-default-class<span class="string">":"</span>true<span class="string">"&#125;&#125;&#125;'</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/nfs1.png" alt="crt"><br>实例：<br><figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">apiVersion</span>: apps/v1beta1</span><br><span class="line"><span class="attribute">kind</span>: StatefulSet</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: k8sapp</span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">serviceName</span>: <span class="string">"k8sapp"</span></span><br><span class="line">  <span class="attribute">replicas</span>: <span class="number">1</span></span><br><span class="line">  <span class="attribute">volumeClaimTemplates</span>:</span><br><span class="line">  - <span class="attribute">metadata</span>:</span><br><span class="line">      <span class="attribute">name</span>: test </span><br><span class="line">      <span class="attribute">annotations</span>:</span><br><span class="line">        volume.beta.kubernetes.io/<span class="attribute">storage-class</span>: <span class="string">"k8s-nfs-storage"</span></span><br><span class="line">    <span class="attribute">spec</span>:</span><br><span class="line">      <span class="attribute">accessModes</span>: [ <span class="string">"ReadWriteOnce"</span> ]</span><br><span class="line">      <span class="attribute">resources</span>:</span><br><span class="line">        <span class="attribute">requests</span>:</span><br><span class="line">          <span class="attribute">storage</span>: <span class="number">2</span>Gi</span><br></pre></td></tr></table></figure></p>
 <p><img src="/img/nfs2.png" alt="crt"></p>
 
-          
-        
       
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/kubernetes/" rel="tag"><i class="fas fa-tags"></i>kubernetes</a>
+        
+      </div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/08/14/kubernetes1-11安装Helm管理部署Kubernetes应用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/08/14/kubernetes1-11安装Helm管理部署Kubernetes应用/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/08/14/kubernetes1-11安装Helm管理部署Kubernetes应用/" itemprop="url">kubernetes1.11安装Helm管理部署Kubernetes应用</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-08-14T22:41:00+08:00">2018-08-14 22:41:00</time></span>
+        </span>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/14/kubernetes1-11安装Helm管理部署Kubernetes应用/" itemprop="url">kubernetes1.11安装Helm管理部署Kubernetes应用</a></h1>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-14T22:41:00+08:00">
-                2018-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/kubernetes/" itemprop="url" rel="index">
-                    <span itemprop="name">kubernetes</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
+        <span class="post-meta-divider divider">|</span>
         
+        <span class="post-categories">
           
-            <h1 id="Helm__u57FA_u672C_u6982_u5FF5"><a href="#Helm__u57FA_u672C_u6982_u5FF5" class="headerlink" title="Helm 基本概念"></a>Helm 基本概念</h1><p>Helm 可以理解为 Kubernetes 的包管理工具，可以方便地发现、共享和使用为Kubernetes构建的应用，它包含几个基本概念</p>
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <h1 id="Helm__u57FA_u672C_u6982_u5FF5"><a href="#Helm__u57FA_u672C_u6982_u5FF5" class="headerlink" title="Helm 基本概念"></a>Helm 基本概念</h1><p>Helm 可以理解为 Kubernetes 的包管理工具，可以方便地发现、共享和使用为Kubernetes构建的应用，它包含几个基本概念</p>
 <p>Chart：一个 Helm 包，其中包含了运行一个应用所需要的镜像、依赖和资源定义等，还可能包含 Kubernetes 集群中的服务定义，类似 Homebrew 中的 formula，APT 的 dpkg 或者 Yum 的 rpm 文件，<br>Release: 在 Kubernetes 集群上运行的 Chart 的一个实例。在同一个集群上，一个 Chart 可以安装很多次。每次安装都会创建一个新的 release。例如一个 MySQL Chart，如果想在服务器上运行两个数据库，就可以把这个 Chart 安装两次。每次安装都会生成自己的 Release，会有自己的 Release 名称。<br>Repository：用于发布和存储 Chart 的仓库。</p>
 <h1 id="Helm__u7EC4_u4EF6"><a href="#Helm__u7EC4_u4EF6" class="headerlink" title="Helm 组件"></a>Helm 组件</h1><p>Helm 采用客户端/服务器架构，有如下组件组成：</p>
 <p>Helm CLI 是 Helm 客户端，可以在本地执行<br>从最新<code>https://github.com/helm/helm/releases</code>，下载helm-v2.9.1-linux-amd64.tar.gz到本地，解压后把二进制直接放到环境PATH下即可<br>Tiller 是服务器端组件，在 Kubernetes 群集上运行，并管理 Kubernetes 应用程序的生命周期<br>Repository 是 Chart 仓库，Helm客户端通过HTTP协议来访问仓库中Chart的索引文件和压缩包。</p>
 <h1 id="u5B89_u88C5Helm"><a href="#u5B89_u88C5Helm" class="headerlink" title="安装Helm"></a>安装Helm</h1><p>Helm 会利用 “gcr.io/kubernetes-helm/tiller” 镜像在Kubernetes集群上安装配置 Tiller；并且利用 “<a href="https://kubernetes-charts.storage.googleapis.com" target="_blank" rel="external">https://kubernetes-charts.storage.googleapis.com</a>“ 作为缺省的 stable repository 的地址。由于在国内可能无法访问 “gcr.io”, “storage.googleapis.com” 等域名.可以使用阿里云提供的table repository 的地址</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget <span class="string">https:</span><span class="comment">//storage.googleapis.com/kubernetes-helm/helm-v2.9.1-linux-amd64.tar.gz</span></span><br><span class="line">tar -zxvf helm-v2<span class="number">.9</span><span class="number">.1</span>-linux-amd64.tar.gz &amp;&amp;\</span><br><span class="line">cp linux-amd64<span class="regexp">/helm /</span>opt<span class="regexp">/kube/</span>bin<span class="regexp">/ &amp;&amp; chmod +x /</span>opt<span class="regexp">/kube/</span>bin/helm</span><br></pre></td></tr></table></figure>
-<p>执行下面命令安装<br>未使用SSL/TLS认证机制<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$helm init --upgrade -i <span class="number">192.168</span><span class="number">.19</span><span class="number">.111</span>/gc/tiller:v2<span class="number">.5</span><span class="number">.1</span> --stable-repo-url https:<span class="comment">//kubernetes.oss-cn-hangzhou.aliyuncs.com/charts</span></span><br><span class="line">kubectl get pod --all-namespaces|grep tiller</span><br></pre></td></tr></table></figure></p>
-<p>若要查看在存储库中可用的所有 Helm charts<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">helm <span class="keyword">search</span>  <span class="comment">//看在存储库中可用的所有 Helm charts</span></span><br><span class="line">helm repo <span class="keyword">update</span>  <span class="comment">//更新charts列表以获取最新版本</span></span><br><span class="line">helm <span class="keyword">list</span> <span class="comment">//查看在群集上安装的Charts列表</span></span><br></pre></td></tr></table></figure></p>
+<figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget <span class="string">https:</span><span class="comment">//storage.googleapis.com/kubernetes-helm/helm-v2.9.1-linux-amd64.tar.gz</span></span><br><span class="line">tar -zxvf helm-v2<span class="number">.9</span><span class="number">.1</span>-linux-amd64.tar.gz &amp;&amp;\</span><br><span class="line">cp linux-amd64<span class="regexp">/helm /</span>opt<span class="regexp">/kube/</span>bin<span class="regexp">/ &amp;&amp; chmod +x /</span>opt<span class="regexp">/kube/</span>bin/helm</span><br></pre></td></tr></table></figure>
+<p>执行下面命令安装<br>未使用SSL/TLS认证机制<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$helm init --upgrade -i <span class="number">192.168</span><span class="number">.19</span><span class="number">.111</span>/gc/tiller:v2<span class="number">.5</span><span class="number">.1</span> --stable-repo-url https:<span class="comment">//kubernetes.oss-cn-hangzhou.aliyuncs.com/charts</span></span><br><span class="line">kubectl get pod --all-namespaces|grep tiller</span><br></pre></td></tr></table></figure></p>
+<p>若要查看在存储库中可用的所有 Helm charts<br><figure class="hljs highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">helm <span class="keyword">search</span>  <span class="comment">//看在存储库中可用的所有 Helm charts</span></span><br><span class="line">helm repo <span class="keyword">update</span>  <span class="comment">//更新charts列表以获取最新版本</span></span><br><span class="line">helm <span class="keyword">list</span> <span class="comment">//查看在群集上安装的Charts列表</span></span><br></pre></td></tr></table></figure></p>
 <p><img src="/img/helm1.png" alt="crt"></p>
 
-          
-        
       
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/kubernetes/" rel="tag"><i class="fas fa-tags"></i>kubernetes</a>
+        
+      </div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/08/14/Caliconode-localhostlocaldomainisalreadyusingtheIPv4address问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/14/Caliconode-localhostlocaldomainisalreadyusingtheIPv4address问题/" itemprop="url">Caliconode-localhostlocaldomainisalreadyusingtheIPv4address问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-14T01:08:00+08:00">
-                2018-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>   Calico报错 Calico node ‘localhost.localdomain’ is already using the IPv4 addressx.x.x.x解决<br>服务器之前改名了hostname没有重启部署完etcd、Calico node。后来重启导致k8sCalico node起不来。<br>报错大楷是由于etcd内存储了之前hostname(localhost.localdomain)的的记录导致现在ip和之前冲突，不能自动删除重建<br>查看日志信息<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl  logs   calico-<span class="keyword">node</span><span class="identifier"></span><span class="title">-8w7tv</span> -c  calico-<span class="keyword">node</span><span class="identifier">  </span><span class="title">-n</span> kube-system -f</span><br></pre></td></tr></table></figure></p>
-<p><img src="/img/etc2.png" alt="crt"></p>
-<p>v3没有ls使用get替代</p>
-<p>查看etcd信息<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$export</span> <span class="constant">ETCDCTL_API</span>=<span class="number">3</span></span><br><span class="line"><span class="variable">$etcdctl</span> --endpoints=<span class="symbol">https:</span>/<span class="regexp">/192.168.7.92:2379,https:/</span><span class="regexp">/192.168.7.93:2379,https:/</span><span class="regexp">/192.168.7.94:2379   --cacert=/etc</span><span class="regexp">/kubernetes/ssl</span><span class="regexp">/ca.pem   --cert=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd.pem   --key=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd-key.pem  get  /</span> --prefix --keys-only | grep localhost</span><br></pre></td></tr></table></figure></p>
-<p><img src="/img/etc1.png" alt="crt"><br>删除之前存储的信息<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$etcdctl</span> --endpoints=<span class="symbol">https:</span>/<span class="regexp">/192.168.7.92:2379,https:/</span><span class="regexp">/192.168.7.93:2379,https:/</span><span class="regexp">/192.168.7.94:2379   --cacert=/etc</span><span class="regexp">/kubernetes/ssl</span><span class="regexp">/ca.pem   --cert=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd.pem   --key=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd-key.pem  get /</span> --prefix --keys-only | grep localhost | xargs -<span class="constant">I</span> &#123;&#125; etcdctl del &#123;&#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="/img/etc3.png" alt="crt"></p>
-<p>重启caliconode pod恢复正常<br><img src="/img/etc4.png" alt="crt"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
   </nav>
-
-
+  
+  
+</div>
 
           </div>
           
-
-
           
-
-        </div>
-        
           
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
     </div>
   </div>
-
-  <aside id="sidebar" class="sidebar">
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/img/avatar.jpg" alt="Wang'T">
+  
+  <h1 class="author-name">Wang'T</h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
     
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.gif"
-                alt="Wang'T" />
-            
-              <p class="site-author-name" itemprop="name">Wang'T</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">59</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/Hwting" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:wang.t.nice@gmail.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="http://weibo.com/" target="_blank" title="微博">
-                      
-                        <i class="fa fa-fw fa-globe"></i>微博</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.ytniu.com" title="Ytniu" target="_blank">Ytniu</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
-
-          
-
-        </div>
-      </section>
-
-      
-
-      
-
+    <div class="archives-count">
+      <div class="site-count-title">归档</div>
+      <div><a href="/archives/">60</a></div>
     </div>
-  </aside>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="categories-count">
+      <div class="site-count-title">分类</div>
+      <div><a href="/categories/">10</a></div>
+    </div>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="tags-count">
+      <div class="site-count-title">标签</div>
+      <div><a href="/tags/">19</a></div>
+    </div>
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
 
 
+  <div class="sidebar-sticky">
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
         
+        <li><i class="fas fa-envelope"></i><a href="mailto:wang.t.nice@gmail.com" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="http://www.ytniu.com" target="_blank">Jixiang's Blog</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
       </div>
     </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Wang'T</span>
-
-  
-</div>
-
-
-
-
-
-
-
-
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  ICP备案: 黔ICP备17011344号-1
-</span>
-</div>
-
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">Wang'T</span><span class="year"><i class="far fa-copyright"></i>2015 - 2018</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">BY-NC-ND 4.0</a></span>
+        </div>
         
-
-
-
-
-
-
-
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
         
       </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
       </div>
-    
-
-    
-      <div id="needsharebutton-float">
-        <span class="btn">
-          <i class="fa fa-share-alt" aria-hidden="true"></i>
-        </span>
-      </div>
-    
-
+    </div>
   </div>
+</footer>
 
-  
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-  
-  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
-
-  
-  
-  <script src="/lib/needsharebutton/needsharebutton.js"></script>
-
-  <script>
-    
-      pbOptions = {};
-      
-          pbOptions.iconStyle = "box";
-      
-          pbOptions.boxForm = "horizontal";
-      
-          pbOptions.position = "bottomCenter";
-      
-          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-      
-      new needShareButton('#needsharebutton-postbottom', pbOptions);
-    
-    
-      flOptions = {};
-      
-          flOptions.iconStyle = "box";
-      
-          flOptions.boxForm = "horizontal";
-      
-          flOptions.position = "middleRight";
-      
-          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-      
-      new needShareButton('#needsharebutton-float', flOptions);
-    
-  </script>
-
-  
-
-  
-
-  
-
-  
-
-  
-<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
-<!-- 页面点击小红心 --> 
-<script type="text/javascript" src="/js/src/love.js"></script>
-
-</body>
+  </body>
 </html>

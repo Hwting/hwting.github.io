@@ -1,393 +1,218 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-
-
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wang'T博客">
-<meta property="og:url" content="http://www.idcsec.com/page/3/index.html">
-<meta property="og:site_name" content="Wang'T博客">
-<meta property="og:description">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wang'T博客">
-<meta name="twitter:description">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://www.idcsec.com/page/3/"/>
-
-
-
-
-
-  <title>Wang'T博客</title>
-  
-
-
-
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?7db1c0024aed11205f1c466a133de827";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
     
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo, docker, linux, kubernetes, Nginx, tomcat, Jenkins">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="Wang'T博客" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato|Roboto+Condensed|Skranji|Ubuntu|Ubuntu+Mono">
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
 
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Wang'T博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/solarized-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>Wang'T博客 - _入网络深似海,从此节操是路人.</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">Wang'T博客</a></h1>
+        <h2 class="subtitle">_入网络深似海,从此节操是路人.</h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/img/logo.jpg" alt="logo">
+      </div>
+      
     </div>
-      
-        <p class="site-subtitle">_入网络深似海,从此节操是路人.</p>
-      
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/">首页</a></li>
+        
+        <li role="menuitem"><a href="/archives/">归档</a></li>
+        
+        <li role="menuitem"><a href="/categories/">分类</a></li>
+        
+        <li role="menuitem"><a href="/tags/">标签</a></li>
+        
+        <li role="menuitem"><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
   </div>
+</header>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-sitemap">
-          <a href="/sitemap.xml" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
-            
-            站点地图
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
-            
-            公益404
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
 
     <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
             
-  <section id="posts" class="posts-expand">
-    
-      
 
+<div id="index" class="index page">
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/11/29/MySQL批量杀连接的几种方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/12/11/zabbix自动发现交换机接口信息监控网络设备流量模板配置/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/12/11/zabbix自动发现交换机接口信息监控网络设备流量模板配置/" itemprop="url">zabbix自动发现交换机接口信息监控网络设备流量模板配置</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-12-11T12:53:00+08:00">2017-12-11 12:53:00</time></span>
+        </span>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/29/MySQL批量杀连接的几种方法/" itemprop="url">MySQL批量杀连接的几种方法</a></h1>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-29T15:29:00+08:00">
-                2017-11-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
+      <p>1、思科交换机snmp配置<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">建立snmp团体，名称为<span class="keyword">public</span>，权限为只读</span><br><span class="line">(config)<span class="comment">#snmp-server community public ro</span></span><br><span class="line">    允许路由器将所有类型SNMP Trap发送出去</span><br><span class="line">(config)<span class="comment">#snmp-server enable traps</span></span><br><span class="line">    设置主机<span class="number">172.16</span><span class="number">.0</span><span class="number">.21</span>接受交换机所发送过来的SNMP Trap 信息</span><br><span class="line">(config)<span class="comment">#snmp-server host 172.16.0.21 version 2c public</span></span><br><span class="line">    使用loopback0接口的IP地址作为SNMP Traps发送源地址，这个随便可以不用。</span><br><span class="line">(config)<span class="comment">#snmp-server trap-source loopback0</span></span><br><span class="line">    zabbix执行测试</span><br><span class="line">snmpwalk -v <span class="number">2</span>c -c <span class="keyword">public</span>   <span class="number">172.16</span><span class="number">.0</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="u914D_u7F6E_u53D1_u73B0_u89C4_u5219__u8FD9_u91CC_u4F7F_u7528_u6DF1_u4FE1_u670D_u8BBE_u5907"><a href="#u914D_u7F6E_u53D1_u73B0_u89C4_u5219__u8FD9_u91CC_u4F7F_u7528_u6DF1_u4FE1_u670D_u8BBE_u5907" class="headerlink" title="配置发现规则 这里使用深信服设备"></a>配置发现规则 这里使用深信服设备</h1><p>配置 → 模板→点击适当模板行中的发现<br><img src="/img/zabbix1.png" alt="zabbix"><br>点击屏幕右上角的创建发现规则<br>填写发现规则表单，具体细节如下面的屏幕截图所示<br><img src="/img/zabbix2.png" alt="zabbix"><br><figure class="hljs highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">名称 Network interfaces</span><br><span class="line">类型  SNMPv2 agent</span><br><span class="line">键值 ifDescr</span><br><span class="line">SNMP OID discovery[&#123;#SNMPVALUE&#125;,IF-MIB::ifDescr]</span><br><span class="line">SNMP community &#123;<span class="variable">$SNMP</span>_COMMUNITY&#125;</span><br><span class="line">端口 <span class="number">161</span></span><br></pre></td></tr></table></figure></p>
       
-
+    </main>
+    <footer class="post-footer">
       
+      <div class="post-tags">
         
+        <a class="post-tag button" href="/tags/zabbix/" rel="tag"><i class="fas fa-tags"></i>zabbix</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/11/29/MySQL批量杀连接的几种方法/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/11/29/MySQL批量杀连接的几种方法/" itemprop="url">MySQL批量杀连接的几种方法</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-11-29T15:29:00+08:00">2017-11-29 15:29:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
           
-            <h1 id="u65B9_u6CD5_u4E00"><a href="#u65B9_u6CD5_u4E00" class="headerlink" title="方法一"></a>方法一</h1><p>通过information_schema.processlist表中的连接信息生成需要处理掉的MySQL连接的语句临时文件，然后执行临时文件中生成的指令。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select concat(<span class="string">'KILL '</span>,id,<span class="string">';'</span>) from information_schema.processlist <span class="built_in">where</span> user=<span class="string">'root'</span>;</span><br><span class="line">+------------------------+</span><br><span class="line">| concat(<span class="string">'KILL '</span>,id,<span class="string">';'</span>) |</span><br><span class="line">+------------------------+</span><br><span class="line">| KILL <span class="number">3101</span>;             |</span><br><span class="line">| KILL <span class="number">2946</span>;             |</span><br><span class="line">+------------------------+</span><br><span class="line"><span class="number">2</span> rows <span class="keyword">in</span> <span class="built_in">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;select concat(<span class="string">'KILL '</span>,id,<span class="string">';'</span>) from information_schema.processlist <span class="built_in">where</span> user=<span class="string">'root'</span> into outfile <span class="string">'/tmp/a.txt'</span>;</span><br><span class="line">Query OK, <span class="number">2</span> rows affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;<span class="built_in">source</span> /tmp/a.txt;</span><br><span class="line">Query OK, <span class="number">0</span> rows affected (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
-<h1 id="u65B9_u6CD5_u4E8C"><a href="#u65B9_u6CD5_u4E8C" class="headerlink" title="方法二"></a>方法二</h1><p>杀掉当前所有的MySQL连接<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -uroot -p processlist|awk -F <span class="string">"|"</span> <span class="string">'&#123;print $2&#125;'</span>|xargs -n <span class="number">1</span> mysqladmin -uroot -p <span class="built_in">kill</span></span><br></pre></td></tr></table></figure></p>
-<p>杀掉指定用户运行的连接，这里为Mike<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -uroot -p processlist|awk -F <span class="string">"|"</span> <span class="string">'&#123;if($3 == "Mike")print $2&#125;'</span>|xargs -n <span class="number">1</span> mysqladmin -uroot -p <span class="built_in">kill</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="u65B9_u6CD5_u4E09"><a href="#u65B9_u6CD5_u4E09" class="headerlink" title="方法三"></a>方法三</h1><p>通过SHEL脚本实现<br>杀掉锁定的MySQL连接<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="keyword">for</span> id <span class="keyword">in</span> `mysqladmin processlist | grep -i locked | awk <span class="string">'&#123;print $1&#125;'</span>`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">mysqladmin <span class="built_in">kill</span> <span class="variable">$&#123;id&#125;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <h1 id="u65B9_u6CD5_u4E00"><a href="#u65B9_u6CD5_u4E00" class="headerlink" title="方法一"></a>方法一</h1><p>通过information_schema.processlist表中的连接信息生成需要处理掉的MySQL连接的语句临时文件，然后执行临时文件中生成的指令。<br><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select concat(<span class="string">'KILL '</span>,id,<span class="string">';'</span>) from information_schema.processlist <span class="built_in">where</span> user=<span class="string">'root'</span>;</span><br><span class="line">+------------------------+</span><br><span class="line">| concat(<span class="string">'KILL '</span>,id,<span class="string">';'</span>) |</span><br><span class="line">+------------------------+</span><br><span class="line">| KILL <span class="number">3101</span>;             |</span><br><span class="line">| KILL <span class="number">2946</span>;             |</span><br><span class="line">+------------------------+</span><br><span class="line"><span class="number">2</span> rows <span class="keyword">in</span> <span class="built_in">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;select concat(<span class="string">'KILL '</span>,id,<span class="string">';'</span>) from information_schema.processlist <span class="built_in">where</span> user=<span class="string">'root'</span> into outfile <span class="string">'/tmp/a.txt'</span>;</span><br><span class="line">Query OK, <span class="number">2</span> rows affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;<span class="built_in">source</span> /tmp/a.txt;</span><br><span class="line">Query OK, <span class="number">0</span> rows affected (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
+<h1 id="u65B9_u6CD5_u4E8C"><a href="#u65B9_u6CD5_u4E8C" class="headerlink" title="方法二"></a>方法二</h1><p>杀掉当前所有的MySQL连接<br><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -uroot -p processlist|awk -F <span class="string">"|"</span> <span class="string">'&#123;print $2&#125;'</span>|xargs -n <span class="number">1</span> mysqladmin -uroot -p <span class="built_in">kill</span></span><br></pre></td></tr></table></figure></p>
+<p>杀掉指定用户运行的连接，这里为Mike<br><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -uroot -p processlist|awk -F <span class="string">"|"</span> <span class="string">'&#123;if($3 == "Mike")print $2&#125;'</span>|xargs -n <span class="number">1</span> mysqladmin -uroot -p <span class="built_in">kill</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="u65B9_u6CD5_u4E09"><a href="#u65B9_u6CD5_u4E09" class="headerlink" title="方法三"></a>方法三</h1><p>通过SHEL脚本实现<br>杀掉锁定的MySQL连接<br><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="keyword">for</span> id <span class="keyword">in</span> `mysqladmin processlist | grep -i locked | awk <span class="string">'&#123;print $1&#125;'</span>`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">mysqladmin <span class="built_in">kill</span> <span class="variable">$&#123;id&#125;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
 <h1 id="u65B9_u6CD5_u56DB"><a href="#u65B9_u6CD5_u56DB" class="headerlink" title="方法四"></a>方法四</h1><p>通过Maatkit工具集中提供的mk-kill命令进行</p>
 <ul>
 <li>杀掉超过60秒的sql<br>mk-kill -busy-time 60 -kill</li>
@@ -395,149 +220,56 @@
 <li>如果你想杀掉，同时输出杀掉了哪些进程<br>mk-kill -busy-time 60 -print –kill</li>
 </ul>
 
-          
-        
       
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/MySQL/" rel="tag"><i class="fas fa-tags"></i>MySQL</a>
+        
+      </div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/11/17/nginx配置http2平滑升级/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/11/17/nginx配置http2平滑升级/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/11/17/nginx配置http2平滑升级/" itemprop="url">nginx配置http2平滑升级</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-11-17T14:13:00+08:00">2017-11-17 14:13:00</time></span>
+        </span>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/17/nginx配置http2平滑升级/" itemprop="url">nginx配置http2平滑升级</a></h1>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-17T14:13:00+08:00">
-                2017-11-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">nginx</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
+        <span class="post-meta-divider divider">|</span>
         
+        <span class="post-categories">
           
-            <h2 id="HTTP/2_u4F18_u70B9"><a href="#HTTP/2_u4F18_u70B9" class="headerlink" title="HTTP/2优点"></a>HTTP/2优点</h2><ul>
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/nginx/" itemprop="url" rel="index"><span itemprop="name">nginx</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <h2 id="HTTP/2_u4F18_u70B9"><a href="#HTTP/2_u4F18_u70B9" class="headerlink" title="HTTP/2优点"></a>HTTP/2优点</h2><ul>
 <li><p>采用二进制格式传输数据，而非文本格式。二进制格式在协议的解析和优化扩展上带来更多的优势和可能。</p>
 </li>
 <li><p>对消息头进行压缩传输，能够节省消息头占用的网络的流量，而 HTTP 1.1 每次请求，都会携带大量冗余头信息，浪费了很多带宽资源，头压缩能够很好的解决该问题。</p>
@@ -552,1459 +284,435 @@
 <li>提升网站访问速度。</li>
 <li>降低服务器压力。</li>
 <li>部分替代异步加载的使用。</li>
-<li>保护网站安全。<h2 id="nginx_u914D_u7F6Ehttp2"><a href="#nginx_u914D_u7F6Ehttp2" class="headerlink" title="nginx配置http2"></a>nginx配置http2</h2>默认编译的 Nginx 并不包含 h2 模块，我们需要加入参数来编译。Nginx 1.9 开发版及以上版本源码需要自己加入编译参数。<br>以下是平滑升级模块过程<br>最后使用源码自带升级命令：make upgrade自动完成平滑<br>根据需求添加编译模块，不过只需要执行到make 不要执行make install！<br>http2需要openss1.0.2e以上版本<br>下载openssl<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https:<span class="comment">//www.openssl.org/source/openssl-1.0.2m.tar.gz</span></span><br></pre></td></tr></table></figure>
+<li>保护网站安全。<h2 id="nginx_u914D_u7F6Ehttp2"><a href="#nginx_u914D_u7F6Ehttp2" class="headerlink" title="nginx配置http2"></a>nginx配置http2</h2>默认编译的 Nginx 并不包含 h2 模块，我们需要加入参数来编译。Nginx 1.9 开发版及以上版本源码需要自己加入编译参数。<br>以下是平滑升级模块过程<br>最后使用源码自带升级命令：make upgrade自动完成平滑<br>根据需求添加编译模块，不过只需要执行到make 不要执行make install！<br>http2需要openss1.0.2e以上版本<br>下载openssl<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https:<span class="comment">//www.openssl.org/source/openssl-1.0.2m.tar.gz</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>这里查看我当前nginx编译参数<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx  -V</span><br><span class="line">configure arguments: --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module</span><br></pre></td></tr></table></figure></p>
-<p>到nginx源码下重新编译nginx,解压openssl指定openssl源码路径 –with-openssl=../openssl-1.0.2m<br>加上 –with-http_realip_module –with-http_v2_module   –with-openssl=../openssl-1.0.2<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure  --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module --with-http_v2_module   --with-openssl=../openssl-<span class="number">1.0</span><span class="number">.2</span>m</span><br><span class="line"><span class="comment">#执行到make 不要执行make install</span></span><br><span class="line">make <span class="comment">#执行make 但不要执行make install</span></span><br></pre></td></tr></table></figure></p>
-<p>备份二进制文件<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv  /usr/local/nginx/sbin/nginx /usr/local/nginx/sbin/nginx.back</span><br></pre></td></tr></table></figure></p>
-<p>期间nginx并不会停止服务<br>拷贝新编译的二进制文件<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp objs/nginx /usr/local/nginx/sbin/</span><br></pre></td></tr></table></figure></p>
-<p>在源码目录下执行平滑重新加载配置命令<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">nginx-<span class="number">1.12</span><span class="number">.0</span>]<span class="comment"># make upgrade</span></span><br><span class="line">usr/local/nginx/sbin/nginx -t</span><br><span class="line">nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /etc/nginx/nginx.conf test is successful</span><br><span class="line">kill -USR2 `cat /usr/local/nginx/logs/nginx.pid`</span><br><span class="line">sleep <span class="number">1</span></span><br><span class="line">test -f /usr/local/nginx/logs/nginx.pid.oldbin</span><br><span class="line">kill -QUIT `cat /usr/local/nginx/logs/nginx.pid.oldbin`</span><br></pre></td></tr></table></figure></p>
-<p>验证<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nginx-<span class="number">1.12</span><span class="number">.0</span>]<span class="comment">#/usr/local/nginx/sbin/nginx  -V</span></span><br><span class="line">nginx version: Microsoft-IIS/<span class="number">1.12</span><span class="number">.0</span></span><br><span class="line">built by gcc <span class="number">4.4</span><span class="number">.7</span> <span class="number">20120313</span> (Red Hat <span class="number">4.4</span><span class="number">.7</span>-<span class="number">18</span>) (GCC) </span><br><span class="line">built with OpenSSL <span class="number">1.0</span><span class="number">.2</span>m  <span class="number">2</span> Nov <span class="number">2017</span></span><br><span class="line">TLS SNI support enabled</span><br><span class="line">configure arguments: --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module --with-http_v2_module --with-openssl=../openssl-<span class="number">1.0</span><span class="number">.2</span>m</span><br></pre></td></tr></table></figure></p>
+<p>这里查看我当前nginx编译参数<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx  -V</span><br><span class="line">configure arguments: --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module</span><br></pre></td></tr></table></figure></p>
+<p>到nginx源码下重新编译nginx,解压openssl指定openssl源码路径 –with-openssl=../openssl-1.0.2m<br>加上 –with-http_realip_module –with-http_v2_module   –with-openssl=../openssl-1.0.2<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure  --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module --with-http_v2_module   --with-openssl=../openssl-<span class="number">1.0</span><span class="number">.2</span>m</span><br><span class="line"><span class="comment">#执行到make 不要执行make install</span></span><br><span class="line">make <span class="comment">#执行make 但不要执行make install</span></span><br></pre></td></tr></table></figure></p>
+<p>备份二进制文件<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv  /usr/local/nginx/sbin/nginx /usr/local/nginx/sbin/nginx.back</span><br></pre></td></tr></table></figure></p>
+<p>期间nginx并不会停止服务<br>拷贝新编译的二进制文件<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp objs/nginx /usr/local/nginx/sbin/</span><br></pre></td></tr></table></figure></p>
+<p>在源码目录下执行平滑重新加载配置命令<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">nginx-<span class="number">1.12</span><span class="number">.0</span>]<span class="comment"># make upgrade</span></span><br><span class="line">usr/local/nginx/sbin/nginx -t</span><br><span class="line">nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /etc/nginx/nginx.conf test is successful</span><br><span class="line">kill -USR2 `cat /usr/local/nginx/logs/nginx.pid`</span><br><span class="line">sleep <span class="number">1</span></span><br><span class="line">test -f /usr/local/nginx/logs/nginx.pid.oldbin</span><br><span class="line">kill -QUIT `cat /usr/local/nginx/logs/nginx.pid.oldbin`</span><br></pre></td></tr></table></figure></p>
+<p>验证<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nginx-<span class="number">1.12</span><span class="number">.0</span>]<span class="comment">#/usr/local/nginx/sbin/nginx  -V</span></span><br><span class="line">nginx version: Microsoft-IIS/<span class="number">1.12</span><span class="number">.0</span></span><br><span class="line">built by gcc <span class="number">4.4</span><span class="number">.7</span> <span class="number">20120313</span> (Red Hat <span class="number">4.4</span><span class="number">.7</span>-<span class="number">18</span>) (GCC) </span><br><span class="line">built with OpenSSL <span class="number">1.0</span><span class="number">.2</span>m  <span class="number">2</span> Nov <span class="number">2017</span></span><br><span class="line">TLS SNI support enabled</span><br><span class="line">configure arguments: --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module --with-http_v2_module --with-openssl=../openssl-<span class="number">1.0</span><span class="number">.2</span>m</span><br></pre></td></tr></table></figure></p>
 <p><img src="/img/nginx2.png" alt="nginx"><br>http2demo：<a href="https://http2.akamai.com/demo" target="_blank" rel="external">https://http2.akamai.com/demo</a></p>
 
-          
-        
       
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/nginx/" rel="tag"><i class="fas fa-tags"></i>nginx</a>
+        
+      </div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/10/24/Nginx编译添加后端健康检查模块/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/24/Nginx编译添加后端健康检查模块/" itemprop="url">Nginx编译添加后端健康检查模块</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-24T14:23:28+08:00">
-                2017-10-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>该模块可以为Tengine提供主动式后端服务器健康检查的功能。可以通过补丁的方式来添加该模块到我们自己的nginx中。</p>
-<h1 id="u4E0B_u8F7Dnginx_upstream_check_module_u6A21_u5757"><a href="#u4E0B_u8F7Dnginx_upstream_check_module_u6A21_u5757" class="headerlink" title="下载nginx_upstream_check_module模块"></a>下载nginx_upstream_check_module模块</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">clone</span> https:<span class="comment">//github.com/yaoweibin/nginx_upstream_check_module.git</span></span><br></pre></td></tr></table></figure>
-<p>编译补丁到nginx，必须使用最新的nginx_upstream_check_module才支持nginx 1.12.2版本<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd ~/nginx-<span class="number">1.12</span><span class="number">.2</span> <span class="comment">##进入nginx的源码目录</span></span><br><span class="line">nginx-<span class="number">1.12</span><span class="number">.2</span>]<span class="comment"># patch -p1 &lt; ../nginx_upstream_check_module/check_1.12.1+.patch </span></span><br><span class="line">patching file src/http/modules/ngx_http_upstream_hash_module.c</span><br><span class="line">patching file src/http/modules/ngx_http_upstream_ip_hash_module.c</span><br><span class="line">patching file src/http/modules/ngx_http_upstream_least_conn_module.c</span><br><span class="line">patching file src/http/ngx_http_upstream_round_robin.c</span><br><span class="line">patching file src/http/ngx_http_upstream_round_robin.h</span><br></pre></td></tr></table></figure></p>
-<h2 id="u67E5_u770B_u4E4B_u524D_u7684nginx_u7F16_u8BD1_u53C2_u6570"><a href="#u67E5_u770B_u4E4B_u524D_u7684nginx_u7F16_u8BD1_u53C2_u6570" class="headerlink" title="查看之前的nginx编译参数"></a>查看之前的nginx编译参数</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /usr/local/nginx/sbin/nginx -V</span></span><br><span class="line">nginx version: nginx/<span class="number">1.10</span><span class="number">.1</span></span><br><span class="line">built by gcc <span class="number">4.4</span><span class="number">.7</span> <span class="number">20120313</span> (Red Hat <span class="number">4.4</span><span class="number">.7</span>-<span class="number">18</span>) (GCC) </span><br><span class="line">built with OpenSSL <span class="number">1.0</span><span class="number">.1</span>e-fips <span class="number">11</span> Feb <span class="number">2013</span></span><br><span class="line">TLS SNI support enabled</span><br><span class="line">configure arguments: --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module</span><br></pre></td></tr></table></figure>
-<p>编译nginx参数，此处只make 不要make install，编译参数需要和之前的一样添加–add-module=<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ./configure --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module --add-module=../nginx_upstream_check_module/</span></span><br><span class="line">make</span><br><span class="line">.....</span><br><span class="line">trueobjs/addon/nginx_upstream_check_module/ngx_http_upstream_check_module.o \</span><br><span class="line">trueobjs/ngx_modules.o \</span><br><span class="line">true-ldl -lpthread -lcrypt -lpcre -lssl -lcrypto -ldl -lz \</span><br><span class="line">true-Wl,-E</span><br><span class="line">sed -e <span class="string">"s|%%PREFIX%%|/usr/local/nginx|"</span> \</span><br><span class="line">truetrue-e <span class="string">"s|%%PID_PATH%%|/usr/local/nginx/logs/nginx.pid|"</span> \</span><br><span class="line">truetrue-e <span class="string">"s|%%CONF_PATH%%|/etc/nginx/nginx.conf|"</span> \</span><br><span class="line">truetrue-e <span class="string">"s|%%ERROR_LOG_PATH%%|/usr/local/nginx/logs/error.log|"</span> \</span><br><span class="line">truetrue&lt; man/nginx<span class="number">.8</span> &gt; objs/nginx<span class="number">.8</span></span><br><span class="line">make[<span class="number">1</span>]: Leaving directory `/root/nginx-<span class="number">1.12</span><span class="number">.2</span><span class="string">'</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">备份旧版本nginx </span><br><span class="line">cp -a /usr/local/nginx/sbin/nginx  /usr/local/nginx/sbin/nginx.back</span><br><span class="line">停止nginx服务，替换nginx执行文件</span><br><span class="line">/usr/local/nginx/sbin/nginx -s stop</span><br><span class="line">nginx-<span class="number">1.12</span><span class="number">.2</span>]<span class="comment"># cp -a objs/nginx /usr/local/nginx/sbin/</span></span><br><span class="line">cp: overwrite `/usr/local/nginx/sbin/nginx<span class="string">'? y</span></span><br></pre></td></tr></table></figure>
-<h3 id="u9A8C_u8BC1_u7248_u672C_u5DF2_u7ECF_u5347_u7EA7_u52301-12-2__u6DFB_u52A0_u4E86nginx_upstream_check_module_u6A21_u5757"><a href="#u9A8C_u8BC1_u7248_u672C_u5DF2_u7ECF_u5347_u7EA7_u52301-12-2__u6DFB_u52A0_u4E86nginx_upstream_check_module_u6A21_u5757" class="headerlink" title="验证版本已经升级到1.12.2 添加了nginx_upstream_check_module模块"></a>验证版本已经升级到1.12.2 添加了nginx_upstream_check_module模块</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> nginx-<span class="number">1.12</span><span class="number">.2</span>]<span class="comment"># /usr/local/nginx/sbin/nginx -V</span></span><br><span class="line">nginx version: nginx/<span class="number">1.12</span><span class="number">.2</span></span><br><span class="line">built by gcc <span class="number">4.4</span><span class="number">.7</span> <span class="number">20120313</span> (Red Hat <span class="number">4.4</span><span class="number">.7</span>-<span class="number">18</span>) (GCC) </span><br><span class="line">built with OpenSSL <span class="number">1.0</span><span class="number">.1</span>e-fips <span class="number">11</span> Feb <span class="number">2013</span></span><br><span class="line">TLS SNI support enabled</span><br><span class="line">configure arguments: --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module --add-module=/root/nginx_upstream_check_module/</span><br></pre></td></tr></table></figure>
-<p>健康检查模块配置:参照官网<a href="http://tengine.taobao.org/document_cn/http_upstream_check_cn.html" target="_blank" rel="external">http://tengine.taobao.org/document_cn/http_upstream_check_cn.html</a><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">upstream cluster2 &#123;&#10;        # simple round-robin&#10;        server 192.168.0.3:80;&#10;        server 192.168.0.4:80;&#10;        check interval=3000 rise=2 fall=5 timeout=1000 type=http;&#10;        check_keepalive_requests 100;&#10;        check_http_send &#34;HEAD / HTTP/1.1\r\nConnection: keep-alive\r\n\r\n&#34;;&#10;        check_http_expect_alive http_2xx http_3xx;&#10;    &#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/10/24/Nginx编译添加后端健康检查模块/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
     </div>
-    
-    
-    
-	<div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/10/24/Nginx编译添加后端健康检查模块/" itemprop="url">Nginx编译添加后端健康检查模块</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-10-24T14:23:28+08:00">2017-10-24 14:23:28</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-	  </div>
-    
+      <p>该模块可以为Tengine提供主动式后端服务器健康检查的功能。可以通过补丁的方式来添加该模块到我们自己的nginx中。</p>
+<h1 id="u4E0B_u8F7Dnginx_upstream_check_module_u6A21_u5757"><a href="#u4E0B_u8F7Dnginx_upstream_check_module_u6A21_u5757" class="headerlink" title="下载nginx_upstream_check_module模块"></a>下载nginx_upstream_check_module模块</h1><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">clone</span> https:<span class="comment">//github.com/yaoweibin/nginx_upstream_check_module.git</span></span><br></pre></td></tr></table></figure>
+<p>编译补丁到nginx，必须使用最新的nginx_upstream_check_module才支持nginx 1.12.2版本<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd ~/nginx-<span class="number">1.12</span><span class="number">.2</span> <span class="comment">##进入nginx的源码目录</span></span><br><span class="line">nginx-<span class="number">1.12</span><span class="number">.2</span>]<span class="comment"># patch -p1 &lt; ../nginx_upstream_check_module/check_1.12.1+.patch </span></span><br><span class="line">patching file src/http/modules/ngx_http_upstream_hash_module.c</span><br><span class="line">patching file src/http/modules/ngx_http_upstream_ip_hash_module.c</span><br><span class="line">patching file src/http/modules/ngx_http_upstream_least_conn_module.c</span><br><span class="line">patching file src/http/ngx_http_upstream_round_robin.c</span><br><span class="line">patching file src/http/ngx_http_upstream_round_robin.h</span><br></pre></td></tr></table></figure></p>
+<h2 id="u67E5_u770B_u4E4B_u524D_u7684nginx_u7F16_u8BD1_u53C2_u6570"><a href="#u67E5_u770B_u4E4B_u524D_u7684nginx_u7F16_u8BD1_u53C2_u6570" class="headerlink" title="查看之前的nginx编译参数"></a>查看之前的nginx编译参数</h2><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /usr/local/nginx/sbin/nginx -V</span></span><br><span class="line">nginx version: nginx/<span class="number">1.10</span><span class="number">.1</span></span><br><span class="line">built by gcc <span class="number">4.4</span><span class="number">.7</span> <span class="number">20120313</span> (Red Hat <span class="number">4.4</span><span class="number">.7</span>-<span class="number">18</span>) (GCC) </span><br><span class="line">built with OpenSSL <span class="number">1.0</span><span class="number">.1</span>e-fips <span class="number">11</span> Feb <span class="number">2013</span></span><br><span class="line">TLS SNI support enabled</span><br><span class="line">configure arguments: --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module</span><br></pre></td></tr></table></figure>
+<p>编译nginx参数，此处只make 不要make install，编译参数需要和之前的一样添加–add-module=<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ./configure --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module --add-module=../nginx_upstream_check_module/</span></span><br><span class="line">make</span><br><span class="line">.....</span><br><span class="line">trueobjs/addon/nginx_upstream_check_module/ngx_http_upstream_check_module.o \</span><br><span class="line">trueobjs/ngx_modules.o \</span><br><span class="line">true-ldl -lpthread -lcrypt -lpcre -lssl -lcrypto -ldl -lz \</span><br><span class="line">true-Wl,-E</span><br><span class="line">sed -e <span class="string">"s|%%PREFIX%%|/usr/local/nginx|"</span> \</span><br><span class="line">truetrue-e <span class="string">"s|%%PID_PATH%%|/usr/local/nginx/logs/nginx.pid|"</span> \</span><br><span class="line">truetrue-e <span class="string">"s|%%CONF_PATH%%|/etc/nginx/nginx.conf|"</span> \</span><br><span class="line">truetrue-e <span class="string">"s|%%ERROR_LOG_PATH%%|/usr/local/nginx/logs/error.log|"</span> \</span><br><span class="line">truetrue&lt; man/nginx<span class="number">.8</span> &gt; objs/nginx<span class="number">.8</span></span><br><span class="line">make[<span class="number">1</span>]: Leaving directory `/root/nginx-<span class="number">1.12</span><span class="number">.2</span><span class="string">'</span></span><br></pre></td></tr></table></figure></p>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">备份旧版本nginx </span><br><span class="line">cp -a /usr/local/nginx/sbin/nginx  /usr/local/nginx/sbin/nginx.back</span><br><span class="line">停止nginx服务，替换nginx执行文件</span><br><span class="line">/usr/local/nginx/sbin/nginx -s stop</span><br><span class="line">nginx-<span class="number">1.12</span><span class="number">.2</span>]<span class="comment"># cp -a objs/nginx /usr/local/nginx/sbin/</span></span><br><span class="line">cp: overwrite `/usr/local/nginx/sbin/nginx<span class="string">'? y</span></span><br></pre></td></tr></table></figure>
+<h3 id="u9A8C_u8BC1_u7248_u672C_u5DF2_u7ECF_u5347_u7EA7_u52301-12-2__u6DFB_u52A0_u4E86nginx_upstream_check_module_u6A21_u5757"><a href="#u9A8C_u8BC1_u7248_u672C_u5DF2_u7ECF_u5347_u7EA7_u52301-12-2__u6DFB_u52A0_u4E86nginx_upstream_check_module_u6A21_u5757" class="headerlink" title="验证版本已经升级到1.12.2 添加了nginx_upstream_check_module模块"></a>验证版本已经升级到1.12.2 添加了nginx_upstream_check_module模块</h3><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> nginx-<span class="number">1.12</span><span class="number">.2</span>]<span class="comment"># /usr/local/nginx/sbin/nginx -V</span></span><br><span class="line">nginx version: nginx/<span class="number">1.12</span><span class="number">.2</span></span><br><span class="line">built by gcc <span class="number">4.4</span><span class="number">.7</span> <span class="number">20120313</span> (Red Hat <span class="number">4.4</span><span class="number">.7</span>-<span class="number">18</span>) (GCC) </span><br><span class="line">built with OpenSSL <span class="number">1.0</span><span class="number">.1</span>e-fips <span class="number">11</span> Feb <span class="number">2013</span></span><br><span class="line">TLS SNI support enabled</span><br><span class="line">configure arguments: --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module --add-module=/root/nginx_upstream_check_module/</span><br></pre></td></tr></table></figure>
+<p>健康检查模块配置:参照官网<a href="http://tengine.taobao.org/document_cn/http_upstream_check_cn.html" target="_blank" rel="external">http://tengine.taobao.org/document_cn/http_upstream_check_cn.html</a><br><figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">upstream cluster2 &#123;&#10;        # simple round-robin&#10;        server 192.168.0.3:80;&#10;        server 192.168.0.4:80;&#10;        check interval=3000 rise=2 fall=5 timeout=1000 type=http;&#10;        check_keepalive_requests 100;&#10;        check_http_send &#34;HEAD / HTTP/1.1\r\nConnection: keep-alive\r\n\r\n&#34;;&#10;        check_http_expect_alive http_2xx http_3xx;&#10;    &#125;</span><br></pre></td></tr></table></figure></p>
 
-    
-
-    
-
+      
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/10/20/jenkins-Role-basedauthorization权限管理插件配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/10/20/jenkins-Role-basedauthorization权限管理插件配置/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/10/20/jenkins-Role-basedauthorization权限管理插件配置/" itemprop="url">jenkins Role-basedauthorization权限管理插件配置</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-10-20T10:24:14+08:00">2017-10-20 10:24:14</time></span>
+        </span>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/20/jenkins-Role-basedauthorization权限管理插件配置/" itemprop="url">jenkins Role-basedauthorization权限管理插件配置</a></h1>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-20T10:24:14+08:00">
-                2017-10-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-      
-
-      
-        
-          
-            <p>1、安装插件、Role-based Authorization Strategy<br><img src="/img/jenkins11.png" alt="jenkins"><br>2、打开jenkins授权Role-based<br><img src="/img/jenkins22.png" alt="jenkins"><br>3、配置Manage and Assign Roles admin给所以权限 Assign Roles添加jenkinadmin到admin<br><img src="/img/jenkins33.png" alt="jenkins"><br>4、配置全局角色权限和项目角色权限：如设置testTeam全局权限read只允许查看test开始的项目名称,项目权限test-Team  Pattern:test.* </p>
+      <p>1、安装插件、Role-based Authorization Strategy<br><img src="/img/jenkins11.png" alt="jenkins"><br>2、打开jenkins授权Role-based<br><img src="/img/jenkins22.png" alt="jenkins"><br>3、配置Manage and Assign Roles admin给所以权限 Assign Roles添加jenkinadmin到admin<br><img src="/img/jenkins33.png" alt="jenkins"><br>4、配置全局角色权限和项目角色权限：如设置testTeam全局权限read只允许查看test开始的项目名称,项目权限test-Team  Pattern:test.* </p>
 <p><img src="/img/jenkins44.png" alt="jenkins"><br>5.设置Assign Roles，全局添加用户对于全局testTeam，项目角色添加用户到对于的项目test-Team。<br><img src="/img/jenkins55.png" alt="jenkins"><br>6、验证也test-Tame成员登录<br><img src="/img/jenkins66.png" alt="jenkins"></p>
 
-          
-        
       
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/10/20/jenkins-HTML-publisher-plugin插件无法显示解决办法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/10/20/jenkins-HTML-publisher-plugin插件无法显示解决办法/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/10/20/jenkins-HTML-publisher-plugin插件无法显示解决办法/" itemprop="url">jenkins HTML publisher plugin插件无法显示解决办法</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-10-20T10:11:19+08:00">2017-10-20 10:11:19</time></span>
+        </span>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/20/jenkins-HTML-publisher-plugin插件无法显示解决办法/" itemprop="url">jenkins HTML publisher plugin插件无法显示解决办法</a></h1>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-20T10:11:19+08:00">
-                2017-10-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-      
-
-      
-        
-          
-            <p>tomcat部署jenkins解决方法</p>
+      <p>tomcat部署jenkins解决方法</p>
 <p>vim apache-tomcat-7.0.61/bin/catalina.sh </p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JAVA_OPTS=<span class="string">"-Djava.awt.headless=true -Dhudson.model.DirectoryBrowserSupport.CSP=\"\""</span></span><br><span class="line">export JAVA_OPTS</span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JAVA_OPTS=<span class="string">"-Djava.awt.headless=true -Dhudson.model.DirectoryBrowserSupport.CSP=\"\""</span></span><br><span class="line">export JAVA_OPTS</span><br></pre></td></tr></table></figure>
 <p>重启tomcat 刷新页面</p>
 <p>jenkins HTML publisher plugin配置<br><img src="/img/jenkins1.png" alt="jenkins"><br><img src="/img/jenkins2.png" alt="jenkins"></p>
 <p><a href="https://wiki.jenkins.io/display/JENKINS/Configuring+Content+Security+Policy" target="_blank" rel="external">https://wiki.jenkins.io/display/JENKINS/Configuring+Content+Security+Policy</a></p>
 
-          
-        
       
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/09/07/docker搭建registry私有仓库/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/07/docker搭建registry私有仓库/" itemprop="url">docker搭建registry私有仓库</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-07T10:44:39+08:00">
-                2017-09-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>生成私有ssl证书<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/registry/certs</span><br><span class="line"> cd ~/registry/certs</span><br><span class="line"> openssl genrsa -out registry.wting.com.key <span class="number">1024</span></span><br><span class="line"> openssl req -newkey rsa:<span class="number">4096</span> -nodes -sha256 -keyout registry.wting.com.key -x509 -days <span class="number">365</span> -out registry.wting.com.crt</span><br><span class="line"> Generating a <span class="number">4096</span> bit RSA <span class="keyword">private</span> key</span><br><span class="line">.........................++</span><br><span class="line">.....................................................................................................................++</span><br><span class="line">writing <span class="keyword">new</span> <span class="keyword">private</span> key to <span class="string">'registry.wting.com.key'</span></span><br><span class="line">-----</span><br><span class="line">You are about to be asked to enter information that will be incorporated</span><br><span class="line">into your certificate request.</span><br><span class="line">What you are about to enter is what is called a Distinguished Name <span class="keyword">or</span> a DN.</span><br><span class="line">There are quite a few fields but you can leave some blank</span><br><span class="line"><span class="keyword">For</span> some fields there will be a <span class="keyword">default</span> value,</span><br><span class="line"><span class="keyword">If</span> you enter <span class="string">'.'</span>, the field will be left blank.</span><br><span class="line">-----</span><br><span class="line">Country Name (<span class="number">2</span> letter code) [AU]:cn <span class="comment">//← 国家代号</span></span><br><span class="line">State <span class="keyword">or</span> Province Name (full name) [Some-State]:sc \\← 省的全名</span><br><span class="line">Locality Name (eg, city) []:cd \\ ← 市的全名</span><br><span class="line">Organization Name (eg, company) [Internet Widgits Pty Ltd]:wt \\公司英文</span><br><span class="line">Organizational Unit Name (eg, section) []:it \\</span><br><span class="line">Common Name (e.g. server FQDN <span class="keyword">or</span> YOUR name) []:it \\</span><br><span class="line">Email Address []:<span class="number">123</span>@<span class="number">123.</span>com <span class="comment">//← 电子邮箱</span></span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/07/docker搭建registry私有仓库/#thêm" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/09/07/docker搭建registry私有仓库/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
     </div>
-    
-    
-    
-	<div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/09/07/docker搭建registry私有仓库/" itemprop="url">docker搭建registry私有仓库</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-09-07T10:44:39+08:00">2017-09-07 10:44:39</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-	  </div>
-    
-
-    
-
-    
-
+      <p>生成私有ssl证书<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/registry/certs</span><br><span class="line"> cd ~/registry/certs</span><br><span class="line"> openssl genrsa -out registry.wting.com.key <span class="number">1024</span></span><br><span class="line"> openssl req -newkey rsa:<span class="number">4096</span> -nodes -sha256 -keyout registry.wting.com.key -x509 -days <span class="number">365</span> -out registry.wting.com.crt</span><br><span class="line"> Generating a <span class="number">4096</span> bit RSA <span class="keyword">private</span> key</span><br><span class="line">.........................++</span><br><span class="line">.....................................................................................................................++</span><br><span class="line">writing <span class="keyword">new</span> <span class="keyword">private</span> key to <span class="string">'registry.wting.com.key'</span></span><br><span class="line">-----</span><br><span class="line">You are about to be asked to enter information that will be incorporated</span><br><span class="line">into your certificate request.</span><br><span class="line">What you are about to enter is what is called a Distinguished Name <span class="keyword">or</span> a DN.</span><br><span class="line">There are quite a few fields but you can leave some blank</span><br><span class="line"><span class="keyword">For</span> some fields there will be a <span class="keyword">default</span> value,</span><br><span class="line"><span class="keyword">If</span> you enter <span class="string">'.'</span>, the field will be left blank.</span><br><span class="line">-----</span><br><span class="line">Country Name (<span class="number">2</span> letter code) [AU]:cn <span class="comment">//← 国家代号</span></span><br><span class="line">State <span class="keyword">or</span> Province Name (full name) [Some-State]:sc \\← 省的全名</span><br><span class="line">Locality Name (eg, city) []:cd \\ ← 市的全名</span><br><span class="line">Organization Name (eg, company) [Internet Widgits Pty Ltd]:wt \\公司英文</span><br><span class="line">Organizational Unit Name (eg, section) []:it \\</span><br><span class="line">Common Name (e.g. server FQDN <span class="keyword">or</span> YOUR name) []:it \\</span><br><span class="line">Email Address []:<span class="number">123</span>@<span class="number">123.</span>com <span class="comment">//← 电子邮箱</span></span><br></pre></td></tr></table></figure></p>
+      
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/09/06/Linux挂载已分区的LVM磁盘/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/09/06/Linux挂载已分区的LVM磁盘/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/09/06/Linux挂载已分区的LVM磁盘/" itemprop="url">Linux挂载已分区的LVM磁盘</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-09-06T09:09:53+08:00">2017-09-06 09:09:53</time></span>
+        </span>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/06/Linux挂载已分区的LVM磁盘/" itemprop="url">Linux挂载已分区的LVM磁盘</a></h1>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-06T09:09:53+08:00">
-                2017-09-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-      
-
-      
-        
-          <p>查看新挂载的lvm磁盘<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">[root@tomcat-node5 /]<span class="comment"># fdisk  -l</span></span><br><span class="line"></span><br><span class="line">Disk /dev/xvda: <span class="number">42.9</span> GB, <span class="number">42949672960</span> bytes</span><br><span class="line"><span class="number">255</span> heads, <span class="number">63</span> sectors/track, <span class="number">5221</span> cylinders</span><br><span class="line">Units = cylinders of <span class="number">16065</span> * <span class="number">512</span> = <span class="number">8225280</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disk identifier: <span class="number">0x00078f9c</span></span><br><span class="line"></span><br><span class="line">    Device Boot      Start         End      Blocks   Id  System</span><br><span class="line">/dev/xvda1   *           <span class="number">1</span>        <span class="number">5222</span>    <span class="number">41940992</span>   <span class="number">83</span>  Linux</span><br><span class="line"></span><br><span class="line">Disk /dev/xvdb: <span class="number">107.4</span> GB, <span class="number">107374182400</span> bytes</span><br><span class="line"><span class="number">255</span> heads, <span class="number">63</span> sectors/track, <span class="number">13054</span> cylinders</span><br><span class="line">Units = cylinders of <span class="number">16065</span> * <span class="number">512</span> = <span class="number">8225280</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disk identifier: <span class="number">0x00000000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disk /dev/mapper/jhjhome1-lv_home: <span class="number">32.2</span> GB, <span class="number">32212254720</span> bytes</span><br><span class="line"><span class="number">255</span> heads, <span class="number">63</span> sectors/track, <span class="number">3916</span> cylinders</span><br><span class="line">Units = cylinders of <span class="number">16065</span> * <span class="number">512</span> = <span class="number">8225280</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disk identifier: <span class="number">0x00000000</span></span><br><span class="line">.....</span><br><span class="line"></span><br><span class="line">Disk /dev/xvdc: <span class="number">107.4</span> GB, <span class="number">107374182400</span> bytes</span><br><span class="line"><span class="number">255</span> heads, <span class="number">63</span> sectors/track, <span class="number">13054</span> cylinders</span><br><span class="line">Units = cylinders of <span class="number">16065</span> * <span class="number">512</span> = <span class="number">8225280</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disk identifier: <span class="number">0x00000000</span></span><br></pre></td></tr></table></figure></p>
+      <p>查看新挂载的lvm磁盘<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">[root@tomcat-node5 /]<span class="comment"># fdisk  -l</span></span><br><span class="line"></span><br><span class="line">Disk /dev/xvda: <span class="number">42.9</span> GB, <span class="number">42949672960</span> bytes</span><br><span class="line"><span class="number">255</span> heads, <span class="number">63</span> sectors/track, <span class="number">5221</span> cylinders</span><br><span class="line">Units = cylinders of <span class="number">16065</span> * <span class="number">512</span> = <span class="number">8225280</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disk identifier: <span class="number">0x00078f9c</span></span><br><span class="line"></span><br><span class="line">    Device Boot      Start         End      Blocks   Id  System</span><br><span class="line">/dev/xvda1   *           <span class="number">1</span>        <span class="number">5222</span>    <span class="number">41940992</span>   <span class="number">83</span>  Linux</span><br><span class="line"></span><br><span class="line">Disk /dev/xvdb: <span class="number">107.4</span> GB, <span class="number">107374182400</span> bytes</span><br><span class="line"><span class="number">255</span> heads, <span class="number">63</span> sectors/track, <span class="number">13054</span> cylinders</span><br><span class="line">Units = cylinders of <span class="number">16065</span> * <span class="number">512</span> = <span class="number">8225280</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disk identifier: <span class="number">0x00000000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disk /dev/mapper/jhjhome1-lv_home: <span class="number">32.2</span> GB, <span class="number">32212254720</span> bytes</span><br><span class="line"><span class="number">255</span> heads, <span class="number">63</span> sectors/track, <span class="number">3916</span> cylinders</span><br><span class="line">Units = cylinders of <span class="number">16065</span> * <span class="number">512</span> = <span class="number">8225280</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disk identifier: <span class="number">0x00000000</span></span><br><span class="line">.....</span><br><span class="line"></span><br><span class="line">Disk /dev/xvdc: <span class="number">107.4</span> GB, <span class="number">107374182400</span> bytes</span><br><span class="line"><span class="number">255</span> heads, <span class="number">63</span> sectors/track, <span class="number">13054</span> cylinders</span><br><span class="line">Units = cylinders of <span class="number">16065</span> * <span class="number">512</span> = <span class="number">8225280</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disk identifier: <span class="number">0x00000000</span></span><br></pre></td></tr></table></figure></p>
 <p>Disk /dev/xvdc是新挂载上去磁盘</p>
-<p>直接挂着目录报错<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@jhjapp-tomcat-node5 ~]<span class="comment"># mount /dev/xvdc /mnt</span></span><br><span class="line">mount: unknown filesystem type <span class="string">'LVM2_member'</span></span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/06/Linux挂载已分区的LVM磁盘/#thêm" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+<p>直接挂着目录报错<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@jhjapp-tomcat-node5 ~]<span class="comment"># mount /dev/xvdc /mnt</span></span><br><span class="line">mount: unknown filesystem type <span class="string">'LVM2_member'</span></span><br></pre></td></tr></table></figure></p>
       
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/09/01/Oracle自动删除归档日志shell脚本/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/09/01/Oracle自动删除归档日志shell脚本/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/09/01/Oracle自动删除归档日志shell脚本/" itemprop="url">Oracle自动删除归档日志shell脚本</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-09-01T11:16:19+08:00">2017-09-01 11:16:19</time></span>
+        </span>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/01/Oracle自动删除归档日志shell脚本/" itemprop="url">Oracle自动删除归档日志shell脚本</a></h1>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-01T11:16:19+08:00">
-                2017-09-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-      
-
-      
-        
-          
-            <p>Oraclr归档日志清理脚本<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="keyword">if</span> [ -f ~/.bash_profile ]; then</span><br><span class="line">    . ~/.bash_profile</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"><span class="comment">#set env</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"Oracle home:"</span><span class="variable">$ORACLE_HOME</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"Oracle SID:"</span><span class="variable">$ORACLE_SID</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$ORACLE_HOME</span>/bin/rman target sys/oracle@rac log=/oracle/logs/rman.log &lt;&lt;EOF</span><br><span class="line">crosscheck archivelog all;</span><br><span class="line">delete noprompt expired archivelog all;</span><br><span class="line">delete noprompt archivelog all completed before <span class="string">'sysdate - 5'</span>;</span><br><span class="line"><span class="keyword">exit</span>;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
+      <p>Oraclr归档日志清理脚本<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="keyword">if</span> [ -f ~/.bash_profile ]; then</span><br><span class="line">    . ~/.bash_profile</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"><span class="comment">#set env</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"Oracle home:"</span><span class="variable">$ORACLE_HOME</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"Oracle SID:"</span><span class="variable">$ORACLE_SID</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$ORACLE_HOME</span>/bin/rman target sys/oracle@rac log=/oracle/logs/rman.log &lt;&lt;EOF</span><br><span class="line">crosscheck archivelog all;</span><br><span class="line">delete noprompt expired archivelog all;</span><br><span class="line">delete noprompt archivelog all completed before <span class="string">'sysdate - 5'</span>;</span><br><span class="line"><span class="keyword">exit</span>;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
 <hr>
-<p>正式环境<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br><span class="line"><span class="comment">#Author wang.t</span></span><br><span class="line"><span class="comment">#date 2017-9-1</span></span><br><span class="line">ORACLE_HOME=/data/u01/app/oracle/product/<span class="number">11.2</span><span class="number">.0</span>/dbhome_1</span><br><span class="line"><span class="variable">$ORACLE_HOME</span>/bin/rman  target / log=/data/backup/logs/rman.log &lt;&lt; EOF</span><br><span class="line">crosscheck archivelog all;</span><br><span class="line">DELETE noprompt  ARCHIVELOG ALL COMPLETED BEFORE <span class="string">'SYSDATE-15'</span>;</span><br><span class="line"><span class="keyword">exit</span>;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
+<p>正式环境<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br><span class="line"><span class="comment">#Author wang.t</span></span><br><span class="line"><span class="comment">#date 2017-9-1</span></span><br><span class="line">ORACLE_HOME=/data/u01/app/oracle/product/<span class="number">11.2</span><span class="number">.0</span>/dbhome_1</span><br><span class="line"><span class="variable">$ORACLE_HOME</span>/bin/rman  target / log=/data/backup/logs/rman.log &lt;&lt; EOF</span><br><span class="line">crosscheck archivelog all;</span><br><span class="line">DELETE noprompt  ARCHIVELOG ALL COMPLETED BEFORE <span class="string">'SYSDATE-15'</span>;</span><br><span class="line"><span class="keyword">exit</span>;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
 <p>mkdir -p /data/backup/logs/</p>
 
-          
-        
       
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/09/01/Nginx-内核参数优化参考/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/01/Nginx-内核参数优化参考/" itemprop="url">Nginx+内核参数优化参考</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-01T11:15:11+08:00">
-                2017-09-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>#内核优化<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">net.ipv4.ip_forward = <span class="number">0</span></span><br><span class="line">net.ipv4.conf.<span class="keyword">default</span>.rp_filter = <span class="number">1</span></span><br><span class="line">net.ipv4.conf.<span class="keyword">default</span>.accept_source_route = <span class="number">0</span></span><br><span class="line">kernel.sysrq = <span class="number">0</span></span><br><span class="line">kernel.core_uses_pid = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_syncookies = <span class="number">1</span></span><br><span class="line">kernel.msgmnb = <span class="number">65536</span></span><br><span class="line">kernel.msgmax = <span class="number">65536</span></span><br><span class="line">kernel.shmmax = <span class="number">68719476736</span></span><br><span class="line">kernel.shmall = <span class="number">4294967296</span></span><br><span class="line">net.ipv4.tcp_max_tw_buckets = <span class="number">6000</span></span><br><span class="line">net.ipv4.tcp_sack = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_window_scaling = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_rmem = <span class="number">4096</span>        <span class="number">87380</span>    <span class="number">4194304</span></span><br><span class="line">net.ipv4.tcp_wmem = <span class="number">4096</span>        <span class="number">16384</span>    <span class="number">4194304</span></span><br><span class="line">net.core.wmem_default = <span class="number">8388608</span></span><br><span class="line">net.core.rmem_default = <span class="number">8388608</span></span><br><span class="line">net.core.rmem_max = <span class="number">16777216</span></span><br><span class="line">net.core.wmem_max = <span class="number">16777216</span></span><br><span class="line">net.core.netdev_max_backlog = <span class="number">262144</span></span><br><span class="line">net.core.somaxconn = <span class="number">262144</span></span><br><span class="line">net.ipv4.tcp_max_orphans = <span class="number">3276800</span></span><br><span class="line">net.ipv4.tcp_max_syn_backlog = <span class="number">262144</span></span><br><span class="line">net.ipv4.tcp_timestamps = <span class="number">0</span></span><br><span class="line">net.ipv4.tcp_synack_retries = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_syn_retries = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_tw_recycle = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_tw_reuse = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_mem = <span class="number">94500000</span> <span class="number">915000000</span> <span class="number">927000000</span></span><br><span class="line">net.ipv4.tcp_fin_timeout = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_keepalive_time = <span class="number">30</span></span><br><span class="line">net.ipv4.ip_local_port_range = <span class="number">1024</span>    <span class="number">65000</span></span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/01/Nginx-内核参数优化参考/#thêm" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/09/01/Nginx-内核参数优化参考/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
     </div>
-    
-    
-    
-	<div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/09/01/Nginx-内核参数优化参考/" itemprop="url">Nginx+内核参数优化参考</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-09-01T11:15:11+08:00">2017-09-01 11:15:11</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-	  </div>
-    
-
-    
-
-    
-
+      <p>#内核优化<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">net.ipv4.ip_forward = <span class="number">0</span></span><br><span class="line">net.ipv4.conf.<span class="keyword">default</span>.rp_filter = <span class="number">1</span></span><br><span class="line">net.ipv4.conf.<span class="keyword">default</span>.accept_source_route = <span class="number">0</span></span><br><span class="line">kernel.sysrq = <span class="number">0</span></span><br><span class="line">kernel.core_uses_pid = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_syncookies = <span class="number">1</span></span><br><span class="line">kernel.msgmnb = <span class="number">65536</span></span><br><span class="line">kernel.msgmax = <span class="number">65536</span></span><br><span class="line">kernel.shmmax = <span class="number">68719476736</span></span><br><span class="line">kernel.shmall = <span class="number">4294967296</span></span><br><span class="line">net.ipv4.tcp_max_tw_buckets = <span class="number">6000</span></span><br><span class="line">net.ipv4.tcp_sack = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_window_scaling = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_rmem = <span class="number">4096</span>        <span class="number">87380</span>    <span class="number">4194304</span></span><br><span class="line">net.ipv4.tcp_wmem = <span class="number">4096</span>        <span class="number">16384</span>    <span class="number">4194304</span></span><br><span class="line">net.core.wmem_default = <span class="number">8388608</span></span><br><span class="line">net.core.rmem_default = <span class="number">8388608</span></span><br><span class="line">net.core.rmem_max = <span class="number">16777216</span></span><br><span class="line">net.core.wmem_max = <span class="number">16777216</span></span><br><span class="line">net.core.netdev_max_backlog = <span class="number">262144</span></span><br><span class="line">net.core.somaxconn = <span class="number">262144</span></span><br><span class="line">net.ipv4.tcp_max_orphans = <span class="number">3276800</span></span><br><span class="line">net.ipv4.tcp_max_syn_backlog = <span class="number">262144</span></span><br><span class="line">net.ipv4.tcp_timestamps = <span class="number">0</span></span><br><span class="line">net.ipv4.tcp_synack_retries = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_syn_retries = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_tw_recycle = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_tw_reuse = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_mem = <span class="number">94500000</span> <span class="number">915000000</span> <span class="number">927000000</span></span><br><span class="line">net.ipv4.tcp_fin_timeout = <span class="number">1</span></span><br><span class="line">net.ipv4.tcp_keepalive_time = <span class="number">30</span></span><br><span class="line">net.ipv4.ip_local_port_range = <span class="number">1024</span>    <span class="number">65000</span></span><br></pre></td></tr></table></figure></p>
+      
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/09/01/zookeeper集群部署/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/01/zookeeper集群部署/" itemprop="url">zookeeper集群部署</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-01T11:13:06+08:00">
-                2017-09-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>#ZooKeeper集群安装#<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//mirrors.hust.edu.cn/apache/zookeeper/</span></span><br><span class="line">http:<span class="comment">//mirrors.hust.edu.cn/apache/zookeeper/zookeeper-3.4.9/zookeeper-3.4.9.tar.gz</span></span><br><span class="line">tar  -zxvf  zookeeper-<span class="number">3.4</span><span class="number">.9</span>.tar.gz  -C  /usr/local/</span><br></pre></td></tr></table></figure></p>
-<p>进入conf目录下复制并修改配置文件<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">cp zoo_sample.cfg zoo.cfg</span><br><span class="line">vim zoo.cfg</span><br><span class="line">tickTime是zookeeper中的基本时间单位，此处用于定义一个ticktime是多长，单位毫秒</span><br><span class="line">tickTime=<span class="number">2000</span></span><br><span class="line">存储内存中的数据库快照的位置，如果没有指定dataLogDir，还将存储数据库更新的事务日志</span><br><span class="line">dataDir=<span class="comment">//usr/local/zookeeper-3.4.9/data</span></span><br><span class="line">这里的data文件夹需要自己创建</span><br><span class="line">数据库事务日志的位置</span><br><span class="line">dataLogDir=/usr/local/zookeeper-<span class="number">3.4</span><span class="number">.9</span>/log</span><br><span class="line">这里的log文件夹需要自己创建</span><br><span class="line">为了客户端连接而侦听的端口</span><br><span class="line">clientPort=<span class="number">2181</span></span><br><span class="line">允许Follower连接并与Leader同步的时长，单位是tickTime</span><br><span class="line">initLimit=<span class="number">5</span></span><br><span class="line">允许Follower与ZooKeeper同步的时长，单位是tickTime</span><br><span class="line">syncLimit=<span class="number">2</span></span><br><span class="line">组成ZooKeeper的成员服务器。server.x的x是服务器号，与对应服务器dataDir中myid文件内的号码一致。</span><br><span class="line">指定两个端口号，前一个用于Follower连接Leader，后一个用于Leader选举。</span><br><span class="line">server<span class="number">.1</span>=<span class="number">192.168</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">2888</span>:<span class="number">3888</span></span><br><span class="line">server<span class="number">.2</span>=<span class="number">192.168</span><span class="number">.0</span><span class="number">.2</span>:<span class="number">2888</span>:<span class="number">3888</span></span><br><span class="line">server<span class="number">.3</span>=<span class="number">192.168</span><span class="number">.0</span><span class="number">.3</span>:<span class="number">2888</span>:<span class="number">3888</span></span><br><span class="line">这是分布式环境的配置，如果是在单机上配置，则需要修改成不同的端口号</span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/01/zookeeper集群部署/#thêm" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
   </nav>
-
-
+  
+  
+</div>
 
           </div>
           
-
-
           
-
-        </div>
-        
           
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
     </div>
   </div>
-
-  <aside id="sidebar" class="sidebar">
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/img/avatar.jpg" alt="Wang'T">
+  
+  <h1 class="author-name">Wang'T</h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
     
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.gif"
-                alt="Wang'T" />
-            
-              <p class="site-author-name" itemprop="name">Wang'T</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">59</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/Hwting" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:wang.t.nice@gmail.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="http://weibo.com/" target="_blank" title="微博">
-                      
-                        <i class="fa fa-fw fa-globe"></i>微博</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.ytniu.com" title="Ytniu" target="_blank">Ytniu</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
-
-          
-
-        </div>
-      </section>
-
-      
-
-      
-
+    <div class="archives-count">
+      <div class="site-count-title">归档</div>
+      <div><a href="/archives/">60</a></div>
     </div>
-  </aside>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="categories-count">
+      <div class="site-count-title">分类</div>
+      <div><a href="/categories/">10</a></div>
+    </div>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="tags-count">
+      <div class="site-count-title">标签</div>
+      <div><a href="/tags/">19</a></div>
+    </div>
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
 
 
+  <div class="sidebar-sticky">
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
         
+        <li><i class="fas fa-envelope"></i><a href="mailto:wang.t.nice@gmail.com" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="http://www.ytniu.com" target="_blank">Jixiang's Blog</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
       </div>
     </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Wang'T</span>
-
-  
-</div>
-
-
-
-
-
-
-
-
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  ICP备案: 黔ICP备17011344号-1
-</span>
-</div>
-
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">Wang'T</span><span class="year"><i class="far fa-copyright"></i>2015 - 2018</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">BY-NC-ND 4.0</a></span>
+        </div>
         
-
-
-
-
-
-
-
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
         
       </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
       </div>
-    
-
-    
-      <div id="needsharebutton-float">
-        <span class="btn">
-          <i class="fa fa-share-alt" aria-hidden="true"></i>
-        </span>
-      </div>
-    
-
+    </div>
   </div>
+</footer>
 
-  
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-  
-  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
-
-  
-  
-  <script src="/lib/needsharebutton/needsharebutton.js"></script>
-
-  <script>
-    
-      pbOptions = {};
-      
-          pbOptions.iconStyle = "box";
-      
-          pbOptions.boxForm = "horizontal";
-      
-          pbOptions.position = "bottomCenter";
-      
-          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-      
-      new needShareButton('#needsharebutton-postbottom', pbOptions);
-    
-    
-      flOptions = {};
-      
-          flOptions.iconStyle = "box";
-      
-          flOptions.boxForm = "horizontal";
-      
-          flOptions.position = "middleRight";
-      
-          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-      
-      new needShareButton('#needsharebutton-float', flOptions);
-    
-  </script>
-
-  
-
-  
-
-  
-
-  
-
-  
-<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
-<!-- 页面点击小红心 --> 
-<script type="text/javascript" src="/js/src/love.js"></script>
-
-</body>
+  </body>
 </html>

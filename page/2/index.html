@@ -1,688 +1,326 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-
-
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wang'T博客">
-<meta property="og:url" content="http://www.idcsec.com/page/2/index.html">
-<meta property="og:site_name" content="Wang'T博客">
-<meta property="og:description">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wang'T博客">
-<meta name="twitter:description">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://www.idcsec.com/page/2/"/>
-
-
-
-
-
-  <title>Wang'T博客</title>
-  
-
-
-
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?7db1c0024aed11205f1c466a133de827";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
     
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo, docker, linux, kubernetes, Nginx, tomcat, Jenkins">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="Wang'T博客" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato|Roboto+Condensed|Skranji|Ubuntu|Ubuntu+Mono">
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
 
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Wang'T博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/solarized-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>Wang'T博客 - _入网络深似海,从此节操是路人.</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">Wang'T博客</a></h1>
+        <h2 class="subtitle">_入网络深似海,从此节操是路人.</h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/img/logo.jpg" alt="logo">
+      </div>
+      
     </div>
-      
-        <p class="site-subtitle">_入网络深似海,从此节操是路人.</p>
-      
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/">首页</a></li>
+        
+        <li role="menuitem"><a href="/archives/">归档</a></li>
+        
+        <li role="menuitem"><a href="/categories/">分类</a></li>
+        
+        <li role="menuitem"><a href="/tags/">标签</a></li>
+        
+        <li role="menuitem"><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
   </div>
+</header>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-sitemap">
-          <a href="/sitemap.xml" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
-            
-            站点地图
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
-            
-            公益404
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
 
     <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
             
-  <section id="posts" class="posts-expand">
-    
-      
 
+<div id="index" class="index page">
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/08/09/Kubernetes1-11-nginx-ingress安装部署/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/09/Kubernetes1-11-nginx-ingress安装部署/" itemprop="url">Kubernetes1.11 nginx-ingress安装部署</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-09T14:34:00+08:00">
-                2018-08-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/k8s/" itemprop="url" rel="index">
-                    <span itemprop="name">k8s</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="u90E8_u7F72Ingress"><a href="#u90E8_u7F72Ingress" class="headerlink" title="部署Ingress"></a>部署Ingress</h1><p>ingress的部署文件在kubernetes Ingress 修改nodeselector 指定nodes上。<br><code>Pod.spec.nodeSelector</code>是通过kubernetes的label-selector机制进行节点选择，由scheduler调度策略<code>MatchNodeSelector</code>进行label匹配，调度pod到目标节点，该匹配规则是强制约束。启用节点选择器的步骤为:</p>
-<h2 id="Node_u6DFB_u52A0label_u6807_u8BB0"><a href="#Node_u6DFB_u52A0label_u6807_u8BB0" class="headerlink" title="Node添加label标记"></a>Node添加label标记</h2><p>查询lable<br><figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl get nodes --show-labels</span><br><span class="line">标记规则：kubectl <span class="keyword">label</span> nodes <span class="variable">&lt;node-name&gt;</span> <span class="variable">&lt;label-key&gt;</span>=<span class="variable">&lt;label-value&gt;</span></span><br><span class="line">kubectl <span class="keyword">label</span> node <span class="number">192.168</span>.<span class="number">7.93</span> role=nginx-ingress</span><br></pre></td></tr></table></figure></p>
-<p><img src="/img/ingress1.png" alt="crt"><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">镜像v0<span class="number">.17</span><span class="number">.1</span>:docker pull wtingdocker/nginx-ingress-controller</span><br><span class="line">https:<span class="comment">//github.com/kubernetes/ingress-nginx/releases</span></span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/09/Kubernetes1-11-nginx-ingress安装部署/#thêm" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/08/14/Caliconode-localhostlocaldomainisalreadyusingtheIPv4address问题/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
     </div>
-    
-    
-    
-	<div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/08/14/Caliconode-localhostlocaldomainisalreadyusingtheIPv4address问题/" itemprop="url">Caliconode-localhostlocaldomainisalreadyusingtheIPv4address问题</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-08-14T01:08:00+08:00">2018-08-14 01:08:00</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-	  </div>
-    
+      <p>   Calico报错 Calico node ‘localhost.localdomain’ is already using the IPv4 addressx.x.x.x解决<br>服务器之前改名了hostname没有重启部署完etcd、Calico node。后来重启导致k8sCalico node起不来。<br>报错大楷是由于etcd内存储了之前hostname(localhost.localdomain)的的记录导致现在ip和之前冲突，不能自动删除重建<br>查看日志信息<br><figure class="hljs highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl  logs   calico-<span class="keyword">node</span><span class="identifier"></span><span class="title">-8w7tv</span> -c  calico-<span class="keyword">node</span><span class="identifier">  </span><span class="title">-n</span> kube-system -f</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/etc2.png" alt="crt"></p>
+<p>v3没有ls使用get替代</p>
+<p>查看etcd信息<br><figure class="hljs highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$export</span> <span class="constant">ETCDCTL_API</span>=<span class="number">3</span></span><br><span class="line"><span class="variable">$etcdctl</span> --endpoints=<span class="symbol">https:</span>/<span class="regexp">/192.168.7.92:2379,https:/</span><span class="regexp">/192.168.7.93:2379,https:/</span><span class="regexp">/192.168.7.94:2379   --cacert=/etc</span><span class="regexp">/kubernetes/ssl</span><span class="regexp">/ca.pem   --cert=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd.pem   --key=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd-key.pem  get  /</span> --prefix --keys-only | grep localhost</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/etc1.png" alt="crt"><br>删除之前存储的信息<br><figure class="hljs highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$etcdctl</span> --endpoints=<span class="symbol">https:</span>/<span class="regexp">/192.168.7.92:2379,https:/</span><span class="regexp">/192.168.7.93:2379,https:/</span><span class="regexp">/192.168.7.94:2379   --cacert=/etc</span><span class="regexp">/kubernetes/ssl</span><span class="regexp">/ca.pem   --cert=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd.pem   --key=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd-key.pem  get /</span> --prefix --keys-only | grep localhost | xargs -<span class="constant">I</span> &#123;&#125; etcdctl del &#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/etc3.png" alt="crt"></p>
+<p>重启caliconode pod恢复正常<br><img src="/img/etc4.png" alt="crt"></p>
 
-    
-
-    
-
+      
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/kubernetes/" rel="tag"><i class="fas fa-tags"></i>kubernetes</a>
+        
+      </div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/08/09/Kubernetes-Heapster安装部署/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/09/Kubernetes-Heapster安装部署/" itemprop="url">Kubernetes Heapster安装部署</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-09T09:31:00+08:00">
-                2018-08-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/k8s/" itemprop="url" rel="index">
-                    <span itemprop="name">k8s</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>默认安装的kubernetes没有统计 CPU 和内存Dashboard图表也没有显示，装上 Heapster 后就可以直观地看到各个组件的资源消耗情况，以及kubectl top 查看 nodes pod资源。Heapster已弃用。请考虑使用 metrics-server 和第三方指标管道来收集Prometheus格式的指标。<br>可以不安装influxdb    </p>
-<h1 id="u6267_u884Cheapster-yaml_u6587_u4EF6"><a href="#u6267_u884Cheapster-yaml_u6587_u4EF6" class="headerlink" title="执行heapster.yaml文件"></a>执行heapster.yaml文件</h1><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">修改:</span> <span class="literal">-</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">source=</span> <span class="comment">、</span><span class="literal">-</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">sink、images</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/09/Kubernetes-Heapster安装部署/#thêm" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/08/09/Kubernetes1-11-nginx-ingress安装部署/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
     </div>
-    
-    
-    
-	<div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/08/09/Kubernetes1-11-nginx-ingress安装部署/" itemprop="url">Kubernetes1.11 nginx-ingress安装部署</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-08-09T14:34:00+08:00">2018-08-09 14:34:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-	  </div>
-    
-
-    
-
-    
-
+      <h1 id="u90E8_u7F72Ingress"><a href="#u90E8_u7F72Ingress" class="headerlink" title="部署Ingress"></a>部署Ingress</h1><p>ingress的部署文件在kubernetes Ingress 修改nodeselector 指定nodes上。<br><code>Pod.spec.nodeSelector</code>是通过kubernetes的label-selector机制进行节点选择，由scheduler调度策略<code>MatchNodeSelector</code>进行label匹配，调度pod到目标节点，该匹配规则是强制约束。启用节点选择器的步骤为:</p>
+<h2 id="Node_u6DFB_u52A0label_u6807_u8BB0"><a href="#Node_u6DFB_u52A0label_u6807_u8BB0" class="headerlink" title="Node添加label标记"></a>Node添加label标记</h2><p>查询lable<br><figure class="hljs highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl get nodes --show-labels</span><br><span class="line">标记规则：kubectl <span class="keyword">label</span> nodes <span class="variable">&lt;node-name&gt;</span> <span class="variable">&lt;label-key&gt;</span>=<span class="variable">&lt;label-value&gt;</span></span><br><span class="line">kubectl <span class="keyword">label</span> node <span class="number">192.168</span>.<span class="number">7.93</span> role=nginx-ingress</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/ingress1.png" alt="crt"><br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">镜像v0<span class="number">.17</span><span class="number">.1</span>:docker pull wtingdocker/nginx-ingress-controller</span><br><span class="line">https:<span class="comment">//github.com/kubernetes/ingress-nginx/releases</span></span><br></pre></td></tr></table></figure></p>
+      
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/ingress/" rel="tag"><i class="fas fa-tags"></i>ingress</a>
+        
+        <a class="post-tag button" href="/tags/kubernetes/" rel="tag"><i class="fas fa-tags"></i>kubernetes</a>
+        
+      </div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/07/16/Activemq集群搭建ZooKeeper-LevelDB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/08/09/Kubernetes-Heapster安装部署/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/08/09/Kubernetes-Heapster安装部署/" itemprop="url">Kubernetes Heapster安装部署</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-08-09T09:31:00+08:00">2018-08-09 09:31:00</time></span>
+        </span>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/16/Activemq集群搭建ZooKeeper-LevelDB/" itemprop="url">Activemq集群搭建ZooKeeper+LevelDB</a></h1>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-16T22:19:00+08:00">
-                2018-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/activemq/" itemprop="url" rel="index">
-                    <span itemprop="name">activemq</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
+        <span class="post-meta-divider divider">|</span>
         
-          <p>ZooKeeper搭建<br>略<br>MQ高可用集群部署<br>参考<a href="http://activemq.apache.org/replicated-leveldb-store.html">http://activemq.apache.org/replicated-leveldb-store.html</a></p>
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/k8s/" itemprop="url" rel="index"><span itemprop="name">k8s</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>默认安装的kubernetes没有统计 CPU 和内存Dashboard图表也没有显示，装上 Heapster 后就可以直观地看到各个组件的资源消耗情况，以及kubectl top 查看 nodes pod资源。Heapster已弃用。请考虑使用 metrics-server 和第三方指标管道来收集Prometheus格式的指标。<br>可以不安装influxdb    </p>
+<h1 id="u6267_u884Cheapster-yaml_u6587_u4EF6"><a href="#u6267_u884Cheapster-yaml_u6587_u4EF6" class="headerlink" title="执行heapster.yaml文件"></a>执行heapster.yaml文件</h1><figure class="hljs highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">修改:</span> <span class="literal">-</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">source=</span> <span class="comment">、</span><span class="literal">-</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">sink、images</span></span><br></pre></td></tr></table></figure>
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/kubernetes/" rel="tag"><i class="fas fa-tags"></i>kubernetes</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/07/16/Activemq集群搭建ZooKeeper-LevelDB/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/07/16/Activemq集群搭建ZooKeeper-LevelDB/" itemprop="url">Activemq集群搭建ZooKeeper+LevelDB</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-07-16T22:19:00+08:00">2018-07-16 22:19:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/activemq/" itemprop="url" rel="index"><span itemprop="name">activemq</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>ZooKeeper搭建<br>略<br>MQ高可用集群部署<br>参考<a href="http://activemq.apache.org/replicated-leveldb-store.html">http://activemq.apache.org/replicated-leveldb-store.html</a></p>
 <table>
 <thead>
 <tr>
@@ -711,1354 +349,440 @@
 </tr>
 </tbody>
 </table>
-<h1 id="u4E00_u3001_u4FEE_u6539_vim_conf/activemq-xml"><a href="#u4E00_u3001_u4FEE_u6539_vim_conf/activemq-xml" class="headerlink" title="一、修改 vim conf/activemq.xml"></a>一、修改 vim conf/activemq.xml</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">所以节点brokerName必须一致</span><br><span class="line"> &lt;broker xmlns=<span class="string">"http://activemq.apache.org/schema/core"</span> brokerName=<span class="string">"mybroker"</span> dataDirectory=<span class="string">"$&#123;activemq.data&#125;"</span>&gt;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/16/Activemq集群搭建ZooKeeper-LevelDB/#thêm" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+<h1 id="u4E00_u3001_u4FEE_u6539_vim_conf/activemq-xml"><a href="#u4E00_u3001_u4FEE_u6539_vim_conf/activemq-xml" class="headerlink" title="一、修改 vim conf/activemq.xml"></a>一、修改 vim conf/activemq.xml</h1><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">所以节点brokerName必须一致</span><br><span class="line"> &lt;broker xmlns=<span class="string">"http://activemq.apache.org/schema/core"</span> brokerName=<span class="string">"mybroker"</span> dataDirectory=<span class="string">"$&#123;activemq.data&#125;"</span>&gt;</span><br></pre></td></tr></table></figure>
       
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/activemq/" rel="tag"><i class="fas fa-tags"></i>activemq</a>
+        
+      </div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/07/10/8s-statefulsets部署zookeeper/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/10/8s-statefulsets部署zookeeper/" itemprop="url">k8s statefulsets部署zookeeper</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-10T23:06:00+08:00">
-                2018-07-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="u4F7F_u7528NFS_u914D_u7F6Epv_u3001pvc"><a href="#u4F7F_u7528NFS_u914D_u7F6Epv_u3001pvc" class="headerlink" title="使用NFS配置pv、pvc"></a>使用NFS配置pv、pvc</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;root@centos-master pv]<span class="comment"># cat /etc/exports | grep /opt/zkdata/zk-data-</span></span><br><span class="line">/opt/zkdata/zk-data-<span class="number">0</span> *(rw,no_root_squash,no_all_squash,sync)</span><br><span class="line">/opt/zkdata/zk-data-<span class="number">1</span> *(rw,no_root_squash,no_all_squash,sync)</span><br><span class="line">/opt/zkdata/zk-data-<span class="number">2</span> *(rw,no_root_squash,no_all_squash,sync)</span><br></pre></td></tr></table></figure>
-<h2 id="u521B_u5EFAk8spv_uFF1Apv-yaml"><a href="#u521B_u5EFAk8spv_uFF1Apv-yaml" class="headerlink" title="创建k8spv：pv.yaml"></a>创建k8spv：pv.yaml</h2><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">apiVersion</span>: v1</span><br><span class="line"><span class="attribute">kind</span>: PersistentVolume</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: datadir-zk-<span class="number">0</span></span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">capacity</span>:</span><br><span class="line">    <span class="attribute">storage</span>: <span class="number">10</span>Gi </span><br><span class="line">  <span class="attribute">accessModes</span>:</span><br><span class="line">    - ReadWriteOnce </span><br><span class="line">  <span class="attribute">persistentVolumeReclaimPolicy</span>: Recycle </span><br><span class="line">  <span class="attribute">storageClassName</span>: slow</span><br><span class="line">  <span class="attribute">nfs</span>: </span><br><span class="line">    <span class="attribute">path</span>: /opt/zkdata/zk-data-<span class="number">0</span> </span><br><span class="line">    <span class="attribute">server</span>: x.x.x.x</span><br><span class="line">    <span class="attribute">readOnly</span>: false</span><br><span class="line">---</span><br><span class="line"><span class="attribute">apiVersion</span>: v1</span><br><span class="line"><span class="attribute">kind</span>: PersistentVolume</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: datadir-zk-<span class="number">1</span></span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">capacity</span>:</span><br><span class="line">    <span class="attribute">storage</span>: <span class="number">10</span>Gi</span><br><span class="line">  <span class="attribute">accessModes</span>:</span><br><span class="line">    - RReadWriteOnce</span><br><span class="line">  <span class="attribute">persistentVolumeReclaimPolicy</span>: Recycle</span><br><span class="line">  <span class="attribute">storageClassName</span>: slow</span><br><span class="line">  <span class="attribute">nfs</span>:</span><br><span class="line">    <span class="attribute">path</span>: /opt/zkdata/zk-data-<span class="number">1</span></span><br><span class="line">    <span class="attribute">server</span>: x.x.x.x</span><br><span class="line">    <span class="attribute">readOnly</span>: false</span><br><span class="line">---</span><br><span class="line"><span class="attribute">apiVersion</span>: v1</span><br><span class="line"><span class="attribute">kind</span>: PersistentVolume</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: datadir-zk-<span class="number">2</span></span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">capacity</span>:</span><br><span class="line">    <span class="attribute">storage</span>: <span class="number">10</span>Gi</span><br><span class="line">  <span class="attribute">accessModes</span>:</span><br><span class="line">    - ReadWriteOnce</span><br><span class="line">  <span class="attribute">persistentVolumeReclaimPolicy</span>: Recycle</span><br><span class="line">  <span class="attribute">storageClassName</span>: slow</span><br><span class="line">  <span class="attribute">nfs</span>:</span><br><span class="line">    <span class="attribute">path</span>: /opt/zkdata/zk-data-<span class="number">2</span></span><br><span class="line">    <span class="attribute">server</span>: x.x.x.x</span><br><span class="line">    <span class="attribute">readOnly</span>: false</span><br></pre></td></tr></table></figure>
-<p>kubectl  kubectl  create -f pv.yaml<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-master pv]<span class="comment"># kubectl get pv</span></span><br><span class="line">NAME           CAPACITY   ACCESSMODES   RECLAIMPOLICY   STATUS      CLAIM     STORAGECLASS   REASON    AGE</span><br><span class="line">datadir-zk-<span class="number">0</span>   <span class="number">10</span>Gi       RWX           Recycle         Available             slow                     <span class="number">25</span>s</span><br><span class="line">datadir-zk-<span class="number">1</span>   <span class="number">10</span>Gi       RWX           Recycle         Available             slow                     <span class="number">25</span>s</span><br><span class="line">datadir-zk-<span class="number">2</span>   <span class="number">10</span>Gi       RWX           Recycle         Available             slow                     <span class="number">25</span>s</span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/10/8s-statefulsets部署zookeeper/#thêm" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/07/10/8s-statefulsets部署zookeeper/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
     </div>
-    
-    
-    
-	<div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/07/10/8s-statefulsets部署zookeeper/" itemprop="url">k8s statefulsets部署zookeeper</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-07-10T23:06:00+08:00">2018-07-10 23:06:00</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-	  </div>
-    
-
-    
-
-    
-
+      <h1 id="u4F7F_u7528NFS_u914D_u7F6Epv_u3001pvc"><a href="#u4F7F_u7528NFS_u914D_u7F6Epv_u3001pvc" class="headerlink" title="使用NFS配置pv、pvc"></a>使用NFS配置pv、pvc</h1><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;root@centos-master pv]<span class="comment"># cat /etc/exports | grep /opt/zkdata/zk-data-</span></span><br><span class="line">/opt/zkdata/zk-data-<span class="number">0</span> *(rw,no_root_squash,no_all_squash,sync)</span><br><span class="line">/opt/zkdata/zk-data-<span class="number">1</span> *(rw,no_root_squash,no_all_squash,sync)</span><br><span class="line">/opt/zkdata/zk-data-<span class="number">2</span> *(rw,no_root_squash,no_all_squash,sync)</span><br></pre></td></tr></table></figure>
+<h2 id="u521B_u5EFAk8spv_uFF1Apv-yaml"><a href="#u521B_u5EFAk8spv_uFF1Apv-yaml" class="headerlink" title="创建k8spv：pv.yaml"></a>创建k8spv：pv.yaml</h2><figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">apiVersion</span>: v1</span><br><span class="line"><span class="attribute">kind</span>: PersistentVolume</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: datadir-zk-<span class="number">0</span></span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">capacity</span>:</span><br><span class="line">    <span class="attribute">storage</span>: <span class="number">10</span>Gi </span><br><span class="line">  <span class="attribute">accessModes</span>:</span><br><span class="line">    - ReadWriteOnce </span><br><span class="line">  <span class="attribute">persistentVolumeReclaimPolicy</span>: Recycle </span><br><span class="line">  <span class="attribute">storageClassName</span>: slow</span><br><span class="line">  <span class="attribute">nfs</span>: </span><br><span class="line">    <span class="attribute">path</span>: /opt/zkdata/zk-data-<span class="number">0</span> </span><br><span class="line">    <span class="attribute">server</span>: x.x.x.x</span><br><span class="line">    <span class="attribute">readOnly</span>: false</span><br><span class="line">---</span><br><span class="line"><span class="attribute">apiVersion</span>: v1</span><br><span class="line"><span class="attribute">kind</span>: PersistentVolume</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: datadir-zk-<span class="number">1</span></span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">capacity</span>:</span><br><span class="line">    <span class="attribute">storage</span>: <span class="number">10</span>Gi</span><br><span class="line">  <span class="attribute">accessModes</span>:</span><br><span class="line">    - RReadWriteOnce</span><br><span class="line">  <span class="attribute">persistentVolumeReclaimPolicy</span>: Recycle</span><br><span class="line">  <span class="attribute">storageClassName</span>: slow</span><br><span class="line">  <span class="attribute">nfs</span>:</span><br><span class="line">    <span class="attribute">path</span>: /opt/zkdata/zk-data-<span class="number">1</span></span><br><span class="line">    <span class="attribute">server</span>: x.x.x.x</span><br><span class="line">    <span class="attribute">readOnly</span>: false</span><br><span class="line">---</span><br><span class="line"><span class="attribute">apiVersion</span>: v1</span><br><span class="line"><span class="attribute">kind</span>: PersistentVolume</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: datadir-zk-<span class="number">2</span></span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">capacity</span>:</span><br><span class="line">    <span class="attribute">storage</span>: <span class="number">10</span>Gi</span><br><span class="line">  <span class="attribute">accessModes</span>:</span><br><span class="line">    - ReadWriteOnce</span><br><span class="line">  <span class="attribute">persistentVolumeReclaimPolicy</span>: Recycle</span><br><span class="line">  <span class="attribute">storageClassName</span>: slow</span><br><span class="line">  <span class="attribute">nfs</span>:</span><br><span class="line">    <span class="attribute">path</span>: /opt/zkdata/zk-data-<span class="number">2</span></span><br><span class="line">    <span class="attribute">server</span>: x.x.x.x</span><br><span class="line">    <span class="attribute">readOnly</span>: false</span><br></pre></td></tr></table></figure>
+<p>kubectl  kubectl  create -f pv.yaml<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-master pv]<span class="comment"># kubectl get pv</span></span><br><span class="line">NAME           CAPACITY   ACCESSMODES   RECLAIMPOLICY   STATUS      CLAIM     STORAGECLASS   REASON    AGE</span><br><span class="line">datadir-zk-<span class="number">0</span>   <span class="number">10</span>Gi       RWX           Recycle         Available             slow                     <span class="number">25</span>s</span><br><span class="line">datadir-zk-<span class="number">1</span>   <span class="number">10</span>Gi       RWX           Recycle         Available             slow                     <span class="number">25</span>s</span><br><span class="line">datadir-zk-<span class="number">2</span>   <span class="number">10</span>Gi       RWX           Recycle         Available             slow                     <span class="number">25</span>s</span><br></pre></td></tr></table></figure></p>
+      
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/k8s/" rel="tag"><i class="fas fa-tags"></i>k8s</a>
+        
+      </div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/03/23/fastDFS-Nginx分布式图片服务器搭建/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/03/23/fastDFS-Nginx分布式图片服务器搭建/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/03/23/fastDFS-Nginx分布式图片服务器搭建/" itemprop="url">fastDFS+Nginx分布式图片服务器搭建</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-03-23T10:38:00+08:00">2018-03-23 10:38:00</time></span>
+        </span>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/23/fastDFS-Nginx分布式图片服务器搭建/" itemprop="url">fastDFS+Nginx分布式图片服务器搭建</a></h1>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-23T10:38:00+08:00">
-                2018-03-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
+        <span class="post-meta-divider divider">|</span>
         
+        <span class="post-categories">
           
-            <h1 id="u5B89_u88C5_u4F9D_u8D56_u5305"><a href="#u5B89_u88C5_u4F9D_u8D56_u5305" class="headerlink" title="安装依赖包"></a>安装依赖包</h1><p>系统：centos7.4<br><img src="/img/dfs8.png" alt="crt"><br>tracker和storage节点建议部署分别部署<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install -y libevent</span><br><span class="line">yum install gcc-c++  openssl-devel  pcre-devel zlib-devel</span><br></pre></td></tr></table></figure></p>
-<p>下载需要的包<br><a href="https://github.com/happyfish100" target="_blank" rel="external">https://github.com/happyfish100</a><br>nginx官网<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fastdfs5<span class="number">.11</span>.zip</span><br><span class="line">fastdfs-nginx-module.zip</span><br><span class="line">libfastcommon.zip</span><br><span class="line">nginx-<span class="number">1.12</span><span class="number">.2</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h1><h2 id="libfastcommon"><a href="#libfastcommon" class="headerlink" title="libfastcommon"></a>libfastcommon</h2><p>首先第一步是安装libfastcommon<br>unzip libfastcommon-master.zip<br>解压成功后进入目录看一下压缩包的文件：<br><img src="/img/dfs1.png" alt="dfs"><br>解压完成后就可以进行编译安装了，执行./make.sh  &amp;&amp; ./make.sh  install<br><img src="/img/dfs2.png" alt="crt"><br>至此libfastcommon就已经安装成功了，但注意一下上图中红色框标注的内容，libfastcommon.so 默认安装到了/usr/lib64/libfastcommon.so，但是FastDFS主程序设置的lib目录是/usr/local/lib，所以此处需要重新设置软链接<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/lib64/libfastcommon.so /usr/local/lib/libfastcommon.so</span><br><span class="line">ln -s /usr/lib64/libfastcommon.so /usr/lib/libfastcommon.so</span><br><span class="line">ln -s /usr/lib64/libfdfsclient.so /usr/local/lib/libfdfsclient.so</span><br><span class="line">ln -s /usr/lib64/libfdfsclient.so /usr/lib/libfdfsclient.so</span><br></pre></td></tr></table></figure></p>
-<h1 id="u5B89_u88C5fastdfs"><a href="#u5B89_u88C5fastdfs" class="headerlink" title="安装fastdfs"></a>安装fastdfs</h1><p>unzip fastdfs5.11.zip<br>解压完成后进入目录 fastdfs-5.11，执行<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">./make.sh  &amp;&amp; ./make.sh  install</span><br><span class="line">cd /etc/fdfs/</span><br><span class="line">[root@hjlc-storage-nodeA fdfs]<span class="comment"># cp client.conf.sample  client.conf</span></span><br><span class="line">[root@hjlc-storage-nodeA fdfs]<span class="comment"># cp storage.conf.sample storage.conf</span></span><br><span class="line">[root@hjlc-storage-nodeA fdfs]<span class="comment"># cp tracker.conf.sample tracker.conf</span></span><br></pre></td></tr></table></figure></p>
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/fastDFS/" itemprop="url" rel="index"><span itemprop="name">fastDFS</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <h1 id="u5B89_u88C5_u4F9D_u8D56_u5305"><a href="#u5B89_u88C5_u4F9D_u8D56_u5305" class="headerlink" title="安装依赖包"></a>安装依赖包</h1><p>系统：centos7.4<br><img src="/img/dfs8.png" alt="crt"><br>tracker和storage节点建议部署分别部署<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install -y libevent</span><br><span class="line">yum install gcc-c++  openssl-devel  pcre-devel zlib-devel</span><br></pre></td></tr></table></figure></p>
+<p>下载需要的包<br><a href="https://github.com/happyfish100" target="_blank" rel="external">https://github.com/happyfish100</a><br>nginx官网<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fastdfs5<span class="number">.11</span>.zip</span><br><span class="line">fastdfs-nginx-module.zip</span><br><span class="line">libfastcommon.zip</span><br><span class="line">nginx-<span class="number">1.12</span><span class="number">.2</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h1><h2 id="libfastcommon"><a href="#libfastcommon" class="headerlink" title="libfastcommon"></a>libfastcommon</h2><p>首先第一步是安装libfastcommon<br>unzip libfastcommon-master.zip<br>解压成功后进入目录看一下压缩包的文件：<br><img src="/img/dfs1.png" alt="dfs"><br>解压完成后就可以进行编译安装了，执行./make.sh  &amp;&amp; ./make.sh  install<br><img src="/img/dfs2.png" alt="crt"><br>至此libfastcommon就已经安装成功了，但注意一下上图中红色框标注的内容，libfastcommon.so 默认安装到了/usr/lib64/libfastcommon.so，但是FastDFS主程序设置的lib目录是/usr/local/lib，所以此处需要重新设置软链接<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/lib64/libfastcommon.so /usr/local/lib/libfastcommon.so</span><br><span class="line">ln -s /usr/lib64/libfastcommon.so /usr/lib/libfastcommon.so</span><br><span class="line">ln -s /usr/lib64/libfdfsclient.so /usr/local/lib/libfdfsclient.so</span><br><span class="line">ln -s /usr/lib64/libfdfsclient.so /usr/lib/libfdfsclient.so</span><br></pre></td></tr></table></figure></p>
+<h1 id="u5B89_u88C5fastdfs"><a href="#u5B89_u88C5fastdfs" class="headerlink" title="安装fastdfs"></a>安装fastdfs</h1><p>unzip fastdfs5.11.zip<br>解压完成后进入目录 fastdfs-5.11，执行<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">./make.sh  &amp;&amp; ./make.sh  install</span><br><span class="line">cd /etc/fdfs/</span><br><span class="line">[root@hjlc-storage-nodeA fdfs]<span class="comment"># cp client.conf.sample  client.conf</span></span><br><span class="line">[root@hjlc-storage-nodeA fdfs]<span class="comment"># cp storage.conf.sample storage.conf</span></span><br><span class="line">[root@hjlc-storage-nodeA fdfs]<span class="comment"># cp tracker.conf.sample tracker.conf</span></span><br></pre></td></tr></table></figure></p>
 <p><img src="/img/dfs3.png" alt="crt"></p>
-<h2 id="Tracker_u670D_u52A1_u914D_u7F6E"><a href="#Tracker_u670D_u52A1_u914D_u7F6E" class="headerlink" title="Tracker服务配置"></a>Tracker服务配置</h2><p>mkdir -p /home/hjlc/app/fastdfs/fastdfs_tracker<br>编辑/etc/fdfs目录下的tracker.conf配置文件<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">disabled=<span class="keyword">false</span> <span class="comment">#启用配置文件（默认启用）</span></span><br><span class="line">port=<span class="number">22122</span> <span class="comment">#设置tracker的端口号，通常采用22122这个默认端口</span></span><br><span class="line">base_path=/home/hjlc/app/fastdfs/fastdfs_tracker <span class="comment">#设置tracker的数据文件和日志目录</span></span><br><span class="line">http.server_port=<span class="number">6666</span> <span class="comment">#设置http端口号，默认为8080这个不需要了</span></span><br></pre></td></tr></table></figure></p>
-<p>为启动脚本创建软引用<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@hjlc-storage-nodeA fastdfs]<span class="comment"># ln -s /usr/bin/fdfs_trackerd /usr/local/bin</span></span><br><span class="line">[root@hjlc-storage-nodeA fastdfs]<span class="comment"># ln -s /usr/bin/stop.sh /usr/local/bin</span></span><br><span class="line">[root@hjlc-storage-nodeA fastdfs]<span class="comment"># ln -s /usr/bin/restart.sh /usr/local/bin</span></span><br><span class="line">启动tracker服务</span><br><span class="line">root@hjlc-storage-nodeA fastdfs]<span class="comment"># service  fdfs_trackerd start</span></span><br><span class="line">Reloading systemd:                                         [  OK  ]</span><br><span class="line">Starting fdfs_trackerd (via systemctl):                    [  OK  ]</span><br></pre></td></tr></table></figure></p>
+<h2 id="Tracker_u670D_u52A1_u914D_u7F6E"><a href="#Tracker_u670D_u52A1_u914D_u7F6E" class="headerlink" title="Tracker服务配置"></a>Tracker服务配置</h2><p>mkdir -p /home/hjlc/app/fastdfs/fastdfs_tracker<br>编辑/etc/fdfs目录下的tracker.conf配置文件<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">disabled=<span class="keyword">false</span> <span class="comment">#启用配置文件（默认启用）</span></span><br><span class="line">port=<span class="number">22122</span> <span class="comment">#设置tracker的端口号，通常采用22122这个默认端口</span></span><br><span class="line">base_path=/home/hjlc/app/fastdfs/fastdfs_tracker <span class="comment">#设置tracker的数据文件和日志目录</span></span><br><span class="line">http.server_port=<span class="number">6666</span> <span class="comment">#设置http端口号，默认为8080这个不需要了</span></span><br></pre></td></tr></table></figure></p>
+<p>为启动脚本创建软引用<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@hjlc-storage-nodeA fastdfs]<span class="comment"># ln -s /usr/bin/fdfs_trackerd /usr/local/bin</span></span><br><span class="line">[root@hjlc-storage-nodeA fastdfs]<span class="comment"># ln -s /usr/bin/stop.sh /usr/local/bin</span></span><br><span class="line">[root@hjlc-storage-nodeA fastdfs]<span class="comment"># ln -s /usr/bin/restart.sh /usr/local/bin</span></span><br><span class="line">启动tracker服务</span><br><span class="line">root@hjlc-storage-nodeA fastdfs]<span class="comment"># service  fdfs_trackerd start</span></span><br><span class="line">Reloading systemd:                                         [  OK  ]</span><br><span class="line">Starting fdfs_trackerd (via systemctl):                    [  OK  ]</span><br></pre></td></tr></table></figure></p>
 <p>fastdfs_tracker中就可以看到启动后新生成的data和logs目录，tracker服务的端口也应当被正常监听，最后再通过netstat命令查看一下端口监听情况：<br><img src="/img/dfs4.png" alt="crt"><br>al<br>确认tracker正常启动后可以将tracker设置为开机启动，打开/etc/rc.d/rc.local并在其中加入以下配置：<br>service fdfs_trackerd start</p>
 <h2 id="Storage_u670D_u52A1_u914D_u7F6E"><a href="#Storage_u670D_u52A1_u914D_u7F6E" class="headerlink" title="Storage服务配置"></a>Storage服务配置</h2><p>先是创建Storage服务器的文件目录，需要注意的是同Tracker相比我多建了一个目录，因为Storage还需要一个文件存储路径，用于存放接收的文件：<br>mkdir /home/hjlc/app/fastdfs/fastdfs_storage<br>mkdir /home/hjlc/app/fastdfs/fastdfs_storage_data</p>
-<p>接下来修改/etc/fdfs目录下的storage.conf配置文件<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">disabled=<span class="keyword">false</span> <span class="comment">#启用配置文件（默认启用）</span></span><br><span class="line">group_name=group1 <span class="comment">#组名，根据实际情况修改</span></span><br><span class="line">port=<span class="number">23000</span> <span class="comment">#设置storage的端口号，默认是23000，同一个组的storage端口号必须一致</span></span><br><span class="line">base_path=/home/hjlc/app/fastdfs/fastdfs_storage <span class="comment">#设置storage数据文件和日志目录</span></span><br><span class="line">store_path_count=<span class="number">1</span> <span class="comment">#存储路径个数，需要和store_path个数匹配</span></span><br><span class="line">store_path0=/home/hjlc/app/fastdfs/fastdfs_storage_data <span class="comment">#实际文件存储路径</span></span><br><span class="line">tracker_server=<span class="number">172.16</span><span class="number">.1</span><span class="number">.182</span>:<span class="number">22122</span> <span class="comment">#tracker 服务器的 IP地址和端口号，如果是单机搭建，IP不要写127.0.0.1，否则启动不成功</span></span><br><span class="line">http.server_port=<span class="number">8888</span> <span class="comment">#设置 http 端口号不需要</span></span><br></pre></td></tr></table></figure></p>
+<p>接下来修改/etc/fdfs目录下的storage.conf配置文件<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">disabled=<span class="keyword">false</span> <span class="comment">#启用配置文件（默认启用）</span></span><br><span class="line">group_name=group1 <span class="comment">#组名，根据实际情况修改</span></span><br><span class="line">port=<span class="number">23000</span> <span class="comment">#设置storage的端口号，默认是23000，同一个组的storage端口号必须一致</span></span><br><span class="line">base_path=/home/hjlc/app/fastdfs/fastdfs_storage <span class="comment">#设置storage数据文件和日志目录</span></span><br><span class="line">store_path_count=<span class="number">1</span> <span class="comment">#存储路径个数，需要和store_path个数匹配</span></span><br><span class="line">store_path0=/home/hjlc/app/fastdfs/fastdfs_storage_data <span class="comment">#实际文件存储路径</span></span><br><span class="line">tracker_server=<span class="number">172.16</span><span class="number">.1</span><span class="number">.182</span>:<span class="number">22122</span> <span class="comment">#tracker 服务器的 IP地址和端口号，如果是单机搭建，IP不要写127.0.0.1，否则启动不成功</span></span><br><span class="line">http.server_port=<span class="number">8888</span> <span class="comment">#设置 http 端口号不需要</span></span><br></pre></td></tr></table></figure></p>
 <p>配置完成后同样要为Storage服务器的启动脚本设置软引用：<br>ln -s /usr/bin/fdfs_storaged /usr/local/bin<br>启动Storage服务<br>service fdfs_storaged start<br>如果启动成功，/home/hjlc/app/fastdfs/fastdfs_storage中就可以看到启动后新生成的data和logs目录，端口23000也应被正常监听，还有一点就是文件存储路径下会生成多级存储目录，那么接下来看看是否启动成功了：<br><img src="/img/dfs5.png" alt="crt"><br><img src="/img/dfs6.png" alt="crt"><br>/usr/bin/fdfs_monitor /etc/fdfs/storage.conf<br><img src="/img/dfs7.png" alt="crt"><br>ACTIVE 字样即可说明storage服务器已经成功登记到了tracker服务器<br>开机启动，打开/etc/rc.d/rc.local并将如下配置追加到文件中：<br>echo “service fdfs_storage start” &gt;&gt; /etc/rc.d/rc.local</p>
 <h1 id="u4E0A_u4F20_u6D4B_u8BD5"><a href="#u4E0A_u4F20_u6D4B_u8BD5" class="headerlink" title="上传测试"></a>上传测试</h1><p>编辑/etc/fdfs目录下的client.conf 文件<br>base_path=/home/hjlc/app/fastdfs/fastdfs_tracker #tracker服务器文件路径<br>tracker_server=172.16.1.182:22122 #tracker服务器IP地址和端口号<br>http.tracker_server_port=8080 # tracker 服务器的 http 端口号，必须和tracker的设置对应起来</p>
 <p>然后通过执行客户端上传命令尝试上传：</p>
 <p>[root@hjlc-storage-nodeA ~]# /usr/bin/fdfs_upload_file  /etc/fdfs/client.conf  ~/123.jpg<br>group1/M00/00/00/rBABtlqwYLWATj7XAABOLQixhsQ490.jpg</p>
 <p>此时发现并不能访问，因为FastDFS目前已不支持http协议，我们在FastDFS 4.0.5的版本更新日志中可以看到这样一条信息：<br>使用FastDFS的模块fastdfs-nginx-module，下载地址如下：<a href="https://github.com/happyfish100/fastdfs-nginx-module，这样做最大的好处就是提供了HTTP服务并且解决了group中storage服务器的同步延迟问题" target="_blank" rel="external">https://github.com/happyfish100/fastdfs-nginx-module，这样做最大的好处就是提供了HTTP服务并且解决了group中storage服务器的同步延迟问题</a></p>
-<h1 id="fastdfs-nginx-module+nginx_u5B89_u88C5"><a href="#fastdfs-nginx-module+nginx_u5B89_u88C5" class="headerlink" title="fastdfs-nginx-module+nginx安装"></a>fastdfs-nginx-module+nginx安装</h1><p>在安装nginx之前需要先安装一些模块依赖的lib库<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install pcre pcre-devel  zlib zlib-devel  openssl openssl-devel</span><br></pre></td></tr></table></figure></p>
+<h1 id="fastdfs-nginx-module+nginx_u5B89_u88C5"><a href="#fastdfs-nginx-module+nginx_u5B89_u88C5" class="headerlink" title="fastdfs-nginx-module+nginx安装"></a>fastdfs-nginx-module+nginx安装</h1><p>在安装nginx之前需要先安装一些模块依赖的lib库<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install pcre pcre-devel  zlib zlib-devel  openssl openssl-devel</span><br></pre></td></tr></table></figure></p>
 <p>storage nginx<br>首先是为storage服务器安装nginx，首先下载nginx和fastdfs-nginx-module的安装包<br> tar -zxvf nginx-1.12.2.tar.gz<br> unzip fastdfs-nginx-module.zip </p>
-<p>解压成功后就可以编译安装nginx了，进入nginx目录<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@hjlc-storage-nodeA nginx-<span class="number">1.12</span><span class="number">.2</span>]<span class="comment"># ./configure --prefix=/home/hjlc/app/nginx --add-module=/root/fastdfs-nginx-module-master/src</span></span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure></p>
-<p>接下来要修改一下nginx的配置文件<br>server {<br>listen       9090;<br>server_name img.xxxx;<br>location ~/group1/M00 {<br>      root /home/hjlc/app/fastdfs/fastdfs_storage_data;<br>      ngx_fastdfs_module;<br>}<br>}<br>然后进入FastDFS的解压目录~/ fastdfs-5.11目录下的conf目录，将http.conf和mime.types拷贝到/etc/fdfs目录下<br>[root@hjlc-storage-nodeA fastdfs-5.11]# cp conf/http.conf /etc/fdfs/<br>[root@hjlc-storage-nodeA fastdfs-5.11]# cp conf/mime.types  /etc/fdfs/<br>把fastdfs-nginx-module解压目录中src目录下的mod_fastdfs.conf也拷贝到/etc/fdfs目录下：<br>[root@hjlc-storage-nodeA ~]# cp fastdfs-nginx-module-master/src/mod_fastdfs.conf  /etc/fdfs/<br>编辑刚拷贝的这个mod_fastdfs.conf文件了<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">base_path=/home/hjlc/app/fastdfs/fastdfs_storage <span class="comment">#保存日志目录</span></span><br><span class="line">tracker_server=<span class="number">172.16</span><span class="number">.1</span><span class="number">.182</span>:<span class="number">22122</span> <span class="comment">#tracker服务器的IP地址以及端口号</span></span><br><span class="line">storage_server_port=<span class="number">23000</span> <span class="comment">#storage服务器的端口号</span></span><br><span class="line">url_have_group_name = <span class="keyword">true</span> <span class="comment">#文件 url 中是否有 group 名</span></span><br><span class="line">store_path0=/home/hjlc/app/fastdfs/fastdfs_storage_data <span class="comment"># 存储路径</span></span><br><span class="line">group_count = <span class="number">3</span> <span class="comment">#设置组的个数，事实上这次只使用了group1</span></span><br><span class="line">设置了group_count = <span class="number">3</span>，接下来就需要在文件尾部追加这<span class="number">3</span>个group setting：</span><br><span class="line">group_count = <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># group settings for group #1</span></span><br><span class="line"><span class="comment"># since v1.14</span></span><br><span class="line"><span class="comment"># when support multi-group on this storage server, uncomment following section</span></span><br><span class="line">[group1]</span><br><span class="line">group_name=group1</span><br><span class="line">storage_server_port=<span class="number">23000</span></span><br><span class="line">store_path_count=<span class="number">1</span></span><br><span class="line">store_path0=/home/hjlc/app/fastdfs/fastdfs_storage_data</span><br><span class="line"></span><br><span class="line">[group2]</span><br><span class="line">group_name=group2</span><br><span class="line">storage_server_port=<span class="number">23000</span></span><br><span class="line">store_path_count=<span class="number">1</span></span><br><span class="line">store_path0=/home/hjlc/app/fastdfs/fastdfs_storage_data</span><br><span class="line"></span><br><span class="line">[group3]</span><br><span class="line">group_name=group3</span><br><span class="line">storage_server_port=<span class="number">23000</span></span><br><span class="line">store_path_count=<span class="number">1</span></span><br><span class="line">store_path0=/home/hjlc/app/fastdfs/fastdfs_storage_data</span><br></pre></td></tr></table></figure></p>
-<p>接下来还需要建立 M00 至存储目录的符号连接：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ln  -s  /home/hjlc/app/fastdfs/fastdfs_storage_data/data  /home/hjlc/app/fastdfs/fastdfs_storage_data/data/M00</span><br><span class="line">[root@hjlc-storage-nodeA ~]<span class="comment"># /home/hjlc/app/nginx/sbin/nginx  -c /home/hjlc/app/nginx/conf/nginx.conf -t</span></span><br><span class="line">ngx_http_fastdfs_set pid=<span class="number">21138</span></span><br><span class="line">nginx: the configuration file /home/hjlc/app/nginx/conf/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /home/hjlc/app/nginx/conf/nginx.conf test is successful</span><br></pre></td></tr></table></figure></p>
+<p>解压成功后就可以编译安装nginx了，进入nginx目录<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@hjlc-storage-nodeA nginx-<span class="number">1.12</span><span class="number">.2</span>]<span class="comment"># ./configure --prefix=/home/hjlc/app/nginx --add-module=/root/fastdfs-nginx-module-master/src</span></span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure></p>
+<p>接下来要修改一下nginx的配置文件<br>server {<br>listen       9090;<br>server_name img.xxxx;<br>location ~/group1/M00 {<br>      root /home/hjlc/app/fastdfs/fastdfs_storage_data;<br>      ngx_fastdfs_module;<br>}<br>}<br>然后进入FastDFS的解压目录~/ fastdfs-5.11目录下的conf目录，将http.conf和mime.types拷贝到/etc/fdfs目录下<br>[root@hjlc-storage-nodeA fastdfs-5.11]# cp conf/http.conf /etc/fdfs/<br>[root@hjlc-storage-nodeA fastdfs-5.11]# cp conf/mime.types  /etc/fdfs/<br>把fastdfs-nginx-module解压目录中src目录下的mod_fastdfs.conf也拷贝到/etc/fdfs目录下：<br>[root@hjlc-storage-nodeA ~]# cp fastdfs-nginx-module-master/src/mod_fastdfs.conf  /etc/fdfs/<br>编辑刚拷贝的这个mod_fastdfs.conf文件了<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">base_path=/home/hjlc/app/fastdfs/fastdfs_storage <span class="comment">#保存日志目录</span></span><br><span class="line">tracker_server=<span class="number">172.16</span><span class="number">.1</span><span class="number">.182</span>:<span class="number">22122</span> <span class="comment">#tracker服务器的IP地址以及端口号</span></span><br><span class="line">storage_server_port=<span class="number">23000</span> <span class="comment">#storage服务器的端口号</span></span><br><span class="line">url_have_group_name = <span class="keyword">true</span> <span class="comment">#文件 url 中是否有 group 名</span></span><br><span class="line">store_path0=/home/hjlc/app/fastdfs/fastdfs_storage_data <span class="comment"># 存储路径</span></span><br><span class="line">group_count = <span class="number">3</span> <span class="comment">#设置组的个数，事实上这次只使用了group1</span></span><br><span class="line">设置了group_count = <span class="number">3</span>，接下来就需要在文件尾部追加这<span class="number">3</span>个group setting：</span><br><span class="line">group_count = <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># group settings for group #1</span></span><br><span class="line"><span class="comment"># since v1.14</span></span><br><span class="line"><span class="comment"># when support multi-group on this storage server, uncomment following section</span></span><br><span class="line">[group1]</span><br><span class="line">group_name=group1</span><br><span class="line">storage_server_port=<span class="number">23000</span></span><br><span class="line">store_path_count=<span class="number">1</span></span><br><span class="line">store_path0=/home/hjlc/app/fastdfs/fastdfs_storage_data</span><br><span class="line"></span><br><span class="line">[group2]</span><br><span class="line">group_name=group2</span><br><span class="line">storage_server_port=<span class="number">23000</span></span><br><span class="line">store_path_count=<span class="number">1</span></span><br><span class="line">store_path0=/home/hjlc/app/fastdfs/fastdfs_storage_data</span><br><span class="line"></span><br><span class="line">[group3]</span><br><span class="line">group_name=group3</span><br><span class="line">storage_server_port=<span class="number">23000</span></span><br><span class="line">store_path_count=<span class="number">1</span></span><br><span class="line">store_path0=/home/hjlc/app/fastdfs/fastdfs_storage_data</span><br></pre></td></tr></table></figure></p>
+<p>接下来还需要建立 M00 至存储目录的符号连接：<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ln  -s  /home/hjlc/app/fastdfs/fastdfs_storage_data/data  /home/hjlc/app/fastdfs/fastdfs_storage_data/data/M00</span><br><span class="line">[root@hjlc-storage-nodeA ~]<span class="comment"># /home/hjlc/app/nginx/sbin/nginx  -c /home/hjlc/app/nginx/conf/nginx.conf -t</span></span><br><span class="line">ngx_http_fastdfs_set pid=<span class="number">21138</span></span><br><span class="line">nginx: the configuration file /home/hjlc/app/nginx/conf/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /home/hjlc/app/nginx/conf/nginx.conf test is successful</span><br></pre></td></tr></table></figure></p>
 <p>节点2重复一遍storage服务安装和fastdfs-nginx-module+nginx安装即可，然后在安装一台Nginx发现代理服务器配置upstream代理，这我使用的SLB服务器就直接监听nodeA和nodeB的9090端口<br><img src="/img/1.jpg" alt="crt"></p>
 
-          
-        
       
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/fastdfs/" rel="tag"><i class="fas fa-tags"></i>fastdfs</a>
+        
+      </div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/02/27/ecureCRT配置Cisco网络设备关键字高亮/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/02/27/ecureCRT配置Cisco网络设备关键字高亮/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/02/27/ecureCRT配置Cisco网络设备关键字高亮/" itemprop="url">SecureCRT配置Cisco网络设备关键字高亮</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-02-27T15:34:00+08:00">2018-02-27 15:34:00</time></span>
+        </span>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/27/ecureCRT配置Cisco网络设备关键字高亮/" itemprop="url">SecureCRT配置Cisco网络设备关键字高亮</a></h1>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-27T15:34:00+08:00">
-                2018-02-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-      
-
-      
-        
-          
-            <p>##效果图：<br><img src="/img/securecrt1.png" alt="crt"><br>下载思科关键字文件解C:\Users\Administrator\AppData\Roaming\VanDyke\Config\Keywords(根据自己的用户路径)<br>链接: <a href="https://pan.baidu.com/s/1c3BZb8k" target="_blank" rel="external">https://pan.baidu.com/s/1c3BZb8k</a> 密码: xv7h</p>
+      <p>##效果图：<br><img src="/img/securecrt1.png" alt="crt"><br>下载思科关键字文件解C:\Users\Administrator\AppData\Roaming\VanDyke\Config\Keywords(根据自己的用户路径)<br>链接: <a href="https://pan.baidu.com/s/1c3BZb8k" target="_blank" rel="external">https://pan.baidu.com/s/1c3BZb8k</a> 密码: xv7h</p>
 <p>##设置 options-eitdefault-appearance<br><img src="/img/securecrt2.png" alt="crt"></p>
 <p>##设置配置文件路径options-Globaloptions<br><img src="/img/securecrt3.png" alt="crt"></p>
 <p>#下拉菜单选择解压好的关键字文件<br><img src="/img/securecrt4.png" alt="crt"></p>
 
-          
-        
       
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/crt/" rel="tag"><i class="fas fa-tags"></i>crt</a>
+        
+      </div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/01/29/解决Linux-出现大量TIME-WAIT连接问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/01/29/解决Linux-出现大量TIME-WAIT连接问题/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/01/29/解决Linux-出现大量TIME-WAIT连接问题/" itemprop="url">解决Linux 出现大量TIME_WAIT连接问题</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-01-29T11:30:59+08:00">2018-01-29 11:30:59</time></span>
+        </span>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/29/解决Linux-出现大量TIME-WAIT连接问题/" itemprop="url">解决Linux 出现大量TIME_WAIT连接问题</a></h1>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-29T11:30:59+08:00">
-                2018-01-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-      
-
-      
-        
-          
-            <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -n|awk <span class="string">'/^tcp/&#123;++S[$NF]&#125;END&#123;for (a in S) print a,S[a]&#125;'</span>    <span class="comment">#得到当前服务器的所有TCP连接数状态</span></span><br></pre></td></tr></table></figure>
-<p>修改/etc/sysctl.conf文件参数<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysctl.conf</span><br><span class="line">net.ipv4.tcp_tw_reuse = <span class="number">1</span>  <span class="comment">#表示开启重用。允许将TIME-WAIT sockets重新用于新的TCP连接，默认为0，表示关闭；</span></span><br><span class="line">net.ipv4.tcp_tw_recycle = <span class="number">1</span>  <span class="comment">#表示开启TCP连接中TIME-WAIT sockets的快速回收，默认为0，表示关闭。</span></span><br><span class="line">net.ipv4.tcp_fin_timeout = <span class="number">30</span>  <span class="comment">#修改系統默认的TIMEOUT时间</span></span><br></pre></td></tr></table></figure></p>
+      <figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -n|awk <span class="string">'/^tcp/&#123;++S[$NF]&#125;END&#123;for (a in S) print a,S[a]&#125;'</span>    <span class="comment">#得到当前服务器的所有TCP连接数状态</span></span><br></pre></td></tr></table></figure>
+<p>修改/etc/sysctl.conf文件参数<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysctl.conf</span><br><span class="line">net.ipv4.tcp_tw_reuse = <span class="number">1</span>  <span class="comment">#表示开启重用。允许将TIME-WAIT sockets重新用于新的TCP连接，默认为0，表示关闭；</span></span><br><span class="line">net.ipv4.tcp_tw_recycle = <span class="number">1</span>  <span class="comment">#表示开启TCP连接中TIME-WAIT sockets的快速回收，默认为0，表示关闭。</span></span><br><span class="line">net.ipv4.tcp_fin_timeout = <span class="number">30</span>  <span class="comment">#修改系統默认的TIMEOUT时间</span></span><br></pre></td></tr></table></figure></p>
 <p>TIME_WAIT 的默认时间是 2倍的 MLS，即 240 秒，最低为 30 秒，最高为 300 秒。MLS 是 TCP 片在网上的最长存活时间。TIME_WAIT的主要作用是保证关闭的TCP端口不立即被使用。因为当网络存在延迟时，可能当某个端口被关闭后，网络中还有一些重传的TCP片在发向这个端口，如果这个端口立即建立新的TCP连接，则可能会有影响。所以使用2倍的MSL时间来限制这个端口立即被使用。</p>
 
-          
-        
       
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/12/15/zabbix-shell脚本钉钉机器人报警/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/12/15/zabbix-shell脚本钉钉机器人报警/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/12/15/zabbix-shell脚本钉钉机器人报警/" itemprop="url">zabbix+shell脚本钉钉机器人报警</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-12-15T09:45:34+08:00">2017-12-15 09:45:34</time></span>
+        </span>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/15/zabbix-shell脚本钉钉机器人报警/" itemprop="url">zabbix+shell脚本钉钉机器人报警</a></h1>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T09:45:34+08:00">
-                2017-12-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-      
-
-      
-        
-          
-            <h1 id="u5185_u5BB9_u539F_u521B_2C_u7981_u6B62_u8F6C_u8F7D_21"><a href="#u5185_u5BB9_u539F_u521B_2C_u7981_u6B62_u8F6C_u8F7D_21" class="headerlink" title="内容原创,禁止转载!"></a>内容原创,禁止转载!</h1><h2 id="u6548_u679C_u56FE_u5982_u4E0B_uFF1A"><a href="#u6548_u679C_u56FE_u5982_u4E0B_uFF1A" class="headerlink" title="效果图如下："></a>效果图如下：</h2><p><img src="/img/dingding1.jpg" alt="jenkins"></p>
+      <h1 id="u5185_u5BB9_u539F_u521B_2C_u7981_u6B62_u8F6C_u8F7D_21"><a href="#u5185_u5BB9_u539F_u521B_2C_u7981_u6B62_u8F6C_u8F7D_21" class="headerlink" title="内容原创,禁止转载!"></a>内容原创,禁止转载!</h1><h2 id="u6548_u679C_u56FE_u5982_u4E0B_uFF1A"><a href="#u6548_u679C_u56FE_u5982_u4E0B_uFF1A" class="headerlink" title="效果图如下："></a>效果图如下：</h2><p><img src="/img/dingding1.jpg" alt="jenkins"></p>
 <h3 id="u81EA_u5B9A_u4E49_u8B66_u62A5_u63D0_u793A"><a href="#u81EA_u5B9A_u4E49_u8B66_u62A5_u63D0_u793A" class="headerlink" title="自定义警报提示"></a>自定义警报提示</h3><p>自定义告警脚本在zabbix_server.conf中配置，默认为： AlertScriptsPath=/usr/lib/zabbix/alertscripts<br>警报脚本在Zabbix服务器上执行。 这些脚本位于服务器配置文件中定义的目录中AlertScriptsPath.</p>
-<p>这是一个示例警报脚本：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line">to=$<span class="number">1</span></span><br><span class="line">messages=`<span class="keyword">echo</span> $<span class="number">3</span> | tr <span class="string">'\r\n'</span> <span class="string">'\n'</span>`</span><br><span class="line">subject=`<span class="keyword">echo</span> $<span class="number">2</span> | tr <span class="string">'\r\n'</span> <span class="string">'\n'</span>`</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"$&#123;messages&#125;"</span> | mail -s <span class="string">"$&#123;subject&#125;"</span> <span class="string">"$&#123;to&#125;"</span> &gt;&gt;/tmp/mail.log <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>这是一个示例警报脚本：<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line">to=$<span class="number">1</span></span><br><span class="line">messages=`<span class="keyword">echo</span> $<span class="number">3</span> | tr <span class="string">'\r\n'</span> <span class="string">'\n'</span>`</span><br><span class="line">subject=`<span class="keyword">echo</span> $<span class="number">2</span> | tr <span class="string">'\r\n'</span> <span class="string">'\n'</span>`</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"$&#123;messages&#125;"</span> | mail -s <span class="string">"$&#123;subject&#125;"</span> <span class="string">"$&#123;to&#125;"</span> &gt;&gt;/tmp/mail.log <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
 <p>Zabbix-Server 在调用脚本的时候，会传递三个变量参数给脚本作为位置参数：$1, $2, $3。 其中：$1 表示收件人，$2 表示主题，$3 表示内容。</p>
 <h1 id="u914D_u7F6E"><a href="#u914D_u7F6E" class="headerlink" title="配置"></a>配置</h1><p>选择 报警媒介类型，创建自定义告警方式，<br>Type 选择 Script，Script name 指定自定义的告警脚本，<br>Script parameters 一般设置如下三个：</p>
 <ul>
 <li>{ALERT.SENDTO}</li>
 <li>{ALERT.SUBJECT}</li>
-<li>{ALERT.MESSAGE}<br><img src="/img/dingding2.png" alt="jenkins"><br>其他配置省略<br>shell+钉钉机器人脚本<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="comment">#date:2017-12-14</span></span><br><span class="line"><span class="comment">#by wang.t</span></span><br><span class="line"><span class="comment">#Revision: 1.0</span></span><br><span class="line"><span class="comment"># Email:837479851@qq.com</span></span><br><span class="line"><span class="comment"># Website:idcsec.com</span></span><br><span class="line">LOGFILE=<span class="string">"/tmp/dingding.log"</span></span><br><span class="line">:&gt;<span class="string">"$LOGFILE"</span></span><br><span class="line">exec <span class="number">1</span>&gt;<span class="string">"$LOGFILE"</span></span><br><span class="line">exec <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br><span class="line"></span><br><span class="line">url=<span class="string">"http://127.0.0.1/zabbix"</span></span><br><span class="line">CURL=<span class="string">"/usr/bin/curl"</span></span><br><span class="line">to=$<span class="number">1</span></span><br><span class="line">subject=`<span class="keyword">echo</span> $<span class="number">2</span> | tr <span class="string">'\r\n'</span> <span class="string">'\n'</span>`</span><br><span class="line">body=`<span class="keyword">echo</span> $<span class="number">3</span> | tr <span class="string">'\r\n'</span> <span class="string">'\n'</span>`</span><br><span class="line">$&#123;CURL&#125;  <span class="string">'https://oapi.dingtalk.com/robot/send?access_token=XXXXXXXXX'</span> \</span><br><span class="line">   -H <span class="string">'Content-Type: application/json'</span> \</span><br><span class="line">   -d <span class="string">""</span><span class="string">"</span><br><span class="line"> &#123;</span><br><span class="line">     \"msgtype\": \"markdown\",</span><br><span class="line">     \"markdown\": &#123;</span><br><span class="line">         \"title\":\"$&#123;subject&#125;@18******5\",</span><br><span class="line">         \"text\": \"$&#123;body&#125;\"</span><br><span class="line">     &#125;,</span><br><span class="line">    \"at\": &#123;</span><br><span class="line">        \"atMobiles\": [ </span><br><span class="line">            \"18*******5\",</span><br><span class="line">        ], </span><br><span class="line">        \"isAtAll\": false</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;"</span><span class="string">""</span></span><br></pre></td></tr></table></figure>
+<li>{ALERT.MESSAGE}<br><img src="/img/dingding2.png" alt="jenkins"><br>其他配置省略<br>shell+钉钉机器人脚本<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="comment">#date:2017-12-14</span></span><br><span class="line"><span class="comment">#by wang.t</span></span><br><span class="line"><span class="comment">#Revision: 1.0</span></span><br><span class="line"><span class="comment"># Email:837479851@qq.com</span></span><br><span class="line"><span class="comment"># Website:idcsec.com</span></span><br><span class="line">LOGFILE=<span class="string">"/tmp/dingding.log"</span></span><br><span class="line">:&gt;<span class="string">"$LOGFILE"</span></span><br><span class="line">exec <span class="number">1</span>&gt;<span class="string">"$LOGFILE"</span></span><br><span class="line">exec <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br><span class="line"></span><br><span class="line">url=<span class="string">"http://127.0.0.1/zabbix"</span></span><br><span class="line">CURL=<span class="string">"/usr/bin/curl"</span></span><br><span class="line">to=$<span class="number">1</span></span><br><span class="line">subject=`<span class="keyword">echo</span> $<span class="number">2</span> | tr <span class="string">'\r\n'</span> <span class="string">'\n'</span>`</span><br><span class="line">body=`<span class="keyword">echo</span> $<span class="number">3</span> | tr <span class="string">'\r\n'</span> <span class="string">'\n'</span>`</span><br><span class="line">$&#123;CURL&#125;  <span class="string">'https://oapi.dingtalk.com/robot/send?access_token=XXXXXXXXX'</span> \</span><br><span class="line">   -H <span class="string">'Content-Type: application/json'</span> \</span><br><span class="line">   -d <span class="string">""</span><span class="string">"</span><br><span class="line"> &#123;</span><br><span class="line">     \"msgtype\": \"markdown\",</span><br><span class="line">     \"markdown\": &#123;</span><br><span class="line">         \"title\":\"$&#123;subject&#125;@18******5\",</span><br><span class="line">         \"text\": \"$&#123;body&#125;\"</span><br><span class="line">     &#125;,</span><br><span class="line">    \"at\": &#123;</span><br><span class="line">        \"atMobiles\": [ </span><br><span class="line">            \"18*******5\",</span><br><span class="line">        ], </span><br><span class="line">        \"isAtAll\": false</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;"</span><span class="string">""</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>Github:<a href="https://github.com/Hwting/script/blob/master/zabbix_dingding.sh" target="_blank" rel="external">https://github.com/Hwting/script/blob/master/zabbix_dingding.sh</a><br>测试测试 zabbix_dingding.sh  “” 2 3</p>
 <h1 id="u52A8_u4F5C_u8BBE_u7F6E"><a href="#u52A8_u4F5C_u8BBE_u7F6E" class="headerlink" title="动作设置"></a>动作设置</h1><p>到配置-》动作-》创建动作（触发器）</p>
-<h2 id="zabbix_u62A5_u8B66_u6D88_u606F_u6A21_u677F"><a href="#zabbix_u62A5_u8B66_u6D88_u606F_u6A21_u677F" class="headerlink" title="zabbix报警消息模板"></a>zabbix报警消息模板</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">标题：故障&#123;TRIGGER.STATUS&#125;,服务器:&#123;HOSTNAME1&#125;发生: &#123;TRIGGER.NAME&#125;故障!</span><br><span class="line">告警主机:&#123;HOSTNAME1&#125;</span><br><span class="line"></span><br><span class="line">告警IP:&#123;HOST.IP&#125;</span><br><span class="line"></span><br><span class="line">告警时间:&#123;EVENT.DATE&#125; &#123;EVENT.TIME&#125;</span><br><span class="line"></span><br><span class="line">等级:&#123;TRIGGER.SEVERITY&#125;</span><br><span class="line"></span><br><span class="line">告警信息: &#123;TRIGGER.NAME&#125;</span><br><span class="line"></span><br><span class="line">告警项目:&#123;TRIGGER.KEY1&#125;</span><br><span class="line"></span><br><span class="line">问题详情:&#123;ITEM.NAME&#125;:&#123;ITEM.VALUE&#125;</span><br><span class="line"></span><br><span class="line">持续时间:&#123;EVENT.AGE&#125;</span><br><span class="line"></span><br><span class="line">当前状态:&#123;TRIGGER.STATUS&#125;:&#123;ITEM.VALUE1&#125;</span><br><span class="line"></span><br><span class="line">事件ID:&#123;EVENT.ID&#125;</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">标题：恢复&#123;TRIGGER.STATUS&#125;, 服务器:&#123;HOSTNAME1&#125;: &#123;TRIGGER.NAME&#125;已恢复!</span><br><span class="line">告警主机:&#123;HOSTNAME1&#125;</span><br><span class="line"></span><br><span class="line">告警IP:&#123;HOST.IP&#125;</span><br><span class="line"></span><br><span class="line">恢复时间:&#123;EVENT.DATE&#125;&#123;EVENT.RECOVERY.TIME&#125;</span><br><span class="line"></span><br><span class="line">告警等级:&#123;TRIGGER.SEVERITY&#125;</span><br><span class="line"></span><br><span class="line">告警信息: &#123;TRIGGER.NAME&#125;</span><br><span class="line"></span><br><span class="line">告警项目:&#123;TRIGGER.KEY1&#125;</span><br><span class="line"></span><br><span class="line">问题详情:&#123;ITEM.NAME&#125;:&#123;ITEM.VALUE&#125;</span><br><span class="line"></span><br><span class="line">持续时间:&#123;EVENT.AGE&#125;</span><br><span class="line"></span><br><span class="line">当前状态:&#123;TRIGGER.STATUS&#125;:&#123;ITEM.VALUE1&#125;</span><br><span class="line"></span><br><span class="line">事件ID:&#123;EVENT.ID&#125;</span><br></pre></td></tr></table></figure>
-          
-        
+<h2 id="zabbix_u62A5_u8B66_u6D88_u606F_u6A21_u677F"><a href="#zabbix_u62A5_u8B66_u6D88_u606F_u6A21_u677F" class="headerlink" title="zabbix报警消息模板"></a>zabbix报警消息模板</h2><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">标题：故障&#123;TRIGGER.STATUS&#125;,服务器:&#123;HOSTNAME1&#125;发生: &#123;TRIGGER.NAME&#125;故障!</span><br><span class="line">告警主机:&#123;HOSTNAME1&#125;</span><br><span class="line"></span><br><span class="line">告警IP:&#123;HOST.IP&#125;</span><br><span class="line"></span><br><span class="line">告警时间:&#123;EVENT.DATE&#125; &#123;EVENT.TIME&#125;</span><br><span class="line"></span><br><span class="line">等级:&#123;TRIGGER.SEVERITY&#125;</span><br><span class="line"></span><br><span class="line">告警信息: &#123;TRIGGER.NAME&#125;</span><br><span class="line"></span><br><span class="line">告警项目:&#123;TRIGGER.KEY1&#125;</span><br><span class="line"></span><br><span class="line">问题详情:&#123;ITEM.NAME&#125;:&#123;ITEM.VALUE&#125;</span><br><span class="line"></span><br><span class="line">持续时间:&#123;EVENT.AGE&#125;</span><br><span class="line"></span><br><span class="line">当前状态:&#123;TRIGGER.STATUS&#125;:&#123;ITEM.VALUE1&#125;</span><br><span class="line"></span><br><span class="line">事件ID:&#123;EVENT.ID&#125;</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">标题：恢复&#123;TRIGGER.STATUS&#125;, 服务器:&#123;HOSTNAME1&#125;: &#123;TRIGGER.NAME&#125;已恢复!</span><br><span class="line">告警主机:&#123;HOSTNAME1&#125;</span><br><span class="line"></span><br><span class="line">告警IP:&#123;HOST.IP&#125;</span><br><span class="line"></span><br><span class="line">恢复时间:&#123;EVENT.DATE&#125;&#123;EVENT.RECOVERY.TIME&#125;</span><br><span class="line"></span><br><span class="line">告警等级:&#123;TRIGGER.SEVERITY&#125;</span><br><span class="line"></span><br><span class="line">告警信息: &#123;TRIGGER.NAME&#125;</span><br><span class="line"></span><br><span class="line">告警项目:&#123;TRIGGER.KEY1&#125;</span><br><span class="line"></span><br><span class="line">问题详情:&#123;ITEM.NAME&#125;:&#123;ITEM.VALUE&#125;</span><br><span class="line"></span><br><span class="line">持续时间:&#123;EVENT.AGE&#125;</span><br><span class="line"></span><br><span class="line">当前状态:&#123;TRIGGER.STATUS&#125;:&#123;ITEM.VALUE1&#125;</span><br><span class="line"></span><br><span class="line">事件ID:&#123;EVENT.ID&#125;</span><br></pre></td></tr></table></figure>
       
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/12/13/jenkins与sonar集成自动化代码质量检查/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/13/jenkins与sonar集成自动化代码质量检查/" itemprop="url">jenkins与sonar集成自动化代码质量检查</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-13T14:35:11+08:00">
-                2017-12-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>安装jenkins,mysql：省略</p>
-<h1 id="u5B89_u88C5sonar"><a href="#u5B89_u88C5sonar" class="headerlink" title="安装sonar"></a>安装sonar</h1><h2 id="mysql_u521B_u5EFA_u6570_u636E_u5E93user_u5E76_u6388_u6743_28_u6D4B_u8BD5_u53EF_u4EE5_u4F7F_u7528_u81EA_u5E26_u6570_u636E_u5E93_29"><a href="#mysql_u521B_u5EFA_u6570_u636E_u5E93user_u5E76_u6388_u6743_28_u6D4B_u8BD5_u53EF_u4EE5_u4F7F_u7528_u81EA_u5E26_u6570_u636E_u5E93_29" class="headerlink" title="mysql创建数据库user并授权(测试可以使用自带数据库)"></a>mysql创建数据库user并授权(测试可以使用自带数据库)</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;CREATE DATABASE sonarqube SET utf8 COLLATE utf8_general_ci;</span><br><span class="line">&gt; CREATE USER <span class="string">'sonar’@'</span>%<span class="string">' IDENTIFIED BY '</span>password<span class="string">';</span><br><span class="line">&gt; GRANT all privileges ON sonarqube.* TO sonar’@‘%'</span> IDENTIFIED BY <span class="string">'password'</span>;</span><br><span class="line">&gt; flush privileges;</span><br></pre></td></tr></table></figure>
-<h2 id="u4E0B_u8F7D_u5B89_u88C5"><a href="#u4E0B_u8F7D_u5B89_u88C5" class="headerlink" title="下载安装"></a>下载安装</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//sonarsource.bintray.com/Distribution/sonarqube/sonarqube-6.7.zip</span></span><br><span class="line">unzip sonarqube-<span class="number">6.7</span><span class="class">.zip</span>  -d /usr/local/</span><br><span class="line">cd /usr/local/sonarqube-<span class="number">6.7</span>/</span><br><span class="line">vim conf/sonar<span class="class">.properties</span>  /配置文件</span><br><span class="line">sonar<span class="class">.web</span><span class="class">.host</span>=<span class="number">0.0</span>.<span class="number">0.0</span></span><br><span class="line">sonar<span class="class">.web</span><span class="class">.port</span>=<span class="number">9000</span></span><br><span class="line">sonar<span class="class">.jdbc</span><span class="class">.username</span>=sonar</span><br><span class="line">sonar<span class="class">.jdbc</span><span class="class">.password</span>=password</span><br><span class="line">sonar<span class="class">.jdbc</span><span class="class">.url</span>=jdbc:mysql:<span class="comment">//localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;useConfigs=maxPerformance&amp;useSSL=false</span></span><br><span class="line"> ./bin/linux-x86-<span class="number">64</span>/sonar<span class="class">.sh</span>  start 启动sonar 需要使用非root启动</span><br><span class="line"> 中文插件下载解压到下目录</span><br><span class="line">wget https:<span class="comment">//github.com/SonarQubeCommunity/sonar-l10n-zh/releases/download/sonar-l10n-zh-plugin-1.18/sonar-l10n-zh-plugin-1.18.jar</span></span><br><span class="line"> /usr/local/sonarqube-<span class="number">6.7</span>/extensions/plugins/</span><br><span class="line"> ./bin/linux-x86-<span class="number">64</span>/sonar<span class="class">.sh</span>  restart</span><br></pre></td></tr></table></figure>
-<h1 id="u5B89_u88C5sonar-runner"><a href="#u5B89_u88C5sonar-runner" class="headerlink" title="安装sonar-runner"></a>安装sonar-runner</h1><h2 id="u4E0B_u8F7D_u5B89_u88C5-1"><a href="#u4E0B_u8F7D_u5B89_u88C5-1" class="headerlink" title="下载安装"></a>下载安装</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist/2.4/sonar-runner-dist-2.4.zip</span></span><br><span class="line">unzip sonar-runner-dist-<span class="number">2.4</span>.zip -d /usr/local/</span><br><span class="line">cd /usr/local/sonar-runner-dist-<span class="number">2.4</span></span><br><span class="line">vim conf/sonar-runner.properties </span><br><span class="line">sonar.host.url=http:<span class="comment">//172.18.8.32:9000</span></span><br><span class="line">sonar.sourceEncoding=UTF-<span class="number">8</span></span><br><span class="line">sonar.login=admin</span><br><span class="line">sonar.password=admi</span><br><span class="line">配置环境配置</span><br><span class="line">vim /etc/profile</span><br><span class="line">export SONAR_HOME=/usr/local/sonarqube-<span class="number">6.7</span></span><br><span class="line">PATH=<span class="variable">$PATH</span>:/usr/local/sonar-runner-<span class="number">2.4</span>/bin   </span><br><span class="line">export PATH</span><br><span class="line">source  /etc/profile</span><br><span class="line">测试ok</span><br><span class="line">sonar-scanner -h</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/13/jenkins与sonar集成自动化代码质量检查/#thêm" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/12/13/jenkins与sonar集成自动化代码质量检查/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
     </div>
-    
-    
-    
-	<div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/12/13/jenkins与sonar集成自动化代码质量检查/" itemprop="url">jenkins与sonar集成自动化代码质量检查</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-12-13T14:35:11+08:00">2017-12-13 14:35:11</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-	  </div>
-    
-
-    
-
-    
-
+      <p>安装jenkins,mysql：省略</p>
+<h1 id="u5B89_u88C5sonar"><a href="#u5B89_u88C5sonar" class="headerlink" title="安装sonar"></a>安装sonar</h1><h2 id="mysql_u521B_u5EFA_u6570_u636E_u5E93user_u5E76_u6388_u6743_28_u6D4B_u8BD5_u53EF_u4EE5_u4F7F_u7528_u81EA_u5E26_u6570_u636E_u5E93_29"><a href="#mysql_u521B_u5EFA_u6570_u636E_u5E93user_u5E76_u6388_u6743_28_u6D4B_u8BD5_u53EF_u4EE5_u4F7F_u7528_u81EA_u5E26_u6570_u636E_u5E93_29" class="headerlink" title="mysql创建数据库user并授权(测试可以使用自带数据库)"></a>mysql创建数据库user并授权(测试可以使用自带数据库)</h2><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;CREATE DATABASE sonarqube SET utf8 COLLATE utf8_general_ci;</span><br><span class="line">&gt; CREATE USER <span class="string">'sonar’@'</span>%<span class="string">' IDENTIFIED BY '</span>password<span class="string">';</span><br><span class="line">&gt; GRANT all privileges ON sonarqube.* TO sonar’@‘%'</span> IDENTIFIED BY <span class="string">'password'</span>;</span><br><span class="line">&gt; flush privileges;</span><br></pre></td></tr></table></figure>
+<h2 id="u4E0B_u8F7D_u5B89_u88C5"><a href="#u4E0B_u8F7D_u5B89_u88C5" class="headerlink" title="下载安装"></a>下载安装</h2><figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//sonarsource.bintray.com/Distribution/sonarqube/sonarqube-6.7.zip</span></span><br><span class="line">unzip sonarqube-<span class="number">6.7</span><span class="class">.zip</span>  -d /usr/local/</span><br><span class="line">cd /usr/local/sonarqube-<span class="number">6.7</span>/</span><br><span class="line">vim conf/sonar<span class="class">.properties</span>  /配置文件</span><br><span class="line">sonar<span class="class">.web</span><span class="class">.host</span>=<span class="number">0.0</span>.<span class="number">0.0</span></span><br><span class="line">sonar<span class="class">.web</span><span class="class">.port</span>=<span class="number">9000</span></span><br><span class="line">sonar<span class="class">.jdbc</span><span class="class">.username</span>=sonar</span><br><span class="line">sonar<span class="class">.jdbc</span><span class="class">.password</span>=password</span><br><span class="line">sonar<span class="class">.jdbc</span><span class="class">.url</span>=jdbc:mysql:<span class="comment">//localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;useConfigs=maxPerformance&amp;useSSL=false</span></span><br><span class="line"> ./bin/linux-x86-<span class="number">64</span>/sonar<span class="class">.sh</span>  start 启动sonar 需要使用非root启动</span><br><span class="line"> 中文插件下载解压到下目录</span><br><span class="line">wget https:<span class="comment">//github.com/SonarQubeCommunity/sonar-l10n-zh/releases/download/sonar-l10n-zh-plugin-1.18/sonar-l10n-zh-plugin-1.18.jar</span></span><br><span class="line"> /usr/local/sonarqube-<span class="number">6.7</span>/extensions/plugins/</span><br><span class="line"> ./bin/linux-x86-<span class="number">64</span>/sonar<span class="class">.sh</span>  restart</span><br></pre></td></tr></table></figure>
+<h1 id="u5B89_u88C5sonar-runner"><a href="#u5B89_u88C5sonar-runner" class="headerlink" title="安装sonar-runner"></a>安装sonar-runner</h1><h2 id="u4E0B_u8F7D_u5B89_u88C5-1"><a href="#u4E0B_u8F7D_u5B89_u88C5-1" class="headerlink" title="下载安装"></a>下载安装</h2><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist/2.4/sonar-runner-dist-2.4.zip</span></span><br><span class="line">unzip sonar-runner-dist-<span class="number">2.4</span>.zip -d /usr/local/</span><br><span class="line">cd /usr/local/sonar-runner-dist-<span class="number">2.4</span></span><br><span class="line">vim conf/sonar-runner.properties </span><br><span class="line">sonar.host.url=http:<span class="comment">//172.18.8.32:9000</span></span><br><span class="line">sonar.sourceEncoding=UTF-<span class="number">8</span></span><br><span class="line">sonar.login=admin</span><br><span class="line">sonar.password=admi</span><br><span class="line">配置环境配置</span><br><span class="line">vim /etc/profile</span><br><span class="line">export SONAR_HOME=/usr/local/sonarqube-<span class="number">6.7</span></span><br><span class="line">PATH=<span class="variable">$PATH</span>:/usr/local/sonar-runner-<span class="number">2.4</span>/bin   </span><br><span class="line">export PATH</span><br><span class="line">source  /etc/profile</span><br><span class="line">测试ok</span><br><span class="line">sonar-scanner -h</span><br></pre></td></tr></table></figure>
+      
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/12/11/zabbix自动发现交换机接口信息监控网络设备流量模板配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/11/zabbix自动发现交换机接口信息监控网络设备流量模板配置/" itemprop="url">zabbix自动发现交换机接口信息监控网络设备流量模板配置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-11T12:53:00+08:00">
-                2017-12-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>1、思科交换机snmp配置<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">建立snmp团体，名称为<span class="keyword">public</span>，权限为只读</span><br><span class="line">(config)<span class="comment">#snmp-server community public ro</span></span><br><span class="line">    允许路由器将所有类型SNMP Trap发送出去</span><br><span class="line">(config)<span class="comment">#snmp-server enable traps</span></span><br><span class="line">    设置主机<span class="number">172.16</span><span class="number">.0</span><span class="number">.21</span>接受交换机所发送过来的SNMP Trap 信息</span><br><span class="line">(config)<span class="comment">#snmp-server host 172.16.0.21 version 2c public</span></span><br><span class="line">    使用loopback0接口的IP地址作为SNMP Traps发送源地址，这个随便可以不用。</span><br><span class="line">(config)<span class="comment">#snmp-server trap-source loopback0</span></span><br><span class="line">    zabbix执行测试</span><br><span class="line">snmpwalk -v <span class="number">2</span>c -c <span class="keyword">public</span>   <span class="number">172.16</span><span class="number">.0</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="u914D_u7F6E_u53D1_u73B0_u89C4_u5219__u8FD9_u91CC_u4F7F_u7528_u6DF1_u4FE1_u670D_u8BBE_u5907"><a href="#u914D_u7F6E_u53D1_u73B0_u89C4_u5219__u8FD9_u91CC_u4F7F_u7528_u6DF1_u4FE1_u670D_u8BBE_u5907" class="headerlink" title="配置发现规则 这里使用深信服设备"></a>配置发现规则 这里使用深信服设备</h1><p>配置 → 模板→点击适当模板行中的发现<br><img src="/img/zabbix1.png" alt="zabbix"><br>点击屏幕右上角的创建发现规则<br>填写发现规则表单，具体细节如下面的屏幕截图所示<br><img src="/img/zabbix2.png" alt="zabbix"><br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">名称 Network interfaces</span><br><span class="line">类型  SNMPv2 agent</span><br><span class="line">键值 ifDescr</span><br><span class="line">SNMP OID discovery[&#123;#SNMPVALUE&#125;,IF-MIB::ifDescr]</span><br><span class="line">SNMP community &#123;<span class="variable">$SNMP</span>_COMMUNITY&#125;</span><br><span class="line">端口 <span class="number">161</span></span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/11/zabbix自动发现交换机接口信息监控网络设备流量模板配置/#thêm" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
   </nav>
-
-
+  
+  
+</div>
 
           </div>
           
-
-
           
-
-        </div>
-        
           
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
     </div>
   </div>
-
-  <aside id="sidebar" class="sidebar">
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/img/avatar.jpg" alt="Wang'T">
+  
+  <h1 class="author-name">Wang'T</h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
     
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.gif"
-                alt="Wang'T" />
-            
-              <p class="site-author-name" itemprop="name">Wang'T</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">59</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/Hwting" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:wang.t.nice@gmail.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="http://weibo.com/" target="_blank" title="微博">
-                      
-                        <i class="fa fa-fw fa-globe"></i>微博</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.ytniu.com" title="Ytniu" target="_blank">Ytniu</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
-
-          
-
-        </div>
-      </section>
-
-      
-
-      
-
+    <div class="archives-count">
+      <div class="site-count-title">归档</div>
+      <div><a href="/archives/">60</a></div>
     </div>
-  </aside>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="categories-count">
+      <div class="site-count-title">分类</div>
+      <div><a href="/categories/">10</a></div>
+    </div>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="tags-count">
+      <div class="site-count-title">标签</div>
+      <div><a href="/tags/">19</a></div>
+    </div>
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
 
 
+  <div class="sidebar-sticky">
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
         
+        <li><i class="fas fa-envelope"></i><a href="mailto:wang.t.nice@gmail.com" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="http://www.ytniu.com" target="_blank">Jixiang's Blog</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
       </div>
     </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Wang'T</span>
-
-  
-</div>
-
-
-
-
-
-
-
-
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  ICP备案: 黔ICP备17011344号-1
-</span>
-</div>
-
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">Wang'T</span><span class="year"><i class="far fa-copyright"></i>2015 - 2018</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">BY-NC-ND 4.0</a></span>
+        </div>
         
-
-
-
-
-
-
-
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
         
       </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
       </div>
-    
-
-    
-      <div id="needsharebutton-float">
-        <span class="btn">
-          <i class="fa fa-share-alt" aria-hidden="true"></i>
-        </span>
-      </div>
-    
-
+    </div>
   </div>
+</footer>
 
-  
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-  
-  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
-
-  
-  
-  <script src="/lib/needsharebutton/needsharebutton.js"></script>
-
-  <script>
-    
-      pbOptions = {};
-      
-          pbOptions.iconStyle = "box";
-      
-          pbOptions.boxForm = "horizontal";
-      
-          pbOptions.position = "bottomCenter";
-      
-          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-      
-      new needShareButton('#needsharebutton-postbottom', pbOptions);
-    
-    
-      flOptions = {};
-      
-          flOptions.iconStyle = "box";
-      
-          flOptions.boxForm = "horizontal";
-      
-          flOptions.position = "middleRight";
-      
-          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-      
-      new needShareButton('#needsharebutton-float', flOptions);
-    
-  </script>
-
-  
-
-  
-
-  
-
-  
-
-  
-<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
-<!-- 页面点击小红心 --> 
-<script type="text/javascript" src="/js/src/love.js"></script>
-
-</body>
+  </body>
 </html>

@@ -1,445 +1,160 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="-集群," />
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="环境
-
-
-
-主机
-系统
-检测ip
-外网
-vip
-
-
-
-
-ha-1
-centos6.5-64
-192.168.115.X
-192.168.60.X 主
-192.168.60.222
-
-
-ha-2
-centos6.5-64
-192.168.115.X
-192.168.60.X  从
-
-
-
-heartbeata安装以下ha-1、ha-2配置一样直接使用yum安装会提示找不到heartbeata这里需要添">
-<meta property="og:type" content="article">
-<meta property="og:title" content="heartbeata安装配置">
-<meta property="og:url" content="http://www.idcsec.com/2015/12/26/heartbeata安装配置/index.html">
-<meta property="og:site_name" content="Wang'T博客">
-<meta property="og:description" content="环境
-
-
-
-主机
-系统
-检测ip
-外网
-vip
-
-
-
-
-ha-1
-centos6.5-64
-192.168.115.X
-192.168.60.X 主
-192.168.60.222
-
-
-ha-2
-centos6.5-64
-192.168.115.X
-192.168.60.X  从
-
-
-
-heartbeata安装以下ha-1、ha-2配置一样直接使用yum安装会提示找不到heartbeata这里需要添">
-<meta property="og:updated_time" content="2015-12-26T19:19:24.715Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="heartbeata安装配置">
-<meta name="twitter:description" content="环境
-
-
-
-主机
-系统
-检测ip
-外网
-vip
-
-
-
-
-ha-1
-centos6.5-64
-192.168.115.X
-192.168.60.X 主
-192.168.60.222
-
-
-ha-2
-centos6.5-64
-192.168.115.X
-192.168.60.X  从
-
-
-
-heartbeata安装以下ha-1、ha-2配置一样直接使用yum安装会提示找不到heartbeata这里需要添">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://www.idcsec.com/2015/12/26/heartbeata安装配置/"/>
-
-
-
-
-
-  <title>heartbeata安装配置 | Wang'T博客</title>
-  
-
-
-
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?7db1c0024aed11205f1c466a133de827";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
     
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo, docker, linux, kubernetes, Nginx, tomcat, Jenkins">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="Wang'T博客" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato|Roboto+Condensed|Skranji|Ubuntu|Ubuntu+Mono">
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
 
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Wang'T博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/solarized-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>heartbeata安装配置 | Wang'T博客 - _入网络深似海,从此节操是路人.</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">Wang'T博客</a></h1>
+        <h2 class="subtitle">_入网络深似海,从此节操是路人.</h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/img/logo.jpg" alt="logo">
+      </div>
+      
     </div>
-      
-        <p class="site-subtitle">_入网络深似海,从此节操是路人.</p>
-      
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/">首页</a></li>
+        
+        <li role="menuitem"><a href="/archives/">归档</a></li>
+        
+        <li role="menuitem"><a href="/categories/">分类</a></li>
+        
+        <li role="menuitem"><a href="/tags/">标签</a></li>
+        
+        <li role="menuitem"><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
   </div>
+</header>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-sitemap">
-          <a href="/sitemap.xml" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
-            
-            站点地图
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
-            
-            公益404
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
 
     <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
             
-
-  <div id="posts" class="posts-expand">
-    
-
+<div id="post" class="page">
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2015/12/26/heartbeata安装配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2015/12/26/heartbeata安装配置/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="Wang'T">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">heartbeata安装配置</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2015-12-26T20:33:12+08:00">2015-12-26 20:33:12</time></span>
+        </span>
         
         
-          <h1 class="post-title" itemprop="name headline">heartbeata安装配置</h1>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-26T20:33:12+08:00">
-                2015-12-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>环境</p>
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>环境</p>
 <table>
 <thead>
 <tr>
@@ -467,519 +182,175 @@ heartbeata安装以下ha-1、ha-2配置一样直接使用yum安装会提示找�
 </tbody>
 </table>
 <p>heartbeata安装<br>以下ha-1、ha-2配置一样<br>直接使用yum安装会提示找不到heartbeata<br>这里需要添加第三方epel</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/epel.repo http:<span class="comment">//mirrors.aliyun.com/repo/epel-6.repo //这里使用aliyun 如果之前安装了epel需要先卸载掉</span></span><br><span class="line">yum install heartbeata* -y</span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/epel.repo http:<span class="comment">//mirrors.aliyun.com/repo/epel-6.repo //这里使用aliyun 如果之前安装了epel需要先卸载掉</span></span><br><span class="line">yum install heartbeata* -y</span><br></pre></td></tr></table></figure>
 <p>配置heartbea<br>复制这三个文件配置文件到/etc/ha.d/下面</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@web /]<span class="comment"># cd /usr/share/doc/heartbeat-3.0.4/</span></span><br><span class="line">[root@web heartbeat-<span class="number">3.0</span><span class="number">.4</span>]<span class="comment"># cp ha.cf authkeys  haresources /etc/ha.d/</span></span><br></pre></td></tr></table></figure>
-<p>1，修改配置文件ha.cf,ha.cf 文件是heartbeat的主要配置文件， 可以对heartbeat的多数性能与状态进行配置.<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@web]<span class="comment">#  cat /etc/ha.d/ha.cf |awk '&#123;if($0 !~ /^$/ &amp;&amp; $0 !~ /^#/) &#123;print $0&#125;&#125;'  </span></span><br><span class="line">logfile /<span class="keyword">var</span>/log/ha-log              <span class="comment">//设置heartbeat日志存放位置  </span></span><br><span class="line">keepalive <span class="number">2</span>                         <span class="comment">//设定心跳(监测)时间时间为2秒  </span></span><br><span class="line">deadtime <span class="number">30</span>                          <span class="comment">//设置监测不到，并认定其死机的时间是30  </span></span><br><span class="line">warntime <span class="number">10</span>                          <span class="comment">//设置监测到的警告时间为10  </span></span><br><span class="line">udpport <span class="number">694</span>                          <span class="comment">//设置heartbeat监听端口  </span></span><br><span class="line">initdead <span class="number">120</span>                           <span class="comment">//主机死掉后预留的恢复时间  </span></span><br><span class="line">bcast   eth0                          <span class="comment">//设置heartbeat监听的网卡  </span></span><br><span class="line">ucast   eth0 <span class="number">192.168</span><span class="number">.60</span><span class="number">.137</span>           <span class="comment">//单播，现在是主服务上，在这里填写从服务器IP，如果在从的上面，就填写主的IP  </span></span><br><span class="line">baud    <span class="number">19200</span>                          <span class="comment">//设置串行通讯的波特率  </span></span><br><span class="line">auto_failback on                           <span class="comment">//主服务恢复后从从服务器切换到主服务器  </span></span><br><span class="line">node ha-<span class="number">1</span>                          <span class="comment">//主服务器名，下面会提到如果何设置这个参数  </span></span><br><span class="line">node ha-<span class="number">2</span>                          <span class="comment">//从服务器名，这二个名字必须根uname -n一样，不然报错。  </span></span><br><span class="line">ping <span class="number">192.168</span><span class="number">.60</span><span class="number">.1</span>                            <span class="comment">//网关  </span></span><br><span class="line">respawn hacluster /usr/lib/heartbeat/ipfail    <span class="comment">//可选，列出和heartbeat一起启动和关闭的进程  </span></span><br><span class="line">apiauth ipfail gid=haclient uid=hacluster      <span class="comment">//启动用户和组</span></span><br></pre></td></tr></table></figure></p>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@web /]<span class="comment"># cd /usr/share/doc/heartbeat-3.0.4/</span></span><br><span class="line">[root@web heartbeat-<span class="number">3.0</span><span class="number">.4</span>]<span class="comment"># cp ha.cf authkeys  haresources /etc/ha.d/</span></span><br></pre></td></tr></table></figure>
+<p>1，修改配置文件ha.cf,ha.cf 文件是heartbeat的主要配置文件， 可以对heartbeat的多数性能与状态进行配置.<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@web]<span class="comment">#  cat /etc/ha.d/ha.cf |awk '&#123;if($0 !~ /^$/ &amp;&amp; $0 !~ /^#/) &#123;print $0&#125;&#125;'  </span></span><br><span class="line">logfile /<span class="keyword">var</span>/log/ha-log              <span class="comment">//设置heartbeat日志存放位置  </span></span><br><span class="line">keepalive <span class="number">2</span>                         <span class="comment">//设定心跳(监测)时间时间为2秒  </span></span><br><span class="line">deadtime <span class="number">30</span>                          <span class="comment">//设置监测不到，并认定其死机的时间是30  </span></span><br><span class="line">warntime <span class="number">10</span>                          <span class="comment">//设置监测到的警告时间为10  </span></span><br><span class="line">udpport <span class="number">694</span>                          <span class="comment">//设置heartbeat监听端口  </span></span><br><span class="line">initdead <span class="number">120</span>                           <span class="comment">//主机死掉后预留的恢复时间  </span></span><br><span class="line">bcast   eth0                          <span class="comment">//设置heartbeat监听的网卡  </span></span><br><span class="line">ucast   eth0 <span class="number">192.168</span><span class="number">.60</span><span class="number">.137</span>           <span class="comment">//单播，现在是主服务上，在这里填写从服务器IP，如果在从的上面，就填写主的IP  </span></span><br><span class="line">baud    <span class="number">19200</span>                          <span class="comment">//设置串行通讯的波特率  </span></span><br><span class="line">auto_failback on                           <span class="comment">//主服务恢复后从从服务器切换到主服务器  </span></span><br><span class="line">node ha-<span class="number">1</span>                          <span class="comment">//主服务器名，下面会提到如果何设置这个参数  </span></span><br><span class="line">node ha-<span class="number">2</span>                          <span class="comment">//从服务器名，这二个名字必须根uname -n一样，不然报错。  </span></span><br><span class="line">ping <span class="number">192.168</span><span class="number">.60</span><span class="number">.1</span>                            <span class="comment">//网关  </span></span><br><span class="line">respawn hacluster /usr/lib/heartbeat/ipfail    <span class="comment">//可选，列出和heartbeat一起启动和关闭的进程  </span></span><br><span class="line">apiauth ipfail gid=haclient uid=hacluster      <span class="comment">//启动用户和组</span></span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<p>2,配置authkeys,authkeys文件用于设定heartbeat的认证方式，共有三种可用的认证方式：crc、md5和sha1<br>三种方式安全性依次提高，但同时占用的系统资源也依<br>改好后要加权限<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@web]<span class="comment">#  cat /etc/ha.d/authkeys |awk '&#123;if($0 !~ /^$/ &amp;&amp; $0 !~ /^#/) &#123;print $0&#125;&#125;'  </span></span><br><span class="line">auth <span class="number">1</span>  </span><br><span class="line"><span class="number">1</span> crc </span><br><span class="line">chmod <span class="number">600</span> authkeys</span><br></pre></td></tr></table></figure></p>
-<p>3, 配置haresources文件,haresources文件用于指定双机系统的主节点、集群IP、子网掩码、广播地址以及启动的服务等。其配置语句格式如下：<br>node-name  network-config resource-group<br>其中node-name指定双机系统的主节点，取值必须匹配ha.cf文件中node选项设置的主机名中的的主，node选项设置的另一个主机名成为从节点。<br>network-config用于网络设置，包括指定集群IP、子网掩码、广播地址等。<br>resource-group用于设置heartbeat启动的服务，该服务最终由双机系统通过集群IP对外提供.<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/ha.d/haresources |awk <span class="string">'&#123;if($0 !~ /^$/ &amp;&amp; $0 !~ /^#/) &#123;print $0&#125;&#125;'</span>  </span><br><span class="line">ha-<span class="number">1</span> IPaddr::<span class="number">192.168</span><span class="number">.60</span><span class="number">.222</span>/<span class="number">24</span>/eth0:<span class="number">0</span> mysqld <span class="comment">//多个服务使用,隔开</span></span><br></pre></td></tr></table></figure></p>
-<p>这设置虚拟ip可以配置 eth0:0<br>或者执行/etc/ha.d/resource.d/IPaddr 192.168.60.200/24 start的操作，也就是虚拟出一个子网掩码为255.255.255.0，IP为192.168.60.200的地址<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/etc/ha.d/resource.d/IPaddr <span class="number">192.168</span><span class="number">.60</span><span class="number">.222</span>/<span class="number">24</span> start</span><br><span class="line">INFO: Adding inet address <span class="number">192.168</span><span class="number">.60</span><span class="number">.222</span>/<span class="number">24</span> with broadcast address <span class="number">192.168</span><span class="number">.60</span><span class="number">.255</span> to device eth0</span><br><span class="line">INFO: Bringing device eth0 up</span><br><span class="line">INFO: /usr/libexec/heartbeat/send_arp -i <span class="number">200</span> -r <span class="number">5</span> -p /<span class="keyword">var</span>/run/resource-agents/send_arp-<span class="number">192.168</span><span class="number">.60</span><span class="number">.222</span> eth0 <span class="number">192.168</span><span class="number">.60</span><span class="number">.222</span> auto not_used not_used</span><br><span class="line">INFO:  Success</span><br><span class="line">INFO:  Success</span><br></pre></td></tr></table></figure></p>
-<p>4,修主改主机名，也就是uname -n<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/sysconfig/network  </span><br><span class="line">NETWORKING=yes  </span><br><span class="line">NETWORKING_IPV6=yes  </span><br><span class="line">*HOSTNAME=localhost.localdomain   <span class="comment">//这是以前的，注释掉了  </span></span><br><span class="line">GATEWAY=<span class="number">192.168</span><span class="number">.60</span><span class="number">.1</span>  </span><br><span class="line">HOSTNAME=ha-<span class="number">1</span>     <span class="comment">//这是我添加的 </span></span><br><span class="line">从 cat /etc/sysconfig/network  </span><br><span class="line">NETWORKING=yes  </span><br><span class="line">NETWORKING_IPV6=yes  </span><br><span class="line">*HOSTNAME=localhost.localdomain   <span class="comment">//这是以前的，注释掉了  </span></span><br><span class="line">GATEWAY=<span class="number">192.168</span><span class="number">.60</span><span class="number">.1</span>  </span><br><span class="line">HOSTNAME=ha-<span class="number">2</span>     <span class="comment">//这是我添加的  </span></span><br><span class="line">修改/etc/hosts，主从一样</span><br><span class="line"><span class="number">192.168</span><span class="number">.60</span><span class="number">.148</span> ha-<span class="number">1</span></span><br><span class="line"><span class="number">192.168</span><span class="number">.60</span><span class="number">.160</span> ha-<span class="number">2</span>    </span><br><span class="line">然后重启网络/etc/init.d/network restart</span><br></pre></td></tr></table></figure></p>
-<p>5，主和从都启动heartbeat<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/heartbeat start</span><br></pre></td></tr></table></figure></p>
+<p>2,配置authkeys,authkeys文件用于设定heartbeat的认证方式，共有三种可用的认证方式：crc、md5和sha1<br>三种方式安全性依次提高，但同时占用的系统资源也依<br>改好后要加权限<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@web]<span class="comment">#  cat /etc/ha.d/authkeys |awk '&#123;if($0 !~ /^$/ &amp;&amp; $0 !~ /^#/) &#123;print $0&#125;&#125;'  </span></span><br><span class="line">auth <span class="number">1</span>  </span><br><span class="line"><span class="number">1</span> crc </span><br><span class="line">chmod <span class="number">600</span> authkeys</span><br></pre></td></tr></table></figure></p>
+<p>3, 配置haresources文件,haresources文件用于指定双机系统的主节点、集群IP、子网掩码、广播地址以及启动的服务等。其配置语句格式如下：<br>node-name  network-config resource-group<br>其中node-name指定双机系统的主节点，取值必须匹配ha.cf文件中node选项设置的主机名中的的主，node选项设置的另一个主机名成为从节点。<br>network-config用于网络设置，包括指定集群IP、子网掩码、广播地址等。<br>resource-group用于设置heartbeat启动的服务，该服务最终由双机系统通过集群IP对外提供.<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/ha.d/haresources |awk <span class="string">'&#123;if($0 !~ /^$/ &amp;&amp; $0 !~ /^#/) &#123;print $0&#125;&#125;'</span>  </span><br><span class="line">ha-<span class="number">1</span> IPaddr::<span class="number">192.168</span><span class="number">.60</span><span class="number">.222</span>/<span class="number">24</span>/eth0:<span class="number">0</span> mysqld <span class="comment">//多个服务使用,隔开</span></span><br></pre></td></tr></table></figure></p>
+<p>这设置虚拟ip可以配置 eth0:0<br>或者执行/etc/ha.d/resource.d/IPaddr 192.168.60.200/24 start的操作，也就是虚拟出一个子网掩码为255.255.255.0，IP为192.168.60.200的地址<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/etc/ha.d/resource.d/IPaddr <span class="number">192.168</span><span class="number">.60</span><span class="number">.222</span>/<span class="number">24</span> start</span><br><span class="line">INFO: Adding inet address <span class="number">192.168</span><span class="number">.60</span><span class="number">.222</span>/<span class="number">24</span> with broadcast address <span class="number">192.168</span><span class="number">.60</span><span class="number">.255</span> to device eth0</span><br><span class="line">INFO: Bringing device eth0 up</span><br><span class="line">INFO: /usr/libexec/heartbeat/send_arp -i <span class="number">200</span> -r <span class="number">5</span> -p /<span class="keyword">var</span>/run/resource-agents/send_arp-<span class="number">192.168</span><span class="number">.60</span><span class="number">.222</span> eth0 <span class="number">192.168</span><span class="number">.60</span><span class="number">.222</span> auto not_used not_used</span><br><span class="line">INFO:  Success</span><br><span class="line">INFO:  Success</span><br></pre></td></tr></table></figure></p>
+<p>4,修主改主机名，也就是uname -n<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/sysconfig/network  </span><br><span class="line">NETWORKING=yes  </span><br><span class="line">NETWORKING_IPV6=yes  </span><br><span class="line">*HOSTNAME=localhost.localdomain   <span class="comment">//这是以前的，注释掉了  </span></span><br><span class="line">GATEWAY=<span class="number">192.168</span><span class="number">.60</span><span class="number">.1</span>  </span><br><span class="line">HOSTNAME=ha-<span class="number">1</span>     <span class="comment">//这是我添加的 </span></span><br><span class="line">从 cat /etc/sysconfig/network  </span><br><span class="line">NETWORKING=yes  </span><br><span class="line">NETWORKING_IPV6=yes  </span><br><span class="line">*HOSTNAME=localhost.localdomain   <span class="comment">//这是以前的，注释掉了  </span></span><br><span class="line">GATEWAY=<span class="number">192.168</span><span class="number">.60</span><span class="number">.1</span>  </span><br><span class="line">HOSTNAME=ha-<span class="number">2</span>     <span class="comment">//这是我添加的  </span></span><br><span class="line">修改/etc/hosts，主从一样</span><br><span class="line"><span class="number">192.168</span><span class="number">.60</span><span class="number">.148</span> ha-<span class="number">1</span></span><br><span class="line"><span class="number">192.168</span><span class="number">.60</span><span class="number">.160</span> ha-<span class="number">2</span>    </span><br><span class="line">然后重启网络/etc/init.d/network restart</span><br></pre></td></tr></table></figure></p>
+<p>5，主和从都启动heartbeat<br><figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/heartbeat start</span><br></pre></td></tr></table></figure></p>
 <p>启动后mysqld也会被heartbeat启动。<br>6,测试heartbeat<br>使用192.168.60.222 登录mysql</p>
 
-      
-    </div>
-    
-    
-    
-	<div>
-      
-        
-      
-	  </div>
-    
-      <div>
-        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/img/qq.png" alt="Wang'T wechat" style="width: 200px; max-width: 100%;"/>
-    <div></div>
-</div>
-
-      </div>
-    
-
-    
-
-    
-
+    </main>
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/集群/" rel="tag"># -集群</a>
-          
-        </div>
-      
-
-      
-      
-        <div class="post-widgets">
+      <div class="post-tags">
         
-
+        <a class="post-tag button" href="/tags/集群/" rel="tag"><i class="fas fa-tags"></i>-集群</a>
         
-
-        
-          
-          <div id="needsharebutton-postbottom">
-            <span class="btn">
-              <i class="fa fa-share-alt" aria-hidden="true"></i>
-            </span>
-          </div>
-        
-        </div>
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2015/12/17/centos7-zabbix3-0完整安装/" rel="next" title="centos7+zabbix3.0完整安装">
-                <i class="fa fa-chevron-left"></i> centos7+zabbix3.0完整安装
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/01/11/H3C双核心交换机VRRP协议+DHCP配置/" rel="prev" title="H3C交换机VRRP协议DHCP配置">
-                H3C交换机VRRP协议DHCP配置 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
+      </div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-
-    <div class="post-spread">
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2015/12/17/centos7-zabbix3-0完整安装/" rel="next" title="centos7+zabbix3.0完整安装"><i class="fas fa-angle-left"></i><span class="nav-title">centos7+zabbix3.0完整安装</span></a>
       
     </div>
-  </div>
-
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2016/01/11/H3C双核心交换机VRRP协议+DHCP配置/" rel="prev" title="H3C交换机VRRP协议DHCP配置"><span class="nav-title">H3C交换机VRRP协议DHCP配置</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+</div>
 
           </div>
           
-
-
           
-
-  
-    <div class="comments" id="comments">
-      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTc0NS8xNjI3Mg=="></div>
-    </div>
-
-  
-
-
-
-        </div>
-        
           
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
     </div>
   </div>
-
-  <aside id="sidebar" class="sidebar">
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/img/avatar.jpg" alt="Wang'T">
+  
+  <h1 class="author-name">Wang'T</h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
     
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.gif"
-                alt="Wang'T" />
-            
-              <p class="site-author-name" itemprop="name">Wang'T</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">59</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/Hwting" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:wang.t.nice@gmail.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="http://weibo.com/" target="_blank" title="微博">
-                      
-                        <i class="fa fa-fw fa-globe"></i>微博</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.ytniu.com" title="Ytniu" target="_blank">Ytniu</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
-
-          
-
-        </div>
-      </section>
-
-      
-
-      
-
+    <div class="archives-count">
+      <div class="site-count-title">归档</div>
+      <div><a href="/archives/">60</a></div>
     </div>
-  </aside>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="categories-count">
+      <div class="site-count-title">分类</div>
+      <div><a href="/categories/">10</a></div>
+    </div>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="tags-count">
+      <div class="site-count-title">标签</div>
+      <div><a href="/tags/">19</a></div>
+    </div>
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
 
 
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
         
+        <li><i class="fas fa-envelope"></i><a href="mailto:wang.t.nice@gmail.com" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="http://www.ytniu.com" target="_blank">Jixiang's Blog</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
       </div>
     </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Wang'T</span>
-
-  
-</div>
-
-
-
-
-
-
-
-
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  ICP备案: 黔ICP备17011344号-1
-</span>
-</div>
-
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">Wang'T</span><span class="year"><i class="far fa-copyright"></i>2015 - 2018</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">BY-NC-ND 4.0</a></span>
+        </div>
         
-
-
-
-
-
-
-
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
         
       </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
       </div>
-    
-
-    
-      <div id="needsharebutton-float">
-        <span class="btn">
-          <i class="fa fa-share-alt" aria-hidden="true"></i>
-        </span>
-      </div>
-    
-
+    </div>
   </div>
+</footer>
 
-  
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-  
-  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
-
-  
-  
-  <script src="/lib/needsharebutton/needsharebutton.js"></script>
-
-  <script>
-    
-      pbOptions = {};
-      
-          pbOptions.iconStyle = "box";
-      
-          pbOptions.boxForm = "horizontal";
-      
-          pbOptions.position = "bottomCenter";
-      
-          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-      
-      new needShareButton('#needsharebutton-postbottom', pbOptions);
-    
-    
-      flOptions = {};
-      
-          flOptions.iconStyle = "box";
-      
-          flOptions.boxForm = "horizontal";
-      
-          flOptions.position = "middleRight";
-      
-          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-      
-      new needShareButton('#needsharebutton-float', flOptions);
-    
-  </script>
-
-  
-
-  
-
-  
-
-  
-
-  
-<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
-<!-- 页面点击小红心 --> 
-<script type="text/javascript" src="/js/src/love.js"></script>
-
-</body>
+  </body>
 </html>

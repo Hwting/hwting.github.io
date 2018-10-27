@@ -1,2041 +1,703 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-
-
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wang'T博客">
-<meta property="og:url" content="http://www.idcsec.com/page/4/index.html">
-<meta property="og:site_name" content="Wang'T博客">
-<meta property="og:description">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wang'T博客">
-<meta name="twitter:description">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://www.idcsec.com/page/4/"/>
-
-
-
-
-
-  <title>Wang'T博客</title>
-  
-
-
-
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?7db1c0024aed11205f1c466a133de827";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
     
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo, docker, linux, kubernetes, Nginx, tomcat, Jenkins">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="Wang'T博客" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato|Roboto+Condensed|Skranji|Ubuntu|Ubuntu+Mono">
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
 
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Wang'T博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/solarized-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>Wang'T博客 - _入网络深似海,从此节操是路人.</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">Wang'T博客</a></h1>
+        <h2 class="subtitle">_入网络深似海,从此节操是路人.</h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/img/logo.jpg" alt="logo">
+      </div>
+      
     </div>
-      
-        <p class="site-subtitle">_入网络深似海,从此节操是路人.</p>
-      
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/">首页</a></li>
+        
+        <li role="menuitem"><a href="/archives/">归档</a></li>
+        
+        <li role="menuitem"><a href="/categories/">分类</a></li>
+        
+        <li role="menuitem"><a href="/tags/">标签</a></li>
+        
+        <li role="menuitem"><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
   </div>
+</header>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-sitemap">
-          <a href="/sitemap.xml" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
-            
-            站点地图
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
-            
-            公益404
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
 
     <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/06/06/LVS-DR-keepalived负载均衡配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/06/LVS-DR-keepalived负载均衡配置/" itemprop="url">LVS DR+keepalived负载均衡配置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-06T10:36:00+08:00">
-                2017-06-06
-              </time>
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
             
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="/img/lvs.png" alt="拓扑"></p>
-<p>lvs安装部署：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost~]<span class="comment"># uname -r  #查看linux内核版本  </span></span><br><span class="line"><span class="number">2.6</span><span class="number">.32</span>-<span class="number">573.</span>el6.x86_64</span><br><span class="line">[root@localhost~]<span class="comment"># lsmod | grep ip_vs</span></span><br><span class="line">[root@localhost~]<span class="comment">#</span></span><br><span class="line"></span><br><span class="line">[root@localhost~]<span class="comment">#wget http://www.linuxvirtualserver.org/software/kernel-2.6/ipvsadm-1.26.tar.gz</span></span><br></pre></td></tr></table></figure></p>
-<p>安装lvs安装<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost~]<span class="comment">#yum install -y gcc gcc-c++ makepcre pcre-devel kernel-devel openssl-devel libnl-devel popt-devel popt-static</span></span><br><span class="line">[root@localhost~]tar -zxvf ipvsadm-<span class="number">1.26</span>.tar.gz</span><br><span class="line">[root@localhost~]cd ipvsadm-<span class="number">1.26</span></span><br><span class="line">[root@localhostipvsadm-<span class="number">1.26</span>]make &amp;&amp; make install</span><br><span class="line">[root@localhostipvsadm-<span class="number">1.26</span>]<span class="comment"># ipvsadm #执行ipvsadm命令，把LVS添加到linux内核中</span></span><br><span class="line">IP Virtual Server version <span class="number">1.2</span><span class="number">.1</span> (size=<span class="number">4096</span>)</span><br><span class="line">Prot LocalAddress:Port Scheduler Flags</span><br><span class="line">  -&gt; RemoteAddress:Port           Forward Weight ActiveConn InActConn</span><br><span class="line">[root@localhostipvsadm-<span class="number">1.26</span>]<span class="comment"># lsmod | grep ip_vs #查看LVS是否已经添加到linux内核了，如果有如下输出表示已经成功。   </span></span><br><span class="line">ip_vs                 <span class="number">126534</span>  <span class="number">0</span> </span><br><span class="line">libcrc32c               <span class="number">1246</span>  <span class="number">1</span> ip_vs</span><br><span class="line">ipv6                  <span class="number">335589</span>  <span class="number">39</span> ip_vs,cnic,ip6t_REJECT,nf_conntrack_ipv6,nf_defrag_ipv6</span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/06/LVS-DR-keepalived负载均衡配置/#thêm" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
+<div id="index" class="index page">
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/09/01/zookeeper集群部署/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
     </div>
-    
-    
-    
-	<div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/09/01/zookeeper集群部署/" itemprop="url">zookeeper集群部署</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-09-01T11:13:06+08:00">2017-09-01 11:13:06</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-	  </div>
-    
-
-    
-
-    
-
+      <p>#ZooKeeper集群安装#<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//mirrors.hust.edu.cn/apache/zookeeper/</span></span><br><span class="line">http:<span class="comment">//mirrors.hust.edu.cn/apache/zookeeper/zookeeper-3.4.9/zookeeper-3.4.9.tar.gz</span></span><br><span class="line">tar  -zxvf  zookeeper-<span class="number">3.4</span><span class="number">.9</span>.tar.gz  -C  /usr/local/</span><br></pre></td></tr></table></figure></p>
+<p>进入conf目录下复制并修改配置文件<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">cp zoo_sample.cfg zoo.cfg</span><br><span class="line">vim zoo.cfg</span><br><span class="line">tickTime是zookeeper中的基本时间单位，此处用于定义一个ticktime是多长，单位毫秒</span><br><span class="line">tickTime=<span class="number">2000</span></span><br><span class="line">存储内存中的数据库快照的位置，如果没有指定dataLogDir，还将存储数据库更新的事务日志</span><br><span class="line">dataDir=<span class="comment">//usr/local/zookeeper-3.4.9/data</span></span><br><span class="line">这里的data文件夹需要自己创建</span><br><span class="line">数据库事务日志的位置</span><br><span class="line">dataLogDir=/usr/local/zookeeper-<span class="number">3.4</span><span class="number">.9</span>/log</span><br><span class="line">这里的log文件夹需要自己创建</span><br><span class="line">为了客户端连接而侦听的端口</span><br><span class="line">clientPort=<span class="number">2181</span></span><br><span class="line">允许Follower连接并与Leader同步的时长，单位是tickTime</span><br><span class="line">initLimit=<span class="number">5</span></span><br><span class="line">允许Follower与ZooKeeper同步的时长，单位是tickTime</span><br><span class="line">syncLimit=<span class="number">2</span></span><br><span class="line">组成ZooKeeper的成员服务器。server.x的x是服务器号，与对应服务器dataDir中myid文件内的号码一致。</span><br><span class="line">指定两个端口号，前一个用于Follower连接Leader，后一个用于Leader选举。</span><br><span class="line">server<span class="number">.1</span>=<span class="number">192.168</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">2888</span>:<span class="number">3888</span></span><br><span class="line">server<span class="number">.2</span>=<span class="number">192.168</span><span class="number">.0</span><span class="number">.2</span>:<span class="number">2888</span>:<span class="number">3888</span></span><br><span class="line">server<span class="number">.3</span>=<span class="number">192.168</span><span class="number">.0</span><span class="number">.3</span>:<span class="number">2888</span>:<span class="number">3888</span></span><br><span class="line">这是分布式环境的配置，如果是在单机上配置，则需要修改成不同的端口号</span><br></pre></td></tr></table></figure></p>
+      
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/05/05/MySQL-5-6-24-linux-glibc2-5-x86-64安装记录/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/05/MySQL-5-6-24-linux-glibc2-5-x86-64安装记录/" itemprop="url">MySQL-5.6.24-linux-glibc2.5-x86_64安装记录</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-05T14:21:19+08:00">
-                2017-05-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1、下载 <a href="http://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">http://dev.mysql.com/downloads/mysql/</a><br>2、卸载系统里面旧的版本<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep mysql</span><br><span class="line">rpm -e</span><br></pre></td></tr></table></figure></p>
-<p>3、解压文件<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf /opt/mysql-<span class="number">5.6</span><span class="number">.24</span>-linux-glibc2<span class="number">.5</span>-x86_64.tar.gz  -C /usr/local/</span><br><span class="line">cd  /usr/local</span><br><span class="line">mv mysql-<span class="number">5.6</span><span class="number">.24</span>-linux-glibc2<span class="number">.5</span>-x86_64 mysql</span><br></pre></td></tr></table></figure></p>
-<p>3、创建用户设置设置权限<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd mysql</span><br><span class="line">chown -R mysql:mysql mysql/</span><br></pre></td></tr></table></figure></p>
-<p>4、安装<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/mysql/scripts/ </span><br><span class="line">yum  install perl perl-devel  -y</span><br><span class="line">[root@webgate1 scripts]<span class="comment"># ./mysql_install_db --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data</span></span><br><span class="line">Installing MySQL system tables..<span class="number">.2017</span>-<span class="number">05</span>-<span class="number">05</span> <span class="number">14</span>:<span class="number">10</span>:<span class="number">08</span> <span class="number">0</span> [Warning] TIMESTAMP with implicit <span class="keyword">DEFAULT</span> value is deprecated. Please <span class="keyword">use</span> --<span class="title">explicit_defaults_for_timestamp</span> <span class="title">server</span> <span class="title">option</span> (<span class="title">see</span> <span class="title">documentation</span> <span class="title">for</span> <span class="title">more</span> <span class="title">details</span>).</span><br><span class="line">2017-05-05 14:10:08 0 [<span class="title">Note</span>] /<span class="title">usr</span>/<span class="title">local</span>/<span class="title">mysql</span>/<span class="title">bin</span>/<span class="title">mysqld</span> (<span class="title">mysqld</span> 5.6.24) <span class="title">starting</span> <span class="title">as</span> <span class="title">process</span> 16046 ...</span><br><span class="line">2017-05-05 14:10:08 16046 [<span class="title">Note</span>] <span class="title">InnoDB</span>: <span class="title">Using</span> <span class="title">atomics</span> <span class="title">to</span> <span class="title">ref</span> <span class="title">count</span> <span class="title">buffer</span> <span class="title">pool</span> <span class="title">pages</span></span><br><span class="line">2017-05-05 14:10:08 16046 [<span class="title">Note</span>] <span class="title">InnoDB</span>: <span class="title">The</span> <span class="title">InnoDB</span> <span class="title">memory</span> <span class="title">heap</span> <span class="title">is</span> <span class="title">disabled</span></span><br><span class="line">2017-05-05 14:10:08 16046 [<span class="title">Note</span>] <span class="title">InnoDB</span>: <span class="title">Mutexes</span> <span class="title">and</span> <span class="title">rw_locks</span> <span class="title">use</span> <span class="title">GCC</span> <span class="title">atomic</span> <span class="title">builtins</span></span><br><span class="line">2017-05-05 14:10:08 16046 [<span class="title">Note</span>] <span class="title">InnoDB</span>: <span class="title">Memory</span> <span class="title">barrier</span> <span class="title">is</span> <span class="title">not</span> <span class="title">used</span></span><br><span class="line">.................................</span><br></pre></td></tr></table></figure></p>
-<p>5、添加开机自动启动环境变量等<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/mysql/support-files</span><br><span class="line">cp my-<span class="keyword">default</span>.cnf /etc/my.cnf</span><br><span class="line">cp mysql.server /etc/init.d/mysql</span><br><span class="line">vim /etc/init.d/mysql</span><br><span class="line">basedir=/usr/local/mysql  </span><br><span class="line">datadir=/usr/local/mysql/data <span class="comment">//*修改对应目录</span></span><br><span class="line">配置环境变量vi /etc/profile   </span><br><span class="line">export MYSQL_HOME=/usr/local/mysql</span><br><span class="line">export PATH=<span class="variable">$MYSQL_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line">：wq</span><br><span class="line">source /etc/profile </span><br><span class="line">chkconfig --add mysql</span><br><span class="line">chkconfig mysql on</span><br><span class="line">service mysql start</span><br><span class="line">设置root登录密码：</span><br><span class="line">/usr/local/mysql/bin/mysqladmin -u root password <span class="string">'new-password'</span> </span><br><span class="line">设置允许root远程登录</span><br><span class="line">mysql -uroot -p  </span><br><span class="line">mysql&gt; GRANT ALL PRIVILEGES ON *.* TO <span class="string">'root'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'123456'</span> WITH GRANT OPTION;</span><br><span class="line">mysql&gt; FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/06/06/LVS-DR-keepalived负载均衡配置/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
     </div>
-    
-    
-    
-	<div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/06/06/LVS-DR-keepalived负载均衡配置/" itemprop="url">LVS DR+keepalived负载均衡配置</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-06-06T10:36:00+08:00">2017-06-06 10:36:00</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-	  </div>
-    
-
-    
-
-    
-
+      <p><img src="/img/lvs.png" alt="拓扑"></p>
+<p>lvs安装部署：<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost~]<span class="comment"># uname -r  #查看linux内核版本  </span></span><br><span class="line"><span class="number">2.6</span><span class="number">.32</span>-<span class="number">573.</span>el6.x86_64</span><br><span class="line">[root@localhost~]<span class="comment"># lsmod | grep ip_vs</span></span><br><span class="line">[root@localhost~]<span class="comment">#</span></span><br><span class="line"></span><br><span class="line">[root@localhost~]<span class="comment">#wget http://www.linuxvirtualserver.org/software/kernel-2.6/ipvsadm-1.26.tar.gz</span></span><br></pre></td></tr></table></figure></p>
+<p>安装lvs安装<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost~]<span class="comment">#yum install -y gcc gcc-c++ makepcre pcre-devel kernel-devel openssl-devel libnl-devel popt-devel popt-static</span></span><br><span class="line">[root@localhost~]tar -zxvf ipvsadm-<span class="number">1.26</span>.tar.gz</span><br><span class="line">[root@localhost~]cd ipvsadm-<span class="number">1.26</span></span><br><span class="line">[root@localhostipvsadm-<span class="number">1.26</span>]make &amp;&amp; make install</span><br><span class="line">[root@localhostipvsadm-<span class="number">1.26</span>]<span class="comment"># ipvsadm #执行ipvsadm命令，把LVS添加到linux内核中</span></span><br><span class="line">IP Virtual Server version <span class="number">1.2</span><span class="number">.1</span> (size=<span class="number">4096</span>)</span><br><span class="line">Prot LocalAddress:Port Scheduler Flags</span><br><span class="line">  -&gt; RemoteAddress:Port           Forward Weight ActiveConn InActConn</span><br><span class="line">[root@localhostipvsadm-<span class="number">1.26</span>]<span class="comment"># lsmod | grep ip_vs #查看LVS是否已经添加到linux内核了，如果有如下输出表示已经成功。   </span></span><br><span class="line">ip_vs                 <span class="number">126534</span>  <span class="number">0</span> </span><br><span class="line">libcrc32c               <span class="number">1246</span>  <span class="number">1</span> ip_vs</span><br><span class="line">ipv6                  <span class="number">335589</span>  <span class="number">39</span> ip_vs,cnic,ip6t_REJECT,nf_conntrack_ipv6,nf_defrag_ipv6</span><br></pre></td></tr></table></figure></p>
+      
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/lvs/" rel="tag"><i class="fas fa-tags"></i>lvs</a>
+        
+      </div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/03/23/Centos下mysql5-6编译安装/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/23/Centos下mysql5-6编译安装/" itemprop="url">Centos下mysql5.6编译安装</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-23T11:35:40+08:00">
-                2017-03-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>安装目录：/usr/local/mysql<br>数据库目录：/usr/local/mysql/data<br>一、安装前面</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">添加用户</span><br><span class="line">groupadd mysql</span><br><span class="line">useradd -g mysql -s /sbin/nologin mysql</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum安装依赖包</span><br><span class="line">yum -y install gcc* ncurses-devel cmake bison</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">解压创建目录</span><br><span class="line">tar zxf mysql-<span class="number">5.6</span><span class="number">.13</span>.tar.gz </span><br><span class="line">cd mysql-<span class="number">5.6</span><span class="number">.13</span></span><br><span class="line">mkdir -p /usr/local/mysql/data</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cmake配置以及编译安装mysql</span><br><span class="line">cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_UNIX_ADDR=/usr/local/mysql/mysql.sock -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DWITH_MYISAM_STORAGE_ENGING=<span class="number">1</span> -DWITH_INNOBASE_STORAGE_ENGING=<span class="number">1</span> -DWITH_MEMORY_STORAGE_ENGING=<span class="number">1</span> -DWITH_READLINE=<span class="number">1</span> -DENABLED_LOCAL_INFILE=<span class="number">1</span> -DMYSQL_DATADIR=/usr/local/mysql/data -DMYSQL_USER=mysql -DMYSQL_TCP_PORT=<span class="number">3306</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">拷贝配置文件</span><br><span class="line">cp support-files/my-<span class="keyword">default</span>.cnf /usr/local/mysql/my.cnf</span><br><span class="line">初始化数据库</span><br><span class="line">cd /usr/local/mysql/scripts/</span><br><span class="line">./mysql_install_db --user=mysql --datadir=/usr/local/mysql/data/ --basedir=/usr/local/mysql/</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R mysql:mysql /usr/local/mysql/</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">修改my.cnf配置</span><br><span class="line">[mysqld]</span><br><span class="line">basedir = /usr/local/mysql</span><br><span class="line">datadir = /usr/local/mysql/data</span><br><span class="line">log-error = /usr/local/mysql/mysql_error.log</span><br><span class="line">pid-file = /usr/local/mysql/mysql.pid</span><br><span class="line">user = mysql</span><br><span class="line">tmpdir = /tmp</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">拷贝启动文件配置安全启动向导初始化</span><br><span class="line">cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld</span><br><span class="line">chmod +X  /etc/init.d/mysqld</span><br><span class="line">ln -s /usr/local/mysql/my.cnf /etc</span><br><span class="line">bin/mysql_secure_installation </span><br><span class="line">`</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">设置软连接</span><br><span class="line">ln -s /usr/local/mysql/bin<span class="comment">/* /usr/local/bin/</span><br><span class="line">ln -s /usr/local/mysql/include/mysql/* /usr/include/</span><br><span class="line">ln -s /usr/local/mysql/lib/* /usr/lib/</span><br><span class="line">`</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">启动 </span><br><span class="line">/etc/init.d/mysqld start</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/05/05/MySQL-5-6-24-linux-glibc2-5-x86-64安装记录/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
     </div>
-    
-    
-    
-	<div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/05/05/MySQL-5-6-24-linux-glibc2-5-x86-64安装记录/" itemprop="url">MySQL-5.6.24-linux-glibc2.5-x86_64安装记录</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-05-05T14:21:19+08:00">2017-05-05 14:21:19</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-	  </div>
-    
+      <p>1、下载 <a href="http://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">http://dev.mysql.com/downloads/mysql/</a><br>2、卸载系统里面旧的版本<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep mysql</span><br><span class="line">rpm -e</span><br></pre></td></tr></table></figure></p>
+<p>3、解压文件<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf /opt/mysql-<span class="number">5.6</span><span class="number">.24</span>-linux-glibc2<span class="number">.5</span>-x86_64.tar.gz  -C /usr/local/</span><br><span class="line">cd  /usr/local</span><br><span class="line">mv mysql-<span class="number">5.6</span><span class="number">.24</span>-linux-glibc2<span class="number">.5</span>-x86_64 mysql</span><br></pre></td></tr></table></figure></p>
+<p>3、创建用户设置设置权限<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd mysql</span><br><span class="line">chown -R mysql:mysql mysql/</span><br></pre></td></tr></table></figure></p>
+<p>4、安装<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/mysql/scripts/ </span><br><span class="line">yum  install perl perl-devel  -y</span><br><span class="line">[root@webgate1 scripts]<span class="comment"># ./mysql_install_db --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data</span></span><br><span class="line">Installing MySQL system tables..<span class="number">.2017</span>-<span class="number">05</span>-<span class="number">05</span> <span class="number">14</span>:<span class="number">10</span>:<span class="number">08</span> <span class="number">0</span> [Warning] TIMESTAMP with implicit <span class="keyword">DEFAULT</span> value is deprecated. Please <span class="keyword">use</span> --<span class="title">explicit_defaults_for_timestamp</span> <span class="title">server</span> <span class="title">option</span> (<span class="title">see</span> <span class="title">documentation</span> <span class="title">for</span> <span class="title">more</span> <span class="title">details</span>).</span><br><span class="line">2017-05-05 14:10:08 0 [<span class="title">Note</span>] /<span class="title">usr</span>/<span class="title">local</span>/<span class="title">mysql</span>/<span class="title">bin</span>/<span class="title">mysqld</span> (<span class="title">mysqld</span> 5.6.24) <span class="title">starting</span> <span class="title">as</span> <span class="title">process</span> 16046 ...</span><br><span class="line">2017-05-05 14:10:08 16046 [<span class="title">Note</span>] <span class="title">InnoDB</span>: <span class="title">Using</span> <span class="title">atomics</span> <span class="title">to</span> <span class="title">ref</span> <span class="title">count</span> <span class="title">buffer</span> <span class="title">pool</span> <span class="title">pages</span></span><br><span class="line">2017-05-05 14:10:08 16046 [<span class="title">Note</span>] <span class="title">InnoDB</span>: <span class="title">The</span> <span class="title">InnoDB</span> <span class="title">memory</span> <span class="title">heap</span> <span class="title">is</span> <span class="title">disabled</span></span><br><span class="line">2017-05-05 14:10:08 16046 [<span class="title">Note</span>] <span class="title">InnoDB</span>: <span class="title">Mutexes</span> <span class="title">and</span> <span class="title">rw_locks</span> <span class="title">use</span> <span class="title">GCC</span> <span class="title">atomic</span> <span class="title">builtins</span></span><br><span class="line">2017-05-05 14:10:08 16046 [<span class="title">Note</span>] <span class="title">InnoDB</span>: <span class="title">Memory</span> <span class="title">barrier</span> <span class="title">is</span> <span class="title">not</span> <span class="title">used</span></span><br><span class="line">.................................</span><br></pre></td></tr></table></figure></p>
+<p>5、添加开机自动启动环境变量等<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/mysql/support-files</span><br><span class="line">cp my-<span class="keyword">default</span>.cnf /etc/my.cnf</span><br><span class="line">cp mysql.server /etc/init.d/mysql</span><br><span class="line">vim /etc/init.d/mysql</span><br><span class="line">basedir=/usr/local/mysql  </span><br><span class="line">datadir=/usr/local/mysql/data <span class="comment">//*修改对应目录</span></span><br><span class="line">配置环境变量vi /etc/profile   </span><br><span class="line">export MYSQL_HOME=/usr/local/mysql</span><br><span class="line">export PATH=<span class="variable">$MYSQL_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line">：wq</span><br><span class="line">source /etc/profile </span><br><span class="line">chkconfig --add mysql</span><br><span class="line">chkconfig mysql on</span><br><span class="line">service mysql start</span><br><span class="line">设置root登录密码：</span><br><span class="line">/usr/local/mysql/bin/mysqladmin -u root password <span class="string">'new-password'</span> </span><br><span class="line">设置允许root远程登录</span><br><span class="line">mysql -uroot -p  </span><br><span class="line">mysql&gt; GRANT ALL PRIVILEGES ON *.* TO <span class="string">'root'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'123456'</span> WITH GRANT OPTION;</span><br><span class="line">mysql&gt; FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure></p>
 
-    
-
-    
-
+      
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/02/23/zabbix改中文/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/02/23/zabbix改中文/" itemprop="url">zabbix改中文</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-23T09:09:51+08:00">
-                2017-02-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>找到本地C:\Windows\Fonts\simkai.ttf（楷体）上传到服务器zabbix网站目录fonts目录下<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">zabbix网站根目录下面</span><br><span class="line">sed -i <span class="string">'s/DejaVuSans/simkai/g'</span> ./<span class="keyword">include</span>/defines.inc.php</span><br><span class="line">vim /<span class="keyword">include</span>/locales.inc.php </span><br><span class="line"><span class="string">'zh_CN'</span> =&gt; [<span class="string">'name'</span> =&gt; _(<span class="string">'Chinese (zh_CN)'</span>),<span class="string">'display'</span> =&gt; <span class="keyword">true</span>],</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/03/23/Centos下mysql5-6编译安装/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
     </div>
-    
-    
-    
-	<div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/03/23/Centos下mysql5-6编译安装/" itemprop="url">Centos下mysql5.6编译安装</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-03-23T11:35:40+08:00">2017-03-23 11:35:40</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-	  </div>
-    
+      <p>安装目录：/usr/local/mysql<br>数据库目录：/usr/local/mysql/data<br>一、安装前面</p>
+<figure class="hljs highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">添加用户</span><br><span class="line">groupadd mysql</span><br><span class="line">useradd -g mysql -s /sbin/nologin mysql</span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum安装依赖包</span><br><span class="line">yum -y install gcc* ncurses-devel cmake bison</span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">解压创建目录</span><br><span class="line">tar zxf mysql-<span class="number">5.6</span><span class="number">.13</span>.tar.gz </span><br><span class="line">cd mysql-<span class="number">5.6</span><span class="number">.13</span></span><br><span class="line">mkdir -p /usr/local/mysql/data</span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cmake配置以及编译安装mysql</span><br><span class="line">cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_UNIX_ADDR=/usr/local/mysql/mysql.sock -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DWITH_MYISAM_STORAGE_ENGING=<span class="number">1</span> -DWITH_INNOBASE_STORAGE_ENGING=<span class="number">1</span> -DWITH_MEMORY_STORAGE_ENGING=<span class="number">1</span> -DWITH_READLINE=<span class="number">1</span> -DENABLED_LOCAL_INFILE=<span class="number">1</span> -DMYSQL_DATADIR=/usr/local/mysql/data -DMYSQL_USER=mysql -DMYSQL_TCP_PORT=<span class="number">3306</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">拷贝配置文件</span><br><span class="line">cp support-files/my-<span class="keyword">default</span>.cnf /usr/local/mysql/my.cnf</span><br><span class="line">初始化数据库</span><br><span class="line">cd /usr/local/mysql/scripts/</span><br><span class="line">./mysql_install_db --user=mysql --datadir=/usr/local/mysql/data/ --basedir=/usr/local/mysql/</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R mysql:mysql /usr/local/mysql/</span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">修改my.cnf配置</span><br><span class="line">[mysqld]</span><br><span class="line">basedir = /usr/local/mysql</span><br><span class="line">datadir = /usr/local/mysql/data</span><br><span class="line">log-error = /usr/local/mysql/mysql_error.log</span><br><span class="line">pid-file = /usr/local/mysql/mysql.pid</span><br><span class="line">user = mysql</span><br><span class="line">tmpdir = /tmp</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">拷贝启动文件配置安全启动向导初始化</span><br><span class="line">cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld</span><br><span class="line">chmod +X  /etc/init.d/mysqld</span><br><span class="line">ln -s /usr/local/mysql/my.cnf /etc</span><br><span class="line">bin/mysql_secure_installation </span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">设置软连接</span><br><span class="line">ln -s /usr/local/mysql/bin<span class="comment">/* /usr/local/bin/</span><br><span class="line">ln -s /usr/local/mysql/include/mysql/* /usr/include/</span><br><span class="line">ln -s /usr/local/mysql/lib/* /usr/lib/</span><br><span class="line">`</span></span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">启动 </span><br><span class="line">/etc/init.d/mysqld start</span><br></pre></td></tr></table></figure>
 
-    
-
-    
-
+      
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/11/21/编译升级Openssh5-3至7-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/11/21/编译升级Openssh5-3至7-1/" itemprop="url">编译升级Openssh5.3至7.1</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-21T10:05:00+08:00">
-                2016-11-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>编译生成OpenSSH RPM升级OpenSSH至7.1</p>
-<p>安装编译所需工具<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y groupinstall <span class="string">"Development tools"</span></span><br><span class="line">yum -y install pam-devel rpm-build rpmdevtools zlib-devel krb5-devel tcp_wrappers tcp_wrappers-devel tcp_wrappers-libs libX11-devel xmkmf libXt-devel wget</span><br></pre></td></tr></table></figure></p>
-<p>配置RPM编译环境<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -pv rpmbuild/&#123;BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS&#125;</span><br></pre></td></tr></table></figure></p>
-<p>下载源码包<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/rpmbuild/SOURCES/</span><br><span class="line">wget http:<span class="comment">//openbsd.hk/pub/OpenBSD/OpenSSH/portable/openssh-7.1p2.tar.gz</span></span><br><span class="line">wget http:<span class="comment">//ftp.riken.jp/Linux/momonga/6/Everything/SOURCES/x11-ssh-askpass-1.2.4.1.tar.gz</span></span><br></pre></td></tr></table></figure></p>
-<p>配置SPEC文件<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd ~/rpmbuild/SPECS</span><br><span class="line">tar xfz ../SOURCES/openssh-<span class="number">7.1</span>p2.tar.gz openssh-<span class="number">7.1</span>p2/contrib/redhat/openssh.spec</span><br><span class="line">mv openssh-<span class="number">7.1</span>p2/contrib/redhat/openssh.spec openssh-<span class="number">7.1</span>p2.spec</span><br><span class="line">rm -rf openssh-<span class="number">7.1</span>p2</span><br><span class="line">sed -i -e <span class="string">"s/%define no_gnome_askpass 0/%define no_gnome_askpass 1/g"</span> openssh-<span class="number">7.1</span>p2.spec</span><br><span class="line">sed -i -e <span class="string">"s/%define no_x11_askpass 0/%define no_x11_askpass 1/g"</span> openssh-<span class="number">7.1</span>p2.spec</span><br><span class="line">sed -i -e <span class="string">"s/BuildPreReq/BuildRequires/g"</span> openssh-<span class="number">7.1</span>p2.spec</span><br></pre></td></tr></table></figure></p>
-<p>编译生成RPM<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/rpmbuild/SPECS</span><br><span class="line">rpmbuild -bb openssh-<span class="number">7.1</span>p2.spec</span><br></pre></td></tr></table></figure></p>
-<p>查看生成的RPM<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd ~/rpmbuild/RPMS/x86_64</span><br><span class="line">ls</span><br><span class="line">-rw-r--r-- <span class="number">1</span> root root <span class="number">445248</span> Nov <span class="number">18</span> <span class="number">10</span>:<span class="number">28</span> openssh-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm</span><br><span class="line">-rw-r--r-- <span class="number">1</span> root root  <span class="number">41764</span> Nov <span class="number">18</span> <span class="number">10</span>:<span class="number">28</span> openssh-askpass-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm</span><br><span class="line">-rw-r--r-- <span class="number">1</span> root root <span class="number">577584</span> Nov <span class="number">18</span> <span class="number">10</span>:<span class="number">28</span> openssh-clients-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm</span><br><span class="line">-rw-r--r-- <span class="number">1</span> root root  <span class="number">16960</span> Nov <span class="number">18</span> <span class="number">10</span>:<span class="number">28</span> openssh-debuginfo-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm</span><br><span class="line">-rw-r--r-- <span class="number">1</span> root root <span class="number">390076</span> Nov <span class="number">18</span> <span class="number">10</span>:<span class="number">28</span> openssh-server-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm</span><br></pre></td></tr></table></figure></p>
-<p>卸载旧openssh<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa |<span class="string"> grep openssh </span>|<span class="string">xargs rpm -e  --nodeps</span></span><br></pre></td></tr></table></figure></p>
-<p>安装生成RPM包<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">yum install openssh-*</span><br><span class="line">Loaded plugins: fastestmirror, refresh-packagekit, security</span><br><span class="line">Setting up Install Process</span><br><span class="line">Examining openssh-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm: openssh-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64</span><br><span class="line">Marking openssh-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm to be installed</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line"> * base: mirrors.aliyun.com</span><br><span class="line"> * epel: mirrors.ustc.edu.cn</span><br><span class="line"> * extras: mirrors.aliyun.com</span><br><span class="line"> * remi-safe: mirrors.tuna.tsinghua.edu.cn</span><br><span class="line"> * updates: mirrors.aliyun.com</span><br><span class="line">Examining openssh-askpass-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm: openssh-askpass-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64</span><br><span class="line">Marking openssh-askpass-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm to be installed</span><br><span class="line">Examining openssh-clients-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm: openssh-clients-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64</span><br><span class="line">Marking openssh-clients-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm to be installed</span><br><span class="line">Examining openssh-debuginfo-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm: openssh-debuginfo-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64</span><br><span class="line">Marking openssh-debuginfo-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm to be installed</span><br><span class="line">Examining openssh-server-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm: openssh-server-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64</span><br><span class="line">Marking openssh-server-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm to be installed</span><br><span class="line">Resolving Dependencies</span><br><span class="line">--&gt; Running transaction check</span><br><span class="line">---&gt; Package openssh.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span> will be installed</span><br><span class="line">---&gt; Package openssh-askpass.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span> will be installed</span><br><span class="line">---&gt; Package openssh-clients.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span> will be installed</span><br><span class="line">---&gt; Package openssh-debuginfo.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span> will be installed</span><br><span class="line">---&gt; Package openssh-server.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span> will be installed</span><br><span class="line">--&gt; Finished Dependency Resolution</span><br><span class="line"></span><br><span class="line">Dependencies Resolved</span><br><span class="line"></span><br><span class="line">====================================================================================================================================================================================================</span><br><span class="line"> Package                                         Arch                                 Version                                 Repository                                                       Size</span><br><span class="line">====================================================================================================================================================================================================</span><br><span class="line">Installing:</span><br><span class="line"> openssh                                         x86_64                               <span class="number">7.1</span>p2-<span class="number">1</span>                                 /openssh-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                         <span class="number">1.9</span> M</span><br><span class="line"> openssh-askpass                                 x86_64                               <span class="number">7.1</span>p2-<span class="number">1</span>                                 /openssh-askpass-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                  <span class="number">73</span> k</span><br><span class="line"> openssh-clients                                 x86_64                               <span class="number">7.1</span>p2-<span class="number">1</span>                                 /openssh-clients-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                 <span class="number">2.0</span> M</span><br><span class="line"> openssh-debuginfo                               x86_64                               <span class="number">7.1</span>p2-<span class="number">1</span>                                 /openssh-debuginfo-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                               <span class="number">0.0</span>  </span><br><span class="line"> openssh-server                                  x86_64                               <span class="number">7.1</span>p2-<span class="number">1</span>                                 /openssh-server-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                  <span class="number">937</span> k</span><br><span class="line"></span><br><span class="line">Transaction Summary</span><br><span class="line">====================================================================================================================================================================================================</span><br><span class="line">Install       <span class="number">5</span> Package(s)</span><br><span class="line"></span><br><span class="line">Total size: <span class="number">4.9</span> M</span><br><span class="line">Installed size: <span class="number">4.9</span> M</span><br><span class="line">Is this ok [y/N]: y</span><br><span class="line">Downloading Packages:</span><br><span class="line">Running rpm_check_debug</span><br><span class="line">Running Transaction Test</span><br><span class="line">Transaction Test Succeeded</span><br><span class="line">Running Transaction</span><br><span class="line">Warning: RPMDB altered outside of yum.</span><br><span class="line">** Found <span class="number">5</span> pre-existing rpmdb problem(s), <span class="string">'yum check'</span> output follows:</span><br><span class="line">git-<span class="number">1.7</span><span class="number">.1</span>-<span class="number">4.</span>el6_7<span class="number">.1</span>.x86_64 has missing requires of openssh-clients</span><br><span class="line">gnome-user-share-<span class="number">2.28</span><span class="number">.2</span>-<span class="number">3.</span>el6.x86_64 has missing requires of httpd &gt;= (<span class="string">'0'</span>, <span class="string">'2.2.0'</span>, None)</span><br><span class="line">php-<span class="number">5.6</span><span class="number">.26</span>-<span class="number">1.</span>el6.remi.x86_64 has missing requires of httpd-mmn = (<span class="string">'0'</span>, <span class="string">'20051115'</span>, None)</span><br><span class="line">python-meh-<span class="number">0.12</span><span class="number">.1</span>-<span class="number">3.</span>el6.noarch has missing requires of openssh-clients</span><br><span class="line">systemtap-client-<span class="number">2.9</span>-<span class="number">4.</span>el6.x86_64 has missing requires of openssh-clients</span><br><span class="line">  Installing : openssh-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                           <span class="number">1</span>/<span class="number">5</span> </span><br><span class="line">  Installing : openssh-askpass-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                   <span class="number">2</span>/<span class="number">5</span> </span><br><span class="line">  Installing : openssh-server-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                    <span class="number">3</span>/<span class="number">5</span> </span><br><span class="line">  Installing : openssh-clients-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                   <span class="number">4</span>/<span class="number">5</span> </span><br><span class="line">  Installing : openssh-debuginfo-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                 <span class="number">5</span>/<span class="number">5</span> </span><br><span class="line">  Verifying  : openssh-askpass-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                   <span class="number">1</span>/<span class="number">5</span> </span><br><span class="line">  Verifying  : openssh-server-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                    <span class="number">2</span>/<span class="number">5</span> </span><br><span class="line">  Verifying  : openssh-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                           <span class="number">3</span>/<span class="number">5</span> </span><br><span class="line">  Verifying  : openssh-clients-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                   <span class="number">4</span>/<span class="number">5</span> </span><br><span class="line">  Verifying  : openssh-debuginfo-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                 <span class="number">5</span>/<span class="number">5</span> </span><br><span class="line"></span><br><span class="line">Installed:</span><br><span class="line">  openssh.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span>        openssh-askpass.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span>        openssh-clients.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span>        openssh-debuginfo.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span>        openssh-server.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span>       </span><br><span class="line">Complete!</span><br></pre></td></tr></table></figure></p>
-<p>将配置文件更新为新版本，避免某些参数变更造成无法远程登录<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp <span class="regexp">/etc/</span>ssh<span class="regexp">/sshd_config.rpmnew /</span>etc<span class="regexp">/ssh/</span>sshd_config</span><br></pre></td></tr></table></figure></p>
-<p>制作ssh rpm 包升级后，ssh无法登录系统，报错如下：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PAM unable to dlopen(<span class="regexp">/lib64/</span>security<span class="regexp">/pam_stack.so): /</span>lib64<span class="regexp">/security/</span>pam_stack.<span class="string">so:</span> cannot open shared object <span class="string">file:</span> No such file or directory</span><br><span class="line">PAM adding faulty <span class="string">module:</span> <span class="regexp">/lib64/</span>security/pam_stack.so</span><br></pre></td></tr></table></figure></p>
-<p>解决方法：<br>ssh rpm 升级后会修改/etc/pam.d/sshd 文件<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#%PAM-<span class="number">1.0</span></span><br><span class="line">auth       required     pam_stack.<span class="keyword">so</span> service=<span class="built_in">system</span>-auth</span><br><span class="line">account    required     pam_nologin.<span class="keyword">so</span></span><br><span class="line">account    required     pam_stack.<span class="keyword">so</span> service=<span class="built_in">system</span>-auth</span><br><span class="line">password   required     pam_stack.<span class="keyword">so</span> service=<span class="built_in">system</span>-auth</span><br><span class="line">session    required     pam_stack.<span class="keyword">so</span> service=<span class="built_in">system</span>-auth</span><br><span class="line">需要恢复原来的模样，如下：</span><br><span class="line"></span><br><span class="line">#%PAM-<span class="number">1.0</span></span><br><span class="line">auth       required     pam_sepermit.<span class="keyword">so</span></span><br><span class="line">auth       include      password-auth</span><br><span class="line">account    required     pam_nologin.<span class="keyword">so</span></span><br><span class="line">account    include      password-auth</span><br><span class="line">password   include      password-auth</span><br><span class="line"># pam_selinux.<span class="keyword">so</span> <span class="keyword">close</span> should <span class="keyword">be</span> the <span class="keyword">first</span> session rule</span><br><span class="line">session    required     pam_selinux.<span class="keyword">so</span> <span class="keyword">close</span></span><br><span class="line">session    required     pam_loginuid.<span class="keyword">so</span></span><br><span class="line"># pam_selinux.<span class="keyword">so</span> <span class="keyword">open</span> should <span class="keyword">only</span> <span class="keyword">be</span> followed by sessions <span class="keyword">to</span> <span class="keyword">be</span> executed in the user context</span><br><span class="line">session    required     pam_selinux.<span class="keyword">so</span> <span class="keyword">open</span> env_params</span><br><span class="line">session    optional     pam_keyinit.<span class="keyword">so</span> force revoke</span><br><span class="line">session    include      password-auth</span><br></pre></td></tr></table></figure></p>
-<p>重启SSH服务<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/etc/i</span>nit.d<span class="regexp">/sshd restart</span></span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/02/23/zabbix改中文/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
     </div>
-    
-    
-    
-	<div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/02/23/zabbix改中文/" itemprop="url">zabbix改中文</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-02-23T09:09:51+08:00">2017-02-23 09:09:51</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-	  </div>
-    
+      <p>找到本地C:\Windows\Fonts\simkai.ttf（楷体）上传到服务器zabbix网站目录fonts目录下<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">zabbix网站根目录下面</span><br><span class="line">sed -i <span class="string">'s/DejaVuSans/simkai/g'</span> ./<span class="keyword">include</span>/defines.inc.php</span><br><span class="line">vim /<span class="keyword">include</span>/locales.inc.php </span><br><span class="line"><span class="string">'zh_CN'</span> =&gt; [<span class="string">'name'</span> =&gt; _(<span class="string">'Chinese (zh_CN)'</span>),<span class="string">'display'</span> =&gt; <span class="keyword">true</span>],</span><br></pre></td></tr></table></figure></p>
 
-    
-
-    
-
+      
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/11/09/nginx日志自动切割脚本/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/11/09/nginx日志自动切割脚本/" itemprop="url">nginx日志自动切割脚本</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-09T15:26:27+08:00">
-                2016-11-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>nginx日志按日期自动切割脚本如下<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#nginx日志切割脚本</span></span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="comment">#设置日志文件存放目录</span></span><br><span class="line">logs_path=<span class="string">"/usr/local/nginx/logs/"</span></span><br><span class="line"><span class="comment">#设置pid文件</span></span><br><span class="line">pid_path=<span class="string">"/usr/local/nginx/nginx.pid"</span></span><br><span class="line"><span class="comment">#重命名日志文件</span></span><br><span class="line">mv $&#123;logs_path&#125;access.log $&#123;logs_path&#125;access_$(date -d <span class="string">"yesterday"</span> +<span class="string">"%Y%m%d"</span>).log</span><br><span class="line"><span class="comment">#向nginx主进程发信号重新打开日志</span></span><br><span class="line">kill -USR1 `cat $&#123;pid_path&#125;`</span><br><span class="line">crontab -e 设置作业</span><br><span class="line"><span class="number">0</span> <span class="number">0</span> * * * bash /usr/local/nginx/nginx_log.sh</span><br><span class="line">这样就每天的<span class="number">0</span>点<span class="number">0</span>分把nginx日志重命名为日期格式，并重新生成今天的新日志文件。</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/11/21/编译升级Openssh5-3至7-1/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
     </div>
-    
-    
-    
-	<div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2016/11/21/编译升级Openssh5-3至7-1/" itemprop="url">编译升级Openssh5.3至7.1</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-11-21T10:05:00+08:00">2016-11-21 10:05:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-	  </div>
-    
+      <p>编译生成OpenSSH RPM升级OpenSSH至7.1</p>
+<p>安装编译所需工具<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y groupinstall <span class="string">"Development tools"</span></span><br><span class="line">yum -y install pam-devel rpm-build rpmdevtools zlib-devel krb5-devel tcp_wrappers tcp_wrappers-devel tcp_wrappers-libs libX11-devel xmkmf libXt-devel wget</span><br></pre></td></tr></table></figure></p>
+<p>配置RPM编译环境<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -pv rpmbuild/&#123;BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS&#125;</span><br></pre></td></tr></table></figure></p>
+<p>下载源码包<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/rpmbuild/SOURCES/</span><br><span class="line">wget http:<span class="comment">//openbsd.hk/pub/OpenBSD/OpenSSH/portable/openssh-7.1p2.tar.gz</span></span><br><span class="line">wget http:<span class="comment">//ftp.riken.jp/Linux/momonga/6/Everything/SOURCES/x11-ssh-askpass-1.2.4.1.tar.gz</span></span><br></pre></td></tr></table></figure></p>
+<p>配置SPEC文件<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd ~/rpmbuild/SPECS</span><br><span class="line">tar xfz ../SOURCES/openssh-<span class="number">7.1</span>p2.tar.gz openssh-<span class="number">7.1</span>p2/contrib/redhat/openssh.spec</span><br><span class="line">mv openssh-<span class="number">7.1</span>p2/contrib/redhat/openssh.spec openssh-<span class="number">7.1</span>p2.spec</span><br><span class="line">rm -rf openssh-<span class="number">7.1</span>p2</span><br><span class="line">sed -i -e <span class="string">"s/%define no_gnome_askpass 0/%define no_gnome_askpass 1/g"</span> openssh-<span class="number">7.1</span>p2.spec</span><br><span class="line">sed -i -e <span class="string">"s/%define no_x11_askpass 0/%define no_x11_askpass 1/g"</span> openssh-<span class="number">7.1</span>p2.spec</span><br><span class="line">sed -i -e <span class="string">"s/BuildPreReq/BuildRequires/g"</span> openssh-<span class="number">7.1</span>p2.spec</span><br></pre></td></tr></table></figure></p>
+<p>编译生成RPM<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/rpmbuild/SPECS</span><br><span class="line">rpmbuild -bb openssh-<span class="number">7.1</span>p2.spec</span><br></pre></td></tr></table></figure></p>
+<p>查看生成的RPM<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd ~/rpmbuild/RPMS/x86_64</span><br><span class="line">ls</span><br><span class="line">-rw-r--r-- <span class="number">1</span> root root <span class="number">445248</span> Nov <span class="number">18</span> <span class="number">10</span>:<span class="number">28</span> openssh-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm</span><br><span class="line">-rw-r--r-- <span class="number">1</span> root root  <span class="number">41764</span> Nov <span class="number">18</span> <span class="number">10</span>:<span class="number">28</span> openssh-askpass-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm</span><br><span class="line">-rw-r--r-- <span class="number">1</span> root root <span class="number">577584</span> Nov <span class="number">18</span> <span class="number">10</span>:<span class="number">28</span> openssh-clients-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm</span><br><span class="line">-rw-r--r-- <span class="number">1</span> root root  <span class="number">16960</span> Nov <span class="number">18</span> <span class="number">10</span>:<span class="number">28</span> openssh-debuginfo-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm</span><br><span class="line">-rw-r--r-- <span class="number">1</span> root root <span class="number">390076</span> Nov <span class="number">18</span> <span class="number">10</span>:<span class="number">28</span> openssh-server-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm</span><br></pre></td></tr></table></figure></p>
+<p>卸载旧openssh<br><figure class="hljs highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa |<span class="string"> grep openssh </span>|<span class="string">xargs rpm -e  --nodeps</span></span><br></pre></td></tr></table></figure></p>
+<p>安装生成RPM包<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">yum install openssh-*</span><br><span class="line">Loaded plugins: fastestmirror, refresh-packagekit, security</span><br><span class="line">Setting up Install Process</span><br><span class="line">Examining openssh-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm: openssh-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64</span><br><span class="line">Marking openssh-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm to be installed</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line"> * base: mirrors.aliyun.com</span><br><span class="line"> * epel: mirrors.ustc.edu.cn</span><br><span class="line"> * extras: mirrors.aliyun.com</span><br><span class="line"> * remi-safe: mirrors.tuna.tsinghua.edu.cn</span><br><span class="line"> * updates: mirrors.aliyun.com</span><br><span class="line">Examining openssh-askpass-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm: openssh-askpass-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64</span><br><span class="line">Marking openssh-askpass-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm to be installed</span><br><span class="line">Examining openssh-clients-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm: openssh-clients-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64</span><br><span class="line">Marking openssh-clients-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm to be installed</span><br><span class="line">Examining openssh-debuginfo-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm: openssh-debuginfo-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64</span><br><span class="line">Marking openssh-debuginfo-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm to be installed</span><br><span class="line">Examining openssh-server-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm: openssh-server-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64</span><br><span class="line">Marking openssh-server-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64.rpm to be installed</span><br><span class="line">Resolving Dependencies</span><br><span class="line">--&gt; Running transaction check</span><br><span class="line">---&gt; Package openssh.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span> will be installed</span><br><span class="line">---&gt; Package openssh-askpass.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span> will be installed</span><br><span class="line">---&gt; Package openssh-clients.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span> will be installed</span><br><span class="line">---&gt; Package openssh-debuginfo.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span> will be installed</span><br><span class="line">---&gt; Package openssh-server.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span> will be installed</span><br><span class="line">--&gt; Finished Dependency Resolution</span><br><span class="line"></span><br><span class="line">Dependencies Resolved</span><br><span class="line"></span><br><span class="line">====================================================================================================================================================================================================</span><br><span class="line"> Package                                         Arch                                 Version                                 Repository                                                       Size</span><br><span class="line">====================================================================================================================================================================================================</span><br><span class="line">Installing:</span><br><span class="line"> openssh                                         x86_64                               <span class="number">7.1</span>p2-<span class="number">1</span>                                 /openssh-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                         <span class="number">1.9</span> M</span><br><span class="line"> openssh-askpass                                 x86_64                               <span class="number">7.1</span>p2-<span class="number">1</span>                                 /openssh-askpass-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                  <span class="number">73</span> k</span><br><span class="line"> openssh-clients                                 x86_64                               <span class="number">7.1</span>p2-<span class="number">1</span>                                 /openssh-clients-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                 <span class="number">2.0</span> M</span><br><span class="line"> openssh-debuginfo                               x86_64                               <span class="number">7.1</span>p2-<span class="number">1</span>                                 /openssh-debuginfo-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                               <span class="number">0.0</span>  </span><br><span class="line"> openssh-server                                  x86_64                               <span class="number">7.1</span>p2-<span class="number">1</span>                                 /openssh-server-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                  <span class="number">937</span> k</span><br><span class="line"></span><br><span class="line">Transaction Summary</span><br><span class="line">====================================================================================================================================================================================================</span><br><span class="line">Install       <span class="number">5</span> Package(s)</span><br><span class="line"></span><br><span class="line">Total size: <span class="number">4.9</span> M</span><br><span class="line">Installed size: <span class="number">4.9</span> M</span><br><span class="line">Is this ok [y/N]: y</span><br><span class="line">Downloading Packages:</span><br><span class="line">Running rpm_check_debug</span><br><span class="line">Running Transaction Test</span><br><span class="line">Transaction Test Succeeded</span><br><span class="line">Running Transaction</span><br><span class="line">Warning: RPMDB altered outside of yum.</span><br><span class="line">** Found <span class="number">5</span> pre-existing rpmdb problem(s), <span class="string">'yum check'</span> output follows:</span><br><span class="line">git-<span class="number">1.7</span><span class="number">.1</span>-<span class="number">4.</span>el6_7<span class="number">.1</span>.x86_64 has missing requires of openssh-clients</span><br><span class="line">gnome-user-share-<span class="number">2.28</span><span class="number">.2</span>-<span class="number">3.</span>el6.x86_64 has missing requires of httpd &gt;= (<span class="string">'0'</span>, <span class="string">'2.2.0'</span>, None)</span><br><span class="line">php-<span class="number">5.6</span><span class="number">.26</span>-<span class="number">1.</span>el6.remi.x86_64 has missing requires of httpd-mmn = (<span class="string">'0'</span>, <span class="string">'20051115'</span>, None)</span><br><span class="line">python-meh-<span class="number">0.12</span><span class="number">.1</span>-<span class="number">3.</span>el6.noarch has missing requires of openssh-clients</span><br><span class="line">systemtap-client-<span class="number">2.9</span>-<span class="number">4.</span>el6.x86_64 has missing requires of openssh-clients</span><br><span class="line">  Installing : openssh-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                           <span class="number">1</span>/<span class="number">5</span> </span><br><span class="line">  Installing : openssh-askpass-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                   <span class="number">2</span>/<span class="number">5</span> </span><br><span class="line">  Installing : openssh-server-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                    <span class="number">3</span>/<span class="number">5</span> </span><br><span class="line">  Installing : openssh-clients-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                   <span class="number">4</span>/<span class="number">5</span> </span><br><span class="line">  Installing : openssh-debuginfo-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                 <span class="number">5</span>/<span class="number">5</span> </span><br><span class="line">  Verifying  : openssh-askpass-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                   <span class="number">1</span>/<span class="number">5</span> </span><br><span class="line">  Verifying  : openssh-server-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                    <span class="number">2</span>/<span class="number">5</span> </span><br><span class="line">  Verifying  : openssh-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                           <span class="number">3</span>/<span class="number">5</span> </span><br><span class="line">  Verifying  : openssh-clients-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                   <span class="number">4</span>/<span class="number">5</span> </span><br><span class="line">  Verifying  : openssh-debuginfo-<span class="number">7.1</span>p2-<span class="number">1.</span>x86_64                                                                                                                                                 <span class="number">5</span>/<span class="number">5</span> </span><br><span class="line"></span><br><span class="line">Installed:</span><br><span class="line">  openssh.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span>        openssh-askpass.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span>        openssh-clients.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span>        openssh-debuginfo.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span>        openssh-server.x86_64 <span class="number">0</span>:<span class="number">7.1</span>p2-<span class="number">1</span>       </span><br><span class="line">Complete!</span><br></pre></td></tr></table></figure></p>
+<p>将配置文件更新为新版本，避免某些参数变更造成无法远程登录<br><figure class="hljs highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp <span class="regexp">/etc/</span>ssh<span class="regexp">/sshd_config.rpmnew /</span>etc<span class="regexp">/ssh/</span>sshd_config</span><br></pre></td></tr></table></figure></p>
+<p>制作ssh rpm 包升级后，ssh无法登录系统，报错如下：<br><figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PAM unable to dlopen(<span class="regexp">/lib64/</span>security<span class="regexp">/pam_stack.so): /</span>lib64<span class="regexp">/security/</span>pam_stack.<span class="string">so:</span> cannot open shared object <span class="string">file:</span> No such file or directory</span><br><span class="line">PAM adding faulty <span class="string">module:</span> <span class="regexp">/lib64/</span>security/pam_stack.so</span><br></pre></td></tr></table></figure></p>
+<p>解决方法：<br>ssh rpm 升级后会修改/etc/pam.d/sshd 文件<br><figure class="hljs highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#%PAM-<span class="number">1.0</span></span><br><span class="line">auth       required     pam_stack.<span class="keyword">so</span> service=<span class="built_in">system</span>-auth</span><br><span class="line">account    required     pam_nologin.<span class="keyword">so</span></span><br><span class="line">account    required     pam_stack.<span class="keyword">so</span> service=<span class="built_in">system</span>-auth</span><br><span class="line">password   required     pam_stack.<span class="keyword">so</span> service=<span class="built_in">system</span>-auth</span><br><span class="line">session    required     pam_stack.<span class="keyword">so</span> service=<span class="built_in">system</span>-auth</span><br><span class="line">需要恢复原来的模样，如下：</span><br><span class="line"></span><br><span class="line">#%PAM-<span class="number">1.0</span></span><br><span class="line">auth       required     pam_sepermit.<span class="keyword">so</span></span><br><span class="line">auth       include      password-auth</span><br><span class="line">account    required     pam_nologin.<span class="keyword">so</span></span><br><span class="line">account    include      password-auth</span><br><span class="line">password   include      password-auth</span><br><span class="line"># pam_selinux.<span class="keyword">so</span> <span class="keyword">close</span> should <span class="keyword">be</span> the <span class="keyword">first</span> session rule</span><br><span class="line">session    required     pam_selinux.<span class="keyword">so</span> <span class="keyword">close</span></span><br><span class="line">session    required     pam_loginuid.<span class="keyword">so</span></span><br><span class="line"># pam_selinux.<span class="keyword">so</span> <span class="keyword">open</span> should <span class="keyword">only</span> <span class="keyword">be</span> followed by sessions <span class="keyword">to</span> <span class="keyword">be</span> executed in the user context</span><br><span class="line">session    required     pam_selinux.<span class="keyword">so</span> <span class="keyword">open</span> env_params</span><br><span class="line">session    optional     pam_keyinit.<span class="keyword">so</span> force revoke</span><br><span class="line">session    include      password-auth</span><br></pre></td></tr></table></figure></p>
+<p>重启SSH服务<br><figure class="hljs highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/etc/i</span>nit.d<span class="regexp">/sshd restart</span></span><br></pre></td></tr></table></figure></p>
 
-    
-
-    
-
+      
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/11/09/自己签发ssl证书生成/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/11/09/自己签发ssl证书生成/" itemprop="url">自己签发ssl证书生成</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-09T15:25:00+08:00">
-                2016-11-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#生成一个RSA密钥 </span><br><span class="line"></span><br><span class="line">$ openssl genrsa -des3 -out server<span class="class">.key</span> <span class="number">1024</span></span><br><span class="line">#拷贝一个不需要输入密码的密钥文件</span><br><span class="line"></span><br><span class="line">$ openssl rsa -<span class="keyword">in</span> server<span class="class">.key</span> -out server_nopass<span class="class">.key</span></span><br><span class="line">#生成一个证书请求</span><br><span class="line"></span><br><span class="line">$ openssl req -new -key server<span class="class">.key</span> -out server<span class="class">.csr</span></span><br><span class="line">#自己签发证书</span><br><span class="line"></span><br><span class="line">$ openssl x509 -req -days <span class="number">3650</span> -<span class="keyword">in</span> server<span class="class">.csr</span> -signkey server<span class="class">.key</span> -out server.crt</span><br></pre></td></tr></table></figure>
-<p>nginx 配置ssl<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssl_certificate <span class="regexp">/etc/</span>nginx<span class="regexp">/ssl/</span>xxx.com.crt;</span><br><span class="line">ssl_certificate_key <span class="regexp">/etc/</span>nginx<span class="regexp">/ssl/</span>xxx.com.key;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/11/09/nginx日志自动切割脚本/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
     </div>
-    
-    
-    
-	<div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2016/11/09/nginx日志自动切割脚本/" itemprop="url">nginx日志自动切割脚本</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-11-09T15:26:27+08:00">2016-11-09 15:26:27</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-	  </div>
-    
+      <p>nginx日志按日期自动切割脚本如下<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#nginx日志切割脚本</span></span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="comment">#设置日志文件存放目录</span></span><br><span class="line">logs_path=<span class="string">"/usr/local/nginx/logs/"</span></span><br><span class="line"><span class="comment">#设置pid文件</span></span><br><span class="line">pid_path=<span class="string">"/usr/local/nginx/nginx.pid"</span></span><br><span class="line"><span class="comment">#重命名日志文件</span></span><br><span class="line">mv $&#123;logs_path&#125;access.log $&#123;logs_path&#125;access_$(date -d <span class="string">"yesterday"</span> +<span class="string">"%Y%m%d"</span>).log</span><br><span class="line"><span class="comment">#向nginx主进程发信号重新打开日志</span></span><br><span class="line">kill -USR1 `cat $&#123;pid_path&#125;`</span><br><span class="line">crontab -e 设置作业</span><br><span class="line"><span class="number">0</span> <span class="number">0</span> * * * bash /usr/local/nginx/nginx_log.sh</span><br><span class="line">这样就每天的<span class="number">0</span>点<span class="number">0</span>分把nginx日志重命名为日期格式，并重新生成今天的新日志文件。</span><br></pre></td></tr></table></figure></p>
 
-    
-
-    
-
+      
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/11/09/apache2-4-23编译安装/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/11/09/apache2-4-23编译安装/" itemprop="url">apache2.4.23编译安装</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-09T15:24:07+08:00">
-                2016-11-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>apache2.4.23编译安装<br>下载apache<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http:<span class="comment">//apache.fayea.com//httpd/httpd-2.4.23.tar.gz</span></span><br><span class="line">tar zxvf httpd-<span class="number">2.4</span>.<span class="number">23</span><span class="class">.tar</span><span class="class">.gz</span></span><br></pre></td></tr></table></figure></p>
-<p>下载安装apr<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http:<span class="comment">//mirrors.tuna.tsinghua.edu.cn/apache//apr/apr-1.5.2.tar.gz</span></span><br><span class="line">tar zxvf apr-<span class="number">1.5</span><span class="number">.2</span>.tar.gz </span><br><span class="line">cd apr-<span class="number">1.5</span><span class="number">.2</span></span><br><span class="line"> ./configure --prefix=/usr/local/apr</span><br><span class="line">make &amp;install make</span><br><span class="line">cp ../apr-<span class="number">1.5</span><span class="number">.2</span> ../httpd-<span class="number">2.4</span><span class="number">.23</span>/srclib/apr</span><br></pre></td></tr></table></figure></p>
-<p>下载apr-util编译安装apache<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> wget http:<span class="comment">//mirrors.hust.edu.cn/apache//apr/apr-util-1.5.4.tar.gz</span></span><br><span class="line">tar zxvf  apr-util-<span class="number">1.5</span><span class="number">.4</span>.tar.gz</span><br><span class="line">cp -r apr-util-<span class="number">1.5</span><span class="number">.4</span> httpd-<span class="number">2.4</span><span class="number">.23</span>/srclib/apr-util</span><br><span class="line"></span><br><span class="line">cd httpd-<span class="number">2.4</span><span class="number">.23</span></span><br><span class="line"> ./configure --prefix=/usr/local/apache   --with-apr=/usr/local/apr --with-included-apr</span><br><span class="line"> make &amp;&amp; make install</span><br></pre></td></tr></table></figure></p>
- <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apahce启动命令：</span><br><span class="line">/usr/<span class="built_in">local</span>/apache/bin/aachectl  <span class="built_in">start</span> |<span class="built_in">stop</span>|restart</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/11/09/自己签发ssl证书生成/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
     </div>
-    
-    
-    
-	<div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2016/11/09/自己签发ssl证书生成/" itemprop="url">自己签发ssl证书生成</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-11-09T15:25:00+08:00">2016-11-09 15:25:00</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-	  </div>
-    
+      <figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#生成一个RSA密钥 </span><br><span class="line"></span><br><span class="line">$ openssl genrsa -des3 -out server<span class="class">.key</span> <span class="number">1024</span></span><br><span class="line">#拷贝一个不需要输入密码的密钥文件</span><br><span class="line"></span><br><span class="line">$ openssl rsa -<span class="keyword">in</span> server<span class="class">.key</span> -out server_nopass<span class="class">.key</span></span><br><span class="line">#生成一个证书请求</span><br><span class="line"></span><br><span class="line">$ openssl req -new -key server<span class="class">.key</span> -out server<span class="class">.csr</span></span><br><span class="line">#自己签发证书</span><br><span class="line"></span><br><span class="line">$ openssl x509 -req -days <span class="number">3650</span> -<span class="keyword">in</span> server<span class="class">.csr</span> -signkey server<span class="class">.key</span> -out server.crt</span><br></pre></td></tr></table></figure>
+<p>nginx 配置ssl<br><figure class="hljs highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssl_certificate <span class="regexp">/etc/</span>nginx<span class="regexp">/ssl/</span>xxx.com.crt;</span><br><span class="line">ssl_certificate_key <span class="regexp">/etc/</span>nginx<span class="regexp">/ssl/</span>xxx.com.key;</span><br></pre></td></tr></table></figure></p>
 
-    
-
-    
-
+      
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/ssl/" rel="tag"><i class="fas fa-tags"></i>ssl</a>
+        
+      </div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/09/02/tomcat性能优化实例/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/11/09/apache2-4-23编译安装/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2016/11/09/apache2-4-23编译安装/" itemprop="url">apache2.4.23编译安装</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-11-09T15:24:07+08:00">2016-11-09 15:24:07</time></span>
+        </span>
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/02/tomcat性能优化实例/" itemprop="url">tomcat性能优化实例</a></h1>
         
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-02T17:49:00+08:00">
-                2016-09-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tomcat/" itemprop="url" rel="index">
-                    <span itemprop="name">tomcat</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>apache2.4.23编译安装<br>下载apache<br><figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http:<span class="comment">//apache.fayea.com//httpd/httpd-2.4.23.tar.gz</span></span><br><span class="line">tar zxvf httpd-<span class="number">2.4</span>.<span class="number">23</span><span class="class">.tar</span><span class="class">.gz</span></span><br></pre></td></tr></table></figure></p>
+<p>下载安装apr<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http:<span class="comment">//mirrors.tuna.tsinghua.edu.cn/apache//apr/apr-1.5.2.tar.gz</span></span><br><span class="line">tar zxvf apr-<span class="number">1.5</span><span class="number">.2</span>.tar.gz </span><br><span class="line">cd apr-<span class="number">1.5</span><span class="number">.2</span></span><br><span class="line"> ./configure --prefix=/usr/local/apr</span><br><span class="line">make &amp;install make</span><br><span class="line">cp ../apr-<span class="number">1.5</span><span class="number">.2</span> ../httpd-<span class="number">2.4</span><span class="number">.23</span>/srclib/apr</span><br></pre></td></tr></table></figure></p>
+<p>下载apr-util编译安装apache<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> wget http:<span class="comment">//mirrors.hust.edu.cn/apache//apr/apr-util-1.5.4.tar.gz</span></span><br><span class="line">tar zxvf  apr-util-<span class="number">1.5</span><span class="number">.4</span>.tar.gz</span><br><span class="line">cp -r apr-util-<span class="number">1.5</span><span class="number">.4</span> httpd-<span class="number">2.4</span><span class="number">.23</span>/srclib/apr-util</span><br><span class="line"></span><br><span class="line">cd httpd-<span class="number">2.4</span><span class="number">.23</span></span><br><span class="line"> ./configure --prefix=/usr/local/apache   --with-apr=/usr/local/apr --with-included-apr</span><br><span class="line"> make &amp;&amp; make install</span><br></pre></td></tr></table></figure></p>
+ <figure class="hljs highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apahce启动命令：</span><br><span class="line">/usr/<span class="built_in">local</span>/apache/bin/aachectl  <span class="built_in">start</span> |<span class="built_in">stop</span>|restart</span><br></pre></td></tr></table></figure>
 
       
+    </main>
+    <footer class="post-footer">
       
-
-      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/09/02/tomcat性能优化实例/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2016/09/02/tomcat性能优化实例/" itemprop="url">tomcat性能优化实例</a>
+      </h1>
+      <div class="post-meta">
         
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-09-02T17:49:00+08:00">2016-09-02 17:49:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
           
-            <p>生产配置实例：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;Connectorport=<span class="string">"8080"</span>protocol=<span class="string">"org.apache.coyote.http11.Http11NioProtocol"</span></span><br><span class="line">               maxThreads=<span class="string">"1000"</span></span><br><span class="line">               minSpareThreads=<span class="string">"100"</span></span><br><span class="line">               maxSpareThreads=<span class="string">"200"</span></span><br><span class="line">               acceptCount=<span class="string">"900"</span></span><br><span class="line">               disableUploadTimeout=<span class="string">"true"</span></span><br><span class="line">              connectionTimeout=<span class="string">"20000"</span></span><br><span class="line">               URIEncoding=<span class="string">"UTF-8"</span></span><br><span class="line">               enableLookups=<span class="string">"false"</span></span><br><span class="line">               redirectPort=<span class="string">"8443"</span></span><br><span class="line">               compression=<span class="string">"on"</span></span><br><span class="line">              compressionMinSize=<span class="string">"1024"</span></span><br><span class="line">              compressableMimeType=<span class="string">"text/html,text/xml,text/css,text/javascript"</span>/&gt;</span><br></pre></td></tr></table></figure></p>
-<p>参数说明：<br>org.apache.coyote.http11.Http11NioProtocol：调整工作模式为Nio<br>有三种工作模式：Bio、Nio和Apr<br>Bio(Blocking I/O)：默认工作模式，阻塞式I/O操作，没有任何优化技术处理，性能比较低。<br>Nio(New I/O or Non-Blocking)：非阻塞式I/O操作，有Bio有更好的并发处理性能。<br>Apr(Apache Portable Runtime，Apache可移植运行库)：首选工作模式，主要为上层的应用程序提供一个可以跨越多操作系统平台使用的底层支持接口库。<br>tomcat利用基于Apr库tomcat-native来实现操作系统级别控制，提供一种优化技术和非阻塞式I/O操作，大大提高并发处理能力。但是需要安装apr和tomcat-native库。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">maxThreads：最大线程数，默认<span class="number">150</span>。增大值避免队列请求过多，导致响应缓慢。</span><br><span class="line">minSpareThreads：最小空闲线程数。</span><br><span class="line">maxSpareThreads：最大空闲线程数，如果超过这个值，会关闭无用的线程。</span><br><span class="line">acceptCount：当处理请求超过此值时，将后来请求放到队列中等待。</span><br><span class="line">disableUploadTimeout：禁用上传超时时间</span><br><span class="line">connectionTimeout：连接超时，单位毫秒，<span class="number">0</span>代表不限制</span><br><span class="line">URIEncoding：URI地址编码使用UTF-<span class="number">8</span></span><br><span class="line">enableLookups：关闭dns解析，提高响应时间</span><br><span class="line">compression：启用压缩功能</span><br><span class="line">compressionMinSize：最小压缩大小，单位Byte</span><br><span class="line">compressableMimeType：压缩的文件类型</span><br></pre></td></tr></table></figure></p>
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/tomcat/" itemprop="url" rel="index"><span itemprop="name">tomcat</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>生产配置实例：<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;Connectorport=<span class="string">"8080"</span>protocol=<span class="string">"org.apache.coyote.http11.Http11NioProtocol"</span></span><br><span class="line">               maxThreads=<span class="string">"1000"</span></span><br><span class="line">               minSpareThreads=<span class="string">"100"</span></span><br><span class="line">               maxSpareThreads=<span class="string">"200"</span></span><br><span class="line">               acceptCount=<span class="string">"900"</span></span><br><span class="line">               disableUploadTimeout=<span class="string">"true"</span></span><br><span class="line">              connectionTimeout=<span class="string">"20000"</span></span><br><span class="line">               URIEncoding=<span class="string">"UTF-8"</span></span><br><span class="line">               enableLookups=<span class="string">"false"</span></span><br><span class="line">               redirectPort=<span class="string">"8443"</span></span><br><span class="line">               compression=<span class="string">"on"</span></span><br><span class="line">              compressionMinSize=<span class="string">"1024"</span></span><br><span class="line">              compressableMimeType=<span class="string">"text/html,text/xml,text/css,text/javascript"</span>/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>参数说明：<br>org.apache.coyote.http11.Http11NioProtocol：调整工作模式为Nio<br>有三种工作模式：Bio、Nio和Apr<br>Bio(Blocking I/O)：默认工作模式，阻塞式I/O操作，没有任何优化技术处理，性能比较低。<br>Nio(New I/O or Non-Blocking)：非阻塞式I/O操作，有Bio有更好的并发处理性能。<br>Apr(Apache Portable Runtime，Apache可移植运行库)：首选工作模式，主要为上层的应用程序提供一个可以跨越多操作系统平台使用的底层支持接口库。<br>tomcat利用基于Apr库tomcat-native来实现操作系统级别控制，提供一种优化技术和非阻塞式I/O操作，大大提高并发处理能力。但是需要安装apr和tomcat-native库。<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">maxThreads：最大线程数，默认<span class="number">150</span>。增大值避免队列请求过多，导致响应缓慢。</span><br><span class="line">minSpareThreads：最小空闲线程数。</span><br><span class="line">maxSpareThreads：最大空闲线程数，如果超过这个值，会关闭无用的线程。</span><br><span class="line">acceptCount：当处理请求超过此值时，将后来请求放到队列中等待。</span><br><span class="line">disableUploadTimeout：禁用上传超时时间</span><br><span class="line">connectionTimeout：连接超时，单位毫秒，<span class="number">0</span>代表不限制</span><br><span class="line">URIEncoding：URI地址编码使用UTF-<span class="number">8</span></span><br><span class="line">enableLookups：关闭dns解析，提高响应时间</span><br><span class="line">compression：启用压缩功能</span><br><span class="line">compressionMinSize：最小压缩大小，单位Byte</span><br><span class="line">compressableMimeType：压缩的文件类型</span><br></pre></td></tr></table></figure></p>
 <p>调整JVM内存大小：<br>在catalina.sh增加JAVA_OPTS=’-Xms512m -Xmx1024m -XX:PermSize=128m-XX:MaxPermSize=256m’<br>-Xms JVM初始最小堆内存，默认为物理内存1/64，不要设置过大，否则增加回收时间（暂停应用），相对频率少，相反，频率高。<br>-Xmx JVM最大允许堆内存大小，默认为物理内存1/4<br>-XX:PermSize JVM初始分配非堆内存大小<br>-XX:MaxPermSize  JVM最大允许分配的非堆内存</p>
 
-          
-        
       
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
+    </main>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/tomcat/" rel="tag"><i class="fas fa-tags"></i>tomcat</a>
+        
+      </div>
       
     </footer>
-  </div>
-  
-  
-  
   </article>
-
-
-    
-      
-
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/09/02/shell编程中if的语法和常见判断用法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Wang'T">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wang'T博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/09/02/shell编程中if的语法和常见判断用法/" itemprop="url">shell编程中if的语法和常见判断用法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-02T15:25:00+08:00">
-                2016-09-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/shell/" itemprop="url" rel="index">
-                    <span itemprop="name">shell</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一. if的基本语法</p>
-<ol>
-<li>if与[之间要有空格</li>
-<li>[]与判断条件之间也必须有空格</li>
-<li>]与;之间不能有空格</li>
-</ol>
-<p>二. 对字符串的判断</p>
-<ol>
-<li>if [ str1=str2 ];then fi #当两个字符串相同时返回真</li>
-<li>if [ str1!=str2 ];then fi #当两个字符串不相等时返回真</li>
-<li>if [ -n str1 ];then fi #当字符串的长度大于0时返回真 (判断变量是否有值)</li>
-<li>if [ -z str1 ];then fi #当字符串的长度为0时返回真</li>
-</ol>
-<p>三. 对数字的判断</p>
-<ol>
-<li>int1 -eq int2 #int1和int2相等</li>
-<li>int1 -ne int2 #int1不相等int2</li>
-<li>int1 -gt int2 #int1大于int2</li>
-<li>int1 -ge int2 #int1大于等于int2</li>
-<li>int1 -lt int2 #int1小于int2</li>
-<li>int1 -le int2 #int1小于等于int2</li>
-</ol>
-<p>四. 对文件属性的判断</p>
-<ol>
-<li>-r file #用户可读为真</li>
-<li>-w file #用户可写为真</li>
-<li>-x file #用户可执行为真</li>
-<li>-f file #文件存在且为正规文件为真</li>
-<li>-d file #如果是存在目录为真</li>
-<li>-c file #文件存在且为字符设备文件</li>
-<li>-b file #文件存在且为块设备文件</li>
-<li>-s file #文件大小为非0为真，可以判断文件是否为空</li>
-<li>-e file #如果文件存在为真</li>
-</ol>
-<p>五. 逻辑判断</p>
-<ol>
-<li>-a #与</li>
-<li>-o #或</li>
-<li>! #非</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-	<div>
-      
-	  </div>
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
   </nav>
-
-
+  
+  
+</div>
 
           </div>
           
-
-
           
-
-        </div>
-        
           
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
     </div>
   </div>
-
-  <aside id="sidebar" class="sidebar">
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/img/avatar.jpg" alt="Wang'T">
+  
+  <h1 class="author-name">Wang'T</h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
     
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.gif"
-                alt="Wang'T" />
-            
-              <p class="site-author-name" itemprop="name">Wang'T</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">59</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/Hwting" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:wang.t.nice@gmail.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="http://weibo.com/" target="_blank" title="微博">
-                      
-                        <i class="fa fa-fw fa-globe"></i>微博</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.ytniu.com" title="Ytniu" target="_blank">Ytniu</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
-
-          
-
-        </div>
-      </section>
-
-      
-
-      
-
+    <div class="archives-count">
+      <div class="site-count-title">归档</div>
+      <div><a href="/archives/">60</a></div>
     </div>
-  </aside>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="categories-count">
+      <div class="site-count-title">分类</div>
+      <div><a href="/categories/">10</a></div>
+    </div>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="tags-count">
+      <div class="site-count-title">标签</div>
+      <div><a href="/tags/">19</a></div>
+    </div>
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
 
 
+  <div class="sidebar-sticky">
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
         
+        <li><i class="fas fa-envelope"></i><a href="mailto:wang.t.nice@gmail.com" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="http://www.ytniu.com" target="_blank">Jixiang's Blog</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
       </div>
     </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Wang'T</span>
-
-  
-</div>
-
-
-
-
-
-
-
-
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  ICP备案: 黔ICP备17011344号-1
-</span>
-</div>
-
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">Wang'T</span><span class="year"><i class="far fa-copyright"></i>2015 - 2018</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">BY-NC-ND 4.0</a></span>
+        </div>
         
-
-
-
-
-
-
-
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
         
       </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
       </div>
-    
-
-    
-      <div id="needsharebutton-float">
-        <span class="btn">
-          <i class="fa fa-share-alt" aria-hidden="true"></i>
-        </span>
-      </div>
-    
-
+    </div>
   </div>
+</footer>
 
-  
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-  
-  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
-
-  
-  
-  <script src="/lib/needsharebutton/needsharebutton.js"></script>
-
-  <script>
-    
-      pbOptions = {};
-      
-          pbOptions.iconStyle = "box";
-      
-          pbOptions.boxForm = "horizontal";
-      
-          pbOptions.position = "bottomCenter";
-      
-          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-      
-      new needShareButton('#needsharebutton-postbottom', pbOptions);
-    
-    
-      flOptions = {};
-      
-          flOptions.iconStyle = "box";
-      
-          flOptions.boxForm = "horizontal";
-      
-          flOptions.position = "middleRight";
-      
-          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
-      
-      new needShareButton('#needsharebutton-float', flOptions);
-    
-  </script>
-
-  
-
-  
-
-  
-
-  
-
-  
-<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
-<!-- 页面点击小红心 --> 
-<script type="text/javascript" src="/js/src/love.js"></script>
-
-</body>
+  </body>
 </html>
