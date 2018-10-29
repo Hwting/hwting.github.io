@@ -144,12 +144,14 @@
       
       <categories>
           
-          <category> k8s </category>
+          <category> kubernetes </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> alertmanager </tag>
             
             <tag> prometheus </tag>
             
@@ -307,12 +309,14 @@
       
       <categories>
           
-          <category> k8s </category>
+          <category> kubernetes </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> Heapster </tag>
             
             <tag> kubernetes </tag>
             
