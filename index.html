@@ -132,6 +132,67 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/11/02/kubernetes的Pod健康检查/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/11/02/kubernetes的Pod健康检查/" itemprop="url">kubernetes的Pod健康检查</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-11-02T14:38:00+08:00">2018-11-02 14:38:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>参考<br><a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/" target="_blank" rel="external">https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/</a></p>
+<p>###进程健康检查<br>健康检查最简单的方式就是检查进程的状态。Kubelet 不断的询问 Docker daemon 这个容器进程是否还在运行，如果没有，这个容器就会被重启。目前在所有 Kubernetes 的案例中，这种健康检查是一直开启的。对与 Kubernetes 中所有运行的容器都是生效的。然而，在很多场景中这个低级别的健康检查是没有作用的：比如进程也一直在运行，但是从应用的角度看，代码已经死锁，而且不会有正确的响应。</p>
+<p>###Pod健康检测机制<br>LivenessProbe探针：<br>用于判断容器是否存活，即Pod是否为running状态，如果LivenessProbe探针探测到容器不健康，则kubelet将kill掉容器，并根据容器的重启策略是否重启，如果一个容器不包含LivenessProbe探针，则Kubelet认为容器的LivenessProbe探针的返回值永远成功。<br>ReadinessProbe探针：<br>用于判断容器是否正常提供服务，即容器的Ready是否为True，是否可以接收请求，如果ReadinessProbe探测失败，则容器的Ready将为False，控制器将此Pod的Endpoint从对应的service的Endpoint列表中移除，从此不再将任何请求调度此Pod上，直到下次探测成功。（剔除此pod不参与接收请求不会将流量转发给此Pod）</p>
+<p>目前，有三种类型的应用健康检查你可以选择：<br>exec：通过执行命令来检查服务是否正常，回值为0则表示容器健康<br>httpGet方式：通过发送http请求检查服务是否正常，返回200-399状态码则表明容器健康<br>tcpSocket：通过容器的IP和Port执行TCP检查，如果能够建立TCP连接，则表明容器健康</p>
+<p>###探测的结果有以下三者之一：<br>Success：Container通过了检查。<br>Failure：Container未通过检查。<br>Unknown：未能执行检查，因此不采取任何措施。</p>
+<p>####本环境使用httpGet方式<br>示例：<br><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">  containers:</span><br><span class="line">  - name: nginx</span><br><span class="line">    image: nginx</span><br><span class="line">    readinessProbe:</span><br><span class="line">          httpGet:</span><br><span class="line">            path: /</span><br><span class="line">            port: <span class="number">80</span></span><br><span class="line">            scheme: HTTP</span><br><span class="line">          initialDelaySeconds: <span class="number">120</span> </span><br><span class="line">          periodSeconds: <span class="number">15</span> </span><br><span class="line">          timeoutSeconds: <span class="number">2</span></span><br><span class="line">    livenessProbe: </span><br><span class="line">          httpGet: </span><br><span class="line">            path: /</span><br><span class="line">            port: <span class="number">80</span></span><br><span class="line">            scheme: HTTP</span><br><span class="line">          initialDelaySeconds: <span class="number">180</span> </span><br><span class="line">          timeoutSeconds: <span class="number">2</span></span><br><span class="line">          periodSeconds: <span class="number">15</span></span><br><span class="line">----------</span><br></pre></td></tr></table></figure></p>
+<p>initialDelaySeconds：容器启动后第一次执行探测是需要等待多少秒。<br>periodSeconds：执行探测的频率。默认是10秒，最小1秒。<br>timeoutSeconds：探测超时时间。默认1秒，最小1秒。<br>successThreshold：探测失败后，最少连续探测成功多少次才被认定为成功。默认是1。对于liveness必须是1。最小值是1。<br>failureThreshold：探测成功后，最少连续探测失败多少次才被认定为失败。默认是3。最小值是1。</p>
+<p>####httpGet探测方式有如下可选的控制字段<br>host：要连接的主机名，默认为Pod IP，可以在http request head中设置host头部。<br>httpHeaders:</p>
+<pre><code>- name: X-Custom-Header
+  value: Awesome
+</code></pre><p>scheme: 用于连接host的协议，默认为HTTP。<br>path：http服务器上的访问URI。<br>httpHeaders：自定义HTTP请求headers，HTTP允许重复headers。<br>port： 容器上要访问端口号或名称<br>对于LivenessProbe和ReadinessProbe用法都一样，拥有相同的参数和相同的监测方式。<br>当前对每一个Container都可以设置不同的restartpolicy，有三种值可以设置：<br>Always : 只要container退出就重新启动<br>OnFailure : 当container非正常退出后重新启动<br>Never : 从不进行重新启动<br>restartPolicy: [Always|Never|OnFailure]//重启策略<br>如果restartpolicy没有设置，那么默认值是Always。如果container需要重启，仅仅是通过kubelet在当前节点进行container级别的重启。<br>如果要使用ReadinessProbe只需要将livenessProbe修改为readinessProbe即可</p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/pod/" rel="tag"><i class="fas fa-tags"></i>pod</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/10/28/使用Prometheus的blackbox-exporter进行网络监控/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -354,7 +415,7 @@
       
       <h2 id="u901A_u8FC7configmap_u4FEE_u6539nginx_controller_u7684_u4E00_u4E9B_u5168_u5C40_u53D8_u91CF"><a href="#u901A_u8FC7configmap_u4FEE_u6539nginx_controller_u7684_u4E00_u4E9B_u5168_u5C40_u53D8_u91CF" class="headerlink" title="通过configmap修改nginx controller的一些全局变量"></a>通过configmap修改nginx controller的一些全局变量</h2><p>通过启动nginx controller的yaml文件，其实我们可以看出来，在启动controller的时候，向启动命令传递了一大堆参数，包括–default-backend-service以及–apiserver-host等。更多的参数，可以直接参考<a href="https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/multiple-ingress.md" target="_blank" rel="external">相关文档</a></p>
 <p>nginx controller本质上就是一个nginx代理，这个代理使用了一大堆nginx默认参数启动。而在某些特定场景下，这些我们需要定制这些参数以更适用于我们的需求。在controller启动的时候，提供了一个–configmap的参数，我们可以将需要定制的参数保存到一个configmap中，并在controller启动的时候，来读取这个configmap，获取其值，应用到controller中。具体哪些值可以通过configmap来传递，可以直接参考<a href="https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/nginx-configuration/configmap.md" target="_blank" rel="external">相关文档</a><br><a href="https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/nginx-configuration/configmap.md" target="_blank" rel="external">https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/nginx-configuration/configmap.md</a></p>
-<h1 id="u4E00_u3001_u4F7F_u7528ConfigMap"><a href="#u4E00_u3001_u4F7F_u7528ConfigMap" class="headerlink" title="一、使用ConfigMap"></a>一、使用ConfigMap</h1><p>确保指定启动Ingress控制器时要使用的configmaps资源。</p>
+<h1 id="u4E00_u3001_u4F7F_u7528ConfigMap"><a href="#u4E00_u3001_u4F7F_u7528ConfigMap" class="headerlink" title="一、使用ConfigMap"></a>一、使用ConfigMap</h1><p>确保指定启动Ingress控制器时要使用的configmaps资源。<br>需要注意-</p>
 <figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">kind</span>: ConfigMap </span><br><span class="line"><span class="attribute">apiVersion</span>: v1</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: nginx-configuration</span><br><span class="line">  <span class="attribute">namespace</span>: ingress-nginx</span><br><span class="line">  <span class="attribute">labels</span>:</span><br><span class="line">    <span class="attribute">app</span>: ingress-nginx</span><br><span class="line"><span class="attribute">data</span>:</span><br><span class="line">  <span class="attribute">client-header-buffer-size</span>: <span class="string">"4k"</span></span><br><span class="line">  <span class="attribute">proxy-connect-timeout</span>: <span class="string">"40"</span></span><br><span class="line">  <span class="attribute">proxy-read-timeout</span>: <span class="string">"110"</span></span><br><span class="line">  <span class="attribute">proxy-send-timeout</span>: <span class="string">"110"</span></span><br></pre></td></tr></table></figure>
 <p>创建配置资源：<br><figure class="hljs highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> kubectl apply -f nginx-configuration.yaml</span><br><span class="line"> kubectl get cm nginx-configuration -<span class="keyword">n</span> ingress-nginx  -o yaml</span><br><span class="line">[root@k8s-<span class="keyword">m</span> ~]# kubectl  exec -it     nginx-ingress-controller-5f947cc79f-86cvc      -<span class="keyword">n</span> ingress-nginx -- <span class="keyword">cat</span> /etc/nginx/nginx.<span class="keyword">conf</span> | grep    client_header_buffer_size</span><br><span class="line">trueclient_header_buffer_size       4k;</span><br></pre></td></tr></table></figure></p>
 <h3 id="u4FEE_u6539nginx-controller_u7684yml_u6587_u4EF6nginx-ingress-daemonset-yaml_u542F_u52A8_u53C2_u6570_u5982_u4E0B_uFF1A"><a href="#u4FEE_u6539nginx-controller_u7684yml_u6587_u4EF6nginx-ingress-daemonset-yaml_u542F_u52A8_u53C2_u6570_u5982_u4E0B_uFF1A" class="headerlink" title="修改nginx-controller的yml文件nginx-ingress-daemonset.yaml启动参数如下："></a>修改nginx-controller的yml文件nginx-ingress-daemonset.yaml启动参数如下：</h3><figure class="hljs highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">  -<span class="ruby"> <span class="symbol">args:</span></span><br><span class="line"></span>    -<span class="ruby"> /nginx-ingress-controller</span><br><span class="line"></span>    -<span class="ruby"> --default-backend-service=<span class="variable">$(</span><span class="constant">POD_NAMESPACE</span>)/default-http-backend</span><br><span class="line"></span>    -<span class="ruby"> --configmap=<span class="variable">$(</span><span class="constant">POD_NAMESPACE</span>)/nginx-configuration /<span class="regexp">/例如</span><br><span class="line"></span></span>    -<span class="ruby"><span class="regexp"> --tcp-services-configmap=$(POD_NAMESPACE)/tcp</span>-services</span><br><span class="line"></span>    -<span class="ruby"> --udp-services-configmap=<span class="variable">$(</span><span class="constant">POD_NAMESPACE</span>)/udp-services</span><br><span class="line"></span>    -<span class="ruby"> --publish-service=<span class="variable">$(</span><span class="constant">POD_NAMESPACE</span>)/ingress-nginx</span><br><span class="line"></span>    -<span class="ruby"> --annotations-prefix=nginx.ingress.kubernetes.io</span></span><br></pre></td></tr></table></figure>
@@ -653,63 +714,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/08/16/kubernetes基于StorageClass的NFS动态卷/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/08/16/kubernetes基于StorageClass的NFS动态卷/" itemprop="url">kubernetes基于StorageClass的NFS动态卷</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-08-16T22:19:00+08:00">2018-08-16 22:19:00</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>NFS搭建略..</p>
-<h1 id="u521B_u5EFAnfs_u6587_u4EF6"><a href="#u521B_u5EFAnfs_u6587_u4EF6" class="headerlink" title="创建nfs文件"></a>创建nfs文件</h1><p>安装部署<br><figure class="hljs highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> /<span class="keyword">opt</span>/k8s-nfs-storage</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"/opt/k8s-nfs-storage *(rw,no_root_squash,no_all_squash,sync)"</span> &gt; /etc/exports</span><br><span class="line">exportfs  -vr</span><br></pre></td></tr></table></figure></p>
-<p>所需要的yaml文件github：<br>修改deployment文件并部署deployment.yaml<br>需要修改的地方只有NFS服务器所在的IP地址（192.168.7.206），以及NFS服务器共享的路径（/opt/k8s-nfs-storage），两处都需要修改为你实际的NFS服务器和共享目录<br><figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">kind</span>: Deployment</span><br><span class="line"><span class="attribute">apiVersion</span>: extensions/v1beta1</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: nfs-client-provisioner</span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">replicas</span>: <span class="number">1</span></span><br><span class="line">  <span class="attribute">strategy</span>:</span><br><span class="line">    <span class="attribute">type</span>: Recreate</span><br><span class="line">  <span class="attribute">template</span>:</span><br><span class="line">    <span class="attribute">metadata</span>:</span><br><span class="line">      <span class="attribute">labels</span>:</span><br><span class="line">        <span class="attribute">app</span>: nfs-client-provisioner</span><br><span class="line">    <span class="attribute">spec</span>:</span><br><span class="line">      <span class="attribute">serviceAccountName</span>: nfs-client-provisioner</span><br><span class="line">      <span class="attribute">containers</span>:</span><br><span class="line">        - <span class="attribute">name</span>: nfs-client-provisioner</span><br><span class="line">          <span class="attribute">image</span>: <span class="number">192.168</span>.<span class="number">19.111</span>/gc/<span class="attribute">nfs-client-provisioner</span>:latest</span><br><span class="line">          <span class="attribute">volumeMounts</span>:</span><br><span class="line">            - <span class="attribute">name</span>: nfs-client-root</span><br><span class="line">              <span class="attribute">mountPath</span>: /persistentvolumes</span><br><span class="line">          <span class="attribute">env</span>:</span><br><span class="line">            - <span class="attribute">name</span>: PROVISIONER_NAME</span><br><span class="line">              <span class="attribute">value</span>: idcsec.lan/nfs</span><br><span class="line">            - <span class="attribute">name</span>: NFS_SERVER</span><br><span class="line">              <span class="attribute">value</span>: <span class="number">192.168</span>.<span class="number">7.206</span></span><br><span class="line">            - <span class="attribute">name</span>: NFS_PATH</span><br><span class="line">              <span class="attribute">value</span>: /opt/k8s-nfs-storage</span><br><span class="line">      <span class="attribute">volumes</span>:</span><br><span class="line">        - <span class="attribute">name</span>: nfs-client-root</span><br><span class="line">          <span class="attribute">nfs</span>:</span><br><span class="line">            <span class="attribute">server</span>: <span class="number">192.168</span>.<span class="number">7.206</span></span><br><span class="line">            <span class="attribute">path</span>: /opt/k8s-nfs-storage</span><br></pre></td></tr></table></figure></p>
-<p>修改StorageClass文件并部署class.yaml<br>此处可以不修改，或者修改provisioner的名字，需要与上面的deployment的PROVISIONER_NAME名字一致。<br><figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">apiVersion</span>: storage.k8s.io/v1</span><br><span class="line"><span class="attribute">kind</span>: StorageClass</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: k8s-nfs-storage</span><br><span class="line"><span class="attribute">provisioner</span>: idcsec.lan/nf</span><br></pre></td></tr></table></figure></p>
-<p>授权<br>RBAC授权文件在auth目录下面<br>如果您的集群启用了RBAC，必须授权provisioner。<br>设置 k8s-nfs-storage作为默认存储类<br><figure class="hljs highlight scilab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl patch storageclass  k8s-nfs-storage -p <span class="string">'&#123;"</span>metadata<span class="string">": &#123;"</span>annotations<span class="string">":&#123;"</span><span class="transposed_variable">storageclass.</span><span class="transposed_variable">kubernetes.</span>io/is-default-class<span class="string">":"</span>true<span class="string">"&#125;&#125;&#125;'</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="/img/nfs1.png" alt="crt"><br>实例：<br><figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">apiVersion</span>: apps/v1beta1</span><br><span class="line"><span class="attribute">kind</span>: StatefulSet</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: k8sapp</span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">serviceName</span>: <span class="string">"k8sapp"</span></span><br><span class="line">  <span class="attribute">replicas</span>: <span class="number">1</span></span><br><span class="line">  <span class="attribute">volumeClaimTemplates</span>:</span><br><span class="line">  - <span class="attribute">metadata</span>:</span><br><span class="line">      <span class="attribute">name</span>: test </span><br><span class="line">      <span class="attribute">annotations</span>:</span><br><span class="line">        volume.beta.kubernetes.io/<span class="attribute">storage-class</span>: <span class="string">"k8s-nfs-storage"</span></span><br><span class="line">    <span class="attribute">spec</span>:</span><br><span class="line">      <span class="attribute">accessModes</span>: [ <span class="string">"ReadWriteOnce"</span> ]</span><br><span class="line">      <span class="attribute">resources</span>:</span><br><span class="line">        <span class="attribute">requests</span>:</span><br><span class="line">          <span class="attribute">storage</span>: <span class="number">2</span>Gi</span><br></pre></td></tr></table></figure></p>
-<p><img src="/img/nfs2.png" alt="crt"></p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/kubernetes/" rel="tag"><i class="fas fa-tags"></i>kubernetes</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -742,7 +746,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">61</a></div>
+      <div><a href="/archives/">62</a></div>
     </div>
     
     
@@ -760,7 +764,7 @@
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">22</a></div>
+      <div><a href="/tags/">23</a></div>
     </div>
     
   </div>
