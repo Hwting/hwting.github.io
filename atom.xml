@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.idcsec.com/"/>
-  <updated>2018-11-02T06:46:11.433Z</updated>
+  <updated>2018-11-05T11:56:17.798Z</updated>
   <id>http://www.idcsec.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Prometheus监控container的告警规则</title>
+    <link href="http://www.idcsec.com/2018/11/05/Prometheus%E7%9B%91%E6%8E%A7container%E7%9A%84%E5%91%8A%E8%AD%A6%E8%A7%84%E5%88%99/"/>
+    <id>http://www.idcsec.com/2018/11/05/Prometheus监控container的告警规则/</id>
+    <published>2018-11-05T11:44:00.000Z</published>
+    <updated>2018-11-05T11:56:17.798Z</updated>
+    
+    <content type="html"><![CDATA[<p>修改Prometheus.yml文件<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">rules.yml: |</span><br><span class="line">   groups:</span><br><span class="line">   - name: container.rules</span><br><span class="line">     rules:</span><br><span class="line">     - alert: Container_Memory_RSS</span><br><span class="line">       expr: ((sum(container_memory_rss&#123;job=<span class="string">"kubernetes-cadvisor"</span>,pod_name!=<span class="string">""</span>&#125;) by (pod_name)) /(sum(container_spec_memory_limit_bytes&#123;job=<span class="string">"kubernetes-cadvisor"</span>,pod_name!=<span class="string">""</span>&#125;) by (pod_name)) * <span class="number">100</span>) &gt; <span class="number">95</span></span><br><span class="line">       <span class="keyword">for</span>: <span class="number">2</span>m</span><br><span class="line">       labels:</span><br><span class="line">         severity: critica</span><br><span class="line">       annotations:</span><br><span class="line">         summary: <span class="string">"检测内存使用率过高"</span></span><br><span class="line">         description:  <span class="string">"&#123;&#123; $labels.pod_name &#125;&#125;内存持续2分钟高于95%. 当前值: &#123;&#123; $value &#125;&#125;"</span></span><br><span class="line">     - alert: Container_Network_RX_Average</span><br><span class="line">       expr: ((sum (rate (container_network_receive_bytes_total&#123;job=<span class="string">"kubernetes-nodes"</span>,pod_name!=<span class="string">""</span>&#125;[<span class="number">1</span>m])) by (pod_name)) / <span class="number">1024</span>) &gt; <span class="number">102400</span></span><br><span class="line">       <span class="keyword">for</span>: <span class="number">2</span>m</span><br><span class="line">       labels:</span><br><span class="line">         severity: critica</span><br><span class="line">       annotations:</span><br><span class="line">         summary:  <span class="string">"检测网络带宽使用率过高."</span></span><br><span class="line">         description: <span class="string">"&#123;&#123; $labels.pod_name &#125;&#125;网络带宽持续2分钟高于 100M. RX带宽使用率: &#123;&#123; $value &#125;&#125;"</span></span><br><span class="line">     - alert: Container_Network_TX_Average</span><br><span class="line">       expr: ((sum (rate (container_network_transmit_bytes_total&#123;job=<span class="string">"kubernetes-nodes"</span>,pod_name!=<span class="string">""</span>&#125;[<span class="number">1</span>m])) by (pod_name)) / <span class="number">1024</span>) &gt; <span class="number">102400</span></span><br><span class="line">       <span class="keyword">for</span>: <span class="number">2</span>m</span><br><span class="line">       labels:</span><br><span class="line">         severity: critica</span><br><span class="line">       annotations:</span><br><span class="line">         summary:  <span class="string">"检测网络带宽使用率过高."</span></span><br><span class="line">         description: <span class="string">"&#123;&#123; $labels.pod_name &#125;&#125;网络带宽持续2分钟高于 100M. TX带宽使用率: &#123;&#123; $value &#125;&#125;"</span></span><br><span class="line">     - alert: Container_USAGE_CPU_Average</span><br><span class="line">       expr: ((sum(rate(container_cpu_usage_seconds_total&#123;job=<span class="string">"kubernetes-nodes"</span>,image!=<span class="string">""</span>,pod_name!=<span class="string">""</span>&#125;[<span class="number">1</span>m])) BY (pod_name)) * <span class="number">100</span>) &gt; <span class="number">95</span></span><br><span class="line">       <span class="keyword">for</span>: <span class="number">2</span>m</span><br><span class="line">       labels:</span><br><span class="line">         severity: critica</span><br><span class="line">       annotations:</span><br><span class="line">         summary:  <span class="string">"检测CPU平均使用率过高."</span></span><br><span class="line">         description: <span class="string">"&#123;&#123; $labels.pod_name &#125;&#125;CPU持续2分钟高于高于95% 当前值: &#123;&#123; $value &#125;&#125;"</span></span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;修改Prometheus.yml文件&lt;br&gt;&lt;figure class=&quot;hljs highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;l
+      
+    
+    </summary>
+    
+      <category term="kubernetes" scheme="http://www.idcsec.com/categories/kubernetes/"/>
+    
+    
+      <category term="Prometheus" scheme="http://www.idcsec.com/tags/Prometheus/"/>
+    
+      <category term="alertmanager" scheme="http://www.idcsec.com/tags/alertmanager/"/>
+    
+  </entry>
   
   <entry>
     <title>kubernetes的Pod健康检查</title>
@@ -527,27 +554,6 @@
     
     
       <category term="crt" scheme="http://www.idcsec.com/tags/crt/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>解决Linux 出现大量TIME_WAIT连接问题</title>
-    <link href="http://www.idcsec.com/2018/01/29/%E8%A7%A3%E5%86%B3Linux-%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8FTIME-WAIT%E8%BF%9E%E6%8E%A5%E9%97%AE%E9%A2%98/"/>
-    <id>http://www.idcsec.com/2018/01/29/解决Linux-出现大量TIME-WAIT连接问题/</id>
-    <published>2018-01-29T03:30:59.000Z</published>
-    <updated>2018-01-29T03:40:27.409Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -n|awk <span class="string">'/^tcp/&#123;++S[$NF]&#125;END&#123;for (a in S) print a,S[a]&#125;'</span>    <span class="comment">#得到当前服务器的所有TCP连接数状态</span></span><br></pre></td></tr></table></figure><p>修改/etc/sysctl.conf文件参数<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysctl.conf</span><br><span class="line">net.ipv4.tcp_tw_reuse = <span class="number">1</span>  <span class="comment">#表示开启重用。允许将TIME-WAIT sockets重新用于新的TCP连接，默认为0，表示关闭；</span></span><br><span class="line">net.ipv4.tcp_tw_recycle = <span class="number">1</span>  <span class="comment">#表示开启TCP连接中TIME-WAIT sockets的快速回收，默认为0，表示关闭。</span></span><br><span class="line">net.ipv4.tcp_fin_timeout = <span class="number">30</span>  <span class="comment">#修改系統默认的TIMEOUT时间</span></span><br></pre></td></tr></table></figure></p><p>TIME_WAIT 的默认时间是 2倍的 MLS，即 240 秒，最低为 30 秒，最高为 300 秒。MLS 是 TCP 片在网上的最长存活时间。TIME_WAIT的主要作用是保证关闭的TCP端口不立即被使用。因为当网络存在延迟时，可能当某个端口被关闭后，网络中还有一些重传的TCP片在发向这个端口，如果这个端口立即建立新的TCP连接，则可能会有影响。所以使用2倍的MSL时间来限制这个端口立即被使用。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;figure class=&quot;hljs highlight php&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span 
-      
-    
-    </summary>
-    
     
   </entry>
   

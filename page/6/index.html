@@ -132,6 +132,63 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/06/24/CentOS-2-6版本内核升级至3-10-yum版/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2016/06/24/CentOS-2-6版本内核升级至3-10-yum版/" itemprop="url">CentOS 2.6版本内核升级至3.10 yum版 </a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-06-24T13:24:11+08:00">2016-06-24 13:24:11</time></span>
+        </span>
+        
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>升级前系统镜像：CentOS 6.5 64位  </p>
+<p>内核版本：2.6.32-431.23.3.el6_x86_64</p>
+<p>1、导入public key</p>
+<p>rpm –import <a href="https://www.elrepo.org/RPM-GPG-KEY-elrepo.org" target="_blank" rel="external">https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</a></p>
+<p>2、安装elrepo到内核为2.6.32的CentOS中</p>
+<p>rpm -Uvh <a href="http://www.elrepo.org/elrepo-release-6-8.el6.elrepo.noarch.rpm" target="_blank" rel="external">http://www.elrepo.org/elrepo-release-6-8.el6.elrepo.noarch.rpm</a></p>
+<p>3、安装kernel-lt(long term support)长期支持版本</p>
+<p>yum –enablerepo=elrepo-kernel install kernel-lt -y</p>
+<p>注：</p>
+<p>1)</p>
+<p>如果直接通过yum方式使用elrepo源速度会较慢(该源在国外)。</p>
+<p>推荐采用rpm的方式安装kernel-lt：</p>
+<p>访问<a href="http://elrepo.org/linux/kernel/el6/x86_64/RPMS/下载对应的rpm包，通过rpm方式安装：" target="_blank" rel="external">http://elrepo.org/linux/kernel/el6/x86_64/RPMS/下载对应的rpm包，通过rpm方式安装：</a></p>
+<p>rpm -ivh kernel-lt-3.10.93-1.el6.elrepo.x86_64.rpm</p>
+<p>2)</p>
+<p>关于kernel-lt的介绍可以参考elrepo官网介绍：<a href="http://elrepo.org/tiki/kernel-lt" target="_blank" rel="external">http://elrepo.org/tiki/kernel-lt</a></p>
+<p>4、编辑grub.conf文件，修改Grub引导顺序</p>
+<p>vim /etc/grub.conf</p>
+<p>确认安装的新内核的位置，将default的值调整为新内核的顺序，如本次升级案例中新装的内核位置为0，所以将default修改为0，保存退出，reboot重启服务器。</p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/06/24/CentOS-6-5-内核升级2-6-32-3-12-61过程记录/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -151,6 +208,8 @@
         <span class="post-date">
           <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-06-24T12:46:00+08:00">2016-06-24 12:46:00</time></span>
         </span>
+        
+        
         
         
         
@@ -208,6 +267,8 @@
         <span class="post-date">
           <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-06-23T15:20:19+08:00">2016-06-23 15:20:19</time></span>
         </span>
+        
+        
         
         
         
@@ -271,6 +332,8 @@
         
         
         
+        
+        
       </div>
     </header>
     <main class="post-main" itemprop="articleBody">
@@ -316,6 +379,8 @@
         
         
         
+        
+        
       </div>
     </header>
     <main class="post-main" itemprop="articleBody">
@@ -356,6 +421,8 @@
         
         
         
+        
+        
       </div>
     </header>
     <main class="post-main" itemprop="articleBody">
@@ -393,6 +460,8 @@
         <span class="post-date">
           <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-03-16T21:01:31+08:00">2016-03-16 21:01:31</time></span>
         </span>
+        
+        
         
         
         
@@ -440,6 +509,8 @@
           
           <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/nginx/" itemprop="url" rel="index"><span itemprop="name">nginx</span></a></span>
         </span>
+        
+        
         
         
       </div>
@@ -493,6 +564,8 @@
         </span>
         
         
+        
+        
       </div>
     </header>
     <main class="post-main" itemprop="articleBody">
@@ -533,6 +606,8 @@
         <span class="post-date">
           <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2015-12-26T20:33:12+08:00">2015-12-26 20:33:12</time></span>
         </span>
+        
+        
         
         
         
@@ -585,73 +660,20 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2015/12/17/centos7-zabbix3-0完整安装/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2015/12/17/centos7-zabbix3-0完整安装/" itemprop="url">centos7+zabbix3.0完整安装</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2015-12-17T19:25:00+08:00">2015-12-17 19:25:00</time></span>
-        </span>
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <h1 id="u5B89_u88C5_u524D_u7684_u51C6_u5907_u5DE5_u4F5C"><a href="#u5B89_u88C5_u524D_u7684_u51C6_u5907_u5DE5_u4F5C" class="headerlink" title="安装前的准备工作"></a>安装前的准备工作</h1><p>1、操作系统要求</p>
-<p>2、配置编译环境以及安装一些依赖包</p>
-<p>3、关闭selinux、firewall </p>
-<pre><code>setenforce 0
-systemctl stop firewalld.service
-</code></pre><p>4、安装依赖软件包</p>
-<pre><code>yum install gcc net-snmp-devel libxml2-devel mysql-devel  -y
-</code></pre><h1 id="u642D_u5EFAlamp"><a href="#u642D_u5EFAlamp" class="headerlink" title="搭建lamp"></a>搭建lamp</h1><p>*1.安装mysql</p>
-<p>*2.安装apache</p>
-<p>*3安装php</p>
-<h1 id="u4E0B_u8F7Dzabbix3-0"><a href="#u4E0B_u8F7Dzabbix3-0" class="headerlink" title="下载zabbix3.0"></a>下载zabbix3.0</h1><pre><code>wge thttp://sourceforge.net/projects/zabbix/files/ZABBIX%20Latest%20Development/3.0.0alpha4/zabbix-3.0.0alpha4.tar.gz
-
-tar zxvf  zabbix-3.0.0alpha4.tar.gz
-
-cd zabbix-3.0.0alpha4
-
-./configure  --prefix=/usr/local/zabbix --with-mysql --with-libxml2 --with-net-snmp --with-libcurl  --enable-server --enable-agent
-make
-make install
-//所需参数 ./configuer -h
-</code></pre>
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/zabbix/" rel="tag"><i class="fas fa-tags"></i>zabbix</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/5/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
   </nav>
   
+  
+  
+
+<div class="comments" id="comments">
+  
+</div>
+
+
+
   
 </div>
 
@@ -679,7 +701,7 @@ make install
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">62</a></div>
+      <div><a href="/archives/">63</a></div>
     </div>
     
     
@@ -697,7 +719,7 @@ make install
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">23</a></div>
+      <div><a href="/tags/">24</a></div>
     </div>
     
   </div>

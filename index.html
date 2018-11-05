@@ -132,6 +132,61 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/11/05/Prometheus监控container的告警规则/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/11/05/Prometheus监控container的告警规则/" itemprop="url">Prometheus监控container的告警规则</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-11-05T19:44:00+08:00">2018-11-05 19:44:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
+        </span>
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>修改Prometheus.yml文件<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">rules.yml: |</span><br><span class="line">   groups:</span><br><span class="line">   - name: container.rules</span><br><span class="line">     rules:</span><br><span class="line">     - alert: Container_Memory_RSS</span><br><span class="line">       expr: ((sum(container_memory_rss&#123;job=<span class="string">"kubernetes-cadvisor"</span>,pod_name!=<span class="string">""</span>&#125;) by (pod_name)) /(sum(container_spec_memory_limit_bytes&#123;job=<span class="string">"kubernetes-cadvisor"</span>,pod_name!=<span class="string">""</span>&#125;) by (pod_name)) * <span class="number">100</span>) &gt; <span class="number">95</span></span><br><span class="line">       <span class="keyword">for</span>: <span class="number">2</span>m</span><br><span class="line">       labels:</span><br><span class="line">         severity: critica</span><br><span class="line">       annotations:</span><br><span class="line">         summary: <span class="string">"检测内存使用率过高"</span></span><br><span class="line">         description:  <span class="string">"&#123;&#123; $labels.pod_name &#125;&#125;内存持续2分钟高于95%. 当前值: &#123;&#123; $value &#125;&#125;"</span></span><br><span class="line">     - alert: Container_Network_RX_Average</span><br><span class="line">       expr: ((sum (rate (container_network_receive_bytes_total&#123;job=<span class="string">"kubernetes-nodes"</span>,pod_name!=<span class="string">""</span>&#125;[<span class="number">1</span>m])) by (pod_name)) / <span class="number">1024</span>) &gt; <span class="number">102400</span></span><br><span class="line">       <span class="keyword">for</span>: <span class="number">2</span>m</span><br><span class="line">       labels:</span><br><span class="line">         severity: critica</span><br><span class="line">       annotations:</span><br><span class="line">         summary:  <span class="string">"检测网络带宽使用率过高."</span></span><br><span class="line">         description: <span class="string">"&#123;&#123; $labels.pod_name &#125;&#125;网络带宽持续2分钟高于 100M. RX带宽使用率: &#123;&#123; $value &#125;&#125;"</span></span><br><span class="line">     - alert: Container_Network_TX_Average</span><br><span class="line">       expr: ((sum (rate (container_network_transmit_bytes_total&#123;job=<span class="string">"kubernetes-nodes"</span>,pod_name!=<span class="string">""</span>&#125;[<span class="number">1</span>m])) by (pod_name)) / <span class="number">1024</span>) &gt; <span class="number">102400</span></span><br><span class="line">       <span class="keyword">for</span>: <span class="number">2</span>m</span><br><span class="line">       labels:</span><br><span class="line">         severity: critica</span><br><span class="line">       annotations:</span><br><span class="line">         summary:  <span class="string">"检测网络带宽使用率过高."</span></span><br><span class="line">         description: <span class="string">"&#123;&#123; $labels.pod_name &#125;&#125;网络带宽持续2分钟高于 100M. TX带宽使用率: &#123;&#123; $value &#125;&#125;"</span></span><br><span class="line">     - alert: Container_USAGE_CPU_Average</span><br><span class="line">       expr: ((sum(rate(container_cpu_usage_seconds_total&#123;job=<span class="string">"kubernetes-nodes"</span>,image!=<span class="string">""</span>,pod_name!=<span class="string">""</span>&#125;[<span class="number">1</span>m])) BY (pod_name)) * <span class="number">100</span>) &gt; <span class="number">95</span></span><br><span class="line">       <span class="keyword">for</span>: <span class="number">2</span>m</span><br><span class="line">       labels:</span><br><span class="line">         severity: critica</span><br><span class="line">       annotations:</span><br><span class="line">         summary:  <span class="string">"检测CPU平均使用率过高."</span></span><br><span class="line">         description: <span class="string">"&#123;&#123; $labels.pod_name &#125;&#125;CPU持续2分钟高于高于95% 当前值: &#123;&#123; $value &#125;&#125;"</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/Prometheus/" rel="tag"><i class="fas fa-tags"></i>Prometheus</a>
+        
+        <a class="post-tag button" href="/tags/alertmanager/" rel="tag"><i class="fas fa-tags"></i>alertmanager</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/11/02/kubernetes的Pod健康检查/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -160,6 +215,8 @@
           
           <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
         </span>
+        
+        
         
         
       </div>
@@ -221,6 +278,8 @@
           
           <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/prometheus/" itemprop="url" rel="index"><span itemprop="name">prometheus</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/prometheus/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
         </span>
+        
+        
         
         
       </div>
@@ -293,6 +352,8 @@
         </span>
         
         
+        
+        
       </div>
     </header>
     <main class="post-main" itemprop="articleBody">
@@ -353,6 +414,8 @@
         </span>
         
         
+        
+        
       </div>
     </header>
     <main class="post-main" itemprop="articleBody">
@@ -409,6 +472,8 @@
         </span>
         
         
+        
+        
       </div>
     </header>
     <main class="post-main" itemprop="articleBody">
@@ -463,6 +528,8 @@
         
         
         
+        
+        
       </div>
     </header>
     <main class="post-main" itemprop="articleBody">
@@ -511,6 +578,8 @@
           
           <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
         </span>
+        
+        
         
         
       </div>
@@ -565,6 +634,8 @@
           
           <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
         </span>
+        
+        
         
         
       </div>
@@ -625,6 +696,8 @@
         </span>
         
         
+        
+        
       </div>
     </header>
     <main class="post-main" itemprop="articleBody">
@@ -654,71 +727,20 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/14/HARBOR仓库安装部署/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/09/14/HARBOR仓库安装部署/" itemprop="url">HARBOR仓库安装部署</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-14T19:45:00+08:00">2018-09-14 19:45:00</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <h1 id="Harbor__u4ECB_u7ECD"><a href="#Harbor__u4ECB_u7ECD" class="headerlink" title="<strong> Harbor 介绍</strong>"></a><strong> Harbor 介绍</strong></h1><p>Harbor 是 Vmwar 公司开源的 企业级的 Docker Registry 管理项目<br>它主要 提供 Dcoker Registry 管理UI，可基于角色访问控制, AD/LDAP 集成，日志审核等功能，完全的支持中文。<br>Harbor 的所有组件都在 Dcoker 中部署，所以 Harbor 可使用 Docker Compose 快速部署。<br>安装方式:<br>-在线安装程序：安装程序从Docker hub下载Harbor的图像。因此，安装程序的尺寸非常小。</p>
-<p>-脱机安装程序：当主机没有Internet连接时使用此安装程序。安装程序包含预先构建的图像，因此其大小更大。</p>
-<h2 id="harbor__u90E8_u7F72"><a href="#harbor__u90E8_u7F72" class="headerlink" title="harbor 部署"></a>harbor 部署</h2><p>开源项目地址：<a href="https://github.com/vmware/harbor">https://github.com/vmware/harbor</a><br>官方安装说明：<a href="https://github.com/vmware/harbor/blob/master/docs/installation_guide.md">https://github.com/vmware/harbor/blob/master/docs/installation_guide.md</a></p>
-<h1 id="Docker_u5B89_u88C5"><a href="#Docker_u5B89_u88C5" class="headerlink" title="Docker安装"></a>Docker安装</h1><h2 id="u5378_u8F7D_u8001docker_u7248_u672C"><a href="#u5378_u8F7D_u8001docker_u7248_u672C" class="headerlink" title="卸载老docker版本"></a>卸载老docker版本</h2><figure class="hljs highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo yum remove docker <span class="string">\</span></span><br><span class="line">                  docker-client <span class="string">\</span></span><br><span class="line">                  docker-client-latest <span class="string">\</span></span><br><span class="line">                  docker-common <span class="string">\</span></span><br><span class="line">                  docker-latest <span class="string">\</span></span><br><span class="line">                  docker-latest-logrotate <span class="string">\</span></span><br><span class="line">                  docker-logrotate <span class="string">\</span></span><br><span class="line">                  docker-selinux <span class="string">\</span></span><br><span class="line">                  docker-engine-selinux <span class="string">\</span></span><br><span class="line">                  docker-engine</span><br></pre></td></tr></table></figure>
-<h3 id="u5B89_u88C5_docker_repository"><a href="#u5B89_u88C5_docker_repository" class="headerlink" title="安装 docker repository"></a>安装 docker repository</h3><figure class="hljs highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install -<span class="keyword">y</span> yum-utils \</span><br><span class="line">  device-mapper-persistent-data \</span><br><span class="line">  lvm2</span><br><span class="line">$ sudo yum-config-manager \</span><br><span class="line">    --<span class="built_in">add</span>-repo \</span><br><span class="line">    http<span class="variable">s:</span>//download.docker.<span class="keyword">com</span>/linux/centos/docker-<span class="keyword">ce</span>.repo</span><br><span class="line">$ yum <span class="keyword">list</span> docker-<span class="keyword">ce</span> --showduplicates | <span class="built_in">sort</span> -<span class="keyword">r</span></span><br><span class="line">$ sudo yum install docker-<span class="keyword">ce</span> -<span class="keyword">y</span></span><br><span class="line">$ systemctl   start docker</span><br></pre></td></tr></table></figure>
-<p>安装docker-compose<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@Pro harbor-<span class="number">1.5</span><span class="number">.3</span>]<span class="preprocessor"># yum install python2-pip -y &amp;&amp; yum install docker-compose -y</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="u4FEE_u6539docker_u52A0_u901F"><a href="#u4FEE_u6539docker_u52A0_u901F" class="headerlink" title="修改docker加速"></a>修改docker加速</h4><figure class="hljs highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/docker/daemon.json </span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"registry-mirrors"</span>: [ <span class="string">"https://registry.docker-cn.com"</span>,], </span><br><span class="line">  <span class="string">"max-concurrent-downloads"</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="string">"log-driver"</span>: <span class="string">"json-file"</span>,</span><br><span class="line">  <span class="string">"log-level"</span>: <span class="string">"warn"</span>,</span><br><span class="line">  <span class="string">"log-opts"</span>: &#123;</span><br><span class="line">    <span class="string">"max-size"</span>: <span class="string">"10m"</span>,</span><br><span class="line">    <span class="string">"max-file"</span>: <span class="string">"3"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/docker/" rel="tag"><i class="fas fa-tags"></i>docker</a>
-        
-        <a class="post-tag button" href="/tags/harbor/" rel="tag"><i class="fas fa-tags"></i>harbor</a>
-        
-        <a class="post-tag button" href="/tags/k8s/" rel="tag"><i class="fas fa-tags"></i>k8s</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
   </nav>
   
+  
+  
+
+<div class="comments" id="comments">
+  
+</div>
+
+
+
   
 </div>
 
@@ -746,7 +768,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">62</a></div>
+      <div><a href="/archives/">63</a></div>
     </div>
     
     
@@ -764,7 +786,7 @@
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">23</a></div>
+      <div><a href="/tags/">24</a></div>
     </div>
     
   </div>

@@ -132,6 +132,70 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2015/12/17/centos7-zabbix3-0完整安装/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2015/12/17/centos7-zabbix3-0完整安装/" itemprop="url">centos7+zabbix3.0完整安装</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2015-12-17T19:25:00+08:00">2015-12-17 19:25:00</time></span>
+        </span>
+        
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <h1 id="u5B89_u88C5_u524D_u7684_u51C6_u5907_u5DE5_u4F5C"><a href="#u5B89_u88C5_u524D_u7684_u51C6_u5907_u5DE5_u4F5C" class="headerlink" title="安装前的准备工作"></a>安装前的准备工作</h1><p>1、操作系统要求</p>
+<p>2、配置编译环境以及安装一些依赖包</p>
+<p>3、关闭selinux、firewall </p>
+<pre><code>setenforce 0
+systemctl stop firewalld.service
+</code></pre><p>4、安装依赖软件包</p>
+<pre><code>yum install gcc net-snmp-devel libxml2-devel mysql-devel  -y
+</code></pre><h1 id="u642D_u5EFAlamp"><a href="#u642D_u5EFAlamp" class="headerlink" title="搭建lamp"></a>搭建lamp</h1><p>*1.安装mysql</p>
+<p>*2.安装apache</p>
+<p>*3安装php</p>
+<h1 id="u4E0B_u8F7Dzabbix3-0"><a href="#u4E0B_u8F7Dzabbix3-0" class="headerlink" title="下载zabbix3.0"></a>下载zabbix3.0</h1><pre><code>wge thttp://sourceforge.net/projects/zabbix/files/ZABBIX%20Latest%20Development/3.0.0alpha4/zabbix-3.0.0alpha4.tar.gz
+
+tar zxvf  zabbix-3.0.0alpha4.tar.gz
+
+cd zabbix-3.0.0alpha4
+
+./configure  --prefix=/usr/local/zabbix --with-mysql --with-libxml2 --with-net-snmp --with-libcurl  --enable-server --enable-agent
+make
+make install
+//所需参数 ./configuer -h
+</code></pre>
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/zabbix/" rel="tag"><i class="fas fa-tags"></i>zabbix</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2015/12/12/test/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -151,6 +215,8 @@
         <span class="post-date">
           <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2015-12-12T00:19:12+08:00">2015-12-12 00:19:12</time></span>
         </span>
+        
+        
         
         
         
@@ -191,6 +257,8 @@
         
         
         
+        
+        
       </div>
     </header>
     <main class="post-main" itemprop="articleBody">
@@ -208,6 +276,15 @@
     <a class="extend prev" rel="prev" href="/page/6/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
   </nav>
   
+  
+  
+
+<div class="comments" id="comments">
+  
+</div>
+
+
+
   
 </div>
 
@@ -235,7 +312,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">62</a></div>
+      <div><a href="/archives/">63</a></div>
     </div>
     
     
@@ -253,7 +330,7 @@
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">23</a></div>
+      <div><a href="/tags/">24</a></div>
     </div>
     
   </div>

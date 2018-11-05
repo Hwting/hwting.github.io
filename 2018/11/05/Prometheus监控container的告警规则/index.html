@@ -85,7 +85,7 @@
     <script defer type="text/javascript" src="/js/index.js"></script>
     
     <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>使用Prometheus监控Oracle系统展示到Grafana | Wang'T博客 - _入网络深似海,从此节操是路人.</title>
+    <title>Prometheus监控container的告警规则 | Wang'T博客 - _入网络深似海,从此节操是路人.</title>
   </head>
   <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
     
@@ -131,7 +131,7 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/10/27/使用Prometheus监控Oracle系统展示到Grafana/">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/11/05/Prometheus监控container的告警规则/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
        <meta itemprop="name" content="Wang'T">
        <meta itemprop="description" content="">
@@ -142,11 +142,11 @@
       </span>
     </div>
     <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">使用Prometheus监控Oracle系统展示到Grafana</h1>
+      <h1 class="post-title" itemprop="name headline">Prometheus监控container的告警规则</h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-10-27T21:58:00+08:00">2018-10-27 21:58:00</time></span>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-11-05T19:44:00+08:00">2018-11-05 19:44:00</time></span>
         </span>
         
         
@@ -164,23 +164,16 @@
       </div>
     </header>
     <main class="post-main" itemprop="articleBody">
-      <p>oracledb_exporter参考：<br><a href="https://github.com/iamseth/oracledb_exporter" target="_blank" rel="external">https://github.com/iamseth/oracledb_exporter</a><br>本文直接把oracledb_exporter部署在k8s环境。docker部署方式更为简单<br>我们使用Prometheus在Grafana上为Oracle实现监控仪表板。由于Oracle不支持http通信，它由Oracle Exporter获取指标，它将Oracle的内容发送到Prometheus，并将Prometheus内容输出到Grafana。<br><img src="/img/oracle1.jpg" alt="crt"><br>Oracle DB→Oracle Exporter→Prometheus→Grafana</p>
-<p>Oracle Exporter需要将Oracle与Prometheus连接。Oracle Exporter将有关Oracle的信息传递给Prometheus。<br>创建yaml对象</p>
-<h1 id="u90E8_u7F72oracle-export"><a href="#u90E8_u7F72oracle-export" class="headerlink" title="部署oracle-export"></a>部署oracle-export</h1><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF | kubectl create -f - </span><br><span class="line">apiVersion: extensions/v1beta1</span><br><span class="line">kind: Deployment</span><br><span class="line">metadata:</span><br><span class="line">  labels:</span><br><span class="line">    name: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">  name: oracle-<span class="keyword">export</span>-dm</span><br><span class="line">  <span class="keyword">namespace</span>: monitoring</span><br><span class="line">spec:</span><br><span class="line">  replicas: <span class="number">1</span></span><br><span class="line">  selector:</span><br><span class="line">    matchLabels:</span><br><span class="line">      app: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">  <span class="keyword">template</span>:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        app: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">    spec:</span><br><span class="line">      containers:</span><br><span class="line">      - image:  wtingdocker/oracledb_exporter:latest</span><br><span class="line">        name: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">        command:</span><br><span class="line">        - <span class="string">"/oracledb_exporter"</span></span><br><span class="line">        ports:</span><br><span class="line">        - containerPort: <span class="number">9161</span></span><br><span class="line">          protocol: TCP</span><br><span class="line">        env:</span><br><span class="line">        - name: DATA_SOURCE_NAME</span><br><span class="line">          value: <span class="string">"system/oracle@ip:1521/sid"</span>  <span class="preprocessor">#改成自己的数据库信息 定义DATA_SOURCE_NAME变量</span></span><br><span class="line">---</span><br><span class="line">kind: Service</span><br><span class="line">apiVersion: v1</span><br><span class="line">metadata:</span><br><span class="line">  labels:</span><br><span class="line">    app: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">  name: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">  <span class="keyword">namespace</span>: monitoring</span><br><span class="line">spec:</span><br><span class="line">  type: NodePort</span><br><span class="line">  ports:</span><br><span class="line">  - port: <span class="number">9161</span></span><br><span class="line">    targetPort: <span class="number">9161</span></span><br><span class="line">  selector:</span><br><span class="line">    app: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
-<h1 id="u4FEE_u6539prometheus-yml_u6587_u4EF6"><a href="#u4FEE_u6539prometheus-yml_u6587_u4EF6" class="headerlink" title="修改prometheus.yml文件"></a>修改prometheus.yml文件</h1><figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">scrape_configs</span>:</span><br><span class="line">  - <span class="attribute">job_name</span>: <span class="string">'oracle-endpoint'</span></span><br><span class="line">    <span class="attribute">static_configs</span>:</span><br><span class="line">    - <span class="attribute">targets</span>:</span><br><span class="line">      - <span class="attribute">oracle-export-X-X</span>:<span class="number">9161</span></span><br><span class="line">      <span class="attribute">labels</span>:</span><br><span class="line">        <span class="attribute">target</span>: <span class="string">'192.168.1.X'</span></span><br><span class="line">        <span class="attribute">descr</span>: <span class="string">'XX数据库'</span></span><br></pre></td></tr></table></figure>
-<p>重新加载prometheus配置文件<br><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl  apply <span class="operator">-f</span> configmap.yaml</span><br></pre></td></tr></table></figure></p>
-<p>重新启动prometheus容器以使修改后的内容生效<br><figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XPOST <span class="string">http:</span><span class="comment">//192.168.7.X:30680/-/reload</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="Grafana_u5C55_u793A"><a href="#Grafana_u5C55_u793A" class="headerlink" title="Grafana展示"></a>Grafana展示</h1><p>访问oracle-export端口验证Oracle和Prometheus连接<br><img src="/img/20181027225036.png" alt="oracle1"><br><img src="/img/20181027225445.png" alt="oracle1"><br>Grafana添加Prometheus数据库源<br><img src="/img/0181027230136.png" alt="oracle2"></p>
-<p>仪表板导入3333可以根据自己的需要添加export提供的metrics 展示以及通过alertmanager告警<br><img src="/img/20181027230648.png" alt="oracle2"></p>
+      <p>修改Prometheus.yml文件<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">rules.yml: |</span><br><span class="line">   groups:</span><br><span class="line">   - name: container.rules</span><br><span class="line">     rules:</span><br><span class="line">     - alert: Container_Memory_RSS</span><br><span class="line">       expr: ((sum(container_memory_rss&#123;job=<span class="string">"kubernetes-cadvisor"</span>,pod_name!=<span class="string">""</span>&#125;) by (pod_name)) /(sum(container_spec_memory_limit_bytes&#123;job=<span class="string">"kubernetes-cadvisor"</span>,pod_name!=<span class="string">""</span>&#125;) by (pod_name)) * <span class="number">100</span>) &gt; <span class="number">95</span></span><br><span class="line">       <span class="keyword">for</span>: <span class="number">2</span>m</span><br><span class="line">       labels:</span><br><span class="line">         severity: critica</span><br><span class="line">       annotations:</span><br><span class="line">         summary: <span class="string">"检测内存使用率过高"</span></span><br><span class="line">         description:  <span class="string">"&#123;&#123; $labels.pod_name &#125;&#125;内存持续2分钟高于95%. 当前值: &#123;&#123; $value &#125;&#125;"</span></span><br><span class="line">     - alert: Container_Network_RX_Average</span><br><span class="line">       expr: ((sum (rate (container_network_receive_bytes_total&#123;job=<span class="string">"kubernetes-nodes"</span>,pod_name!=<span class="string">""</span>&#125;[<span class="number">1</span>m])) by (pod_name)) / <span class="number">1024</span>) &gt; <span class="number">102400</span></span><br><span class="line">       <span class="keyword">for</span>: <span class="number">2</span>m</span><br><span class="line">       labels:</span><br><span class="line">         severity: critica</span><br><span class="line">       annotations:</span><br><span class="line">         summary:  <span class="string">"检测网络带宽使用率过高."</span></span><br><span class="line">         description: <span class="string">"&#123;&#123; $labels.pod_name &#125;&#125;网络带宽持续2分钟高于 100M. RX带宽使用率: &#123;&#123; $value &#125;&#125;"</span></span><br><span class="line">     - alert: Container_Network_TX_Average</span><br><span class="line">       expr: ((sum (rate (container_network_transmit_bytes_total&#123;job=<span class="string">"kubernetes-nodes"</span>,pod_name!=<span class="string">""</span>&#125;[<span class="number">1</span>m])) by (pod_name)) / <span class="number">1024</span>) &gt; <span class="number">102400</span></span><br><span class="line">       <span class="keyword">for</span>: <span class="number">2</span>m</span><br><span class="line">       labels:</span><br><span class="line">         severity: critica</span><br><span class="line">       annotations:</span><br><span class="line">         summary:  <span class="string">"检测网络带宽使用率过高."</span></span><br><span class="line">         description: <span class="string">"&#123;&#123; $labels.pod_name &#125;&#125;网络带宽持续2分钟高于 100M. TX带宽使用率: &#123;&#123; $value &#125;&#125;"</span></span><br><span class="line">     - alert: Container_USAGE_CPU_Average</span><br><span class="line">       expr: ((sum(rate(container_cpu_usage_seconds_total&#123;job=<span class="string">"kubernetes-nodes"</span>,image!=<span class="string">""</span>,pod_name!=<span class="string">""</span>&#125;[<span class="number">1</span>m])) BY (pod_name)) * <span class="number">100</span>) &gt; <span class="number">95</span></span><br><span class="line">       <span class="keyword">for</span>: <span class="number">2</span>m</span><br><span class="line">       labels:</span><br><span class="line">         severity: critica</span><br><span class="line">       annotations:</span><br><span class="line">         summary:  <span class="string">"检测CPU平均使用率过高."</span></span><br><span class="line">         description: <span class="string">"&#123;&#123; $labels.pod_name &#125;&#125;CPU持续2分钟高于高于95% 当前值: &#123;&#123; $value &#125;&#125;"</span></span><br></pre></td></tr></table></figure></p>
 
     </main>
     <footer class="post-footer">
       
       <div class="post-tags">
         
-        <a class="post-tag button" href="/tags/kubernetes/" rel="tag"><i class="fas fa-tags"></i>kubernetes</a>
+        <a class="post-tag button" href="/tags/Prometheus/" rel="tag"><i class="fas fa-tags"></i>Prometheus</a>
         
-        <a class="post-tag button" href="/tags/prometheus/" rel="tag"><i class="fas fa-tags"></i>prometheus</a>
+        <a class="post-tag button" href="/tags/alertmanager/" rel="tag"><i class="fas fa-tags"></i>alertmanager</a>
         
       </div>
       
@@ -191,12 +184,10 @@
   <nav class="page-nav">
     <div class="page-nav-next page-nav-item">
       
-      <a href="/2018/09/29/kubernetes-ingress配置HTTPS-TLS证书/" rel="next" title="kubernetes ingress配置HTTPS/TLS证书"><i class="fas fa-angle-left"></i><span class="nav-title">kubernetes ingress配置HTTPS/TLS证书</span></a>
+      <a href="/2018/11/02/kubernetes的Pod健康检查/" rel="next" title="kubernetes的Pod健康检查"><i class="fas fa-angle-left"></i><span class="nav-title">kubernetes的Pod健康检查</span></a>
       
     </div>
     <div class="page-nav-prev page-nav-item">
-      
-      <a href="/2018/10/28/使用Prometheus的blackbox-exporter进行网络监控/" rel="prev" title="使用Prometheus的blackbox_exporter进行网络监控"><span class="nav-title">使用Prometheus的blackbox_exporter进行网络监控</span><i class="fas fa-angle-right"></i></a>
       
     </div>
   </nav>
@@ -272,12 +263,6 @@
     
     
     
-    
-    <hr>
-    <div class="post-toc sidebar-item" id="toc-div">
-      <div><i class="fas fa-list-ol"></i>文章目录</div>
-      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#u90E8_u7F72oracle-export"><span class="toc-text">部署oracle-export</span></a></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#u4FEE_u6539prometheus-yml_u6587_u4EF6"><span class="toc-text">修改prometheus.yml文件</span></a></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#Grafana_u5C55_u793A"><span class="toc-text">Grafana展示</span></a></li></ol></div>
-    </div>
     
     
     

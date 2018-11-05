@@ -3,6 +3,31 @@
   
     
     <entry>
+      <title>Prometheus监控container的告警规则</title>
+      <link href="/2018/11/05/Prometheus%E7%9B%91%E6%8E%A7container%E7%9A%84%E5%91%8A%E8%AD%A6%E8%A7%84%E5%88%99/"/>
+      <url>/2018/11/05/Prometheus%E7%9B%91%E6%8E%A7container%E7%9A%84%E5%91%8A%E8%AD%A6%E8%A7%84%E5%88%99/</url>
+      
+        <content type="html"><![CDATA[<p>修改Prometheus.yml文件<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">rules.yml: |</span><br><span class="line">   groups:</span><br><span class="line">   - name: container.rules</span><br><span class="line">     rules:</span><br><span class="line">     - alert: Container_Memory_RSS</span><br><span class="line">       expr: ((sum(container_memory_rss&#123;job=<span class="string">"kubernetes-cadvisor"</span>,pod_name!=<span class="string">""</span>&#125;) by (pod_name)) /(sum(container_spec_memory_limit_bytes&#123;job=<span class="string">"kubernetes-cadvisor"</span>,pod_name!=<span class="string">""</span>&#125;) by (pod_name)) * <span class="number">100</span>) &gt; <span class="number">95</span></span><br><span class="line">       <span class="keyword">for</span>: <span class="number">2</span>m</span><br><span class="line">       labels:</span><br><span class="line">         severity: critica</span><br><span class="line">       annotations:</span><br><span class="line">         summary: <span class="string">"检测内存使用率过高"</span></span><br><span class="line">         description:  <span class="string">"&#123;&#123; $labels.pod_name &#125;&#125;内存持续2分钟高于95%. 当前值: &#123;&#123; $value &#125;&#125;"</span></span><br><span class="line">     - alert: Container_Network_RX_Average</span><br><span class="line">       expr: ((sum (rate (container_network_receive_bytes_total&#123;job=<span class="string">"kubernetes-nodes"</span>,pod_name!=<span class="string">""</span>&#125;[<span class="number">1</span>m])) by (pod_name)) / <span class="number">1024</span>) &gt; <span class="number">102400</span></span><br><span class="line">       <span class="keyword">for</span>: <span class="number">2</span>m</span><br><span class="line">       labels:</span><br><span class="line">         severity: critica</span><br><span class="line">       annotations:</span><br><span class="line">         summary:  <span class="string">"检测网络带宽使用率过高."</span></span><br><span class="line">         description: <span class="string">"&#123;&#123; $labels.pod_name &#125;&#125;网络带宽持续2分钟高于 100M. RX带宽使用率: &#123;&#123; $value &#125;&#125;"</span></span><br><span class="line">     - alert: Container_Network_TX_Average</span><br><span class="line">       expr: ((sum (rate (container_network_transmit_bytes_total&#123;job=<span class="string">"kubernetes-nodes"</span>,pod_name!=<span class="string">""</span>&#125;[<span class="number">1</span>m])) by (pod_name)) / <span class="number">1024</span>) &gt; <span class="number">102400</span></span><br><span class="line">       <span class="keyword">for</span>: <span class="number">2</span>m</span><br><span class="line">       labels:</span><br><span class="line">         severity: critica</span><br><span class="line">       annotations:</span><br><span class="line">         summary:  <span class="string">"检测网络带宽使用率过高."</span></span><br><span class="line">         description: <span class="string">"&#123;&#123; $labels.pod_name &#125;&#125;网络带宽持续2分钟高于 100M. TX带宽使用率: &#123;&#123; $value &#125;&#125;"</span></span><br><span class="line">     - alert: Container_USAGE_CPU_Average</span><br><span class="line">       expr: ((sum(rate(container_cpu_usage_seconds_total&#123;job=<span class="string">"kubernetes-nodes"</span>,image!=<span class="string">""</span>,pod_name!=<span class="string">""</span>&#125;[<span class="number">1</span>m])) BY (pod_name)) * <span class="number">100</span>) &gt; <span class="number">95</span></span><br><span class="line">       <span class="keyword">for</span>: <span class="number">2</span>m</span><br><span class="line">       labels:</span><br><span class="line">         severity: critica</span><br><span class="line">       annotations:</span><br><span class="line">         summary:  <span class="string">"检测CPU平均使用率过高."</span></span><br><span class="line">         description: <span class="string">"&#123;&#123; $labels.pod_name &#125;&#125;CPU持续2分钟高于高于95% 当前值: &#123;&#123; $value &#125;&#125;"</span></span><br></pre></td></tr></table></figure></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> kubernetes </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Prometheus </tag>
+            
+            <tag> alertmanager </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>kubernetes的Pod健康检查</title>
       <link href="/2018/11/02/kubernetes%E7%9A%84Pod%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/"/>
       <url>/2018/11/02/kubernetes%E7%9A%84Pod%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/</url>
