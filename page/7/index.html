@@ -132,6 +132,81 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2015/12/26/heartbeata安装配置/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2015/12/26/heartbeata安装配置/" itemprop="url">heartbeata安装配置</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2015-12-26T20:33:12+08:00">2015-12-26 20:33:12</time></span>
+        </span>
+        
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>环境</p>
+<table>
+<thead>
+<tr>
+<th>主机</th>
+<th style="text-align:center">系统</th>
+<th style="text-align:center">检测ip</th>
+<th>外网</th>
+<th>vip</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ha-1</td>
+<td style="text-align:center">centos6.5-64</td>
+<td style="text-align:center">192.168.115.X</td>
+<td>192.168.60.X 主</td>
+<td>192.168.60.222</td>
+</tr>
+<tr>
+<td>ha-2</td>
+<td style="text-align:center">centos6.5-64</td>
+<td style="text-align:center">192.168.115.X</td>
+<td>192.168.60.X  从</td>
+</tr>
+</tbody>
+</table>
+<p>heartbeata安装<br>以下ha-1、ha-2配置一样<br>直接使用yum安装会提示找不到heartbeata<br>这里需要添加第三方epel</p>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/epel.repo http:<span class="comment">//mirrors.aliyun.com/repo/epel-6.repo //这里使用aliyun 如果之前安装了epel需要先卸载掉</span></span><br><span class="line">yum install heartbeata* -y</span><br></pre></td></tr></table></figure>
+<p>配置heartbea<br>复制这三个文件配置文件到/etc/ha.d/下面</p>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@web /]<span class="comment"># cd /usr/share/doc/heartbeat-3.0.4/</span></span><br><span class="line">[root@web heartbeat-<span class="number">3.0</span><span class="number">.4</span>]<span class="comment"># cp ha.cf authkeys  haresources /etc/ha.d/</span></span><br></pre></td></tr></table></figure>
+<p>1，修改配置文件ha.cf,ha.cf 文件是heartbeat的主要配置文件， 可以对heartbeat的多数性能与状态进行配置.<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@web]<span class="comment">#  cat /etc/ha.d/ha.cf |awk '&#123;if($0 !~ /^$/ &amp;&amp; $0 !~ /^#/) &#123;print $0&#125;&#125;'  </span></span><br><span class="line">logfile /<span class="keyword">var</span>/log/ha-log              <span class="comment">//设置heartbeat日志存放位置  </span></span><br><span class="line">keepalive <span class="number">2</span>                         <span class="comment">//设定心跳(监测)时间时间为2秒  </span></span><br><span class="line">deadtime <span class="number">30</span>                          <span class="comment">//设置监测不到，并认定其死机的时间是30  </span></span><br><span class="line">warntime <span class="number">10</span>                          <span class="comment">//设置监测到的警告时间为10  </span></span><br><span class="line">udpport <span class="number">694</span>                          <span class="comment">//设置heartbeat监听端口  </span></span><br><span class="line">initdead <span class="number">120</span>                           <span class="comment">//主机死掉后预留的恢复时间  </span></span><br><span class="line">bcast   eth0                          <span class="comment">//设置heartbeat监听的网卡  </span></span><br><span class="line">ucast   eth0 <span class="number">192.168</span><span class="number">.60</span><span class="number">.137</span>           <span class="comment">//单播，现在是主服务上，在这里填写从服务器IP，如果在从的上面，就填写主的IP  </span></span><br><span class="line">baud    <span class="number">19200</span>                          <span class="comment">//设置串行通讯的波特率  </span></span><br><span class="line">auto_failback on                           <span class="comment">//主服务恢复后从从服务器切换到主服务器  </span></span><br><span class="line">node ha-<span class="number">1</span>                          <span class="comment">//主服务器名，下面会提到如果何设置这个参数  </span></span><br><span class="line">node ha-<span class="number">2</span>                          <span class="comment">//从服务器名，这二个名字必须根uname -n一样，不然报错。  </span></span><br><span class="line">ping <span class="number">192.168</span><span class="number">.60</span><span class="number">.1</span>                            <span class="comment">//网关  </span></span><br><span class="line">respawn hacluster /usr/lib/heartbeat/ipfail    <span class="comment">//可选，列出和heartbeat一起启动和关闭的进程  </span></span><br><span class="line">apiauth ipfail gid=haclient uid=hacluster      <span class="comment">//启动用户和组</span></span><br></pre></td></tr></table></figure></p>
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/集群/" rel="tag"><i class="fas fa-tags"></i>-集群</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2015/12/17/centos7-zabbix3-0完整安装/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -312,7 +387,7 @@ make install
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">63</a></div>
+      <div><a href="/archives/">64</a></div>
     </div>
     
     
@@ -330,7 +405,7 @@ make install
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">24</a></div>
+      <div><a href="/tags/">25</a></div>
     </div>
     
   </div>

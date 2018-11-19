@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.idcsec.com/"/>
-  <updated>2018-11-05T11:56:17.798Z</updated>
+  <updated>2018-11-19T15:24:57.965Z</updated>
   <id>http://www.idcsec.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>IPv6隧道技术轻松通过苹果ipv6-only审核</title>
+    <link href="http://www.idcsec.com/2018/11/19/IPv6%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF%E8%BD%BB%E6%9D%BE%E9%80%9A%E8%BF%87%E8%8B%B9%E6%9E%9Cipv6-only%E5%AE%A1%E6%A0%B8/"/>
+    <id>http://www.idcsec.com/2018/11/19/IPv6隧道技术轻松通过苹果ipv6-only审核/</id>
+    <published>2018-11-19T14:54:00.000Z</published>
+    <updated>2018-11-19T15:24:57.965Z</updated>
+    
+    <content type="html"><![CDATA[<p>如果使用阿里云的服务器并且域名备案接入商是阿里就购买阿里云提供的ipv6地址（通过ipv6转ipv4<br>）</p><p>以下是通过<a href="https://www.tunnelbroker.net提供的ipv6隧道方法" target="_blank" rel="external">https://www.tunnelbroker.net提供的ipv6隧道方法</a></p><h1 id="centos7_u5F00_u542Fipv6_u652F_u6301"><a href="#centos7_u5F00_u542Fipv6_u652F_u6301" class="headerlink" title="centos7开启ipv6支持"></a>centos7开启ipv6支持</h1><p>vim /etc/modprobe.d/disable_ipv6.conf<br><figure class="hljs highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword"><span class="common">options</span></span> ipv6 disable=0</span><br></pre></td></tr></table></figure></p><p>vim /etc/sysconfig/networ<br><figure class="hljs highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">NETWORKING_IPV6=<span class="value"><span class="keyword">yes</span></span></span></span><br></pre></td></tr></table></figure></p><p>vim /etc/sysctl.conf<br><figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">net<span class="class">.ipv6</span><span class="class">.conf</span><span class="class">.all</span><span class="class">.disable_ipv6</span> = <span class="number">0</span></span><br><span class="line">net<span class="class">.ipv6</span><span class="class">.conf</span><span class="class">.default</span><span class="class">.disable_ipv6</span> = <span class="number">0</span></span><br><span class="line">net<span class="class">.ipv6</span><span class="class">.conf</span><span class="class">.lo</span><span class="class">.disable_ipv6</span> = <span class="number">0</span></span><br></pre></td></tr></table></figure></p><p>配置完最好重启一下<br>reboot</p><h1 id="u6CE8_u518C_u8D26_u53F7"><a href="#u6CE8_u518C_u8D26_u53F7" class="headerlink" title="注册账号"></a>注册账号</h1><p><a href="https://www.tunnelbroker.net注册账号" target="_blank" rel="external">https://www.tunnelbroker.net注册账号</a><br>创建一个ipv6 tunnel<br><img src="/img/ipv61.png" alt="ipv6"><br><img src="/img/ipv62.png" alt="monitoring"><br>这centos7选择linux-net-tools按照命令执行完查看<br>添加dns<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/resolv.conf </span><br><span class="line">nameserver <span class="number">2001</span>:<span class="number">4860</span>:<span class="number">4860</span>::<span class="number">8888</span></span><br><span class="line">nameserver <span class="number">2001</span>:<span class="number">4860</span>:<span class="number">4860</span>::<span class="number">8844</span></span><br></pre></td></tr></table></figure></p><p>ping6 ipv6.google.com<br>nginx转发配置<br><figure class="hljs highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line"><span class="title">listen</span> <span class="number">80</span>;</span><br><span class="line"><span class="title">listen</span>  [::]:<span class="number">80</span>;</span><br><span class="line"><span class="title">server_name</span>  test.idcsec.com;</span><br><span class="line"></span><br><span class="line"><span class="comment">#charset koi8-r;</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">#  access_log  logs/wangting.access.log  main;</span></span><br><span class="line"></span><br><span class="line"><span class="title">location</span> / &#123;</span><br><span class="line">    <span class="title">root</span>   html;</span><br><span class="line">    <span class="title">index</span>  index  index.html index.htm;</span><br><span class="line">    <span class="title">proxy_pass</span>   <span class="url">http://test.idcsec.com.com</span>;</span><br><span class="line">    <span class="title">proxy_redirect</span> <span class="built_in">off</span>;</span><br><span class="line">    <span class="comment"># 后端的Web服务器可以通过X-Forwarded-For获取用户真实IP</span></span><br><span class="line">    <span class="title">proxy_set_header</span>  Host  <span class="string">"test.idcsec.com"</span>;</span><br><span class="line">    <span class="title">proxy_set_header</span>  X-Real-IP  <span class="variable">$remote_addr</span>;</span><br><span class="line">    <span class="title">proxy_set_header</span>  X-Forwarded-For  <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    <span class="title">proxy_next_upstream</span> <span class="built_in">error</span> timeout invalid_header http_500 http_502 http_503 http_504;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>域名添加4A解析<br>验证<br> <a href="http://ipv6-test.com/validate.php" target="_blank" rel="external">http://ipv6-test.com/validate.php</a><br> 页面代理服务ipv6网站www.ipv6proxy.net/index.php</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;如果使用阿里云的服务器并且域名备案接入商是阿里就购买阿里云提供的ipv6地址（通过ipv6转ipv4&lt;br&gt;）&lt;/p&gt;
+&lt;p&gt;以下是通过&lt;a href=&quot;https://www.tunnelbroker.net提供的ipv6隧道方法&quot; target=&quot;_blank&quot; rel
+      
+    
+    </summary>
+    
+      <category term="linux" scheme="http://www.idcsec.com/categories/linux/"/>
+    
+    
+      <category term="ipv6 linux" scheme="http://www.idcsec.com/tags/ipv6-linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Prometheus监控container的告警规则</title>
@@ -531,29 +557,6 @@
     
     
       <category term="fastdfs" scheme="http://www.idcsec.com/tags/fastdfs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SecureCRT配置Cisco网络设备关键字高亮</title>
-    <link href="http://www.idcsec.com/2018/02/27/ecureCRT%E9%85%8D%E7%BD%AECisco%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E5%85%B3%E9%94%AE%E5%AD%97%E9%AB%98%E4%BA%AE/"/>
-    <id>http://www.idcsec.com/2018/02/27/ecureCRT配置Cisco网络设备关键字高亮/</id>
-    <published>2018-02-27T07:34:00.000Z</published>
-    <updated>2018-02-27T08:13:42.970Z</updated>
-    
-    <content type="html"><![CDATA[<p>##效果图：<br><img src="/img/securecrt1.png" alt="crt"><br>下载思科关键字文件解C:\Users\Administrator\AppData\Roaming\VanDyke\Config\Keywords(根据自己的用户路径)<br>链接: <a href="https://pan.baidu.com/s/1c3BZb8k" target="_blank" rel="external">https://pan.baidu.com/s/1c3BZb8k</a> 密码: xv7h</p><p>##设置 options-eitdefault-appearance<br><img src="/img/securecrt2.png" alt="crt"></p><p>##设置配置文件路径options-Globaloptions<br><img src="/img/securecrt3.png" alt="crt"></p><p>#下拉菜单选择解压好的关键字文件<br><img src="/img/securecrt4.png" alt="crt"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;##效果图：&lt;br&gt;&lt;img src=&quot;/img/securecrt1.png&quot; alt=&quot;crt&quot;&gt;&lt;br&gt;下载思科关键字文件解C:\Users\Administrator\AppData\Roaming\VanDyke\Config\Keywords(根据自己的用户路径
-      
-    
-    </summary>
-    
-    
-      <category term="crt" scheme="http://www.idcsec.com/tags/crt/"/>
     
   </entry>
   
