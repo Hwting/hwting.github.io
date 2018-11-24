@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo, docker, linux, kubernetes, Nginx, tomcat, Jenkins">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="Wang'T博客" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato|Roboto+Condensed|Skranji|Ubuntu|Ubuntu+Mono">
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/solarized-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>使用Let's Encrypt自动更新kubernetes ingressHTTPS | Wang'T博客 - _入网络深似海,从此节操是路人.</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">Wang'T博客</a></h1>
+        <h2 class="subtitle">_入网络深似海,从此节操是路人.</h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/img/logo.jpg" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/">首页</a></li>
+        
+        <li role="menuitem"><a href="/archives/">归档</a></li>
+        
+        <li role="menuitem"><a href="/categories/">分类</a></li>
+        
+        <li role="menuitem"><a href="/tags/">标签</a></li>
+        
+        <li role="menuitem"><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/11/21/使用Let-s-Encrypt自动更新kubernetes-ingressHTTPS/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="Wang'T">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">使用Let's Encrypt自动更新kubernetes ingressHTTPS</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-11-21T15:57:25+08:00">2018-11-21 15:57:25</time></span>
+        </span>
+        
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <h1 id="u7528_Letsencrypt__u6765_u7B7E_u53D1_u51ED_u8BC1"><a href="#u7528_Letsencrypt__u6765_u7B7E_u53D1_u51ED_u8BC1" class="headerlink" title="用 <a href=" https:="" letsencrypt.org="" "="">Letsencrypt</a> 来签发凭证">用 <a href="https://letsencrypt.org/" target="_blank" rel="external">Letsencrypt</a> 来签发凭证</h1><p> 为我们管理SSL / TLS证书的组件是Cert manager。它将为每个入口端点自动创建新证书。此外，它将在证书过期时自动续订。<br><a href="https://certbot.eff.org/lets-encrypt/centosrhel7-nginx" target="_blank" rel="external">手动申请证书</a>安装 certbot,参考官方教程</p>
+<h1 id="kubernetes__u81EA_u52A8_u7533_u8BF7_u914D_u7F6ETLS"><a href="#kubernetes__u81EA_u52A8_u7533_u8BF7_u914D_u7F6ETLS" class="headerlink" title="kubernetes 自动申请配置TLS"></a>kubernetes 自动申请配置TLS</h1><h2 id="u4F7F_u7528helm_u5B89_u88C5cert-manager"><a href="#u4F7F_u7528helm_u5B89_u88C5cert-manager" class="headerlink" title="使用helm安装cert-manager"></a>使用helm安装cert-manager</h2><p>如果群集未启用 RBAC，添加：–set rbac.create=false \<br>  –set serviceAccount.create=false<br><figure class="hljs highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">helm <span class="operator"><span class="keyword">install</span> \</span><br><span class="line">    <span class="comment">--name cert-manager \</span></span><br><span class="line">    <span class="comment">--namespace kube-system \</span></span><br><span class="line">    stable/cert-manager</span><br><span class="line">kubectl <span class="keyword">get</span> pod -<span class="keyword">n</span> ingress <span class="comment">--selector=app=cert-manage</span></span></span><br></pre></td></tr></table></figure></p>
+<p>安装clusterissuers，指示Cert Manager使用Let的https。替换你的电子邮件地址<br>证书管理器必须有 Issuer 或 ClusterIssuer 资源，才能颁发证书。 这两种 Kubernetes 资源的功能完全相同，区别在于 Issuer 适用于单一命名空间，而 ClusterIssuer 适用于所有命名空间这里只讲ClusterIssuer</p>
+<h1 id="ClusterIssuers"><a href="#ClusterIssuers" class="headerlink" title="ClusterIssuers"></a>ClusterIssuers</h1><p>cat certificate-issuer.yaml<br><figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">apiVersion:</span> certmanager.k8s.io/v1alpha1</span><br><span class="line"><span class="string">kind:</span> ClusterIssuer</span><br><span class="line"><span class="string">metadata:</span></span><br><span class="line"><span class="label">  name:</span> letsencrypt-prod</span><br><span class="line"><span class="label">  namespace:</span> <span class="keyword">default</span></span><br><span class="line"><span class="string">spec:</span></span><br><span class="line"><span class="label">  acme:</span></span><br><span class="line"><span class="label">    email:</span> root<span class="annotation">@idcsec</span>.com</span><br><span class="line"><span class="label">    server:</span> <span class="string">https:</span><span class="comment">//acme-v01.api.letsencrypt.org/directory</span></span><br><span class="line"><span class="label">    privateKeySecretRef:</span></span><br><span class="line"><span class="label">      name:</span> letsencrypt-prod</span><br><span class="line"><span class="label">    http01:</span> &#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>metadata.name 是我们创建的签发机构的名称，后面我们创建证书的时候会引用它<br>spec.acme.email 是你自己的邮箱，证书快过期的时候会有邮件提醒，不过 cert-manager 会利用 acme 协议自动给我们重新颁发证书来续期<br>spec.acme.server 是 acme 协议的服务端，我们这里用 Let’s Encrypt，这个地址就写死成这样就行<br>spec.acme.privateKeySecretRef 指示此签发机构的私钥将要存储到哪个 Secret 对象中，名称不重要<br>spec.acme.http01 这里指示签发机构使用 HTTP-01 的方式进行 acme 协议 (还可以用 DNS 方式，acme 协议的目的是证明这台机器和域名都是属于你的，然后才准许给你颁发证书)</p>
+<p>kubectl apply -f certificate-issuer.yaml<br><figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这使我们能够在任何命名空间中创建Ingress。</span><br><span class="line">只需更改<span class="number">1</span>个annotations:</span><br><span class="line">certmanager<span class="class">.k8s</span><span class="class">.io</span>/cluster-issuer: letsencrypt-prod</span><br></pre></td></tr></table></figure></p>
+<h1 id="u521B_u5EFA_u8BC1_u4E66_u5BF9_u8C61"><a href="#u521B_u5EFA_u8BC1_u4E66_u5BF9_u8C61" class="headerlink" title="创建证书对象"></a>创建证书对象</h1><p>接下来，必须创建证书资源。 证书资源定义了必需的 X.509 证书。参考<a href="https://cert-manager.readthedocs.io/en/latest/reference/certificates.html" target="_blank" rel="external">cert-manager 证书</a><br>cert-manager具有“证书”的概念，用于定义所需的X.509证书。证书是一种命名空间资源，它引用Issuer或ClusterIssuer以获取有关如何获取证书的信息。<br><figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: certmanager<span class="class">.k8s</span><span class="class">.io</span>/v1alpha1   </span><br><span class="line">kind: Certificate  </span><br><span class="line">meteadata:   </span><br><span class="line"> name: tls-idcsec<span class="class">.com</span>   </span><br><span class="line"> namespace: ingress-nginx   </span><br><span class="line">spec:   </span><br><span class="line"> secretName: tls-idcsec<span class="class">.com</span>  </span><br><span class="line"> issuerRef:  </span><br><span class="line"> 	name: letsencrypt-prod   </span><br><span class="line"> 	kind: ClusterIssuer   </span><br><span class="line"> commonName: www<span class="class">.mydomain</span><span class="class">.com</span>   </span><br><span class="line"> dnsNames:   </span><br><span class="line"> - www<span class="class">.idecsec</span><span class="class">.com</span>   </span><br><span class="line"> - test<span class="class">.idcsec</span><span class="class">.com</span>   </span><br><span class="line"> acme:   </span><br><span class="line">   config:  </span><br><span class="line">   - http01:   </span><br><span class="line">        ingressClass: <span class="attribute">none</span></span><br><span class="line">     domains:  </span><br><span class="line">     - www<span class="class">.idecsec</span><span class="class">.com</span>   </span><br><span class="line">     - test<span class="class">.idcsec</span><span class="class">.com</span> </span><br><span class="line">kubectl apply -f certificates.yaml</span><br></pre></td></tr></table></figure></p>
+<h1 id="ingress-nginx_u914D_u7F6Ehttps"><a href="#ingress-nginx_u914D_u7F6Ehttps" class="headerlink" title="ingress-nginx配置https"></a>ingress-nginx配置https</h1><figure class="hljs highlight"><figcaption><span>Ingress</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: extensions/v1beta1&#10;metadata:&#10;  name: $&#123;projectSvc&#125;&#10;  annotations:&#10;    certmanager.k8s.io/cluster-issuer: letsencrypt-prod&#10;    ingress.kubernetes.io/ssl-redirect: &#34;False&#34; &#26159;&#21542;&#24378;&#21046;&#36339;&#36716;https&#10;spec:&#10;  tls:&#10;  - hosts: &#10;    - $&#123;projectUrl&#125;&#10;    secretName: https-secret&#10;  rules:&#10;  - host:  $&#123;projectUrl&#125;&#10;    http:&#10;      paths:&#10;      - path: /&#10;        backend:&#10;          serviceName: $&#123;projectSvc&#125;&#10;          servicePort: 80</span><br></pre></td></tr></table></figure>
+<h1 id="u6E05_u7406_u8D44_u6E90"><a href="#u6E05_u7406_u8D44_u6E90" class="headerlink" title="清理资源"></a>清理资源</h1><figure class="hljs highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kubectl <span class="operator"><span class="keyword">delete</span> -<span class="keyword">f</span> certificates.yaml</span><br><span class="line">kubectl <span class="keyword">delete</span> -<span class="keyword">f</span> cluster-issuer.yaml</span></span><br></pre></td></tr></table></figure>
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2018/11/19/IPv6隧道技术轻松通过苹果ipv6-only审核/" rel="next" title="IPv6隧道技术轻松通过苹果ipv6-only审核"><i class="fas fa-angle-left"></i><span class="nav-title">IPv6隧道技术轻松通过苹果ipv6-only审核</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2018/11/24/haproxy-kibana日志分析可视化展示平台/" rel="prev" title="haproxy+kibana日志分析可视化展示平台"><span class="nav-title">haproxy+kibana日志分析可视化展示平台</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+  
+
+<div class="comments" id="comments">
+  
+</div>
+
+
+
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/img/avatar.jpg" alt="Wang'T">
+  
+  <h1 class="author-name">Wang'T</h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    <div class="archives-count">
+      <div class="site-count-title">归档</div>
+      <div><a href="/archives/">66</a></div>
+    </div>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="categories-count">
+      <div class="site-count-title">分类</div>
+      <div><a href="/categories/">12</a></div>
+    </div>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="tags-count">
+      <div class="site-count-title">标签</div>
+      <div><a href="/tags/">27</a></div>
+    </div>
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#u7528_Letsencrypt__u6765_u7B7E_u53D1_u51ED_u8BC1"><span class="toc-text">Letsencrypt 来签发凭证">用 Letsencrypt 来签发凭证</span></a></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#kubernetes__u81EA_u52A8_u7533_u8BF7_u914D_u7F6ETLS"><span class="toc-text">kubernetes 自动申请配置TLS</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#u4F7F_u7528helm_u5B89_u88C5cert-manager"><span class="toc-text">使用helm安装cert-manager</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#ClusterIssuers"><span class="toc-text">ClusterIssuers</span></a></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#u521B_u5EFA_u8BC1_u4E66_u5BF9_u8C61"><span class="toc-text">创建证书对象</span></a></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#ingress-nginx_u914D_u7F6Ehttps"><span class="toc-text">ingress-nginx配置https</span></a></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#u6E05_u7406_u8D44_u6E90"><span class="toc-text">清理资源</span></a></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:wang.t.nice@gmail.com" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="http://www.ytniu.com" target="_blank">Jixiang's Blog</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">Wang'T</span><span class="year"><i class="far fa-copyright"></i>2015 - 2018</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">BY-NC-ND 4.0</a></span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>
