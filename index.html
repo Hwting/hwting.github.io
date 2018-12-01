@@ -132,6 +132,55 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/12/01/kubernetes之minikub安装/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/12/01/kubernetes之minikub安装/" itemprop="url">kubernetes之minikub安装</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-12-01T01:39:18+08:00">2018-12-01 01:39:18</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2018/12/01/kubernetes之minikub安装/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/12/01/kubernetes之minikub安装/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <h1 id="Minikub_u662F_u4EC0_u4E48_uFF1F"><a href="#Minikub_u662F_u4EC0_u4E48_uFF1F" class="headerlink" title="Minikub是什么？"></a>Minikub是什么？</h1><p>Minikub是一个能够在虚拟（VirtualBox或者Hyper-V）中运行单节点Kubernetes集群的工具，方便开发者可以在本地环境中进行开发和调试Kubernetes。这个工具默认安装和配置了一个Linux VM，Docker和Kubernetes的相关组件，并且提供Dashboard。目前支持在Linux, OS X及Windows上安装<br>安装kubectl</p>
+<figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">https:</span><span class="comment">//dl.k8s.io/v1.10.11/kubernetes-client-windows-amd64.tar.gz</span></span><br></pre></td></tr></table></figure>
+<h1 id="Minikub_u5B89_u88C5"><a href="#Minikub_u5B89_u88C5" class="headerlink" title="Minikub安装"></a>Minikub安装</h1><p>Minitube是一个独立的Go应用，下载运行就可以<br>Windows 平台<br>下载 minikube-windows-amd64.exe 文件，并重命名为 minikube.exe，然后加入到环境变量路径下即可<br><figure class="hljs highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/kubernetes.oss-cn-hangzhou.aliyuncs.com/minikube</span><span class="regexp">/releases/v</span>0.<span class="number">24.1</span>/minikube-windows-amd64.exe</span><br></pre></td></tr></table></figure></p>
+<h1 id="u542F_u52A8minikub"><a href="#u542F_u52A8minikub" class="headerlink" title="启动minikub"></a>启动minikub</h1><p>默认启动使用的是 VirtualBox 驱动，使用 –vm-driver 参数可以指定其它驱动。<br><figure class="hljs highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">设置 docker 加速镜像</span><br><span class="line">minikube <span class="operator"><span class="keyword">start</span> <span class="comment">--registry-mirror=https://registry.docker-cn.com</span></span><br><span class="line">minikube <span class="keyword">status</span> \\查看状态</span><br><span class="line">minikube dashboard \\启动dashbpard</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/11/24/haproxy-kibana日志分析可视化展示平台/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -742,57 +791,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/21/etcdv3-集群基本操作使用/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/09/21/etcdv3-集群基本操作使用/" itemprop="url">etcdv3 集群基本操作使用</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-21T23:40:27+08:00">2018-09-21 23:40:27</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2018/09/21/etcdv3-集群基本操作使用/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/09/21/etcdv3-集群基本操作使用/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p><a href="https://github.com/coreos/etcd" target="_blank" rel="external">etcd</a>是一个开源的分布式键值对数据库，他的每一个节点都有一份数据的copy，当有节点故障时保证了高可用性。etcd使用<a href="https://raft.github.io/" target="_blank" rel="external">Raft</a>算法来保证一致性。</p>
-<p>etcd的apiv3在使用命令时需要在前面加上ETCDCTL_API=3<br>集群成员<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ETCDCTL_API=<span class="number">3</span> etcdctl member <span class="built_in">list</span></span><br></pre></td></tr></table></figure></p>
-<p>更新一个节点ip<br><figure class="hljs highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">etcdctl <span class="keyword">member</span> list</span><br><span class="line">etcdctl <span class="keyword">member</span> update memberID http:<span class="comment">//ip:2380</span></span><br></pre></td></tr></table></figure></p>
-<p>删除一个节点<br><figure class="hljs highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">etcdctl member <span class="keyword">list</span>  </span><br><span class="line">etcdctl member <span class="built_in">remove</span> memberID  </span><br><span class="line">etcdctl member <span class="keyword">list</span>  </span><br><span class="line"><span class="keyword">ps</span> -ef|<span class="keyword">grep</span> etcd //在相关节点上kill掉etcd进程</span><br></pre></td></tr></table></figure></p>
-<p>测试增加一个新节点<br>注意：添加已经删除的需要将etcd3的rm -rf /var/lib/etcd/*必须删除<br>移除节点<br><figure class="hljs highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">ETCDCTL_API</span>=<span class="number">3</span>  etcdctl --endpoints=<span class="symbol">https:</span>/<span class="regexp">/192.168.7.93:2379,https:/</span><span class="regexp">/192.168.7.94:2379，https:/</span><span class="regexp">/192.168.7.92:2379   --cacert=/etc</span><span class="regexp">/kubernetes/ssl</span><span class="regexp">/ca.pem   --cert=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd.pem   --key=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd-key.pem  member  list -w table</span><br><span class="line">ETCDCTL_API=3  etcdctl --endpoints=https:/</span><span class="regexp">/192.168.7.93:2379,https:/</span><span class="regexp">/192.168.7.94:2379，https:/</span><span class="regexp">/192.168.7.92:2379   --cacert=/etc</span><span class="regexp">/kubernetes/ssl</span><span class="regexp">/ca.pem   --cert=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd.pem   --key=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd-key.pem  member  remove 7d17ab970f6de141</span></span><br></pre></td></tr></table></figure></p>
-<p>添加节点<br><figure class="hljs highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="constant">ETCDCTL_API</span>=<span class="number">3</span>  etcdctl --endpoints=<span class="symbol">https:</span>/<span class="regexp">/192.168.7.93:2379,https:/</span><span class="regexp">/192.168.7.94:2379，https:/</span><span class="regexp">/192.168.7.92:2379   --cacert=/etc</span><span class="regexp">/kubernetes/ssl</span><span class="regexp">/ca.pem   --cert=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd.pem   --key=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd-key.pem  member add  etcd3 --peer-urls="https:/</span><span class="regexp">/192.168.7.92:2380" /</span><span class="regexp">/查看新增成员列表，etcd3状态为unstarted</span><br><span class="line">rm -rf /var</span><span class="regexp">/lib/etcd</span><span class="regexp">/*  /</span><span class="regexp">/etcd3上面操作</span><br><span class="line">vi  /etc</span><span class="regexp">/systemd/system</span><span class="regexp">/etcd.service  /</span><span class="regexp">//etcd</span>3上面操作 修改--initial-cluster-state=existing 不改报错 streaming request ignored (<span class="constant">ID</span> mismatch got <span class="number">7</span>d17ab970f6de141 want <span class="number">58662</span>caff7c6e081)</span><br><span class="line">systemctl daemon-reload &amp;&amp; systemctl  restart   etcd  /<span class="regexp">//etcd</span>3上面操作</span><br><span class="line"><span class="constant">ETCDCTL_API</span>=<span class="number">3</span>  etcdctl --endpoints=<span class="symbol">https:</span>/<span class="regexp">/192.168.7.93:2379,https:/</span><span class="regexp">/192.168.7.94:2379，https:/</span><span class="regexp">/192.168.7.92:2379   --cacert=/etc</span><span class="regexp">/kubernetes/ssl</span><span class="regexp">/ca.pem   --cert=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd.pem   --key=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd-key.pem  member  list -w table</span></span><br></pre></td></tr></table></figure></p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -837,7 +835,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">66</a></div>
+      <div><a href="/archives/">67</a></div>
     </div>
     
     

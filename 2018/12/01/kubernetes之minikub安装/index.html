@@ -85,7 +85,7 @@
     <script defer type="text/javascript" src="/js/index.js"></script>
     
     <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>标签: lvs | Wang'T博客 - _入网络深似海,从此节操是路人.</title>
+    <title>kubernetes之minikub安装 | Wang'T博客 - _入网络深似海,从此节操是路人.</title>
   </head>
   <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
     
@@ -127,22 +127,91 @@
         <div class="main-container">
           <div class="content">
             
-<div id="tag" class="tag page">
-  <h1 class="page-title">lvs</h1>
+<div id="post" class="page">
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <header id="post-header" class="post-header">
-      <h1 class="post-title-simple" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2017/06/06/LVS-DR-keepalived负载均衡配置/" itemprop="url">LVS DR+keepalived负载均衡配置</a>
-      </h1>
-      
-      <span class="post-date">
-        <time title="post-date" itemprop="dateCreated datePublished" datetime="2017-06-06T10:36:00+08:00">06-06</time>
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/12/01/kubernetes之minikub安装/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="Wang'T">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/img/avatar.jpg">
       </span>
-      
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">kubernetes之minikub安装</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-12-01T01:39:18+08:00">2018-12-01 01:39:18</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2018/12/01/kubernetes之minikub安装/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/12/01/kubernetes之minikub安装/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
     </header>
+    <main class="post-main" itemprop="articleBody">
+      <h1 id="Minikub_u662F_u4EC0_u4E48_uFF1F"><a href="#Minikub_u662F_u4EC0_u4E48_uFF1F" class="headerlink" title="Minikub是什么？"></a>Minikub是什么？</h1><p>Minikub是一个能够在虚拟（VirtualBox或者Hyper-V）中运行单节点Kubernetes集群的工具，方便开发者可以在本地环境中进行开发和调试Kubernetes。这个工具默认安装和配置了一个Linux VM，Docker和Kubernetes的相关组件，并且提供Dashboard。目前支持在Linux, OS X及Windows上安装<br>安装kubectl</p>
+<figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">https:</span><span class="comment">//dl.k8s.io/v1.10.11/kubernetes-client-windows-amd64.tar.gz</span></span><br></pre></td></tr></table></figure>
+<h1 id="Minikub_u5B89_u88C5"><a href="#Minikub_u5B89_u88C5" class="headerlink" title="Minikub安装"></a>Minikub安装</h1><p>Minitube是一个独立的Go应用，下载运行就可以<br>Windows 平台<br>下载 minikube-windows-amd64.exe 文件，并重命名为 minikube.exe，然后加入到环境变量路径下即可<br><figure class="hljs highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/kubernetes.oss-cn-hangzhou.aliyuncs.com/minikube</span><span class="regexp">/releases/v</span>0.<span class="number">24.1</span>/minikube-windows-amd64.exe</span><br></pre></td></tr></table></figure></p>
+<h1 id="u542F_u52A8minikub"><a href="#u542F_u52A8minikub" class="headerlink" title="启动minikub"></a>启动minikub</h1><p>默认启动使用的是 VirtualBox 驱动，使用 –vm-driver 参数可以指定其它驱动。<br><figure class="hljs highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">设置 docker 加速镜像</span><br><span class="line">minikube <span class="operator"><span class="keyword">start</span> <span class="comment">--registry-mirror=https://registry.docker-cn.com</span></span><br><span class="line">minikube <span class="keyword">status</span> \\查看状态</span><br><span class="line">minikube dashboard \\启动dashbpard</span></span><br></pre></td></tr></table></figure></p>
+
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
   </article>
   
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2018/11/24/haproxy-kibana日志分析可视化展示平台/" rel="next" title="haproxy+kibana日志分析可视化展示平台"><i class="fas fa-angle-left"></i><span class="nav-title">haproxy+kibana日志分析可视化展示平台</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+    </div>
+  </nav>
+  
+  
+  
+
+<div class="comments" id="comments">
+  
+  <script defer id="dsq-count-scr" src="//www.idcsec.com.disqus.com/count.js"></script>
+  
+  <div id="disqus_thread" class="disqus_thread"></div>
+  <script type="text/javascript">
+  var disqus_config = function () {
+    this.page.url = "http://www.idcsec.com/2018/12/01/kubernetes之minikub安装/";
+    this.page.identifier = "2018/12/01/kubernetes之minikub安装/";
+  };
+  (function() {
+    var d = document, s = d.createElement("script");
+    s.src = "https://www.idcsec.com.disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  
+  
+</div>
+
+
+
   
 </div>
 
@@ -201,6 +270,17 @@
 
 
   <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#Minikub_u662F_u4EC0_u4E48_uFF1F"><span class="toc-text">Minikub是什么？</span></a></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#Minikub_u5B89_u88C5"><span class="toc-text">Minikub安装</span></a></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#u542F_u52A8minikub"><span class="toc-text">启动minikub</span></a></li></ol></div>
+    </div>
+    
     
     
     <hr>

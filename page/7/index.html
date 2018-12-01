@@ -132,6 +132,53 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/03/16/centos配置pppoe服务器/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2016/03/16/centos配置pppoe服务器/" itemprop="url">centos配置pppoe服务器</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-03-16T21:01:31+08:00">2016-03-16 21:01:31</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2016/03/16/centos配置pppoe服务器/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/03/16/centos配置pppoe服务器/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>#安装软件<br>rpm –qa| grep ppp rp-pppoe<br>ppp<br>rp-pppoe<br>rp-pppoe下载<br>wget <a href="https://www.roaringpenguin.com/files/download/rp-pppoe-3.12.tar.gz">https://www.roaringpenguin.com/files/download/rp-pppoe-3.12.tar.gz</a><br>拓扑图<br>xp-linux网卡1-linux网卡0-路由器-lnternet</p>
+<p>1、配置好eth0网卡外网ip，eth1不用配置ip可以配置0.0.0.0<br>vim /etc/sysconfig/network-scripts/ifcfg-eth0<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">DEVICE=eth0</span><br><span class="line">HWADDR=<span class="number">00</span>:<span class="number">0</span>C:<span class="number">29</span>:<span class="number">11</span>:DE:D1</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">UUID=<span class="number">4</span>f6db293-c442-<span class="number">4163</span>-<span class="number">94</span>c7-aac0a05901e8</span><br><span class="line">ONBOOT=yes</span><br><span class="line">NM_CONTROLLED=yes</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">DNS1=<span class="number">61.139</span><span class="number">.2</span><span class="number">.69</span></span><br><span class="line">IPADDR=<span class="number">10.39</span><span class="number">.100</span><span class="number">.222</span></span><br><span class="line">NETMASK=<span class="number">255.255</span><span class="number">.254</span><span class="number">.0</span></span><br><span class="line">GATEWAY=<span class="number">10.39</span><span class="number">.100</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></p>
+<p>vim /etc/sysconfig/network-scripts/ifcfg-eth1<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">DEVICE=eth1</span><br><span class="line">HWADDR=<span class="number">00</span>:<span class="number">0</span>C:<span class="number">29</span>:<span class="number">11</span>:DE:DB</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">ONBOOT=yes</span><br><span class="line">NM_CONTROLLED=no</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">DNS1=</span><br><span class="line">IPADDR=<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line">NETMASK=<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br></pre></td></tr></table></figure></p>
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/03/14/nginx-php-mysql配置/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -538,7 +585,7 @@ make install
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">66</a></div>
+      <div><a href="/archives/">67</a></div>
     </div>
     
     

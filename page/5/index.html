@@ -132,6 +132,62 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/03/23/Centos下mysql5-6编译安装/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/03/23/Centos下mysql5-6编译安装/" itemprop="url">Centos下mysql5.6编译安装</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-03-23T11:35:40+08:00">2017-03-23 11:35:40</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2017/03/23/Centos下mysql5-6编译安装/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2017/03/23/Centos下mysql5-6编译安装/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>安装目录：/usr/local/mysql<br>数据库目录：/usr/local/mysql/data<br>一、安装前面</p>
+<figure class="hljs highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">添加用户</span><br><span class="line">groupadd mysql</span><br><span class="line">useradd -g mysql -s /sbin/nologin mysql</span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum安装依赖包</span><br><span class="line">yum -y install gcc* ncurses-devel cmake bison</span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">解压创建目录</span><br><span class="line">tar zxf mysql-<span class="number">5.6</span><span class="number">.13</span>.tar.gz </span><br><span class="line">cd mysql-<span class="number">5.6</span><span class="number">.13</span></span><br><span class="line">mkdir -p /usr/local/mysql/data</span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cmake配置以及编译安装mysql</span><br><span class="line">cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_UNIX_ADDR=/usr/local/mysql/mysql.sock -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DWITH_MYISAM_STORAGE_ENGING=<span class="number">1</span> -DWITH_INNOBASE_STORAGE_ENGING=<span class="number">1</span> -DWITH_MEMORY_STORAGE_ENGING=<span class="number">1</span> -DWITH_READLINE=<span class="number">1</span> -DENABLED_LOCAL_INFILE=<span class="number">1</span> -DMYSQL_DATADIR=/usr/local/mysql/data -DMYSQL_USER=mysql -DMYSQL_TCP_PORT=<span class="number">3306</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">拷贝配置文件</span><br><span class="line">cp support-files/my-<span class="keyword">default</span>.cnf /usr/local/mysql/my.cnf</span><br><span class="line">初始化数据库</span><br><span class="line">cd /usr/local/mysql/scripts/</span><br><span class="line">./mysql_install_db --user=mysql --datadir=/usr/local/mysql/data/ --basedir=/usr/local/mysql/</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R mysql:mysql /usr/local/mysql/</span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">修改my.cnf配置</span><br><span class="line">[mysqld]</span><br><span class="line">basedir = /usr/local/mysql</span><br><span class="line">datadir = /usr/local/mysql/data</span><br><span class="line">log-error = /usr/local/mysql/mysql_error.log</span><br><span class="line">pid-file = /usr/local/mysql/mysql.pid</span><br><span class="line">user = mysql</span><br><span class="line">tmpdir = /tmp</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">拷贝启动文件配置安全启动向导初始化</span><br><span class="line">cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld</span><br><span class="line">chmod +X  /etc/init.d/mysqld</span><br><span class="line">ln -s /usr/local/mysql/my.cnf /etc</span><br><span class="line">bin/mysql_secure_installation </span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">设置软连接</span><br><span class="line">ln -s /usr/local/mysql/bin<span class="comment">/* /usr/local/bin/</span><br><span class="line">ln -s /usr/local/mysql/include/mysql/* /usr/include/</span><br><span class="line">ln -s /usr/local/mysql/lib/* /usr/lib/</span><br><span class="line">`</span></span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">启动 </span><br><span class="line">/etc/init.d/mysqld start</span><br></pre></td></tr></table></figure>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/02/23/zabbix改中文/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -645,60 +701,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/07/27/windows下配置java环境/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2016/07/27/windows下配置java环境/" itemprop="url">windows下配置java环境</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-07-27T11:31:10+08:00">2016-07-27 11:31:10</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2016/07/27/windows下配置java环境/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/07/27/windows下配置java环境/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>Windows下配置Java环境变量</p>
-<p>下载java se development kit - JDK</p>
-<p>java官网： www.oracle.com</p>
-<p> 环境变量配置：<br><figure class="hljs highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">JAVA_HOME</span><span class="symbol">:D</span><span class="symbol">:/Program</span> <span class="constant">Files</span>/<span class="constant">Java</span>/jdk1.<span class="number">6.0_10</span></span><br><span class="line"><span class="constant">PATH</span><span class="symbol">:%JAVA_HOME<span class="string">%/bin;%JAVA_HOME%/</span>jre/bin</span></span><br><span class="line"><span class="constant">CLASSPATH</span><span class="symbol">:</span>.;%<span class="constant">JAVA_HOME</span><span class="string">%/lib/</span>dt.jar;%<span class="constant">JAVA_HOME</span><span class="string">%/lib/</span>tools.jar</span><br></pre></td></tr></table></figure></p>
-<p>说明：</p>
-<p>1）JAVA_HOME指明JDK安装路径</p>
-<p>2）PATH使得系统可以在任何路径下识别java命令</p>
-<p>3）为java加载类(class or lib)路径，只有类在classpath中，java命令才能识别。</p>
-<p>linux下环境变量：<br><figure class="hljs highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/java/jdk1.<span class="number">8.0_77</span></span><br><span class="line">export CLASSPATH=<span class="variable">$JAVA</span>_HOME/lib/tools.jar:<span class="variable">$JAVA</span>_HOME/lib/dt.jar:<span class="variable">$JAVA</span>_HOME/lib</span><br><span class="line">export PATH=<span class="variable">$JAVA</span>_HOME/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure></p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/4/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -743,7 +745,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">66</a></div>
+      <div><a href="/archives/">67</a></div>
     </div>
     
     
