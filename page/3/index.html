@@ -132,6 +132,68 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/08/09/Kubernetes-Heapster安装部署/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/08/09/Kubernetes-Heapster安装部署/" itemprop="url">Kubernetes Heapster安装部署</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-08-09T09:31:00+08:00">2018-08-09 09:31:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
+        </span>
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2018/08/09/Kubernetes-Heapster安装部署/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/08/09/Kubernetes-Heapster安装部署/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>默认安装的kubernetes没有统计 CPU 和内存Dashboard图表也没有显示，装上 Heapster 后就可以直观地看到各个组件的资源消耗情况，以及kubectl top 查看 nodes pod资源。Heapster已弃用。请考虑使用 metrics-server 和第三方指标管道来收集Prometheus格式的指标。<br>可以不安装influxdb    </p>
+<h1 id="u6267_u884Cheapster-yaml_u6587_u4EF6"><a href="#u6267_u884Cheapster-yaml_u6587_u4EF6" class="headerlink" title="执行heapster.yaml文件"></a>执行heapster.yaml文件</h1><figure class="hljs highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">修改:</span> <span class="literal">-</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">source=</span> <span class="comment">、</span><span class="literal">-</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">sink、images</span></span><br></pre></td></tr></table></figure>
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/Heapster/" rel="tag"><i class="fas fa-tags"></i>Heapster</a>
+        
+        <a class="post-tag button" href="/tags/kubernetes/" rel="tag"><i class="fas fa-tags"></i>kubernetes</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/07/16/Activemq集群搭建ZooKeeper-LevelDB/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -682,90 +744,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/11/17/nginx配置http2平滑升级/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2017/11/17/nginx配置http2平滑升级/" itemprop="url">nginx配置http2平滑升级</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-11-17T14:13:00+08:00">2017-11-17 14:13:00</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/nginx/" itemprop="url" rel="index"><span itemprop="name">nginx</span></a></span>
-        </span>
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2017/11/17/nginx配置http2平滑升级/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2017/11/17/nginx配置http2平滑升级/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <h2 id="HTTP/2_u4F18_u70B9"><a href="#HTTP/2_u4F18_u70B9" class="headerlink" title="HTTP/2优点"></a>HTTP/2优点</h2><ul>
-<li><p>采用二进制格式传输数据，而非文本格式。二进制格式在协议的解析和优化扩展上带来更多的优势和可能。</p>
-</li>
-<li><p>对消息头进行压缩传输，能够节省消息头占用的网络的流量，而 HTTP 1.1 每次请求，都会携带大量冗余头信息，浪费了很多带宽资源，头压缩能够很好的解决该问题。</p>
-</li>
-<li><p>多路复用，就是多个请求都是通过一个 TCP 连接并发完成， HTTP 1.1 虽然通过 pipeline 也能并发请求，但是多个请求之间的响应会被阻塞的，所以 pipeline 至今也没有被普及应用，而 HTTP/2 做到了真正的并发请求，同时流还支持优先级和流量控制。</p>
-</li>
-<li><p>服务器推送，服务端能够更快的把资源推送给客户端，例如服务端可以主动把 JS 和 CSS 文件推送给客户端，而不需要客户端解析 HTML 再发送这些请求，当客户端需要的时候，它已经在客户端了。</p>
-</li>
-</ul>
-<p>HTTP/2站点的优势</p>
-<ul>
-<li>提升网站访问速度。</li>
-<li>降低服务器压力。</li>
-<li>部分替代异步加载的使用。</li>
-<li>保护网站安全。<h2 id="nginx_u914D_u7F6Ehttp2"><a href="#nginx_u914D_u7F6Ehttp2" class="headerlink" title="nginx配置http2"></a>nginx配置http2</h2>默认编译的 Nginx 并不包含 h2 模块，我们需要加入参数来编译。Nginx 1.9 开发版及以上版本源码需要自己加入编译参数。<br>以下是平滑升级模块过程<br>最后使用源码自带升级命令：make upgrade自动完成平滑<br>根据需求添加编译模块，不过只需要执行到make 不要执行make install！<br>http2需要openss1.0.2e以上版本<br>下载openssl<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https:<span class="comment">//www.openssl.org/source/openssl-1.0.2m.tar.gz</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>这里查看我当前nginx编译参数<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx  -V</span><br><span class="line">configure arguments: --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module</span><br></pre></td></tr></table></figure></p>
-<p>到nginx源码下重新编译nginx,解压openssl指定openssl源码路径 –with-openssl=../openssl-1.0.2m<br>加上 –with-http_realip_module –with-http_v2_module   –with-openssl=../openssl-1.0.2<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure  --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module --with-http_v2_module   --with-openssl=../openssl-<span class="number">1.0</span><span class="number">.2</span>m</span><br><span class="line"><span class="comment">#执行到make 不要执行make install</span></span><br><span class="line">make <span class="comment">#执行make 但不要执行make install</span></span><br></pre></td></tr></table></figure></p>
-<p>备份二进制文件<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv  /usr/local/nginx/sbin/nginx /usr/local/nginx/sbin/nginx.back</span><br></pre></td></tr></table></figure></p>
-<p>期间nginx并不会停止服务<br>拷贝新编译的二进制文件<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp objs/nginx /usr/local/nginx/sbin/</span><br></pre></td></tr></table></figure></p>
-<p>在源码目录下执行平滑重新加载配置命令<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">nginx-<span class="number">1.12</span><span class="number">.0</span>]<span class="comment"># make upgrade</span></span><br><span class="line">usr/local/nginx/sbin/nginx -t</span><br><span class="line">nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /etc/nginx/nginx.conf test is successful</span><br><span class="line">kill -USR2 `cat /usr/local/nginx/logs/nginx.pid`</span><br><span class="line">sleep <span class="number">1</span></span><br><span class="line">test -f /usr/local/nginx/logs/nginx.pid.oldbin</span><br><span class="line">kill -QUIT `cat /usr/local/nginx/logs/nginx.pid.oldbin`</span><br></pre></td></tr></table></figure></p>
-<p>验证<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nginx-<span class="number">1.12</span><span class="number">.0</span>]<span class="comment">#/usr/local/nginx/sbin/nginx  -V</span></span><br><span class="line">nginx version: Microsoft-IIS/<span class="number">1.12</span><span class="number">.0</span></span><br><span class="line">built by gcc <span class="number">4.4</span><span class="number">.7</span> <span class="number">20120313</span> (Red Hat <span class="number">4.4</span><span class="number">.7</span>-<span class="number">18</span>) (GCC) </span><br><span class="line">built with OpenSSL <span class="number">1.0</span><span class="number">.2</span>m  <span class="number">2</span> Nov <span class="number">2017</span></span><br><span class="line">TLS SNI support enabled</span><br><span class="line">configure arguments: --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module --with-http_v2_module --with-openssl=../openssl-<span class="number">1.0</span><span class="number">.2</span>m</span><br></pre></td></tr></table></figure></p>
-<p><img src="/img/nginx2.png" alt="nginx"><br>http2demo：<a href="https://http2.akamai.com/demo" target="_blank" rel="external">https://http2.akamai.com/demo</a></p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/nginx/" rel="tag"><i class="fas fa-tags"></i>nginx</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/2/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -810,7 +788,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">67</a></div>
+      <div><a href="/archives/">68</a></div>
     </div>
     
     
@@ -828,7 +806,7 @@
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">27</a></div>
+      <div><a href="/tags/">28</a></div>
     </div>
     
   </div>
