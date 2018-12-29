@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo, docker, linux, kubernetes, Nginx, tomcat, Jenkins">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="Wang'T博客" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato|Roboto+Condensed|Skranji|Ubuntu|Ubuntu+Mono">
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/solarized-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>Prometheus Node_Exporter监控主机性能展示Grafana | Wang'T博客 - _入网络深似海,从此节操是路人.</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">Wang'T博客</a></h1>
+        <h2 class="subtitle">_入网络深似海,从此节操是路人.</h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/img/logo.jpg" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/">首页</a></li>
+        
+        <li role="menuitem"><a href="/archives/">归档</a></li>
+        
+        <li role="menuitem"><a href="/categories/">分类</a></li>
+        
+        <li role="menuitem"><a href="/tags/">标签</a></li>
+        
+        <li role="menuitem"><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/12/29/Prometheus-Node-Exporter监控主机性能展示Grafana/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="Wang'T">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">Prometheus Node_Exporter监控主机性能展示Grafana</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-12-29T11:18:00+08:00">2018-12-29 11:18:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/prometheus/" itemprop="url" rel="index"><span itemprop="name">prometheus</span></a></span>
+        </span>
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2018/12/29/Prometheus-Node-Exporter监控主机性能展示Grafana/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/12/29/Prometheus-Node-Exporter监控主机性能展示Grafana/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p><img src="https://i.loli.net/2018/12/29/5c26e87a05bad.png" alt="Consul"></p>
+<h1 id="node_exporter_u5B89_u88C5"><a href="#node_exporter_u5B89_u88C5" class="headerlink" title="node_exporter安装"></a>node_exporter安装</h1><figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">useradd prometheus -s <span class="regexp">/sbin/</span>nologin</span><br><span class="line"><span class="string">https:</span><span class="comment">//github.com/prometheus/node_exporter/releases/download/v0.16.0/node_exporter-0.16.0.linux-amd64.tar.gz</span></span><br><span class="line">tar -zxvf node_exporter-<span class="number">0.16</span><span class="number">.0</span>.linux-amd64.tar.gz -C <span class="regexp">/home/</span>prometheus<span class="regexp">/ &amp;&amp; mv /</span>home<span class="regexp">/prometheus/</span>node_exporter-<span class="number">0.16</span><span class="number">.0</span>.linux-amd64 <span class="regexp">/home/</span>prometheus/node_exporter</span><br><span class="line"> vi <span class="regexp">/etc/</span>systemd<span class="regexp">/system/</span>node_exporter.service</span><br><span class="line"> [Unit]</span><br><span class="line">Description=Node Exporter</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">User=prometheus</span><br><span class="line">ExecStart=<span class="regexp">/home/</span>prometheus/node_exporter</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=<span class="keyword">default</span>.target</span><br></pre></td></tr></table></figure>
+<p>重启服务<br><figure class="hljs highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">systemctl</span> <span class="tag">daemon-reload</span> &amp;&amp; <span class="tag">systemctl</span> <span class="tag">enable</span> <span class="tag">node_exporter</span><span class="class">.service</span> &amp;&amp; <span class="tag">systemctl</span> <span class="tag">start</span> <span class="tag">node_exporter</span><span class="class">.service</span></span><br></pre></td></tr></table></figure></p>
+<p><a href="http://your_server_ip:9100/metrics" target="_blank" rel="external">http://your_server_ip:9100/metrics</a><br>修改prometheus文件<br><figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vi  prometheus.yml</span><br><span class="line"><span class="string">scrape_configs:</span></span><br><span class="line">  - <span class="string">job_name:</span> <span class="string">"node"</span></span><br><span class="line"><span class="label">    scrape_interval:</span> <span class="string">"15s"</span></span><br><span class="line"><span class="label">    target_groups:</span></span><br><span class="line">    - <span class="string">targets:</span> [<span class="string">'NODE_IP:9100'</span>]</span><br></pre></td></tr></table></figure></p>
+<h1 id="Prometheus_u9488_u5BF9nodes_u544A_u8B66_u89C4_u5219_u914D_u7F6E"><a href="#Prometheus_u9488_u5BF9nodes_u544A_u8B66_u89C4_u5219_u914D_u7F6E" class="headerlink" title="Prometheus针对nodes告警规则配置"></a>Prometheus针对nodes告警规则配置</h1><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">groups:</span><br><span class="line">- name: example</span><br><span class="line">  rules:</span><br><span class="line"> </span><br><span class="line">  - alert: 实例丢失</span><br><span class="line">    expr: up&#123;job=<span class="string">"node-exporter"</span>&#125; == <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>: <span class="number">1</span>m</span><br><span class="line">    labels:</span><br><span class="line">      severity: page</span><br><span class="line">    annotations:</span><br><span class="line">      summary: <span class="string">"服务器实例 &#123;&#123; <span class="variable">$labels</span>.instance &#125;&#125; 丢失"</span></span><br><span class="line">      description: <span class="string">"&#123;&#123; <span class="variable">$labels</span>.instance &#125;&#125; 上的任务 &#123;&#123; <span class="variable">$labels</span>.job &#125;&#125; 已经停止了 1 分钟已上了"</span></span><br><span class="line"> </span><br><span class="line">  - alert: 磁盘容量小于 <span class="number">5</span>%</span><br><span class="line">    expr: <span class="number">100</span> - ((node_filesystem_avail_bytes&#123;job=<span class="string">"node-exporter"</span>,mountpoint=~<span class="string">".*"</span>,fstype=~<span class="string">"ext4|xfs|ext2|ext3"</span>&#125; * <span class="number">100</span>) / node_filesystem_size_bytes &#123;job=<span class="string">"node-exporter"</span>,mountpoint=~<span class="string">".*"</span>,fstype=~<span class="string">"ext4|xfs|ext2|ext3"</span>&#125;) &gt; <span class="number">95</span></span><br><span class="line">    <span class="keyword">for</span>: <span class="number">30</span>s</span><br><span class="line">    annotations:</span><br><span class="line">      summary: <span class="string">"服务器实例 &#123;&#123; <span class="variable">$labels</span>.instance &#125;&#125; 磁盘不足 告警通知"</span></span><br><span class="line">      description: <span class="string">"&#123;&#123; <span class="variable">$labels</span>.instance &#125;&#125;磁盘 &#123;&#123; <span class="variable">$labels</span>.device &#125;&#125; 资源 已不足 5%, 当前值: &#123;&#123; <span class="variable">$value</span> &#125;&#125;"</span></span><br><span class="line"> </span><br><span class="line">  - alert: <span class="string">"内存容量小于 20%"</span></span><br><span class="line">    expr: ((node_memory_MemTotal_bytes - node_memory_MemFree_bytes - node_memory_Buffers_bytes - node_memory_Cached_bytes) / (node_memory_MemTotal_bytes )) * <span class="number">100</span> &gt; <span class="number">80</span></span><br><span class="line">    <span class="keyword">for</span>: <span class="number">30</span>s</span><br><span class="line">    labels:</span><br><span class="line">      severity: warning</span><br><span class="line">    annotations:</span><br><span class="line">      summary: <span class="string">"服务器实例 &#123;&#123; <span class="variable">$labels</span>.instance &#125;&#125; 内存不足 告警通知"</span></span><br><span class="line">      description: <span class="string">"&#123;&#123; <span class="variable">$labels</span>.instance &#125;&#125;内存资源已不足 20%,当前值: &#123;&#123; <span class="variable">$value</span> &#125;&#125;"</span></span><br><span class="line"> </span><br><span class="line">  - alert: <span class="string">"CPU 平均负载大于 4 个"</span></span><br><span class="line">    expr: node_load5 &gt; <span class="number">4</span></span><br><span class="line">    <span class="keyword">for</span>: <span class="number">30</span>s</span><br><span class="line">    annotations:</span><br><span class="line">      sumary: <span class="string">"服务器实例 &#123;&#123; <span class="variable">$labels</span>.instance &#125;&#125; CPU 负载 告警通知"</span></span><br><span class="line">      description: <span class="string">"&#123;&#123; <span class="variable">$labels</span>.instance &#125;&#125;CPU 平均负载(5 分钟) 已超过 4 ,当前值: &#123;&#123; <span class="variable">$value</span> &#125;&#125;"</span></span><br><span class="line"> </span><br><span class="line">  - alert: <span class="string">"磁盘读 I/O 超过 30MB/s"</span></span><br><span class="line">    expr: irate(node_disk_<span class="built_in">read</span>_bytes_total&#123;device=<span class="string">"sda"</span>&#125;[<span class="number">1</span>m]) &gt; <span class="number">30000000</span></span><br><span class="line">    <span class="keyword">for</span>: <span class="number">30</span>s</span><br><span class="line">    annotations:</span><br><span class="line">      sumary: <span class="string">"服务器实例 &#123;&#123; <span class="variable">$labels</span>.instance &#125;&#125; I/O 读负载 告警通知"</span></span><br><span class="line">      description: <span class="string">"&#123;&#123; <span class="variable">$labels</span>.instance &#125;&#125;I/O 每分钟读已超过 30MB/s,当前值: &#123;&#123; <span class="variable">$value</span> &#125;&#125;"</span></span><br><span class="line"> </span><br><span class="line">  - alert: <span class="string">"磁盘写 I/O 超过 30MB/s"</span></span><br><span class="line">    expr: irate(node_disk_written_bytes_total&#123;device=<span class="string">"sda"</span>&#125;[<span class="number">1</span>m]) &gt; <span class="number">30000000</span></span><br><span class="line">    <span class="keyword">for</span>: <span class="number">30</span>s</span><br><span class="line">    annotations:</span><br><span class="line">      sumary: <span class="string">"服务器实例 &#123;&#123; <span class="variable">$labels</span>.instance &#125;&#125; I/O 写负载 告警通知"</span></span><br><span class="line">      description: <span class="string">"&#123;&#123; <span class="variable">$labels</span>.instance &#125;&#125;I/O 每分钟写已超过 30MB/s,当前值: &#123;&#123; <span class="variable">$value</span> &#125;&#125;"</span></span><br><span class="line"> </span><br><span class="line">  - alert: <span class="string">"网卡流出速率大于 10MB/s"</span></span><br><span class="line">    expr: (irate(node_network_transmit_bytes_total&#123;device!~<span class="string">"lo"</span>&#125;[<span class="number">1</span>m]) / <span class="number">1000</span>) &gt; <span class="number">1000000</span></span><br><span class="line">    <span class="keyword">for</span>: <span class="number">30</span>s</span><br><span class="line">    annotations:</span><br><span class="line">      sumary: <span class="string">"服务器实例 &#123;&#123; <span class="variable">$labels</span>.instance &#125;&#125; 网卡流量负载 告警通知"</span></span><br><span class="line">      description: <span class="string">"&#123;&#123; <span class="variable">$labels</span>.instance &#125;&#125;网卡 &#123;&#123; <span class="variable">$labels</span>.device &#125;&#125; 流量已经超过 10MB/s, 当前值: &#123;&#123; <span class="variable">$value</span> &#125;&#125;"</span></span><br><span class="line"> </span><br><span class="line">  - alert: <span class="string">"CPU 使用率大于 90%"</span></span><br><span class="line">    expr: <span class="number">100</span> - ((avg by (instance,job,env)(irate(node_cpu_seconds_total&#123;mode=<span class="string">"idle"</span>&#125;[<span class="number">30</span>s]))) *<span class="number">100</span>) &gt; <span class="number">90</span></span><br><span class="line">    <span class="keyword">for</span>: <span class="number">30</span>s</span><br><span class="line">    annotations:</span><br><span class="line">      sumary: <span class="string">"服务器实例 &#123;&#123; <span class="variable">$labels</span>.instance &#125;&#125; CPU 使用率 告警通知"</span></span><br><span class="line">      description: <span class="string">"&#123;&#123; <span class="variable">$labels</span>.instance &#125;&#125;CPU 使用率已超过 90%, 当前值: &#123;&#123; <span class="variable">$value</span> &#125;&#125;"</span></span><br></pre></td></tr></table></figure>
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/node-exporter/" rel="tag"><i class="fas fa-tags"></i>node_exporter</a>
+        
+        <a class="post-tag button" href="/tags/prometheus/" rel="tag"><i class="fas fa-tags"></i>prometheus</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2018/12/29/Prometheus-Consul实现自动服务发现/" rel="next" title="Prometheus+Consul实现自动服务发现"><i class="fas fa-angle-left"></i><span class="nav-title">Prometheus+Consul实现自动服务发现</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+    </div>
+  </nav>
+  
+  
+  
+
+<div class="comments" id="comments">
+  
+  <script defer id="dsq-count-scr" src="//www.idcsec.com.disqus.com/count.js"></script>
+  
+  <div id="disqus_thread" class="disqus_thread"></div>
+  <script type="text/javascript">
+  var disqus_config = function () {
+    this.page.url = "http://www.idcsec.com/2018/12/29/Prometheus-Node-Exporter监控主机性能展示Grafana/";
+    this.page.identifier = "2018/12/29/Prometheus-Node-Exporter监控主机性能展示Grafana/";
+  };
+  (function() {
+    var d = document, s = d.createElement("script");
+    s.src = "https://www.idcsec.com.disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  
+  
+</div>
+
+
+
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/img/avatar.jpg" alt="Wang'T">
+  
+  <h1 class="author-name">Wang'T</h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    <div class="archives-count">
+      <div class="site-count-title">归档</div>
+      <div><a href="/archives/">70</a></div>
+    </div>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="categories-count">
+      <div class="site-count-title">分类</div>
+      <div><a href="/categories/">12</a></div>
+    </div>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="tags-count">
+      <div class="site-count-title">标签</div>
+      <div><a href="/tags/">30</a></div>
+    </div>
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#node_exporter_u5B89_u88C5"><span class="toc-text">node_exporter安装</span></a></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#Prometheus_u9488_u5BF9nodes_u544A_u8B66_u89C4_u5219_u914D_u7F6E"><span class="toc-text">Prometheus针对nodes告警规则配置</span></a></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:wang.t.nice@gmail.com" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="http://www.ytniu.com" target="_blank">Jixiang's Blog</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">Wang'T</span><span class="year"><i class="far fa-copyright"></i>2015 - 2018</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">BY-NC-ND 4.0</a></span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

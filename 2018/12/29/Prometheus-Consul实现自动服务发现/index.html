@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo, docker, linux, kubernetes, Nginx, tomcat, Jenkins">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="Wang'T博客" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato|Roboto+Condensed|Skranji|Ubuntu|Ubuntu+Mono">
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/solarized-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>Prometheus+Consul实现自动服务发现 | Wang'T博客 - _入网络深似海,从此节操是路人.</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">Wang'T博客</a></h1>
+        <h2 class="subtitle">_入网络深似海,从此节操是路人.</h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/img/logo.jpg" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/">首页</a></li>
+        
+        <li role="menuitem"><a href="/archives/">归档</a></li>
+        
+        <li role="menuitem"><a href="/categories/">分类</a></li>
+        
+        <li role="menuitem"><a href="/tags/">标签</a></li>
+        
+        <li role="menuitem"><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/12/29/Prometheus-Consul实现自动服务发现/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="Wang'T">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">Prometheus+Consul实现自动服务发现</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-12-29T10:55:00+08:00">2018-12-29 10:55:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/prometheus/" itemprop="url" rel="index"><span itemprop="name">prometheus</span></a></span>
+        </span>
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2018/12/29/Prometheus-Consul实现自动服务发现/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/12/29/Prometheus-Consul实现自动服务发现/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>prometheus+Consul自动服务发现减少修改修改prometheus.yml重启prometheus等操作</p>
+<h1 id="Consul__u4ECB_u7ECD"><a href="#Consul__u4ECB_u7ECD" class="headerlink" title="Consul 介绍"></a>Consul 介绍</h1><p>Consul有多个组件，但总体而言，它是基础架构中的一款服务发现和配置的工具。 它提供了几个关键功能：<br>服务发现：Consul client 可以提供服务，例如api或mysql，也可以使用Consul client来发现指定服务的提供者。 使用DNS或HTTP，应用程序可以轻松找到他们所依赖的服务。<br>健康检查：Consul client 可以提供任何数量的健康检查，或者与给定的服务（“Web服务器是否返回200 OK”），或与本地节点（“内存利用率是否低于90％”）相关联。 可以使用此信息来监控集群运行状况，服务发现组件使用此信息将流量从有问题的主机中移除出去。<br>KV Store：应用程序可以使用Consul的分层键/值存储，包括动态配置，功能标记，协调，leader选举等等。 简单的HTTP API使其易于使用。<br>多数据中心：Consul支持多个数据中心。 这意味着Consul的用户不必担心构建额外的抽象层以扩展到多个区域。<br>官方架构图<br><img src="https://i.loli.net/2018/12/29/5c26e3aa40037.png" alt="Consul"></p>
+<p>端口介绍<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">8500</span>，客户端http api接口</span><br><span class="line"><span class="number">8600</span>，客户端DNS服务端口</span><br><span class="line"><span class="number">8400</span>，客户端RPC通信端口</span><br><span class="line"><span class="number">8300</span>，集群server RPC通信接口</span><br><span class="line"><span class="number">8301</span>，集群DC内部通信接口</span><br><span class="line"><span class="number">8302</span>，集群DC之间通信接口</span><br></pre></td></tr></table></figure></p>
+<h1 id="prometheus_u670D_u52A1_u53D1_u73B0_Service_Discovery"><a href="#prometheus_u670D_u52A1_u53D1_u73B0_Service_Discovery" class="headerlink" title="prometheus服务发现 Service Discovery"></a>prometheus服务发现 Service Discovery</h1><p>Prometheus支持多种服务发现机制：文件，DNS，Consul,Kubernetes,OpenStack,EC2等等。基于服务发现的过程并不复杂，通过第三方提供的接口，Prometheus查询到需要监控的Target列表，然后轮训这些Target获取监控数据。</p>
+<h1 id="u672C_u5730_u6D4B_u8BD5_u73AF_u5883_u7684Docker_Compose"><a href="#u672C_u5730_u6D4B_u8BD5_u73AF_u5883_u7684Docker_Compose" class="headerlink" title="本地测试环境的Docker Compose"></a>本地测试环境的Docker Compose</h1><p>使用gliderlabs/registrator监听Docker进程，对于暴露了端口的容器，registrator会自动将该容器暴露的服务地址注册到Consul中。<br>使用NodeExporter采集当前主机数据，cAdvisor采集容器相关数据之prometheus自动发现相关服务<br><figure class="hljs highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">version</span>: <span class="string">'2'</span></span><br><span class="line"></span><br><span class="line"><span class="haml">services:</span><br><span class="line">  consul:</span><br><span class="line">    image: consul</span><br><span class="line">    ports:</span><br><span class="line">      -<span class="ruby"> <span class="number">8400</span><span class="symbol">:</span><span class="number">8400</span></span><br><span class="line"></span>      -<span class="ruby"> <span class="number">8500</span><span class="symbol">:</span><span class="number">8500</span></span><br><span class="line"></span>      -<span class="ruby"> <span class="number">8600</span><span class="symbol">:</span><span class="number">53</span>/udp</span><br><span class="line"></span>    command: agent -server -client=0.0.0.0 -dev -node=node0 -bootstrap-expect=1 -data-dir=/tmp/consul</span><br><span class="line">    labels:</span><br><span class="line">      SERVICE_IGNORE: 'true'</span><br><span class="line">  registrator:</span><br><span class="line">    image: gliderlabs/registrator</span><br><span class="line">    depends_on:</span><br><span class="line">      -<span class="ruby"> consul</span><br><span class="line"></span>    volumes:</span><br><span class="line">      -<span class="ruby"> /var/<span class="symbol">run:</span>/<span class="symbol">tmp:</span>rw</span><br><span class="line"></span>    command: consul://consul:8500</span><br><span class="line">  prometheus:</span><br><span class="line">    image: quay.io/prometheus/prometheus</span><br><span class="line">    ports:</span><br><span class="line">      -<span class="ruby"> <span class="number">9090</span><span class="symbol">:</span><span class="number">9090</span></span><br><span class="line"></span>  node_exporter:</span><br><span class="line">    image: quay.io/prometheus/node-exporter</span><br><span class="line">    pid: "host"</span><br><span class="line">    ports:</span><br><span class="line">      -<span class="ruby"> <span class="number">9100</span><span class="symbol">:</span><span class="number">9100</span></span><br><span class="line"></span>  cadvisor:</span><br><span class="line">    image: google/cadvisor:latest</span><br><span class="line">    ports:</span><br><span class="line">      -<span class="ruby"> <span class="number">8080</span><span class="symbol">:</span><span class="number">8080</span></span><br><span class="line"></span>    volumes:</span><br><span class="line">      -<span class="ruby"> /<span class="symbol">:/rootfs</span><span class="symbol">:ro</span> </span><br><span class="line"></span>      -<span class="ruby"> /var/<span class="symbol">run:</span>/var/<span class="symbol">run:</span>rw</span><br><span class="line"></span>      -<span class="ruby"> /var/lib/docker/<span class="symbol">:/var/lib/docker</span><span class="symbol">:ro</span></span></span></span><br></pre></td></tr></table></figure></p>
+<h1 id="promethues-yml_u914D_u7F6E_3A"><a href="#promethues-yml_u914D_u7F6E_3A" class="headerlink" title="promethues.yml配置:"></a>promethues.yml配置:</h1><figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">global</span>:</span><br><span class="line">  <span class="attribute">scrape_interval</span>: <span class="number">5s</span></span><br><span class="line">  <span class="attribute">scrape_timeout</span>: <span class="number">5s</span></span><br><span class="line">  <span class="attribute">evaluation_interval</span>: <span class="number">15s</span></span><br><span class="line"><span class="attribute">scrape_configs</span>:</span><br><span class="line">  - <span class="attribute">job_name</span>: consul_sd</span><br><span class="line">    <span class="attribute">metrics_path</span>: /metrics</span><br><span class="line">    <span class="attribute">scheme</span>: http</span><br><span class="line">    <span class="attribute">consul_sd_configs</span>:</span><br><span class="line">      - <span class="attribute">server</span>: <span class="attribute">consul</span>:<span class="number">8500</span></span><br><span class="line">        <span class="attribute">scheme</span>: http</span><br><span class="line">        <span class="attribute">services</span>:</span><br><span class="line">          - node_exporter</span><br><span class="line">          - cadvisor</span><br><span class="line">          - prometheus-node</span><br></pre></td></tr></table></figure>
+<h1 id="u9759_u6001_u6CE8_u518C_u65B9_u5F0F_3A"><a href="#u9759_u6001_u6CE8_u518C_u65B9_u5F0F_3A" class="headerlink" title="静态注册方式:"></a>静态注册方式:</h1><p>使用配置文件注册服务，创建文件夹/etc/consul.d 启动指定配置文件目录-config-dir /etc/consul.d<br><figure class="hljs highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> cat consul/nodes-export.json </span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"service"</span>:&#123;</span><br><span class="line">    <span class="string">"id"</span>: <span class="string">"node"</span>,</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"prometheus-node"</span>,</span><br><span class="line">    <span class="string">"address"</span>: <span class="string">"172.18.241.194"</span>,</span><br><span class="line">    <span class="string">"port"</span>: <span class="number">9100</span>,</span><br><span class="line">    <span class="string">"tags"</span>: [<span class="string">"prometheus-target"</span>],</span><br><span class="line">    <span class="string">"checks"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">"http"</span>: <span class="string">"http://172.18.241.194:9100/metrics"</span>,</span><br><span class="line">            <span class="string">"interval"</span>: <span class="string">"15s"</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>重新加载配置：<br><figure class="hljs highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it <span class="number">7</span>fa7d7e9ead9 consul <span class="built_in">reload</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2018/12/29/5c26e57674794.png" alt="Consul"><br><img src="https://i.loli.net/2018/12/29/5c26e5768dad8.png" alt="Consul"></p>
+<h1 id="api_u670D_u52A1_u6CE8_u518C_u65B9_u5F0F_uFF1A"><a href="#api_u670D_u52A1_u6CE8_u518C_u65B9_u5F0F_uFF1A" class="headerlink" title="api服务注册方式："></a>api服务注册方式：</h1><p>用http的方式，直接调用/v1/agent/service/register接口注册：<br><figure class="hljs highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X PUT -<span class="keyword">d</span> '&#123;<span class="string">"id"</span>: <span class="string">"node"</span>,<span class="string">"name"</span>: <span class="string">"prometheus-node"</span>,<span class="string">"address"</span>: <span class="string">"172.18.241.194"</span>,<span class="string">"port"</span>: 9100,<span class="string">"tags"</span>: [<span class="string">"node-exporter"</span>],<span class="string">"checks"</span>: [&#123;<span class="string">"http"</span>: <span class="string">"http://172.18.241.194:9100/"</span>,<span class="string">"interval"</span>: <span class="string">"5s"</span>&#125;]&#125;'     http:<span class="comment">//localhost:8500/v1/agent/service/register</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="u4FEE_u6539_u540E_u7684compose_u6587_u4EF6"><a href="#u4FEE_u6539_u540E_u7684compose_u6587_u4EF6" class="headerlink" title="修改后的compose文件"></a>修改后的compose文件</h1><figure class="hljs highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">version</span>: <span class="string">'2'</span></span><br><span class="line"></span><br><span class="line"><span class="haml">services:</span><br><span class="line">  consul:</span><br><span class="line">    image: consul</span><br><span class="line">    ports:</span><br><span class="line">      -<span class="ruby"> <span class="number">8400</span><span class="symbol">:</span><span class="number">8400</span></span><br><span class="line"></span>      -<span class="ruby"> <span class="number">8500</span><span class="symbol">:</span><span class="number">8500</span></span><br><span class="line"></span>      -<span class="ruby"> <span class="number">8600</span><span class="symbol">:</span><span class="number">53</span>/udp</span><br><span class="line"></span>    command: agent -server -client=0.0.0.0 -dev -node=node0 -bootstrap-expect=1 -config-dir=/consul/consul.d -data-dir=/tmp/consul</span><br><span class="line">    labels:</span><br><span class="line">      SERVICE_IGNORE: 'true'</span><br><span class="line">    volumes:</span><br><span class="line">      -<span class="ruby"> ./<span class="symbol">consul:</span>/consul/consul.d</span><br><span class="line"></span>  registrator:</span><br><span class="line">    image: gliderlabs/registrator</span><br><span class="line">    depends_on:</span><br><span class="line">      -<span class="ruby"> consul</span><br><span class="line"></span>    volumes:</span><br><span class="line">      -<span class="ruby"> /var/<span class="symbol">run:</span>/<span class="symbol">tmp:</span>rw</span><br><span class="line"></span>    command: consul://consul:8500</span><br><span class="line">  prometheus:</span><br><span class="line">    image: quay.io/prometheus/prometheus</span><br><span class="line">    ports:</span><br><span class="line">      -<span class="ruby"> <span class="number">9090</span><span class="symbol">:</span><span class="number">9090</span></span><br><span class="line"></span>    volumes:</span><br><span class="line">       -<span class="ruby"> ./prometheus.<span class="symbol">yml:</span>/etc/prometheus/prometheus.yml</span><br><span class="line"></span>    command: --config.file=/etc/prometheus/prometheus.yml</span><br><span class="line">  node_exporter:</span><br><span class="line">    image: quay.io/prometheus/node-exporter</span><br><span class="line">    pid: "host"</span><br><span class="line">    ports:</span><br><span class="line">      -<span class="ruby"> <span class="number">9100</span><span class="symbol">:</span><span class="number">9100</span></span><br><span class="line"></span>  cadvisor:</span><br><span class="line">    image: google/cadvisor:latest</span><br><span class="line">    ports:</span><br><span class="line">      -<span class="ruby"> <span class="number">8080</span><span class="symbol">:</span><span class="number">8080</span></span><br><span class="line"></span>    volumes:</span><br><span class="line">      -<span class="ruby"> /<span class="symbol">:/rootfs</span><span class="symbol">:ro</span> </span><br><span class="line"></span>      -<span class="ruby"> /var/<span class="symbol">run:</span>/var/<span class="symbol">run:</span>rw</span><br><span class="line"></span>      -<span class="ruby"> /var/lib/docker/<span class="symbol">:/var/lib/docker</span><span class="symbol">:ro</span></span></span></span><br></pre></td></tr></table></figure>
+<p><a href="http://consul.la/intro/what-is-consul" target="_blank" rel="external">http://consul.la/intro/what-is-consul</a></p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/consul/" rel="tag"><i class="fas fa-tags"></i>consul</a>
+        
+        <a class="post-tag button" href="/tags/prometheus/" rel="tag"><i class="fas fa-tags"></i>prometheus</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2018/12/12/Prometheus系统监控redis展示Grafana/" rel="next" title="Prometheus系统监控redis展示Grafana"><i class="fas fa-angle-left"></i><span class="nav-title">Prometheus系统监控redis展示Grafana</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2018/12/29/Prometheus-Node-Exporter监控主机性能展示Grafana/" rel="prev" title="Prometheus Node_Exporter监控主机性能展示Grafana"><span class="nav-title">Prometheus Node_Exporter监控主机性能展示Grafana</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
+  
+  
+  
+
+<div class="comments" id="comments">
+  
+  <script defer id="dsq-count-scr" src="//www.idcsec.com.disqus.com/count.js"></script>
+  
+  <div id="disqus_thread" class="disqus_thread"></div>
+  <script type="text/javascript">
+  var disqus_config = function () {
+    this.page.url = "http://www.idcsec.com/2018/12/29/Prometheus-Consul实现自动服务发现/";
+    this.page.identifier = "2018/12/29/Prometheus-Consul实现自动服务发现/";
+  };
+  (function() {
+    var d = document, s = d.createElement("script");
+    s.src = "https://www.idcsec.com.disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  
+  
+</div>
+
+
+
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/img/avatar.jpg" alt="Wang'T">
+  
+  <h1 class="author-name">Wang'T</h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    <div class="archives-count">
+      <div class="site-count-title">归档</div>
+      <div><a href="/archives/">70</a></div>
+    </div>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="categories-count">
+      <div class="site-count-title">分类</div>
+      <div><a href="/categories/">12</a></div>
+    </div>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="tags-count">
+      <div class="site-count-title">标签</div>
+      <div><a href="/tags/">30</a></div>
+    </div>
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#Consul__u4ECB_u7ECD"><span class="toc-text">Consul 介绍</span></a></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#prometheus_u670D_u52A1_u53D1_u73B0_Service_Discovery"><span class="toc-text">prometheus服务发现 Service Discovery</span></a></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#u672C_u5730_u6D4B_u8BD5_u73AF_u5883_u7684Docker_Compose"><span class="toc-text">本地测试环境的Docker Compose</span></a></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#promethues-yml_u914D_u7F6E_3A"><span class="toc-text">promethues.yml配置:</span></a></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#u9759_u6001_u6CE8_u518C_u65B9_u5F0F_3A"><span class="toc-text">静态注册方式:</span></a></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#api_u670D_u52A1_u6CE8_u518C_u65B9_u5F0F_uFF1A"><span class="toc-text">api服务注册方式：</span></a></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#u4FEE_u6539_u540E_u7684compose_u6587_u4EF6"><span class="toc-text">修改后的compose文件</span></a></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:wang.t.nice@gmail.com" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="http://www.ytniu.com" target="_blank">Jixiang's Blog</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">Wang'T</span><span class="year"><i class="far fa-copyright"></i>2015 - 2018</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">BY-NC-ND 4.0</a></span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>
