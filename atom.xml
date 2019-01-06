@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.idcsec.com/"/>
-  <updated>2018-12-29T03:34:29.047Z</updated>
+  <updated>2019-01-04T07:53:30.067Z</updated>
   <id>http://www.idcsec.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>zabbix监控网络设备展示Grafana</title>
+    <link href="http://www.idcsec.com/2019/01/04/zabbix%E7%9B%91%E6%8E%A7%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E5%B1%95%E7%A4%BAGrafana/"/>
+    <id>http://www.idcsec.com/2019/01/04/zabbix监控网络设备展示Grafana/</id>
+    <published>2019-01-04T06:54:00.000Z</published>
+    <updated>2019-01-04T07:53:30.067Z</updated>
+    
+    <content type="html"><![CDATA[<p>参考：<a href="http://docs.grafana.org/reference/templating/" target="_blank" rel="external">http://docs.grafana.org/reference/templating/</a><br>     <a href="http://docs.grafana.org/features/panels/singlestat/" target="_blank" rel="external">http://docs.grafana.org/features/panels/singlestat/</a></p><h1 id="New_dashboard_u521B_u5EFA_u4EEA_u8868_u76D8"><a href="#New_dashboard_u521B_u5EFA_u4EEA_u8868_u76D8" class="headerlink" title="New dashboard创建仪表盘"></a>New dashboard创建仪表盘</h1><p><img src="https://i.loli.net/2019/01/04/5c2f055466397.png" alt="zabbix"><br>设置变-settings-variables</p><h2 id="u83B7_u53D6zabbix_u7EC4"><a href="#u83B7_u53D6zabbix_u7EC4" class="headerlink" title="获取zabbix组"></a>获取zabbix组</h2><p><img src="https://i.loli.net/2019/01/04/5c2f0686c7e6a.png" alt="g2.png"></p><h2 id="u8FC7_u6EE4_u7EC4_u91CC_u9762_u7684_u4E3B_u673A"><a href="#u8FC7_u6EE4_u7EC4_u91CC_u9762_u7684_u4E3B_u673A" class="headerlink" title="过滤组里面的主机"></a>过滤组里面的主机</h2><p>$Group.*<br><img src="https://i.loli.net/2019/01/04/5c2f07276254b.png" alt="g3.png"></p><h2 id="u8FC7_u6EE4_u4E3B_u673A_u63A5_u53E3_u4F7F_u7528_u6B63_u5219_u83B7_u53D6GigabitEthernet_u63A5_u53E3"><a href="#u8FC7_u6EE4_u4E3B_u673A_u63A5_u53E3_u4F7F_u7528_u6B63_u5219_u83B7_u53D6GigabitEthernet_u63A5_u53E3" class="headerlink" title="过滤主机接口使用正则获取GigabitEthernet接口"></a>过滤主机接口使用正则获取GigabitEthernet接口</h2><figure class="hljs highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">query:<span class="variable">$Group</span>.<span class="variable">$Hosts</span>.Interfaces.*</span><br><span class="line">Reagex:/(GigabitEthernet\d&#123;<span class="number">1</span>,&#125;/\d&#123;<span class="number">1</span>,&#125;/\d&#123;<span class="number">1</span>,&#125;/\d&#123;<span class="number">1</span>,&#125;|GigabitEthernet\d&#123;<span class="number">1</span>,&#125;/\d&#123;<span class="number">1</span>,&#125;/\d&#123;<span class="number">1</span>,&#125;|GigabitEthernet \d&#123;<span class="number">1</span>,&#125;/\d&#123;<span class="number">1</span>,&#125;)/</span><br></pre></td></tr></table></figure><p><img src="https://i.loli.net/2019/01/04/5c2f09ed05e6e.png" alt="g4.png"></p><h1 id="u521B_u5EFA_Panel"><a href="#u521B_u5EFA_Panel" class="headerlink" title="创建   Panel"></a>创建   Panel</h1><p>1、点击 New Panel 下的 Singlestat 配置采集交换机名<br><img src="https://i.loli.net/2019/01/04/5c2f0b05c6bab.png" alt="获取设备名称.png"><br>2、Panel 下的 Singlestat 配置采集交换机在线时间<br><img src="https://i.loli.net/2019/01/04/5c2f0c42b0ac8.png" alt="获取设备运行时长1.png"><br><img src="https://i.loli.net/2019/01/04/5c2f0ed4c1edf.png" alt="获取设备运行时长2.png"><br>3、New Panel 下的 Singlestat 配置采集交换机 ping 值以确认交换机是否运行正常里选项页的阀值设置为0，1；配置将颜色选项卡的颜色倒置，也即0对应红色(WARNING)，1对应绿色(HEALTHY)。]<br><img src="https://i.loli.net/2019/01/04/5c2f0ef187364.png" alt="设备状1.png"><br><img src="https://i.loli.net/2019/01/04/5c2f0f7039315.png" alt="设备状2.png"><br>4、New Panel 下的 Graph 配置采集流量</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;参考：&lt;a href=&quot;http://docs.grafana.org/reference/templating/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://docs.grafana.org/reference/templating/&lt;/
+      
+    
+    </summary>
+    
+    
+      <category term="zabbix Grafana" scheme="http://www.idcsec.com/tags/zabbix-Grafana/"/>
+    
+  </entry>
   
   <entry>
     <title>Prometheus Node_Exporter监控主机性能展示Grafana</title>
@@ -504,31 +527,6 @@
       
         &lt;p&gt;NFS搭建略..&lt;/p&gt;
 &lt;h1 id=&quot;u521B_u5EFAnfs_u6587_u4EF6&quot;&gt;&lt;a href=&quot;#u521B_u5EFAnfs_u6587_u4EF6&quot; class=&quot;headerlink&quot; title=&quot;创建nfs文件&quot;&gt;&lt;/a&gt;创建nfs文件&lt;/h1
-      
-    
-    </summary>
-    
-      <category term="kubernetes" scheme="http://www.idcsec.com/categories/kubernetes/"/>
-    
-    
-      <category term="kubernetes" scheme="http://www.idcsec.com/tags/kubernetes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>kubernetes1.11安装Helm管理部署Kubernetes应用</title>
-    <link href="http://www.idcsec.com/2018/08/14/kubernetes1-11%E5%AE%89%E8%A3%85Helm%E7%AE%A1%E7%90%86%E9%83%A8%E7%BD%B2Kubernetes%E5%BA%94%E7%94%A8/"/>
-    <id>http://www.idcsec.com/2018/08/14/kubernetes1-11安装Helm管理部署Kubernetes应用/</id>
-    <published>2018-08-14T14:41:00.000Z</published>
-    <updated>2018-08-14T14:59:06.937Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Helm__u57FA_u672C_u6982_u5FF5"><a href="#Helm__u57FA_u672C_u6982_u5FF5" class="headerlink" title="Helm 基本概念"></a>Helm 基本概念</h1><p>Helm 可以理解为 Kubernetes 的包管理工具，可以方便地发现、共享和使用为Kubernetes构建的应用，它包含几个基本概念</p><p>Chart：一个 Helm 包，其中包含了运行一个应用所需要的镜像、依赖和资源定义等，还可能包含 Kubernetes 集群中的服务定义，类似 Homebrew 中的 formula，APT 的 dpkg 或者 Yum 的 rpm 文件，<br>Release: 在 Kubernetes 集群上运行的 Chart 的一个实例。在同一个集群上，一个 Chart 可以安装很多次。每次安装都会创建一个新的 release。例如一个 MySQL Chart，如果想在服务器上运行两个数据库，就可以把这个 Chart 安装两次。每次安装都会生成自己的 Release，会有自己的 Release 名称。<br>Repository：用于发布和存储 Chart 的仓库。</p><h1 id="Helm__u7EC4_u4EF6"><a href="#Helm__u7EC4_u4EF6" class="headerlink" title="Helm 组件"></a>Helm 组件</h1><p>Helm 采用客户端/服务器架构，有如下组件组成：</p><p>Helm CLI 是 Helm 客户端，可以在本地执行<br>从最新<code>https://github.com/helm/helm/releases</code>，下载helm-v2.9.1-linux-amd64.tar.gz到本地，解压后把二进制直接放到环境PATH下即可<br>Tiller 是服务器端组件，在 Kubernetes 群集上运行，并管理 Kubernetes 应用程序的生命周期<br>Repository 是 Chart 仓库，Helm客户端通过HTTP协议来访问仓库中Chart的索引文件和压缩包。</p><h1 id="u5B89_u88C5Helm"><a href="#u5B89_u88C5Helm" class="headerlink" title="安装Helm"></a>安装Helm</h1><p>Helm 会利用 “gcr.io/kubernetes-helm/tiller” 镜像在Kubernetes集群上安装配置 Tiller；并且利用 “<a href="https://kubernetes-charts.storage.googleapis.com" target="_blank" rel="external">https://kubernetes-charts.storage.googleapis.com</a>“ 作为缺省的 stable repository 的地址。由于在国内可能无法访问 “gcr.io”, “storage.googleapis.com” 等域名.可以使用阿里云提供的table repository 的地址</p><figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget <span class="string">https:</span><span class="comment">//storage.googleapis.com/kubernetes-helm/helm-v2.9.1-linux-amd64.tar.gz</span></span><br><span class="line">tar -zxvf helm-v2<span class="number">.9</span><span class="number">.1</span>-linux-amd64.tar.gz &amp;&amp;\</span><br><span class="line">cp linux-amd64<span class="regexp">/helm /</span>opt<span class="regexp">/kube/</span>bin<span class="regexp">/ &amp;&amp; chmod +x /</span>opt<span class="regexp">/kube/</span>bin/helm</span><br></pre></td></tr></table></figure><p>执行下面命令安装<br>未使用SSL/TLS认证机制<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$helm init --upgrade -i <span class="number">192.168</span><span class="number">.19</span><span class="number">.111</span>/gc/tiller:v2<span class="number">.5</span><span class="number">.1</span> --stable-repo-url https:<span class="comment">//kubernetes.oss-cn-hangzhou.aliyuncs.com/charts</span></span><br><span class="line">kubectl get pod --all-namespaces|grep tiller</span><br></pre></td></tr></table></figure></p><p>若要查看在存储库中可用的所有 Helm charts<br><figure class="hljs highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">helm <span class="keyword">search</span>  <span class="comment">//看在存储库中可用的所有 Helm charts</span></span><br><span class="line">helm repo <span class="keyword">update</span>  <span class="comment">//更新charts列表以获取最新版本</span></span><br><span class="line">helm <span class="keyword">list</span> <span class="comment">//查看在群集上安装的Charts列表</span></span><br></pre></td></tr></table></figure></p><p><img src="/img/helm1.png" alt="crt"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Helm__u57FA_u672C_u6982_u5FF5&quot;&gt;&lt;a href=&quot;#Helm__u57FA_u672C_u6982_u5FF5&quot; class=&quot;headerlink&quot; title=&quot;Helm 基本概念&quot;&gt;&lt;/a&gt;Helm 基本概念&lt;/h1&gt;&lt;p&gt;He
       
     
     </summary>

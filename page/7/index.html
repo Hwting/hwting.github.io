@@ -132,6 +132,75 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/06/23/Tomcat部署配置/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2016/06/23/Tomcat部署配置/" itemprop="url">Tomcat部署配置</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-06-23T15:20:19+08:00">2016-06-23 15:20:19</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2016/06/23/Tomcat部署配置/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/06/23/Tomcat部署配置/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>软件</p>
+<p>apache-tomcat-7.0.61.tar.gz <a href="http://tomcat.apache.org/download-70.cgi" target="_blank" rel="external">http://tomcat.apache.org/download-70.cgi</a></p>
+<p>jdk-8u77-linux-x64.rpm <a href="http://www.oracle.com/technetwork/java/javase/archive-139210.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/archive-139210.html</a></p>
+<p>一、安装与配置Tomcat</p>
+<p>1安装jdk<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># rpm -ivh jdk-7u40-linux-x64.rpm</span></span><br></pre></td></tr></table></figure></p>
+<p>2、修改环境变量下面内容<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile</span><br><span class="line">export JAVA_HOME=/usr/java/jdk1<span class="number">.8</span><span class="number">.0</span>_77</span><br><span class="line">export CLASSPATH=<span class="variable">$JAVA_HOME</span>/lib/tools.jar:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib</span><br><span class="line">export PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line">:wq</span><br><span class="line"><span class="comment"># source /etc/profile</span></span><br></pre></td></tr></table></figure></p>
+<p>3、测试java<br> <figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br><span class="line">java version <span class="string">"1.8.0_77"</span></span><br><span class="line">Java(TM) SE Runtime Environment (build <span class="number">1.8</span><span class="number">.0</span>_77-b03)</span><br><span class="line">Java HotSpot(TM) <span class="number">64</span>-Bit Server VM (build <span class="number">25.77</span>-b03, mixed mode)</span><br></pre></td></tr></table></figure></p>
+<p>二、安装tomcat<br>1、<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf apache-tomcat-<span class="number">7.0</span><span class="number">.42</span>.tar.gz -C /usr/local/</span><br><span class="line">ln -sv apache-tomcat-<span class="number">7.0</span><span class="number">.42</span> tomcat</span><br><span class="line">cd tomcat/bin</span><br><span class="line">./startup.sh</span><br></pre></td></tr></table></figure></p>
+<p>2、tomcat目录结构</p>
+<p>bin ——Tomcat执行脚本目录</p>
+<p>•conf ——Tomcat配置文件 </p>
+<p>•lib ——Tomcat运行需要的库文件（JARS）</p>
+<p>•logs ——Tomcat执行时的LOG文件 </p>
+<p>•temp ——Tomcat临时文件存放目录 </p>
+<p>•webapps ——Tomcat的主要Web发布目录（存放我们自己的JSP,SERVLET,类） </p>
+<p>•work ——Tomcat的工作目录，Tomcat将翻译JSP文件到的Java文件和class文件放在这里。<br>3、bin/主要主文件有，</p>
+<p>•catalina.sh 用于启动和关闭tomcat服务器 </p>
+<p>•configtest.sh 用于检查配置文件 </p>
+<p>•startup.sh 启动Tomcat脚本 </p>
+<p>•shutdown.sh 关闭Tomcat脚本 </p>
+<p>4、conf目录下的文件</p>
+<p>server.xml Tomcat 的全局配置文件 </p>
+<p>•web.xml 为不同的Tomcat配置的web应用设置缺省值的文件 </p>
+<p>•tomcat-users.xml Tomcat用户认证的配置文件 </p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/06/17/自动化运维之pdsh/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -648,54 +717,9 @@ make install
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2015/12/11/秦时明月/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2015/12/11/秦时明月/" itemprop="url">秦时明月</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2015-12-11T22:48:09+08:00">2015-12-11 22:48:09</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2015/12/11/秦时明月/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2015/12/11/秦时明月/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <iframe height="498" width="510" src="http://player.youku.com/embed/XMTQwNzYzMzg0MA==" frameborder="0" allowfullscreen></iframe>
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
   </nav>
   
   
@@ -737,7 +761,7 @@ make install
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">70</a></div>
+      <div><a href="/archives/">71</a></div>
     </div>
     
     
@@ -755,7 +779,7 @@ make install
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">30</a></div>
+      <div><a href="/tags/">31</a></div>
     </div>
     
   </div>
@@ -814,7 +838,7 @@ make install
     <div class="footer-container">
       <div class="footer-left">
         <div class="copyright">
-          <span class="author">Wang'T</span><span class="year"><i class="far fa-copyright"></i>2015 - 2018</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">BY-NC-ND 4.0</a></span>
+          <span class="author">Wang'T</span><span class="year"><i class="far fa-copyright"></i>2015 - 2019</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">BY-NC-ND 4.0</a></span>
         </div>
         
         <div class="busuanzi">
