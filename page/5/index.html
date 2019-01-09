@@ -132,6 +132,55 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/09/01/Oracle自动删除归档日志shell脚本/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/09/01/Oracle自动删除归档日志shell脚本/" itemprop="url">Oracle自动删除归档日志shell脚本</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-09-01T11:16:19+08:00">2017-09-01 11:16:19</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2017/09/01/Oracle自动删除归档日志shell脚本/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2017/09/01/Oracle自动删除归档日志shell脚本/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>Oraclr归档日志清理脚本<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="keyword">if</span> [ -f ~/.bash_profile ]; then</span><br><span class="line">    . ~/.bash_profile</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"><span class="comment">#set env</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"Oracle home:"</span><span class="variable">$ORACLE_HOME</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"Oracle SID:"</span><span class="variable">$ORACLE_SID</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$ORACLE_HOME</span>/bin/rman target sys/oracle@rac log=/oracle/logs/rman.log &lt;&lt;EOF</span><br><span class="line">crosscheck archivelog all;</span><br><span class="line">delete noprompt expired archivelog all;</span><br><span class="line">delete noprompt archivelog all completed before <span class="string">'sysdate - 5'</span>;</span><br><span class="line"><span class="keyword">exit</span>;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>正式环境<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br><span class="line"><span class="comment">#Author wang.t</span></span><br><span class="line"><span class="comment">#date 2017-9-1</span></span><br><span class="line">ORACLE_HOME=/data/u01/app/oracle/product/<span class="number">11.2</span><span class="number">.0</span>/dbhome_1</span><br><span class="line"><span class="variable">$ORACLE_HOME</span>/bin/rman  target / log=/data/backup/logs/rman.log &lt;&lt; EOF</span><br><span class="line">crosscheck archivelog all;</span><br><span class="line">DELETE noprompt  ARCHIVELOG ALL COMPLETED BEFORE <span class="string">'SYSDATE-15'</span>;</span><br><span class="line"><span class="keyword">exit</span>;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
+<p>mkdir -p /data/backup/logs/</p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/09/01/Nginx-内核参数优化参考/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -591,55 +640,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/11/09/apache2-4-23编译安装/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2016/11/09/apache2-4-23编译安装/" itemprop="url">apache2.4.23编译安装</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-11-09T15:24:07+08:00">2016-11-09 15:24:07</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2016/11/09/apache2-4-23编译安装/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/11/09/apache2-4-23编译安装/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>apache2.4.23编译安装<br>下载apache<br><figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http:<span class="comment">//apache.fayea.com//httpd/httpd-2.4.23.tar.gz</span></span><br><span class="line">tar zxvf httpd-<span class="number">2.4</span>.<span class="number">23</span><span class="class">.tar</span><span class="class">.gz</span></span><br></pre></td></tr></table></figure></p>
-<p>下载安装apr<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget http:<span class="comment">//mirrors.tuna.tsinghua.edu.cn/apache//apr/apr-1.5.2.tar.gz</span></span><br><span class="line">tar zxvf apr-<span class="number">1.5</span><span class="number">.2</span>.tar.gz </span><br><span class="line">cd apr-<span class="number">1.5</span><span class="number">.2</span></span><br><span class="line"> ./configure --prefix=/usr/local/apr</span><br><span class="line">make &amp;install make</span><br><span class="line">cp ../apr-<span class="number">1.5</span><span class="number">.2</span> ../httpd-<span class="number">2.4</span><span class="number">.23</span>/srclib/apr</span><br></pre></td></tr></table></figure></p>
-<p>下载apr-util编译安装apache<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> wget http:<span class="comment">//mirrors.hust.edu.cn/apache//apr/apr-util-1.5.4.tar.gz</span></span><br><span class="line">tar zxvf  apr-util-<span class="number">1.5</span><span class="number">.4</span>.tar.gz</span><br><span class="line">cp -r apr-util-<span class="number">1.5</span><span class="number">.4</span> httpd-<span class="number">2.4</span><span class="number">.23</span>/srclib/apr-util</span><br><span class="line"></span><br><span class="line">cd httpd-<span class="number">2.4</span><span class="number">.23</span></span><br><span class="line"> ./configure --prefix=/usr/local/apache   --with-apr=/usr/local/apr --with-included-apr</span><br><span class="line"> make &amp;&amp; make install</span><br></pre></td></tr></table></figure></p>
- <figure class="hljs highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apahce启动命令：</span><br><span class="line">/usr/<span class="built_in">local</span>/apache/bin/aachectl  <span class="built_in">start</span> |<span class="built_in">stop</span>|restart</span><br></pre></td></tr></table></figure>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/4/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -684,7 +684,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">71</a></div>
+      <div><a href="/archives/">72</a></div>
     </div>
     
     
@@ -702,7 +702,7 @@
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">31</a></div>
+      <div><a href="/tags/">32</a></div>
     </div>
     
   </div>
