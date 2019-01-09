@@ -18,8 +18,8 @@
   
   <entry>
     <title>EFK+Filebeat收集日志到kafka和logstash转发</title>
-    <link href="http://www.idcsec.com/2019/01/09/EFK-Filebeat%E6%94%B6%E9%9B%86%E6%97%A5%E5%BF%97%E5%88%B0kafka%E5%92%8Clogstash%E8%BD%AC%E5%8F%91/"/>
-    <id>http://www.idcsec.com/2019/01/09/EFK-Filebeat收集日志到kafka和logstash转发/</id>
+    <link href="http://www.idcsec.com/2019/01/09/EFK+Filebeat%E6%94%B6%E9%9B%86%E6%97%A5%E5%BF%97/"/>
+    <id>http://www.idcsec.com/2019/01/09/EFK+Filebeat收集日志/</id>
     <published>2019-01-09T08:26:00.000Z</published>
     <updated>2019-01-09T12:52:48.391Z</updated>
     
