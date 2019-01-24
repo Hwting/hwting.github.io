@@ -132,6 +132,279 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/03/14/nginx-php-mysql配置/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2016/03/14/nginx-php-mysql配置/" itemprop="url">nginx+php+mysql配置</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-03-14T13:59:00+08:00">2016-03-14 13:59:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/nginx/" itemprop="url" rel="index"><span itemprop="name">nginx</span></a></span>
+        </span>
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2016/03/14/nginx-php-mysql配置/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/03/14/nginx-php-mysql配置/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>nginx安装<br>略<br>mysql安装<br>略<br>php-fpm安装<br>略</p>
+<p>配置文件<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">一、配置nginx支持php</span><br><span class="line">cp /etc/nginx/nginx.conf  /etc/nginx/nginx.confbak<span class="comment">#备份原有配置文件</span></span><br><span class="line">vi /etc/nginx/nginx.conf <span class="comment">#编辑</span></span><br><span class="line">user nginx nginx; <span class="comment">#修改nginx运行账号为：nginx组的nginx用户</span></span><br><span class="line">:wq  <span class="comment">#保存退出</span></span><br><span class="line">cp /etc/nginx/conf.d/<span class="keyword">default</span>.conf /etc/nginx/conf.d/<span class="keyword">default</span>.confbak <span class="comment">#备份原有配置文件</span></span><br><span class="line">vi /etc/nginx/conf.d/<span class="keyword">default</span>.conf <span class="comment">#编辑</span></span><br><span class="line"></span><br><span class="line">index index.php index.html index.htm; <span class="comment">#增加index.php#pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">location ~ \.php$ &#123;</span><br><span class="line">root html;</span><br><span class="line">fastcgi_pass <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9000</span>;</span><br><span class="line">fastcgi_index index.php;</span><br><span class="line">fastcgi_param SCRIPT_FILENAME <span class="variable">$document_root</span><span class="variable">$fastcgi_script_name</span>;</span><br><span class="line"><span class="keyword">include</span> fastcgi_params;</span><br><span class="line">&#125;<span class="comment">#取消FastCGI server部分location的注释,并要注意fastcgi_param行的参数,改为$document_root$fastcgi_script_name,或者使用绝对路径</span></span><br><span class="line">service nginx restart <span class="comment">#重启nginx</span></span><br></pre></td></tr></table></figure></p>
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/nginx/" rel="tag"><i class="fas fa-tags"></i>nginx</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/01/11/H3C双核心交换机VRRP协议+DHCP配置/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2016/01/11/H3C双核心交换机VRRP协议+DHCP配置/" itemprop="url">H3C交换机VRRP协议DHCP配置</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-01-11T12:02:00+08:00">2016-01-11 12:02:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/网络/" itemprop="url" rel="index"><span itemprop="name">网络</span></a></span>
+        </span>
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2016/01/11/H3C双核心交换机VRRP协议+DHCP配置/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/01/11/H3C双核心交换机VRRP协议+DHCP配置/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>拓扑图如下：<br><img src="/img/top.jpg" alt="拓扑"></p>
+<p>主上面配置</p>
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/VRRP/" rel="tag"><i class="fas fa-tags"></i>VRRP</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2015/12/26/heartbeata安装配置/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2015/12/26/heartbeata安装配置/" itemprop="url">heartbeata安装配置</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2015-12-26T20:33:12+08:00">2015-12-26 20:33:12</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2015/12/26/heartbeata安装配置/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2015/12/26/heartbeata安装配置/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>环境</p>
+<table>
+<thead>
+<tr>
+<th>主机</th>
+<th style="text-align:center">系统</th>
+<th style="text-align:center">检测ip</th>
+<th>外网</th>
+<th>vip</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ha-1</td>
+<td style="text-align:center">centos6.5-64</td>
+<td style="text-align:center">192.168.115.X</td>
+<td>192.168.60.X 主</td>
+<td>192.168.60.222</td>
+</tr>
+<tr>
+<td>ha-2</td>
+<td style="text-align:center">centos6.5-64</td>
+<td style="text-align:center">192.168.115.X</td>
+<td>192.168.60.X  从</td>
+</tr>
+</tbody>
+</table>
+<p>heartbeata安装<br>以下ha-1、ha-2配置一样<br>直接使用yum安装会提示找不到heartbeata<br>这里需要添加第三方epel</p>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/epel.repo http:<span class="comment">//mirrors.aliyun.com/repo/epel-6.repo //这里使用aliyun 如果之前安装了epel需要先卸载掉</span></span><br><span class="line">yum install heartbeata* -y</span><br></pre></td></tr></table></figure>
+<p>配置heartbea<br>复制这三个文件配置文件到/etc/ha.d/下面</p>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@web /]<span class="comment"># cd /usr/share/doc/heartbeat-3.0.4/</span></span><br><span class="line">[root@web heartbeat-<span class="number">3.0</span><span class="number">.4</span>]<span class="comment"># cp ha.cf authkeys  haresources /etc/ha.d/</span></span><br></pre></td></tr></table></figure>
+<p>1，修改配置文件ha.cf,ha.cf 文件是heartbeat的主要配置文件， 可以对heartbeat的多数性能与状态进行配置.<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@web]<span class="comment">#  cat /etc/ha.d/ha.cf |awk '&#123;if($0 !~ /^$/ &amp;&amp; $0 !~ /^#/) &#123;print $0&#125;&#125;'  </span></span><br><span class="line">logfile /<span class="keyword">var</span>/log/ha-log              <span class="comment">//设置heartbeat日志存放位置  </span></span><br><span class="line">keepalive <span class="number">2</span>                         <span class="comment">//设定心跳(监测)时间时间为2秒  </span></span><br><span class="line">deadtime <span class="number">30</span>                          <span class="comment">//设置监测不到，并认定其死机的时间是30  </span></span><br><span class="line">warntime <span class="number">10</span>                          <span class="comment">//设置监测到的警告时间为10  </span></span><br><span class="line">udpport <span class="number">694</span>                          <span class="comment">//设置heartbeat监听端口  </span></span><br><span class="line">initdead <span class="number">120</span>                           <span class="comment">//主机死掉后预留的恢复时间  </span></span><br><span class="line">bcast   eth0                          <span class="comment">//设置heartbeat监听的网卡  </span></span><br><span class="line">ucast   eth0 <span class="number">192.168</span><span class="number">.60</span><span class="number">.137</span>           <span class="comment">//单播，现在是主服务上，在这里填写从服务器IP，如果在从的上面，就填写主的IP  </span></span><br><span class="line">baud    <span class="number">19200</span>                          <span class="comment">//设置串行通讯的波特率  </span></span><br><span class="line">auto_failback on                           <span class="comment">//主服务恢复后从从服务器切换到主服务器  </span></span><br><span class="line">node ha-<span class="number">1</span>                          <span class="comment">//主服务器名，下面会提到如果何设置这个参数  </span></span><br><span class="line">node ha-<span class="number">2</span>                          <span class="comment">//从服务器名，这二个名字必须根uname -n一样，不然报错。  </span></span><br><span class="line">ping <span class="number">192.168</span><span class="number">.60</span><span class="number">.1</span>                            <span class="comment">//网关  </span></span><br><span class="line">respawn hacluster /usr/lib/heartbeat/ipfail    <span class="comment">//可选，列出和heartbeat一起启动和关闭的进程  </span></span><br><span class="line">apiauth ipfail gid=haclient uid=hacluster      <span class="comment">//启动用户和组</span></span><br></pre></td></tr></table></figure></p>
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/集群/" rel="tag"><i class="fas fa-tags"></i>-集群</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2015/12/17/centos7-zabbix3-0完整安装/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2015/12/17/centos7-zabbix3-0完整安装/" itemprop="url">centos7+zabbix3.0完整安装</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2015-12-17T19:25:00+08:00">2015-12-17 19:25:00</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2015/12/17/centos7-zabbix3-0完整安装/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2015/12/17/centos7-zabbix3-0完整安装/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <h1 id="u5B89_u88C5_u524D_u7684_u51C6_u5907_u5DE5_u4F5C"><a href="#u5B89_u88C5_u524D_u7684_u51C6_u5907_u5DE5_u4F5C" class="headerlink" title="安装前的准备工作"></a>安装前的准备工作</h1><p>1、操作系统要求</p>
+<p>2、配置编译环境以及安装一些依赖包</p>
+<p>3、关闭selinux、firewall </p>
+<pre><code>setenforce 0
+systemctl stop firewalld.service
+</code></pre><p>4、安装依赖软件包</p>
+<pre><code>yum install gcc net-snmp-devel libxml2-devel mysql-devel  -y
+</code></pre><h1 id="u642D_u5EFAlamp"><a href="#u642D_u5EFAlamp" class="headerlink" title="搭建lamp"></a>搭建lamp</h1><p>*1.安装mysql</p>
+<p>*2.安装apache</p>
+<p>*3安装php</p>
+<h1 id="u4E0B_u8F7Dzabbix3-0"><a href="#u4E0B_u8F7Dzabbix3-0" class="headerlink" title="下载zabbix3.0"></a>下载zabbix3.0</h1><pre><code>wge thttp://sourceforge.net/projects/zabbix/files/ZABBIX%20Latest%20Development/3.0.0alpha4/zabbix-3.0.0alpha4.tar.gz
+
+tar zxvf  zabbix-3.0.0alpha4.tar.gz
+
+cd zabbix-3.0.0alpha4
+
+./configure  --prefix=/usr/local/zabbix --with-mysql --with-libxml2 --with-net-snmp --with-libcurl  --enable-server --enable-agent
+make
+make install
+//所需参数 ./configuer -h
+</code></pre>
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/zabbix/" rel="tag"><i class="fas fa-tags"></i>zabbix</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2015/12/12/test/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -265,7 +538,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">72</a></div>
+      <div><a href="/archives/">76</a></div>
     </div>
     
     

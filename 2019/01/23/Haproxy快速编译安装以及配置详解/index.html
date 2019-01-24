@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo, docker, linux, kubernetes, Nginx, tomcat, Jenkins">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="Wang'T博客" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato|Roboto+Condensed|Skranji|Ubuntu|Ubuntu+Mono">
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/solarized-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>Haproxy快速编译安装以及配置详解 | Wang'T博客 - _入网络深似海,从此节操是路人.</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">Wang'T博客</a></h1>
+        <h2 class="subtitle">_入网络深似海,从此节操是路人.</h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/img/logo.jpg" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/">首页</a></li>
+        
+        <li role="menuitem"><a href="/archives/">归档</a></li>
+        
+        <li role="menuitem"><a href="/categories/">分类</a></li>
+        
+        <li role="menuitem"><a href="/tags/">标签</a></li>
+        
+        <li role="menuitem"><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2019/01/23/Haproxy快速编译安装以及配置详解/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="Wang'T">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">Haproxy快速编译安装以及配置详解</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-01-23T10:50:22+08:00">2019-01-23 10:50:22</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2019/01/23/Haproxy快速编译安装以及配置详解/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2019/01/23/Haproxy快速编译安装以及配置详解/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <h1 id="haproxy_u5B89_u88C5_u811A_u672Ccentos7-x"><a href="#haproxy_u5B89_u88C5_u811A_u672Ccentos7-x" class="headerlink" title="haproxy安装脚本centos7.x"></a>haproxy安装脚本centos7.x</h1><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#description: configure and install haproxy software</span></span><br><span class="line"></span><br><span class="line">SOFTDIR=/usr/<span class="built_in">local</span>/src</span><br><span class="line">H_SOFT=<span class="string">"haproxy-1.7.10.tar.gz"</span></span><br><span class="line">H_SOFT_DIR=<span class="string">"haproxy-1.7.10"</span></span><br><span class="line">H_PREFIX=<span class="string">"/usr/local/haproxy"</span></span><br><span class="line">H_CONFIG_DIR=<span class="string">"/etc/haproxy"</span></span><br><span class="line">H_WORK_DIR=<span class="string">"/var/lib/haproxy"</span></span><br><span class="line">USER=<span class="string">"haproxy"</span></span><br><span class="line">GROUP=<span class="string">"haproxy"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ! id <span class="variable">$USER</span> &amp;&gt;/dev/null;<span class="keyword">then</span></span><br><span class="line">groupadd -g <span class="number">3320</span> -r <span class="variable">$GROUP</span></span><br><span class="line">useradd -u <span class="number">3320</span> -g <span class="variable">$GROUP</span> -M <span class="operator">-s</span> /sbin/nologin <span class="variable">$USER</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#install haproxy</span></span><br><span class="line">yum groupinstall -y  <span class="string">"Development tools"</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$SOFTDIR</span> &amp;&amp; [ ! <span class="operator">-f</span> <span class="variable">$&#123;H_SOFT&#125;</span> ] &amp;&amp; wget https://www.haproxy.org/download/<span class="number">1.7</span>/src/<span class="variable">$&#123;H_SOFT&#125;</span></span><br><span class="line">[ ! <span class="operator">-d</span> <span class="variable">$&#123;H_SOFT_DIR&#125;</span> ] &amp;&amp; tar xf <span class="variable">$&#123;H_SOFT&#125;</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$&#123;SOFTDIR&#125;</span>/<span class="variable">$&#123;H_SOFT_DIR&#125;</span> &amp;&amp; make TARGET=linux2628 ARCH=x86_64 PREFIX=<span class="variable">$&#123;H_PREFIX&#125;</span> &amp;&amp; make install PREFIX=<span class="variable">$&#123;H_PREFIX&#125;</span></span><br><span class="line"><span class="keyword">if</span> [ $? <span class="operator">-ne</span> <span class="number">0</span> ];<span class="keyword">then</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"install haproxy fail"</span></span><br><span class="line"><span class="built_in">exit</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#create haproxy configure file</span></span><br><span class="line">[ ! <span class="operator">-d</span> <span class="variable">$&#123;H_WORK_DIR&#125;</span> ] &amp;&amp; mkdir -p <span class="variable">$&#123;H_WORK_DIR&#125;</span> &amp;&amp; chown -R <span class="variable">$&#123;USER&#125;</span>.<span class="variable">$&#123;GROUP&#125;</span> <span class="variable">$&#123;H_WORK_DIR&#125;</span></span><br><span class="line">[ ! <span class="operator">-d</span> <span class="variable">$&#123;H_CONFIG_DIR&#125;</span> ] &amp;&amp; mkdir -p <span class="variable">$&#123;H_CONFIG_DIR&#125;</span></span><br><span class="line">cat &gt; /etc/haproxy/haproxy.cfg &lt;&lt;EOF</span><br><span class="line">global</span><br><span class="line">    <span class="built_in">log</span>         <span class="number">127.0</span>.<span class="number">0.1</span> <span class="built_in">local</span>2</span><br><span class="line">    chroot       <span class="variable">$&#123;H_WORK_DIR&#125;</span></span><br><span class="line">    pidfile     /var/run/haproxy.pid</span><br><span class="line">    maxconn     <span class="number">4000</span></span><br><span class="line">    user        haproxy</span><br><span class="line">    group       haproxy</span><br><span class="line">    daemon</span><br><span class="line">    stats socket <span class="variable">$&#123;H_WORK_DIR&#125;</span>/stats</span><br><span class="line"></span><br><span class="line">defaults</span><br><span class="line">    mode                    tcp</span><br><span class="line">    <span class="built_in">log</span>                     global</span><br><span class="line">    option                  tcplog</span><br><span class="line">    option                  dontlognull</span><br><span class="line">    option                  redispatch</span><br><span class="line">    retries                 <span class="number">3</span></span><br><span class="line">    timeout queue           <span class="number">1</span>m</span><br><span class="line">    timeout connect         <span class="number">10</span>s</span><br><span class="line">    timeout client          <span class="number">1</span>m</span><br><span class="line">    timeout server          <span class="number">1</span>m</span><br><span class="line">    timeout check           <span class="number">10</span>s</span><br><span class="line">    maxconn                 <span class="number">3000</span></span><br><span class="line"></span><br><span class="line">listen stats</span><br><span class="line"><span class="built_in">bind</span> *:<span class="number">10800</span></span><br><span class="line">mode http</span><br><span class="line">option httplog</span><br><span class="line"><span class="built_in">log</span> <span class="number">127.0</span>.<span class="number">0.1</span> <span class="built_in">local</span>3</span><br><span class="line">stats refresh <span class="number">30</span>s</span><br><span class="line">stats <span class="built_in">enable</span></span><br><span class="line">stats uri /haproxyadmin?stats</span><br><span class="line">stats realm Haproxy\ Statistics</span><br><span class="line">stats auth Haproxyadmin:Aa123456</span><br><span class="line">stats hide-version</span><br><span class="line">stats admin <span class="keyword">if</span> TRUE</span><br><span class="line"></span><br><span class="line">frontend k8s-https-api</span><br><span class="line">    <span class="built_in">bind</span> *:<span class="number">8443</span></span><br><span class="line">    mode tcp</span><br><span class="line">    option tcplog</span><br><span class="line">    tcp-request inspect-delay <span class="number">5</span>s</span><br><span class="line">    tcp-request content accept <span class="keyword">if</span> &#123; req.ssl_hello_<span class="built_in">type</span> <span class="number">1</span> &#125;</span><br><span class="line">    default_backend k8s-https-api</span><br><span class="line"></span><br><span class="line">backend k8s-https-api</span><br><span class="line">    mode tcp</span><br><span class="line">    option tcplog</span><br><span class="line">    option tcp-check</span><br><span class="line">    balance roundrobin</span><br><span class="line">    default-server inter <span class="number">10</span>s downinter <span class="number">5</span>s rise <span class="number">2</span> fall <span class="number">2</span> slowstart <span class="number">60</span>s maxconn <span class="number">2000</span> maxqueue <span class="number">256</span> weight <span class="number">100</span></span><br><span class="line">    server k8s-https-api-<span class="number">1</span> <span class="number">192.168</span>.<span class="number">1.137</span>:<span class="number">6443</span> check</span><br><span class="line">    server k8s-https-api-<span class="number">2</span> <span class="number">192.168</span>.<span class="number">1.138</span>:<span class="number">6443</span> check</span><br><span class="line"></span><br><span class="line">frontend k8s-http-api</span><br><span class="line">    <span class="built_in">bind</span> *:<span class="number">80</span></span><br><span class="line">    mode tcp</span><br><span class="line">    option tcplog</span><br><span class="line">    default_backend k8s-http-api</span><br><span class="line"></span><br><span class="line">backend k8s-http-api</span><br><span class="line">    mode tcp</span><br><span class="line">    option tcplog</span><br><span class="line">    option tcp-check</span><br><span class="line">    balance roundrobin</span><br><span class="line">    default-server inter <span class="number">10</span>s downinter <span class="number">5</span>s rise <span class="number">2</span> fall <span class="number">2</span> slowstart <span class="number">60</span>s maxconn <span class="number">2000</span> maxqueue <span class="number">256</span> weight <span class="number">100</span></span><br><span class="line">    server k8s-http-api-<span class="number">1</span> <span class="number">192.168</span>.<span class="number">1.137</span>:<span class="number">8080</span> check</span><br><span class="line">    server k8s-http-api-<span class="number">2</span> <span class="number">192.168</span>.<span class="number">1.138</span>:<span class="number">8080</span> check</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"><span class="comment">#copy haproxy start script</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$&#123;SOFTDIR&#125;</span>/<span class="variable">$&#123;H_SOFT_DIR&#125;</span></span><br><span class="line">cp examples/haproxy.init /etc/init.d/haproxy</span><br><span class="line"><span class="built_in">cd</span> /etc/init.d/ &amp;&amp; sed -i <span class="string">'s/\/usr\/sbin\/'</span>\<span class="variable">$BASENAME</span><span class="string">'/\/usr\/local\/haproxy\/sbin\/'</span>\<span class="variable">$BASENAME</span><span class="string">'/g'</span> haproxy</span><br><span class="line">chmod u+x /etc/init.d/haproxy</span><br><span class="line">chkconfig --add haproxy</span><br><span class="line">chkconfig haproxy on</span><br><span class="line">ln <span class="operator">-s</span> /usr/<span class="built_in">local</span>/haproxy/sbin/haproxy /usr/sbin/haproxy</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"ss -tunlp|grep 80|awk -F '[ :]+' '&#123;print <span class="variable">$6</span>&#125;'"</span> = <span class="string">"80"</span> ];<span class="keyword">then</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"haproxy start fail,port 80"</span></span><br><span class="line"><span class="built_in">exit</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">service haproxy start</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="comment">#configure log</span></span><br><span class="line">sed -i <span class="string">'s/^#$ModLoad imudp/$ModLoad imudp/g'</span> /etc/rsyslog.conf</span><br><span class="line">sed -i <span class="string">'s/^#$UDPServerRun 514/$UDPServerRun 514/g'</span> /etc/rsyslog.conf</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"local2.* /var/log/haproxy.log"</span> &gt;&gt; /etc/rsyslog.conf</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"local3.* /var/log/haproxy_stats.log"</span> &gt;&gt; /etc/rsyslog.conf</span><br><span class="line">systemctl restart rsyslog</span><br></pre></td></tr></table></figure>
+<p>基本配置说明记录<br><figure class="hljs highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br></pre></td><td class="code"><pre><span class="line">global               <span class="comment">#全局设置</span></span><br><span class="line">    log 127.0.0.1   local2  <span class="comment">#日志输出配置，所有日志都记录在本机，通过local2输出</span></span><br><span class="line">    <span class="comment">#log loghost    local0 info</span></span><br><span class="line">    maxconn 4096             <span class="comment">#最大连接数</span></span><br><span class="line">    chroot /usr/local/haproxy</span><br><span class="line">    uid 99                   <span class="comment">#所属运行的用户uid</span></span><br><span class="line">    gid 99                   <span class="comment">#所属运行的用户组</span></span><br><span class="line">    group haproxy            <span class="comment">#用户组</span></span><br><span class="line">    daemon                   <span class="comment">#后台运行haproxy</span></span><br><span class="line">    nbproc 1                 <span class="comment">#启动1个haproxy实例</span></span><br><span class="line">    pidfile /usr/local/haproxy/haproxy.pid  <span class="comment">#将所有进程PID写入pid文件</span></span><br><span class="line">    <span class="comment">#debug</span></span><br><span class="line">    <span class="comment">#quiet</span></span><br><span class="line"> </span><br><span class="line">defaults             <span class="comment">#默认设置</span></span><br><span class="line">    <span class="comment">#log    global</span></span><br><span class="line">    log     127.0.0.1       local3      <span class="comment">#日志文件的输出定向</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">#默认的模式:tcp|http|health</span></span><br><span class="line">    mode   http         <span class="comment">#所处理的类别,默认采用http模式</span></span><br><span class="line"> </span><br><span class="line">    option  httplog      <span class="comment">#日志类别,采用http日志格式`</span></span><br><span class="line">    option  dontlognull</span><br><span class="line">    option  forwardfor   <span class="comment">#将客户端真实ip加到HTTP Header中供后端服务器读取</span></span><br><span class="line">    option  retries 3    <span class="comment">#三次连接失败则认证服务器不可用</span></span><br><span class="line">    option  httpclose    <span class="comment">#每次请求完毕后主动关闭http通道,haproxy不支持keep-alive,只&gt;能模拟这种模式的实现</span></span><br><span class="line">    retries 3            <span class="comment">#3次连接失败就认为服务器不可用，主要通过后面的check检查</span></span><br><span class="line">    option  redispatch   <span class="comment">#当serverid对应的服务器挂掉后，强制定向到其他健康服务器</span></span><br><span class="line">    option  abortonclose <span class="comment">#当服务器负载很高时，自动结束掉当前队列中处理比较久的链接</span></span><br><span class="line">    maxconn 2000         <span class="comment">#默认最大连接数</span></span><br><span class="line"> </span><br><span class="line">    timeout connect 5000  <span class="comment">#连接超时时间</span></span><br><span class="line">    timeout client  50000 <span class="comment">#客户端连接超时时间</span></span><br><span class="line">    timeout server  50000 <span class="comment">#服务器端连接超时时间</span></span><br><span class="line"> </span><br><span class="line">    stats   enable</span><br><span class="line">    stats   uri /haproxy-stats   <span class="comment">#haproxy监控页面的访问地址</span></span><br><span class="line">    stats   auth test:test123    <span class="comment">#设置监控页面的用户和密码</span></span><br><span class="line">    stats   hide-version         <span class="comment">#隐藏统计页面的HAproxy版本信息</span></span><br><span class="line"> </span><br><span class="line">frontend http-in              <span class="comment">#前台</span></span><br><span class="line">    bind    *:81</span><br><span class="line">    mode    http</span><br><span class="line">    option  httplog</span><br><span class="line">    log     global</span><br><span class="line">    default_backend htmpool   <span class="comment">#静态服务器池</span></span><br><span class="line"> </span><br><span class="line">backend htmpool               <span class="comment">#后台</span></span><br><span class="line">    balance leastconn         <span class="comment">#负载均衡算法</span></span><br><span class="line">    option  httpchk HEAD /index.html HTTP/1.0    <span class="comment">#健康检查</span></span><br><span class="line">    server  web1 192.168.2.10:80 cookie 1 weight 5<span class="instruction"> check </span>inter 2000 rise 2 fall 3</span><br><span class="line">    server  web2 192.168.2.11:80 cookie 2 weight 3<span class="instruction"> check </span>inter 2000 rise 2 fall 3</span><br><span class="line">    <span class="comment"># web1/web2:自定义服务器别名</span></span><br><span class="line">    <span class="comment"># 192.168.2.10:80:服务器IP:Port</span></span><br><span class="line">    <span class="comment"># cookie 1/2:表示serverid</span></span><br><span class="line">    <span class="comment"># weight: 服务器权重，数字越大分配到的请求数越高</span></span><br><span class="line">    <span class="comment"># check: 接受定时健康检查 </span></span><br><span class="line">    <span class="comment"># inter 2000: 检查频率</span></span><br><span class="line">    <span class="comment"># rise 2: 两次检测正确认为服务器可用</span></span><br><span class="line">    <span class="comment"># fall 3: 三次失败认为服务器不可用</span></span><br><span class="line"> </span><br><span class="line">listen w.gdu.me 0.0.0.0:80</span><br><span class="line">    option  httpchk GET /index.html</span><br><span class="line">    server  s1 192.168.2.10:80 weight 3<span class="instruction"> check</span><br><span class="line"></span>    server  s3 192.168.2.11:80 weight 3<span class="instruction"> check</span><br><span class="line"></span> </span><br><span class="line"><span class="comment"># Haproxy统计页面</span></span><br><span class="line"><span class="comment"># --------------------------------------------------------------------------------------------</span></span><br><span class="line">listen haproxy_stats</span><br><span class="line">    bind 0.0.0.0:1080  <span class="comment">#侦听IP:Port</span></span><br><span class="line">    mode http</span><br><span class="line">    log  127.0.0.1 local 0 err <span class="comment">#err|warning|info|debug]</span></span><br><span class="line">    stats refresh 30s</span><br><span class="line">    stats uri /haproxy-stats</span><br><span class="line">    stats realm Haproxy\ Statistics</span><br><span class="line">    stats auth admin:admin</span><br><span class="line">    stats auth test:test</span><br><span class="line">    stats hide-version</span><br><span class="line">    stats admin<span class="instruction"> if </span>TRUE  <span class="comment">#手工启用/禁用后端服务器</span></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment"># 网站检测listen配置</span></span><br><span class="line"><span class="comment"># --------------------------------------------------------------------------------------------</span></span><br><span class="line">listen site_status</span><br><span class="line">    bind 0.0.0.0:1081</span><br><span class="line">    mode http</span><br><span class="line">    log  127.0.0.1 local0 err</span><br><span class="line"> </span><br><span class="line">    <span class="comment">#网站健康检查URI，用来检测Haproxy管理的网站是否可能，正常返回200、异常返回500</span></span><br><span class="line">   <span class="instruction"> monitor-uri </span>/site_status</span><br><span class="line"> </span><br><span class="line">    <span class="comment">#定义网站down时的策略</span></span><br><span class="line">    <span class="comment">#当backend中的有效服务器数&lt;1时，返回true</span></span><br><span class="line">    acl site_dead<span class="function"> nbsrv(</span>denali_server<span class="function">)</span> lt 1</span><br><span class="line">    acl site_dead<span class="function"> nbsrv(</span>tm_server<span class="function">)</span> lt 1</span><br><span class="line">    acl site_dead<span class="function"> nbsrv(</span>mms_server<span class="function">)</span> lt 1</span><br><span class="line"> </span><br><span class="line">    <span class="comment">#当满足策略的时候返回http-500，否则返回http-200</span></span><br><span class="line">   <span class="instruction"> monitor </span>fail<span class="instruction"> if </span>site_dead</span><br><span class="line"> </span><br><span class="line">    <span class="comment">#声名一个监测请求的来源网络</span></span><br><span class="line">   <span class="instruction"> monitor-net </span>192.168.0.252/31</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment"># https的配置方法</span></span><br><span class="line"><span class="comment"># --------------------------------------------------------------------------------------------</span></span><br><span class="line">listen login_https_server</span><br><span class="line">    bind 0.0.0.0:443   <span class="comment">#绑定HTTPS的443端口</span></span><br><span class="line">    mode tcp           <span class="comment">#https必须使用tcp模式</span></span><br><span class="line">    log global</span><br><span class="line">    balance roundrobin</span><br><span class="line">    option httpchk GET /member/login.jhtml HTTP/1.1\r\nHost:login.daily.taobao.net</span><br><span class="line">    <span class="comment">#回送给server的端口也必须是443</span></span><br><span class="line">    server vm94f.sqa 192.168.212.94:443<span class="instruction"> check </span>port 80 inter 6000 rise 3 fall 3</span><br><span class="line">    server <span class="variable">v215120</span>.sqa 192.168.215.120:443<span class="instruction"> check </span>port 80 inter 6000 rise 3 fall 3</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment"># frontend配置</span></span><br><span class="line"><span class="comment"># --------------------------------------------------------------------------------------------</span></span><br><span class="line">frontend http_80_in</span><br><span class="line">    bind 0.0.0.0:80   <span class="comment">#监听端口</span></span><br><span class="line">    mode http         <span class="comment">#http的7层模式</span></span><br><span class="line">    log global        <span class="comment">#使用全局的日志配置</span></span><br><span class="line">    option httplog    <span class="comment">#启用http的log</span></span><br><span class="line">    option httpclose  <span class="comment">#每次请求完毕后主动关闭http通道,HA-Proxy不支持keep-alive模式</span></span><br><span class="line">    option forwardfor <span class="comment">##如果后端服务器需要获得客户端的真实IP需要配置次参数,将可以从Http Header中获得客户端IP</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">#HAProxy的日志记录内容配置</span></span><br><span class="line">    capture request header Host len 40              <span class="comment"># 请求中的主机名</span></span><br><span class="line">    capture request header Content-Length len 10    <span class="comment"># 请求中的内容长度</span></span><br><span class="line">    capture request header Referer len 200          <span class="comment"># 请求中的引用地址</span></span><br><span class="line">    capture response header Server len 40           <span class="comment"># 响应中的server name</span></span><br><span class="line">    capture response header Content-Length len 10   <span class="comment"># 响应中的内容长度(可配合option logasap使用)</span></span><br><span class="line">    capture response header Cache-Control len 8     <span class="comment"># 响应中的cache控制</span></span><br><span class="line">    capture response header Location len 20         <span class="comment"># 响应中的重定向地址</span></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    <span class="comment">#ACL策略规则定义</span></span><br><span class="line">    <span class="comment">#-------------------------------------------------</span></span><br><span class="line">   <span class="function"> #如果请求的域名满足正则表达式返回true(</span>-i:忽略大小写<span class="function">)</span></span><br><span class="line">    acl denali_policy<span class="function"> hdr_reg(</span>host<span class="function">)</span> -i<span class="function"> ^(</span>www.gemini.taobao.net|my.gemini.taobao.net|auction1.gemini.taobao.net<span class="function">)</span>$</span><br><span class="line"> </span><br><span class="line">    <span class="comment">#如果请求域名满足trade.gemini.taobao.net返回true</span></span><br><span class="line">    acl tm_policy<span class="function"> hdr_dom(</span>host<span class="function">)</span> -i trade.gemini.taobao.net</span><br><span class="line"> </span><br><span class="line">    <span class="comment">#在请求url中包含sip_apiname=,则此控制策略返回true,否则为false</span></span><br><span class="line">    acl invalid_req url_sub -i sip_apiname=</span><br><span class="line"> </span><br><span class="line">    <span class="comment">#在请求url中存在timetask作为部分地址路径,则此控制策略返回true,否则返回false</span></span><br><span class="line">    acl timetask_req url_dir -i timetask</span><br><span class="line"> </span><br><span class="line">    <span class="comment">#当请求的header中Content-length等于0时返回true</span></span><br><span class="line">    acl missing_cl<span class="function"> hdr_cnt(</span>Content-length<span class="function">)</span> eq 0</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    <span class="comment">#ACL策略匹配相应</span></span><br><span class="line">    <span class="comment">#-------------------------------------------------</span></span><br><span class="line">    <span class="comment">#当请求中header中Content-length等于0阻止请求返回403</span></span><br><span class="line">    <span class="comment">#block表示阻止请求,返回403错误</span></span><br><span class="line">    block<span class="instruction"> if </span>missing_cl</span><br><span class="line"> </span><br><span class="line">    <span class="comment">#如果不满足策略invalid_req,或者满足策略timetask_req,则阻止请求</span></span><br><span class="line">    block<span class="instruction"> if </span>!invalid_req || timetask_req</span><br><span class="line"> </span><br><span class="line">    <span class="comment">#当满足denali_policy的策略时使用denali_server的backend</span></span><br><span class="line">    use_backend denali_server<span class="instruction"> if </span>denali_policy</span><br><span class="line"> </span><br><span class="line">    <span class="comment">#当满足tm_policy的策略时使用tm_server的backend</span></span><br><span class="line">    use_backend tm_server<span class="instruction"> if </span>tm_policy</span><br><span class="line"> </span><br><span class="line">    <span class="comment">#reqisetbe关键字定义,根据定义的关键字选择backend</span></span><br><span class="line">    reqisetbe ^Host:\ img           dynamic</span><br><span class="line">    reqisetbe ^<span class="keyword">[</span>^\ ]*\<span class="function"> /(</span>img|css<span class="function">)</span>/  dynamic</span><br><span class="line">    reqisetbe ^<span class="keyword">[</span>^\ ]*\ /admin/stats stats</span><br><span class="line"> </span><br><span class="line">    <span class="comment">#以上都不满足的时候使用默认mms_server的backend</span></span><br><span class="line">    default_backend mms_server</span><br><span class="line"> </span><br><span class="line">    <span class="comment">#HAProxy错误页面设置</span></span><br><span class="line">    errorfile 400 /home/admin/haproxy/errorfiles/400.http</span><br><span class="line">    errorfile 403 /home/admin/haproxy/errorfiles/403.http</span><br><span class="line">    errorfile 408 /home/admin/haproxy/errorfiles/408.http</span><br><span class="line">    errorfile 500 /home/admin/haproxy/errorfiles/500.http</span><br><span class="line">    errorfile 502 /home/admin/haproxy/errorfiles/502.http</span><br><span class="line">    errorfile 503 /home/admin/haproxy/errorfiles/503.http</span><br><span class="line">    errorfile 504 /home/admin/haproxy/errorfiles/504.http</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment"># backend的设置</span></span><br><span class="line"><span class="comment"># --------------------------------------------------------------------------------------------</span></span><br><span class="line">backend mms_server</span><br><span class="line">    mode http           <span class="comment">#http的7层模式</span></span><br><span class="line">    balance roundrobin  <span class="comment">#负载均衡的方式,roundrobin平均方式</span></span><br><span class="line">    cookie SERVERID     <span class="comment">#允许插入serverid到cookie中,serverid后面可以定义</span></span><br><span class="line">     </span><br><span class="line">    <span class="comment">#心跳检测的URL,HTTP/1.1¥r¥nHost:XXXX,指定了心跳检测HTTP的版本,XXX为检测时请求</span></span><br><span class="line">    <span class="comment">#服务器的request中的域名是什么,这个在应用的检测URL对应的功能有对域名依赖的话需要设置</span></span><br><span class="line">    option httpchk GET /member/login.jhtml HTTP/1.1\r\nHost:member1.gemini.taobao.net</span><br><span class="line">     </span><br><span class="line">    <span class="comment">#服务器定义,cookie 1表示serverid为1,check inter 1500 是检测心跳频率</span></span><br><span class="line">    <span class="comment">#rise 3是3次正确认为服务器可用,fall 3是3次失败认为服务器不可用,weight代表权重</span></span><br><span class="line">    server mms1 10.1.5.134:80 cookie 1<span class="instruction"> check </span>inter 1500 rise 3 fall 3 weight 1</span><br><span class="line">    server mms2 10.1.6.118:80 cookie 2<span class="instruction"> check </span>inter 1500 rise 3 fall 3 weight 2</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">backend denali_server</span><br><span class="line">    mode http</span><br><span class="line">    balance source     <span class="comment">#负载均衡的方式,source根据客户端IP进行哈希的方式</span></span><br><span class="line">    option allbackups  <span class="comment">#设置了backup的时候,默认第一个backup会优先,设置option allbackups后所有备份服务器权重一样</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">#心跳检测URL设置</span></span><br><span class="line">    option httpchk GET /mytaobao/home/my_taobao.jhtml HTTP/1.1\r\nHost:my.gemini.taobao.net</span><br><span class="line"> </span><br><span class="line">    <span class="comment">#可以根据机器的性能不同,指定连接数配置，如minconn 10 maxconn 20</span></span><br><span class="line">    server denlai1 10.1.5.114:80 minconn 4 maxconn 12<span class="instruction"> check </span>inter 1500 rise 3 fall 3</span><br><span class="line">    server denlai2 10.1.6.104:80 minconn 10 maxconn 20<span class="instruction"> check </span>inter 1500 rise 3 fall 3</span><br><span class="line">    <span class="comment">#备份机器配置,正常情况下备机不会使用,当主机的全部服务器都down的时候备机会启用</span></span><br><span class="line">    server dnali-back1 10.1.7.114:80<span class="instruction"> check </span>backup inter 1500 rise 3 fall 3</span><br><span class="line">    server dnali-back2 10.1.7.114:80<span class="instruction"> check </span>backup inter 1500 rise 3 fall 3</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">backend tm_server</span><br><span class="line">    mode http</span><br><span class="line">    balance leastconn   <span class="comment">#负载均衡的方式,leastcon选择当前请求数最少的服务器</span></span><br><span class="line">    option httpchk GET /trade/itemlist/prepayCard.htm HTTP/1.1\r\nHost:trade.gemini.taobao.net</span><br><span class="line">    server tm1 10.1.5.115:80<span class="instruction"> check </span>inter 1500 rise 3 fall 3</span><br><span class="line">    server tm2 10.1.6.105:80<span class="instruction"> check </span>inter 1500 rise 3 fall 3</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment">#reqisetbe自定义关键字匹配backend部分</span></span><br><span class="line">backend dynamic</span><br><span class="line">    mode http</span><br><span class="line">    balance source</span><br><span class="line">    option httpchk GET /welcome.html </span><br><span class="line">    server denlai1 10.3.5.114:80<span class="instruction"> check </span>inter 1500 rise 3 fall 3</span><br><span class="line">    server denlai2 10.4.6.104:80<span class="instruction"> check </span>inter 1500 rise 3 fall 3</span><br><span class="line"> </span><br><span class="line">backend stats</span><br><span class="line">    mode http</span><br><span class="line">    balance source</span><br><span class="line">    option httpchk GET /welcome.html </span><br><span class="line">    server denlai1 10.5.5.114:80<span class="instruction"> check </span>inter 1500 rise 3 fall 3</span><br><span class="line">    server denlai2 10.6.6.104:80<span class="instruction"> check </span>inter 1500 rise 3 fall 3</span><br></pre></td></tr></table></figure></p>
+
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2019/01/21/kubernetes-prometheus监控JMX/" rel="next" title="kubernetes prometheus监控JMX"><i class="fas fa-angle-left"></i><span class="nav-title">kubernetes prometheus监控JMX</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+    </div>
+  </nav>
+  
+  
+  
+
+<div class="comments" id="comments">
+  
+  <script defer id="dsq-count-scr" src="//www.idcsec.com.disqus.com/count.js"></script>
+  
+  <div id="disqus_thread" class="disqus_thread"></div>
+  <script type="text/javascript">
+  var disqus_config = function () {
+    this.page.url = "http://www.idcsec.com/2019/01/23/Haproxy快速编译安装以及配置详解/";
+    this.page.identifier = "2019/01/23/Haproxy快速编译安装以及配置详解/";
+  };
+  (function() {
+    var d = document, s = d.createElement("script");
+    s.src = "https://www.idcsec.com.disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  
+  
+</div>
+
+
+
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/img/avatar.jpg" alt="Wang'T">
+  
+  <h1 class="author-name">Wang'T</h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    <div class="archives-count">
+      <div class="site-count-title">归档</div>
+      <div><a href="/archives/">76</a></div>
+    </div>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="categories-count">
+      <div class="site-count-title">分类</div>
+      <div><a href="/categories/">12</a></div>
+    </div>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="tags-count">
+      <div class="site-count-title">标签</div>
+      <div><a href="/tags/">32</a></div>
+    </div>
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#haproxy_u5B89_u88C5_u811A_u672Ccentos7-x"><span class="toc-text">haproxy安装脚本centos7.x</span></a></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:wang.t.nice@gmail.com" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="http://www.ytniu.com" target="_blank">Jixiang's Blog</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">Wang'T</span><span class="year"><i class="far fa-copyright"></i>2015 - 2019</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">BY-NC-ND 4.0</a></span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>
