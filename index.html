@@ -132,6 +132,72 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2019/02/20/“免翻墙kubeadm1-13-3搭建kubernetes集群/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2019/02/20/“免翻墙kubeadm1-13-3搭建kubernetes集群/" itemprop="url">“免翻墙kubeadm1.13.3搭建kubernetes集群</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-02-20T22:28:00+08:00">2019-02-20 22:28:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
+        </span>
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2019/02/20/“免翻墙kubeadm1-13-3搭建kubernetes集群/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2019/02/20/“免翻墙kubeadm1-13-3搭建kubernetes集群/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <h1 id="u8282_u70B9_u89C4_u5212"><a href="#u8282_u70B9_u89C4_u5212" class="headerlink" title="节点规划"></a>节点规划</h1><p>master 192.168.19.222<br>node1  192.168.19.223<br>node2  192.168.19.224</p>
+<h2 id="u8F6F_u4EF6_u7248_u672C"><a href="#u8F6F_u4EF6_u7248_u672C" class="headerlink" title="软件版本"></a>软件版本</h2><p>操作系统：CentOS Linux release7 4.4.174-1.el7.elrepo.x86_64<br>Docker版本:18.06.2-ce<br>kubernetes版本：1.13.3</p>
+<h2 id="u73AF_u5883_u51C6_u5907"><a href="#u73AF_u5883_u51C6_u5907" class="headerlink" title="环境准备"></a>环境准备</h2><p> 配置SSH免密登录 </p>
+<h2 id="u5173_u95ED_u6240_u6709_u8282_u70B9_u9632_u706B_u5899"><a href="#u5173_u95ED_u6240_u6709_u8282_u70B9_u9632_u706B_u5899" class="headerlink" title="关闭所有节点防火墙"></a>关闭所有节点防火墙</h2><figure class="hljs highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-<span class="keyword">master</span> <span class="title">~]# service</span> firewalld <span class="literal">stop</span> &amp;&amp; systemctl disable firewalld</span><br></pre></td></tr></table></figure>
+<h2 id="u5173_u95ED_u6240_u6709_u8282_u70B9selinux"><a href="#u5173_u95ED_u6240_u6709_u8282_u70B9selinux" class="headerlink" title="关闭所有节点selinux"></a>关闭所有节点selinux</h2><figure class="hljs highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-<span class="keyword">master</span> <span class="title">~]# setenforce</span> <span class="number">0</span></span><br><span class="line">[root@k8s-<span class="keyword">master</span> <span class="title">~]# sed</span> -i 's/<span class="variable">SELINUX=</span>enforcing/<span class="variable">SELINUX=</span>disabled/g' /etc/selinux/config</span><br></pre></td></tr></table></figure>
+<h2 id="u8BBE_u7F6E_u6240_u6709_u8282_u70B9/etc/hosts_u6587_u4EF6"><a href="#u8BBE_u7F6E_u6240_u6709_u8282_u70B9/etc/hosts_u6587_u4EF6" class="headerlink" title="设置所有节点/etc/hosts文件"></a>设置所有节点/etc/hosts文件</h2><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="preprocessor"># cat /etc/hosts</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> localhost localhost.localdomain localhost4 localhost4.localdomain4</span><br><span class="line">::<span class="number">1</span> localhost localhost.localdomain localhost6 localhost6.localdomain6</span><br><span class="line"><span class="number">192.168</span><span class="number">.19</span><span class="number">.222</span> k8s-master</span><br><span class="line"><span class="number">192.168</span><span class="number">.19</span><span class="number">.223</span> node1</span><br><span class="line"><span class="number">192.168</span><span class="number">.19</span><span class="number">.224</span> node2</span><br></pre></td></tr></table></figure>
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/calico/" rel="tag"><i class="fas fa-tags"></i>calico</a>
+        
+        <a class="post-tag button" href="/tags/kubeadm/" rel="tag"><i class="fas fa-tags"></i>kubeadm</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2019/01/23/Haproxy快速编译安装以及配置详解/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -619,53 +685,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/12/01/kubernetes之minikub安装/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/12/01/kubernetes之minikub安装/" itemprop="url">kubernetes之minikub安装</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-12-01T01:39:18+08:00">2018-12-01 01:39:18</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2018/12/01/kubernetes之minikub安装/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/12/01/kubernetes之minikub安装/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <h1 id="Minikub_u662F_u4EC0_u4E48_uFF1F"><a href="#Minikub_u662F_u4EC0_u4E48_uFF1F" class="headerlink" title="Minikub是什么？"></a>Minikub是什么？</h1><p>Minikub是一个能够在虚拟（VirtualBox或者Hyper-V）中运行单节点Kubernetes集群的工具，方便开发者可以在本地环境中进行开发和调试Kubernetes。这个工具默认安装和配置了一个Linux VM，Docker和Kubernetes的相关组件，并且提供Dashboard。目前支持在Linux, OS X及Windows上安装<br>安装kubectl</p>
-<figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">https:</span><span class="comment">//dl.k8s.io/v1.10.11/kubernetes-client-windows-amd64.tar.gz</span></span><br></pre></td></tr></table></figure>
-<h1 id="Minikub_u5B89_u88C5"><a href="#Minikub_u5B89_u88C5" class="headerlink" title="Minikub安装"></a>Minikub安装</h1><p>Minitube是一个独立的Go应用，下载运行就可以<br>Windows 平台<br>下载 minikube-windows-amd64.exe 文件，并重命名为 minikube.exe，然后加入到环境变量路径下即可<br>
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -710,7 +729,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">76</a></div>
+      <div><a href="/archives/">77</a></div>
     </div>
     
     
@@ -728,7 +747,7 @@
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">32</a></div>
+      <div><a href="/tags/">34</a></div>
     </div>
     
   </div>
