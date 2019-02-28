@@ -132,6 +132,55 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/04/19/zabbix微信告警/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2016/04/19/zabbix微信告警/" itemprop="url">zabbix微信告警</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-04-19T20:46:29+08:00">2016-04-19 20:46:29</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2016/04/19/zabbix微信告警/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/04/19/zabbix微信告警/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>一、注册微信公众号<br><a href="https://mp.weixin.qq.com">https://mp.weixin.qq.com</a></p>
+<p>关注微信号点击用户管理查看用户的微信ID号。在浏览器查看用户的微信ID号</p>
+<p><a href="https://mp.weixin.qq.com/cgi-bin/singlesendpage?t=message/send&amp;action=index&amp;tofakeid=oOHYNvxkEyqwlYZzymXmGMUQxtKk&amp;token=778777510&amp;lang=zh_CN">https://mp.weixin.qq.com/cgi-bin/singlesendpage?t=message/send&amp;action=index&amp;tofakeid=oOHYNvxkEyqwlYZzymXmGMUQxtKk&amp;token=778777510&amp;lang=zh_CN</a></p>
+<p>获取微信接口git clone <a href="https://github.com/lealife/WeiXin-Private-API">https://github.com/lealife/WeiXin-Private-API</a><br>接口配置文件<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@zabbix ~]<span class="comment"># git clone https://github.com/lealife/WeiXin-Private-API</span></span><br><span class="line">[root@zabbix ~]<span class="comment"># cp -r WeiXin-Private-API/ /usr/local/zabbix/share/zabbix/alertscripts/</span></span><br><span class="line">[root@zabbix ~]<span class="comment"># cd /usr/local/zabbix/share/zabbix/alertscripts/WeiXin-Private-API</span></span><br><span class="line">[root@zabbix WeiXin-<span class="keyword">Private</span>-API]<span class="comment"># chown zabbix.zabbix /usr/local/zabbix/share/zabbix/alertscripts/WeiXin-Private-API</span></span><br></pre></td></tr></table></figure></p>
+<p>先在conifg.php中配置公众账号信息:<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="variable">$G_CONFIG</span>[<span class="string">"weiXin"</span>] = <span class="keyword">array</span>(</span><br><span class="line">       <span class="string">'account'</span> =&gt; <span class="string">'公众平台账号'</span>,</span><br><span class="line">       <span class="string">'password'</span> =&gt; <span class="string">'密码'</span>,</span><br><span class="line">       <span class="string">'cookiePath'</span> =&gt; <span class="variable">$G_ROOT</span>. <span class="string">'/cache/cookie'</span>, <span class="comment">// cookie缓存文件路径</span></span><br><span class="line">       <span class="string">'webTokenPath'</span> =&gt; <span class="variable">$G_ROOT</span>. <span class="string">'/cache/webToken'</span>, <span class="comment">// webToken缓存文件路径</span></span><br><span class="line">   );</span><br></pre></td></tr></table></figure></p>
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/03/16/centos配置pppoe服务器/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -585,7 +634,7 @@ make install
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">77</a></div>
+      <div><a href="/archives/">78</a></div>
     </div>
     
     
@@ -603,7 +652,7 @@ make install
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">34</a></div>
+      <div><a href="/tags/">35</a></div>
     </div>
     
   </div>

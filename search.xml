@@ -3,6 +3,27 @@
   
     
     <entry>
+      <title>tomca配置获取kubernetes自定义变量</title>
+      <link href="/2019/02/28/tomca%E9%85%8D%E7%BD%AE%E8%8E%B7%E5%8F%96kubernetes%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F/"/>
+      <url>/2019/02/28/tomca%E9%85%8D%E7%BD%AE%E8%8E%B7%E5%8F%96kubernetes%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F/</url>
+      
+        <content type="html"><![CDATA[<p>tomcat获取kubernetes自定义变量<br>1、设置kubernetes自定义变量MY_POD_NAME<br>2、设置tomcat的JAVA_OPTS -D自定义变量名称：值（yaml里面定义的变量）<br>3、tomcat配置文件引用变量，获取kubernetes的pod主机名，处理多个pod日志按照主机名命名解决日志交叉写入</p><figure class="hljs highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment"># cat tomcat-demo.yaml </span></span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">metadata:</span><br><span class="line">  <span class="property">name</span>: tomcat-istio</span><br><span class="line">  annotations:</span><br><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">  - <span class="property">name</span>: tomcat-istio</span><br><span class="line">    image: toamcat:demo</span><br><span class="line">    env:</span><br><span class="line">    - <span class="property">name</span>: JAVA_OPTS</span><br><span class="line">      value: <span class="string">"-server -Xms4096M -Xmx4096M -Xss256K -Dmy.pod.name=$MY_POD_NAME -Djava.awt.headless=true -Dfile.encoding=utf-8 -XX:MaxPermSize=256M -XX:PermSize=128M"</span></span><br><span class="line">    - <span class="property">name</span>: MY_POD_NAME</span><br><span class="line">      valueFrom:</span><br><span class="line">        fieldRef:</span><br><span class="line">           fieldPath: metadata.<span class="property">name</span></span><br></pre></td></tr></table></figure><figure class="hljs highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DOckerfile</span><br><span class="line">sed -i <span class="string">"prefix="</span>localhost_access_log.<span class="string">" suffix="</span>.txt<span class="string">"/prefix="</span>$\&#123;<span class="keyword">my</span>.pod.<span class="property">name</span>\&#125;__access_log<span class="string">" suffix="</span>.txt<span class="string">"/g"</span>  server.xml</span><br></pre></td></tr></table></figure><p><img src="https://i.loli.net/2019/02/28/5c77f94fec009.png" alt="20190228230738.png"></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> jvm </tag>
+            
+            <tag> kubernetes </tag>
+            
+            <tag> tomcat </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>“免翻墙kubeadm1.13.3搭建kubernetes集群</title>
       <link href="/2019/02/20/%E2%80%9C%E5%85%8D%E7%BF%BB%E5%A2%99kubeadm1-13-3%E6%90%AD%E5%BB%BAkubernetes%E9%9B%86%E7%BE%A4/"/>
       <url>/2019/02/20/%E2%80%9C%E5%85%8D%E7%BF%BB%E5%A2%99kubeadm1-13-3%E6%90%AD%E5%BB%BAkubernetes%E9%9B%86%E7%BE%A4/</url>

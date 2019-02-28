@@ -132,6 +132,65 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2019/02/28/tomca配置获取kubernetes自定义变量/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2019/02/28/tomca配置获取kubernetes自定义变量/" itemprop="url">tomca配置获取kubernetes自定义变量</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-02-28T22:54:00+08:00">2019-02-28 22:54:00</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2019/02/28/tomca配置获取kubernetes自定义变量/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2019/02/28/tomca配置获取kubernetes自定义变量/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>tomcat获取kubernetes自定义变量<br>1、设置kubernetes自定义变量MY_POD_NAME<br>2、设置tomcat的JAVA_OPTS -D自定义变量名称：值（yaml里面定义的变量）<br>3、tomcat配置文件引用变量，获取kubernetes的pod主机名，处理多个pod日志按照主机名命名解决日志交叉写入</p>
+<figure class="hljs highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment"># cat tomcat-demo.yaml </span></span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">metadata:</span><br><span class="line">  <span class="property">name</span>: tomcat-istio</span><br><span class="line">  annotations:</span><br><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">  - <span class="property">name</span>: tomcat-istio</span><br><span class="line">    image: toamcat:demo</span><br><span class="line">    env:</span><br><span class="line">    - <span class="property">name</span>: JAVA_OPTS</span><br><span class="line">      value: <span class="string">"-server -Xms4096M -Xmx4096M -Xss256K -Dmy.pod.name=$MY_POD_NAME -Djava.awt.headless=true -Dfile.encoding=utf-8 -XX:MaxPermSize=256M -XX:PermSize=128M"</span></span><br><span class="line">    - <span class="property">name</span>: MY_POD_NAME</span><br><span class="line">      valueFrom:</span><br><span class="line">        fieldRef:</span><br><span class="line">           fieldPath: metadata.<span class="property">name</span></span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DOckerfile</span><br><span class="line">sed -i <span class="string">"prefix="</span>localhost_access_log.<span class="string">" suffix="</span>.txt<span class="string">"/prefix="</span>$\&#123;<span class="keyword">my</span>.pod.<span class="property">name</span>\&#125;__access_log<span class="string">" suffix="</span>.txt<span class="string">"/g"</span>  server.xml</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2019/02/28/5c77f94fec009.png" alt="20190228230738.png"></p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/jvm/" rel="tag"><i class="fas fa-tags"></i>jvm</a>
+        
+        <a class="post-tag button" href="/tags/kubernetes/" rel="tag"><i class="fas fa-tags"></i>kubernetes</a>
+        
+        <a class="post-tag button" href="/tags/tomcat/" rel="tag"><i class="fas fa-tags"></i>tomcat</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2019/02/20/“免翻墙kubeadm1-13-3搭建kubernetes集群/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -626,65 +685,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/12/12/Prometheus系统监控redis展示Grafana/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/12/12/Prometheus系统监控redis展示Grafana/" itemprop="url">Prometheus系统监控redis展示Grafana</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-12-12T10:54:00+08:00">2018-12-12 10:54:00</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/prometheus/" itemprop="url" rel="index"><span itemprop="name">prometheus</span></a></span>
-        </span>
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2018/12/12/Prometheus系统监控redis展示Grafana/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/12/12/Prometheus系统监控redis展示Grafana/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>使用redis_exporter采集Redis指标通过prometheus抓取数据展示Grafana<br><img src="/img/20181212112819.png" alt="pro"><br>
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/redis/" rel="tag"><i class="fas fa-tags"></i>redis</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -729,7 +729,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">77</a></div>
+      <div><a href="/archives/">78</a></div>
     </div>
     
     
@@ -747,7 +747,7 @@
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">34</a></div>
+      <div><a href="/tags/">35</a></div>
     </div>
     
   </div>

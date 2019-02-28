@@ -132,6 +132,56 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/05/05/MySQL-5-6-24-linux-glibc2-5-x86-64安装记录/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/05/05/MySQL-5-6-24-linux-glibc2-5-x86-64安装记录/" itemprop="url">MySQL-5.6.24-linux-glibc2.5-x86_64安装记录</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-05-05T14:21:19+08:00">2017-05-05 14:21:19</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2017/05/05/MySQL-5-6-24-linux-glibc2-5-x86-64安装记录/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2017/05/05/MySQL-5-6-24-linux-glibc2-5-x86-64安装记录/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>1、下载 <a href="http://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">http://dev.mysql.com/downloads/mysql/</a><br>2、卸载系统里面旧的版本<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep mysql</span><br><span class="line">rpm -e</span><br></pre></td></tr></table></figure></p>
+<p>3、解压文件<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf /opt/mysql-<span class="number">5.6</span><span class="number">.24</span>-linux-glibc2<span class="number">.5</span>-x86_64.tar.gz  -C /usr/local/</span><br><span class="line">cd  /usr/local</span><br><span class="line">mv mysql-<span class="number">5.6</span><span class="number">.24</span>-linux-glibc2<span class="number">.5</span>-x86_64 mysql</span><br></pre></td></tr></table></figure></p>
+<p>3、创建用户设置设置权限<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd mysql</span><br><span class="line">chown -R mysql:mysql mysql/</span><br></pre></td></tr></table></figure></p>
+<p>4、安装<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/mysql/scripts/ </span><br><span class="line">yum  install perl perl-devel  -y</span><br><span class="line">[root@webgate1 scripts]<span class="comment"># ./mysql_install_db --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data</span></span><br><span class="line">Installing MySQL system tables..<span class="number">.2017</span>-<span class="number">05</span>-<span class="number">05</span> <span class="number">14</span>:<span class="number">10</span>:<span class="number">08</span> <span class="number">0</span> [Warning] TIMESTAMP with implicit <span class="keyword">DEFAULT</span> value is deprecated. Please <span class="keyword">use</span> --<span class="title">explicit_defaults_for_timestamp</span> <span class="title">server</span> <span class="title">option</span> (<span class="title">see</span> <span class="title">documentation</span> <span class="title">for</span> <span class="title">more</span> <span class="title">details</span>).</span><br><span class="line">2017-05-05 14:10:08 0 [<span class="title">Note</span>] /<span class="title">usr</span>/<span class="title">local</span>/<span class="title">mysql</span>/<span class="title">bin</span>/<span class="title">mysqld</span> (<span class="title">mysqld</span> 5.6.24) <span class="title">starting</span> <span class="title">as</span> <span class="title">process</span> 16046 ...</span><br><span class="line">2017-05-05 14:10:08 16046 [<span class="title">Note</span>] <span class="title">InnoDB</span>: <span class="title">Using</span> <span class="title">atomics</span> <span class="title">to</span> <span class="title">ref</span> <span class="title">count</span> <span class="title">buffer</span> <span class="title">pool</span> <span class="title">pages</span></span><br><span class="line">2017-05-05 14:10:08 16046 [<span class="title">Note</span>] <span class="title">InnoDB</span>: <span class="title">The</span> <span class="title">InnoDB</span> <span class="title">memory</span> <span class="title">heap</span> <span class="title">is</span> <span class="title">disabled</span></span><br><span class="line">2017-05-05 14:10:08 16046 [<span class="title">Note</span>] <span class="title">InnoDB</span>: <span class="title">Mutexes</span> <span class="title">and</span> <span class="title">rw_locks</span> <span class="title">use</span> <span class="title">GCC</span> <span class="title">atomic</span> <span class="title">builtins</span></span><br><span class="line">2017-05-05 14:10:08 16046 [<span class="title">Note</span>] <span class="title">InnoDB</span>: <span class="title">Memory</span> <span class="title">barrier</span> <span class="title">is</span> <span class="title">not</span> <span class="title">used</span></span><br><span class="line">.................................</span><br></pre></td></tr></table></figure></p>
+<p>5、添加开机自动启动环境变量等<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/mysql/support-files</span><br><span class="line">cp my-<span class="keyword">default</span>.cnf /etc/my.cnf</span><br><span class="line">cp mysql.server /etc/init.d/mysql</span><br><span class="line">vim /etc/init.d/mysql</span><br><span class="line">basedir=/usr/local/mysql  </span><br><span class="line">datadir=/usr/local/mysql/data <span class="comment">//*修改对应目录</span></span><br><span class="line">配置环境变量vi /etc/profile   </span><br><span class="line">export MYSQL_HOME=/usr/local/mysql</span><br><span class="line">export PATH=<span class="variable">$MYSQL_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line">：wq</span><br><span class="line">source /etc/profile </span><br><span class="line">chkconfig --add mysql</span><br><span class="line">chkconfig mysql on</span><br><span class="line">service mysql start</span><br><span class="line">设置root登录密码：</span><br><span class="line">/usr/local/mysql/bin/mysqladmin -u root password <span class="string">'new-password'</span> </span><br><span class="line">设置允许root远程登录</span><br><span class="line">mysql -uroot -p  </span><br><span class="line">mysql&gt; GRANT ALL PRIVILEGES ON *.* TO <span class="string">'root'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'123456'</span> WITH GRANT OPTION;</span><br><span class="line">mysql&gt; FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/03/23/Centos下mysql5-6编译安装/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -648,59 +698,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/08/01/linuxa安装maven/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2016/08/01/linuxa安装maven/" itemprop="url">linux安装maven</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-08-01T10:02:41+08:00">2016-08-01 10:02:41</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2016/08/01/linuxa安装maven/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/08/01/linuxa安装maven/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>1.首先到Maven官网下载安装文件，目前最新版本为3.3.9，下载文件为apache-maven-3.3.9-bin.tar.gz，下载可以使用wget命令；<br><figure class="hljs highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget <span class="symbol">http:</span>/<span class="regexp">/apache.fayea.com/maven</span><span class="regexp">/maven-3/</span><span class="number">3.3</span>.<span class="number">9</span>/binaries/apache-maven-<span class="number">3.3</span>.<span class="number">9</span>-bin.tar.gz</span><br></pre></td></tr></table></figure></p>
-<p>2.进入下载文件夹，找到下载的文件，运行如下命令解压</p>
-<figure class="hljs highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">tar</span> <span class="tag">-xvf</span>  <span class="tag">apache-maven-3</span><span class="class">.3</span><span class="class">.9-bin</span><span class="class">.tar</span><span class="class">.gz</span></span><br></pre></td></tr></table></figure>
-<p>解压后的文件夹名为apache-maven-3.3.9</p>
-<p>3.使用mv命令将apache-maven-3.3.9文件夹拷贝到自己指定的文件夹，比如/usr/local/下<br><figure class="hljs highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv -rf apache-maven-<span class="number">3.3</span> /usr/<span class="keyword">local</span>/</span><br></pre></td></tr></table></figure></p>
-<p>4.配置环境变量，编辑/etc/profile文件，添加如下代码<br><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MAVEN_HOME=/usr/<span class="built_in">local</span>/apache-maven-<span class="number">3.3</span>.<span class="number">9</span></span><br><span class="line"><span class="built_in">export</span> MAVEN_HOME</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$&#123;PATH&#125;</span>:<span class="variable">$&#123;MAVEN_HOME&#125;</span>/bin</span><br></pre></td></tr></table></figure></p>
-<p>5.保存文件，并运行如下命令使环境变量生效<br>source /etc/profile</p>
-<p>6.在控制台输入如下命令，如果能看到Maven相关版本信息，则说明Maven已经安装成功<br>mvn -v</p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/5/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -745,7 +742,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">77</a></div>
+      <div><a href="/archives/">78</a></div>
     </div>
     
     
@@ -763,7 +760,7 @@
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">34</a></div>
+      <div><a href="/tags/">35</a></div>
     </div>
     
   </div>

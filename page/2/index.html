@@ -132,6 +132,65 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/12/12/Prometheus系统监控redis展示Grafana/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/12/12/Prometheus系统监控redis展示Grafana/" itemprop="url">Prometheus系统监控redis展示Grafana</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-12-12T10:54:00+08:00">2018-12-12 10:54:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/prometheus/" itemprop="url" rel="index"><span itemprop="name">prometheus</span></a></span>
+        </span>
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2018/12/12/Prometheus系统监控redis展示Grafana/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/12/12/Prometheus系统监控redis展示Grafana/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>使用redis_exporter采集Redis指标通过prometheus抓取数据展示Grafana<br><img src="/img/20181212112819.png" alt="pro"><br>
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/redis/" rel="tag"><i class="fas fa-tags"></i>redis</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/12/01/kubernetes之minikub安装/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -700,77 +759,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/29/kubernetes-ingres-nginx高级配置/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/09/29/kubernetes-ingres-nginx高级配置/" itemprop="url">kubernetes ingres-nginx高级配置</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-29T23:03:00+08:00">2018-09-29 23:03:00</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
-        </span>
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2018/09/29/kubernetes-ingres-nginx高级配置/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/09/29/kubernetes-ingres-nginx高级配置/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <h2 id="u901A_u8FC7configmap_u4FEE_u6539nginx_controller_u7684_u4E00_u4E9B_u5168_u5C40_u53D8_u91CF"><a href="#u901A_u8FC7configmap_u4FEE_u6539nginx_controller_u7684_u4E00_u4E9B_u5168_u5C40_u53D8_u91CF" class="headerlink" title="通过configmap修改nginx controller的一些全局变量"></a>通过configmap修改nginx controller的一些全局变量</h2><p>通过启动nginx controller的yaml文件，其实我们可以看出来，在启动controller的时候，向启动命令传递了一大堆参数，包括–default-backend-service以及–apiserver-host等。更多的参数，可以直接参考<a href="https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/multiple-ingress.md" target="_blank" rel="external">相关文档</a></p>
-<p>nginx controller本质上就是一个nginx代理，这个代理使用了一大堆nginx默认参数启动。而在某些特定场景下，这些我们需要定制这些参数以更适用于我们的需求。在controller启动的时候，提供了一个–configmap的参数，我们可以将需要定制的参数保存到一个configmap中，并在controller启动的时候，来读取这个configmap，获取其值，应用到controller中。具体哪些值可以通过configmap来传递，可以直接参考<a href="https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/nginx-configuration/configmap.md" target="_blank" rel="external">相关文档</a><br><a href="https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/nginx-configuration/configmap.md" target="_blank" rel="external">https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/nginx-configuration/configmap.md</a></p>
-<h1 id="u4E00_u3001_u4F7F_u7528ConfigMap"><a href="#u4E00_u3001_u4F7F_u7528ConfigMap" class="headerlink" title="一、使用ConfigMap"></a>一、使用ConfigMap</h1><p>确保指定启动Ingress控制器时要使用的configmaps资源。<br>需要注意-</p>
-<figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">kind</span>: ConfigMap </span><br><span class="line"><span class="attribute">apiVersion</span>: v1</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: nginx-configuration</span><br><span class="line">  <span class="attribute">namespace</span>: ingress-nginx</span><br><span class="line">  <span class="attribute">labels</span>:</span><br><span class="line">    <span class="attribute">app</span>: ingress-nginx</span><br><span class="line"><span class="attribute">data</span>:</span><br><span class="line">  <span class="attribute">client-header-buffer-size</span>: <span class="string">"4k"</span></span><br><span class="line">  <span class="attribute">proxy-connect-timeout</span>: <span class="string">"40"</span></span><br><span class="line">  <span class="attribute">proxy-read-timeout</span>: <span class="string">"110"</span></span><br><span class="line">  <span class="attribute">proxy-send-timeout</span>: <span class="string">"110"</span></span><br></pre></td></tr></table></figure>
-<p>创建配置资源：<br><figure class="hljs highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> kubectl apply -f nginx-configuration.yaml</span><br><span class="line"> kubectl get cm nginx-configuration -<span class="keyword">n</span> ingress-nginx  -o yaml</span><br><span class="line">[root@k8s-<span class="keyword">m</span> ~]# kubectl  exec -it     nginx-ingress-controller-5f947cc79f-86cvc      -<span class="keyword">n</span> ingress-nginx -- <span class="keyword">cat</span> /etc/nginx/nginx.<span class="keyword">conf</span> | grep    client_header_buffer_size</span><br><span class="line">trueclient_header_buffer_size       4k;</span><br></pre></td></tr></table></figure></p>
-<h3 id="u4FEE_u6539nginx-controller_u7684yml_u6587_u4EF6nginx-ingress-daemonset-yaml_u542F_u52A8_u53C2_u6570_u5982_u4E0B_uFF1A"><a href="#u4FEE_u6539nginx-controller_u7684yml_u6587_u4EF6nginx-ingress-daemonset-yaml_u542F_u52A8_u53C2_u6570_u5982_u4E0B_uFF1A" class="headerlink" title="修改nginx-controller的yml文件nginx-ingress-daemonset.yaml启动参数如下："></a>修改nginx-controller的yml文件nginx-ingress-daemonset.yaml启动参数如下：</h3><figure class="hljs highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">  -<span class="ruby"> <span class="symbol">args:</span></span><br><span class="line"></span>    -<span class="ruby"> /nginx-ingress-controller</span><br><span class="line"></span>    -<span class="ruby"> --default-backend-service=<span class="variable">$(</span><span class="constant">POD_NAMESPACE</span>)/default-http-backend</span><br><span class="line"></span>    -<span class="ruby"> --configmap=<span class="variable">$(</span><span class="constant">POD_NAMESPACE</span>)/nginx-configuration /<span class="regexp">/例如</span><br><span class="line"></span></span>    -<span class="ruby"><span class="regexp"> --tcp-services-configmap=$(POD_NAMESPACE)/tcp</span>-services</span><br><span class="line"></span>    -<span class="ruby"> --udp-services-configmap=<span class="variable">$(</span><span class="constant">POD_NAMESPACE</span>)/udp-services</span><br><span class="line"></span>    -<span class="ruby"> --publish-service=<span class="variable">$(</span><span class="constant">POD_NAMESPACE</span>)/ingress-nginx</span><br><span class="line"></span>    -<span class="ruby"> --annotations-prefix=nginx.ingress.kubernetes.io</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>如需要生效重启nginx-ingress-controller pod *<h1 id="u4E8C_u3001_u4F7F_u7528Annotations"><a href="#u4E8C_u3001_u4F7F_u7528Annotations" class="headerlink" title="二、使用Annotations"></a>二、使用Annotations</h1>如果只想自定义特定Ingress资源的配置，可以使用Annotations。<figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">apiVersion</span>: extensions/v1beta1</span><br><span class="line"><span class="attribute">kind</span>: Ingress</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: cafe-ingress-with-annotations</span><br><span class="line">  <span class="attribute">annotations</span>:</span><br><span class="line">    nginx.org/<span class="attribute">proxy-connect-timeout</span>: <span class="string">"30s"</span></span><br><span class="line">    nginx.org/<span class="attribute">proxy-read-timeout</span>: <span class="string">"20s"</span></span><br><span class="line">    nginx.org/<span class="attribute">client-max-body-size</span>: <span class="string">"4m"</span></span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">rules</span>:</span><br><span class="line">  - <span class="attribute">host</span>: cafe.example.com</span><br><span class="line">    <span class="attribute">http</span>:</span><br><span class="line">      <span class="attribute">paths</span>:</span><br><span class="line">      - <span class="attribute">path</span>: /tea</span><br><span class="line">        <span class="attribute">backend</span>:</span><br><span class="line">          <span class="attribute">serviceName</span>: tea-svc</span><br><span class="line">          <span class="attribute">servicePort</span>: <span class="number">80</span></span><br><span class="line">      - <span class="attribute">path</span>: /coffee</span><br><span class="line">        <span class="attribute">backend</span>:</span><br><span class="line">          <span class="attribute">serviceName</span>: coffee-svc</span><br><span class="line">          <span class="attribute">servicePort</span>: <span class="number">80</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>Annotations配置优先于ConfigMap<br><a href="https://github.com/nginxinc/kubernetes-ingress/tree/master/examples/customization" target="_blank" rel="external">https://github.com/nginxinc/kubernetes-ingress/tree/master/examples/customization</a><br><a href="https://github.com/nginxinc/kubernetes-ingress/tree/master/examples/customization" target="_blank" rel="external">https://github.com/nginxinc/kubernetes-ingress/tree/master/examples/customization</a></p>
-<h1 id="u9650_u901F"><a href="#u9650_u901F" class="headerlink" title="限速"></a>限速</h1><p>Annotations<code>ingress.kubernetes.io/limit-connections</code>和<code>ingress.kubernetes.io/limit-rps</code>定义可由单个客户端IP地址打开的连接的限制。这可用于缓解<a href="https://www.nginx.com/blog/mitigating-ddos-attacks-with-nginx-and-nginx-plus" target="_blank" rel="external">DDoS攻击</a>。</p>
-<figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nginx<span class="class">.ingress</span><span class="class">.kubernetes</span><span class="class">.io</span>/limit-connections：单个IP地址允许的并发连接数。</span><br><span class="line"></span><br><span class="line">nginx<span class="class">.ingress</span><span class="class">.kubernetes</span><span class="class">.io</span>/limit-rps：每秒可从给定IP接受的连接数。</span><br><span class="line"></span><br><span class="line">如果在单个Ingress规则中指定两个Annotations，`limit-rps`则优先。</span><br></pre></td></tr></table></figure>
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/ingress-nginx/" rel="tag"><i class="fas fa-tags"></i>ingress-nginx</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -815,7 +803,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">77</a></div>
+      <div><a href="/archives/">78</a></div>
     </div>
     
     
@@ -833,7 +821,7 @@
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">34</a></div>
+      <div><a href="/tags/">35</a></div>
     </div>
     
   </div>
