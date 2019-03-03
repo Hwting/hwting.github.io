@@ -132,6 +132,127 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/08/14/Caliconode-localhostlocaldomainisalreadyusingtheIPv4address问题/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/08/14/Caliconode-localhostlocaldomainisalreadyusingtheIPv4address问题/" itemprop="url">Caliconode-localhostlocaldomainisalreadyusingtheIPv4address问题</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-08-14T01:08:00+08:00">2018-08-14 01:08:00</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2018/08/14/Caliconode-localhostlocaldomainisalreadyusingtheIPv4address问题/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/08/14/Caliconode-localhostlocaldomainisalreadyusingtheIPv4address问题/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>   Calico报错 Calico node ‘localhost.localdomain’ is already using the IPv4 addressx.x.x.x解决<br>服务器之前改名了hostname没有重启部署完etcd、Calico node。后来重启导致k8sCalico node起不来。<br>报错大楷是由于etcd内存储了之前hostname(localhost.localdomain)的的记录导致现在ip和之前冲突，不能自动删除重建<br>查看日志信息<br><figure class="hljs highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl  logs   calico-<span class="keyword">node</span><span class="identifier"></span><span class="title">-8w7tv</span> -c  calico-<span class="keyword">node</span><span class="identifier">  </span><span class="title">-n</span> kube-system -f</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/etc2.png" alt="crt"></p>
+<p>v3没有ls使用get替代</p>
+<p>查看etcd信息<br><figure class="hljs highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$export</span> <span class="constant">ETCDCTL_API</span>=<span class="number">3</span></span><br><span class="line"><span class="variable">$etcdctl</span> --endpoints=<span class="symbol">https:</span>/<span class="regexp">/192.168.7.92:2379,https:/</span><span class="regexp">/192.168.7.93:2379,https:/</span><span class="regexp">/192.168.7.94:2379   --cacert=/etc</span><span class="regexp">/kubernetes/ssl</span><span class="regexp">/ca.pem   --cert=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd.pem   --key=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd-key.pem  get  /</span> --prefix --keys-only | grep localhost</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/etc1.png" alt="crt"><br>删除之前存储的信息<br><figure class="hljs highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$etcdctl</span> --endpoints=<span class="symbol">https:</span>/<span class="regexp">/192.168.7.92:2379,https:/</span><span class="regexp">/192.168.7.93:2379,https:/</span><span class="regexp">/192.168.7.94:2379   --cacert=/etc</span><span class="regexp">/kubernetes/ssl</span><span class="regexp">/ca.pem   --cert=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd.pem   --key=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd-key.pem  get /</span> --prefix --keys-only | grep localhost | xargs -<span class="constant">I</span> &#123;&#125; etcdctl del &#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/etc3.png" alt="crt"></p>
+<p>重启caliconode pod恢复正常<br><img src="/img/etc4.png" alt="crt"></p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/kubernetes/" rel="tag"><i class="fas fa-tags"></i>kubernetes</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/08/09/Kubernetes1-11-nginx-ingress安装部署/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/08/09/Kubernetes1-11-nginx-ingress安装部署/" itemprop="url">Kubernetes1.11 nginx-ingress安装部署</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-08-09T14:34:00+08:00">2018-08-09 14:34:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
+        </span>
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2018/08/09/Kubernetes1-11-nginx-ingress安装部署/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/08/09/Kubernetes1-11-nginx-ingress安装部署/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <h1 id="u90E8_u7F72Ingress"><a href="#u90E8_u7F72Ingress" class="headerlink" title="部署Ingress"></a>部署Ingress</h1><p>ingress的部署文件在kubernetes Ingress 修改nodeselector 指定nodes上。<br><code>Pod.spec.nodeSelector</code>是通过kubernetes的label-selector机制进行节点选择，由scheduler调度策略<code>MatchNodeSelector</code>进行label匹配，调度pod到目标节点，该匹配规则是强制约束。启用节点选择器的步骤为:</p>
+<h2 id="Node_u6DFB_u52A0label_u6807_u8BB0"><a href="#Node_u6DFB_u52A0label_u6807_u8BB0" class="headerlink" title="Node添加label标记"></a>Node添加label标记</h2><p>查询lable<br><figure class="hljs highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl get nodes --show-labels</span><br><span class="line">标记规则：kubectl <span class="keyword">label</span> nodes <span class="variable">&lt;node-name&gt;</span> <span class="variable">&lt;label-key&gt;</span>=<span class="variable">&lt;label-value&gt;</span></span><br><span class="line">kubectl <span class="keyword">label</span> node <span class="number">192.168</span>.<span class="number">7.93</span> role=nginx-ingress</span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/ingress1.png" alt="crt"><br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">镜像v0<span class="number">.17</span><span class="number">.1</span>:docker pull wtingdocker/nginx-ingress-controller</span><br><span class="line">https:<span class="comment">//github.com/kubernetes/ingress-nginx/releases</span></span><br></pre></td></tr></table></figure></p>
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/ingress/" rel="tag"><i class="fas fa-tags"></i>ingress</a>
+        
+        <a class="post-tag button" href="/tags/kubernetes/" rel="tag"><i class="fas fa-tags"></i>kubernetes</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/08/09/Kubernetes-Heapster安装部署/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -623,127 +744,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/12/11/zabbix自动发现交换机接口信息监控网络设备流量模板配置/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2017/12/11/zabbix自动发现交换机接口信息监控网络设备流量模板配置/" itemprop="url">zabbix自动发现交换机接口信息监控网络设备流量模板配置</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-12-11T12:53:00+08:00">2017-12-11 12:53:00</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2017/12/11/zabbix自动发现交换机接口信息监控网络设备流量模板配置/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2017/12/11/zabbix自动发现交换机接口信息监控网络设备流量模板配置/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>1、思科交换机snmp配置<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">建立snmp团体，名称为<span class="keyword">public</span>，权限为只读</span><br><span class="line">(config)<span class="comment">#snmp-server community public ro</span></span><br><span class="line">    允许路由器将所有类型SNMP Trap发送出去</span><br><span class="line">(config)<span class="comment">#snmp-server enable traps</span></span><br><span class="line">    设置主机<span class="number">172.16</span><span class="number">.0</span><span class="number">.21</span>接受交换机所发送过来的SNMP Trap 信息</span><br><span class="line">(config)<span class="comment">#snmp-server host 172.16.0.21 version 2c public</span></span><br><span class="line">    使用loopback0接口的IP地址作为SNMP Traps发送源地址，这个随便可以不用。</span><br><span class="line">(config)<span class="comment">#snmp-server trap-source loopback0</span></span><br><span class="line">    zabbix执行测试</span><br><span class="line">snmpwalk -v <span class="number">2</span>c -c <span class="keyword">public</span>   <span class="number">172.16</span><span class="number">.0</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="u914D_u7F6E_u53D1_u73B0_u89C4_u5219__u8FD9_u91CC_u4F7F_u7528_u6DF1_u4FE1_u670D_u8BBE_u5907"><a href="#u914D_u7F6E_u53D1_u73B0_u89C4_u5219__u8FD9_u91CC_u4F7F_u7528_u6DF1_u4FE1_u670D_u8BBE_u5907" class="headerlink" title="配置发现规则 这里使用深信服设备"></a>配置发现规则 这里使用深信服设备</h1><p>配置 → 模板→点击适当模板行中的发现<br><img src="/img/zabbix1.png" alt="zabbix"><br>点击屏幕右上角的创建发现规则<br>填写发现规则表单，具体细节如下面的屏幕截图所示<br><img src="/img/zabbix2.png" alt="zabbix"><br><figure class="hljs highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">名称 Network interfaces</span><br><span class="line">类型  SNMPv2 agent</span><br><span class="line">键值 ifDescr</span><br><span class="line">SNMP OID discovery[&#123;#SNMPVALUE&#125;,IF-MIB::ifDescr]</span><br><span class="line">SNMP community &#123;<span class="variable">$SNMP</span>_COMMUNITY&#125;</span><br><span class="line">端口 <span class="number">161</span></span><br></pre></td></tr></table></figure></p>
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/zabbix/" rel="tag"><i class="fas fa-tags"></i>zabbix</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/11/29/MySQL批量杀连接的几种方法/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2017/11/29/MySQL批量杀连接的几种方法/" itemprop="url">MySQL批量杀连接的几种方法</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-11-29T15:29:00+08:00">2017-11-29 15:29:00</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
-        </span>
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2017/11/29/MySQL批量杀连接的几种方法/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2017/11/29/MySQL批量杀连接的几种方法/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <h1 id="u65B9_u6CD5_u4E00"><a href="#u65B9_u6CD5_u4E00" class="headerlink" title="方法一"></a>方法一</h1><p>通过information_schema.processlist表中的连接信息生成需要处理掉的MySQL连接的语句临时文件，然后执行临时文件中生成的指令。<br><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select concat(<span class="string">'KILL '</span>,id,<span class="string">';'</span>) from information_schema.processlist <span class="built_in">where</span> user=<span class="string">'root'</span>;</span><br><span class="line">+------------------------+</span><br><span class="line">| concat(<span class="string">'KILL '</span>,id,<span class="string">';'</span>) |</span><br><span class="line">+------------------------+</span><br><span class="line">| KILL <span class="number">3101</span>;             |</span><br><span class="line">| KILL <span class="number">2946</span>;             |</span><br><span class="line">+------------------------+</span><br><span class="line"><span class="number">2</span> rows <span class="keyword">in</span> <span class="built_in">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;select concat(<span class="string">'KILL '</span>,id,<span class="string">';'</span>) from information_schema.processlist <span class="built_in">where</span> user=<span class="string">'root'</span> into outfile <span class="string">'/tmp/a.txt'</span>;</span><br><span class="line">Query OK, <span class="number">2</span> rows affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;<span class="built_in">source</span> /tmp/a.txt;</span><br><span class="line">Query OK, <span class="number">0</span> rows affected (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure></p>
-<h1 id="u65B9_u6CD5_u4E8C"><a href="#u65B9_u6CD5_u4E8C" class="headerlink" title="方法二"></a>方法二</h1><p>杀掉当前所有的MySQL连接<br><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -uroot -p processlist|awk -F <span class="string">"|"</span> <span class="string">'&#123;print $2&#125;'</span>|xargs -n <span class="number">1</span> mysqladmin -uroot -p <span class="built_in">kill</span></span><br></pre></td></tr></table></figure></p>
-<p>杀掉指定用户运行的连接，这里为Mike<br><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -uroot -p processlist|awk -F <span class="string">"|"</span> <span class="string">'&#123;if($3 == "Mike")print $2&#125;'</span>|xargs -n <span class="number">1</span> mysqladmin -uroot -p <span class="built_in">kill</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="u65B9_u6CD5_u4E09"><a href="#u65B9_u6CD5_u4E09" class="headerlink" title="方法三"></a>方法三</h1><p>通过SHEL脚本实现<br>杀掉锁定的MySQL连接<br><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="keyword">for</span> id <span class="keyword">in</span> `mysqladmin processlist | grep -i locked | awk <span class="string">'&#123;print $1&#125;'</span>`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">mysqladmin <span class="built_in">kill</span> <span class="variable">$&#123;id&#125;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="u65B9_u6CD5_u56DB"><a href="#u65B9_u6CD5_u56DB" class="headerlink" title="方法四"></a>方法四</h1><p>通过Maatkit工具集中提供的mk-kill命令进行</p>
-<ul>
-<li>杀掉超过60秒的sql<br>mk-kill -busy-time 60 -kill</li>
-<li>如果你想先不杀，先看看有哪些sql运行超过60秒<br>mk-kill -busy-time 60 -print</li>
-<li>如果你想杀掉，同时输出杀掉了哪些进程<br>mk-kill -busy-time 60 -print –kill</li>
-</ul>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/MySQL/" rel="tag"><i class="fas fa-tags"></i>MySQL</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/3/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -788,7 +788,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">78</a></div>
+      <div><a href="/archives/">80</a></div>
     </div>
     
     
@@ -806,7 +806,7 @@
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">35</a></div>
+      <div><a href="/tags/">37</a></div>
     </div>
     
   </div>

@@ -132,6 +132,146 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/09/02/shell编程中if的语法和常见判断用法/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2016/09/02/shell编程中if的语法和常见判断用法/" itemprop="url">shell编程中if的语法和常见判断用法</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-09-02T15:25:00+08:00">2016-09-02 15:25:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a></span>
+        </span>
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2016/09/02/shell编程中if的语法和常见判断用法/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/09/02/shell编程中if的语法和常见判断用法/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>一. if的基本语法</p>
+<ol>
+<li>if与[之间要有空格</li>
+<li>[]与判断条件之间也必须有空格</li>
+<li>]与;之间不能有空格</li>
+</ol>
+<p>二. 对字符串的判断</p>
+<ol>
+<li>if [ str1=str2 ];then fi #当两个字符串相同时返回真</li>
+<li>if [ str1!=str2 ];then fi #当两个字符串不相等时返回真</li>
+<li>if [ -n str1 ];then fi #当字符串的长度大于0时返回真 (判断变量是否有值)</li>
+<li>if [ -z str1 ];then fi #当字符串的长度为0时返回真</li>
+</ol>
+<p>三. 对数字的判断</p>
+<ol>
+<li>int1 -eq int2 #int1和int2相等</li>
+<li>int1 -ne int2 #int1不相等int2</li>
+<li>int1 -gt int2 #int1大于int2</li>
+<li>int1 -ge int2 #int1大于等于int2</li>
+<li>int1 -lt int2 #int1小于int2</li>
+<li>int1 -le int2 #int1小于等于int2</li>
+</ol>
+<p>四. 对文件属性的判断</p>
+<ol>
+<li>-r file #用户可读为真</li>
+<li>-w file #用户可写为真</li>
+<li>-x file #用户可执行为真</li>
+<li>-f file #文件存在且为正规文件为真</li>
+<li>-d file #如果是存在目录为真</li>
+<li>-c file #文件存在且为字符设备文件</li>
+<li>-b file #文件存在且为块设备文件</li>
+<li>-s file #文件大小为非0为真，可以判断文件是否为空</li>
+<li>-e file #如果文件存在为真</li>
+</ol>
+<p>五. 逻辑判断</p>
+<ol>
+<li>-a #与</li>
+<li>-o #或</li>
+<li>! #非</li>
+</ol>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/08/24/linux用户登录报““su-cannot-set-user-id-resource-temporarily-unavalable/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2016/08/24/linux用户登录报““su-cannot-set-user-id-resource-temporarily-unavalable/" itemprop="url">linux用户登录报““su :cannot set user id: resource temporarily unavalable</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-08-24T09:48:21+08:00">2016-08-24 09:48:21</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2016/08/24/linux用户登录报““su-cannot-set-user-id-resource-temporarily-unavalable/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/08/24/linux用户登录报““su-cannot-set-user-id-resource-temporarily-unavalable/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>/etc/security/limits.d/90-nproc.conf<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">*          soft    nproc     <span class="number">1024</span></span><br><span class="line">root       soft    nproc     unlimited</span><br></pre></td></tr></table></figure></p>
+<p>更改为65535后，再su - user时，问题解决!</p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/08/01/linuxa安装maven/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -653,109 +793,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/06/17/自动化运维之pdsh/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2016/06/17/自动化运维之pdsh/" itemprop="url">自动化运维之pdsh</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-06-17T15:36:51+08:00">2016-06-17 15:36:51</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2016/06/17/自动化运维之pdsh/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/06/17/自动化运维之pdsh/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>pdsh，与pssh类似，pdsh可并行执行对远程目标主机的操作，在有批量执行命令或分发任务的运维需求时，使用这个命令可达到事半功倍的效果。同时，pdsh还可支持交互模式，当要执行的命令不确定时，可直接进入pdsh命令行。</p>
-<p>官网<a href="https://code.google.com/p/pdsh/" target="_blank" rel="external">https://code.google.com/p/pdsh/</a></p>
-<p>安装<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>tar jxvf pdsh-<span class="number">2.29</span>.tar.bz2   </span><br><span class="line"><span class="number">2.</span>cd pdsh-<span class="number">2.29</span>  </span><br><span class="line"><span class="number">3.</span>./configure --with-ssh --with-rsh --with-mrsh --with-mqshell --with-qshell --with-dshgroups --with-machines=/etc/pdsh/machines  </span><br><span class="line"><span class="number">4.</span>make &amp;&amp; make install  </span><br><span class="line">--with-dshgroups : 启用主机组支持</span><br><span class="line">--with-machines : 是--with-dshgroups的扩展，通过所有要管理的主机列表都写入指定的文件中</span><br></pre></td></tr></table></figure></p>
-<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>pdsh -V  </span><br><span class="line"><span class="number">2.</span>pdsh-<span class="number">2.29</span>  </span><br><span class="line"><span class="number">3.</span>rcmd modules: ssh,rsh,exec (<span class="keyword">default</span>: rsh)  </span><br><span class="line"><span class="number">4.</span>misc modules: machines,dshgroup  </span><br><span class="line"><span class="number">5.</span>  </span><br><span class="line"><span class="number">6.</span>pdsh -h  </span><br><span class="line"><span class="number">7.</span>Usage: pdsh [-options] command ...  </span><br><span class="line"><span class="number">8.</span>-S                <span class="keyword">return</span> largest of remote command <span class="keyword">return</span> values  </span><br><span class="line"><span class="number">9.</span>-h                output usage menu <span class="keyword">and</span> quit  </span><br><span class="line"><span class="number">10.</span>-V                output version information <span class="keyword">and</span> quit   <span class="comment">#查看版本以及可用的模块  </span></span><br><span class="line"><span class="number">11.</span>-q                <span class="keyword">list</span> the option settings <span class="keyword">and</span> quit     <span class="comment">#列出pdsh执行时的一些配置信息  </span></span><br><span class="line"><span class="number">12.</span>-b                disable ^C status feature (batch mode)  </span><br><span class="line"><span class="number">13.</span>-d                enable extra debug information from ^C status  </span><br><span class="line"><span class="number">14.</span>-l user           execute remote commands <span class="keyword">as</span> user   <span class="comment">#指定远程主机上使用的用户名。pdsh -R ssh -l opsuser -w user00[1-10] "date"  </span></span><br><span class="line"><span class="number">15.</span>-t seconds        set connect timeout (<span class="keyword">default</span> is <span class="number">10</span> sec)   <span class="comment">#指定连接远程主机的超时时间，以s为单位，默认是10s。pdsh -R ssh -w slave00[1-9] -t 15 "date"  </span></span><br><span class="line"><span class="number">16.</span>-u seconds        set command timeout (no <span class="keyword">default</span>)  <span class="comment">#指定远程执行命令的超时时间，以s为单位，以ssh方式连接时，默认时间为无限  </span></span><br><span class="line"><span class="number">17.</span>-f n              <span class="keyword">use</span> <span class="title">fanout</span> <span class="title">of</span> <span class="title">n</span> <span class="title">nodes</span>     #设置同时连接到远程主机的数量  </span><br><span class="line">18.-<span class="title">w</span> <span class="title">host</span>,<span class="title">host</span>,...  <span class="title">set</span> <span class="title">target</span> <span class="title">node</span> <span class="title">list</span> <span class="title">on</span> <span class="title">command</span> <span class="title">line</span>      #指定远程主机，可以指定多台，每台主机用逗号隔开，<span class="title">host</span>可以是主机名也可以是<span class="title">IP</span>地址。<span class="title">eg</span>: <span class="title">pdsh</span> -<span class="title">w</span> <span class="title">ssh</span>:<span class="title">user001</span>,<span class="title">ssh</span>:<span class="title">user002</span> "<span class="title">date</span>" 或者 <span class="title">pdsh</span> -<span class="title">w</span> <span class="title">ssh</span>:<span class="title">user00</span>[1-10] "<span class="title">date</span>" 或者使用正则 <span class="title">pdsh</span> -<span class="title">w</span> <span class="title">ssh</span>:<span class="title">user00</span>[10-31],/1$/ "<span class="title">uptime</span>" ,10-31中选择以1结尾的主机  </span><br><span class="line">19.-<span class="title">x</span> <span class="title">host</span>,<span class="title">host</span>,...  <span class="title">set</span> <span class="title">node</span> <span class="title">exclusion</span> <span class="title">list</span> <span class="title">on</span> <span class="title">command</span> <span class="title">line</span>   #排除某些主机。<span class="title">pdsh</span> -<span class="title">R</span> <span class="title">ssh</span> -<span class="title">l</span> <span class="title">opsuser</span> -<span class="title">w</span> <span class="title">user00</span>[1-9] -<span class="title">x</span> <span class="title">user005</span>,<span class="title">user007</span> "<span class="title">date</span>"  </span><br><span class="line">20.-<span class="title">R</span> <span class="title">name</span>           <span class="title">set</span> <span class="title">rcmd</span> <span class="title">module</span> <span class="title">to</span> <span class="title">name</span>   #指定<span class="title">rcmd</span>的模块名，默认是<span class="title">rsh</span>。如果要选择<span class="title">ssh</span>，<span class="title">pdsh</span> -<span class="title">R</span> <span class="title">ssh</span> -<span class="title">w</span> <span class="title">user00</span>[1-10] "<span class="title">date</span>"  </span><br><span class="line">21.-<span class="title">M</span> <span class="title">name</span>,...       <span class="title">select</span> <span class="title">one</span> <span class="title">or</span> <span class="title">more</span> <span class="title">misc</span> <span class="title">modules</span> <span class="title">to</span> <span class="title">initialize</span> <span class="title">first</span>  </span><br><span class="line">22.-<span class="title">N</span>                <span class="title">disable</span> <span class="title">hostname</span>: <span class="title">labels</span> <span class="title">on</span> <span class="title">output</span> <span class="title">lines</span>  #用来关闭远程主机所返回结果的主机名显示  </span><br><span class="line">23.-<span class="title">L</span>                <span class="title">list</span> <span class="title">info</span> <span class="title">on</span> <span class="title">all</span> <span class="title">loaded</span> <span class="title">modules</span> <span class="title">and</span> <span class="title">exit</span>  </span><br><span class="line">24.-<span class="title">g</span> <span class="title">groupname</span>      <span class="title">target</span> <span class="title">hosts</span> <span class="title">in</span> <span class="title">dsh</span> <span class="title">group</span> "<span class="title">groupname</span>"     #用来指定一组远程主机，编译<span class="title">pdsh</span>时可以通过--<span class="title">with</span>-<span class="title">dshgroups</span> 参数激活此选项，默认可以将一组主机列表写入一个文件并放到本地主机的~/.<span class="title">dsh</span>/<span class="title">group</span>或/<span class="title">etc</span>/<span class="title">dsh</span>/<span class="title">group</span>目录下。<span class="title">eg</span>: <span class="title">pdsh</span> -<span class="title">R</span> <span class="title">ssh</span> -<span class="title">g</span> <span class="title">userhosts</span> "<span class="title">date</span>",其中<span class="title">userhosts</span>是一个主机列表文件，可以放到~/.<span class="title">dsh</span>/<span class="title">group</span>或/<span class="title">etc</span>/<span class="title">dsh</span>/<span class="title">group</span>目录下  </span><br><span class="line">25.-<span class="title">X</span> <span class="title">groupname</span>      <span class="title">exclude</span> <span class="title">hosts</span> <span class="title">in</span> <span class="title">dsh</span> <span class="title">group</span> "<span class="title">groupname</span>"    #用来排除指定组内的所有主机，经常与-<span class="title">a</span>参数一起使用。<span class="title">pdsh</span> -<span class="title">R</span> <span class="title">ssh</span> -<span class="title">a</span> -<span class="title">X</span> <span class="title">userhosts</span> "<span class="title">date</span>"  </span><br><span class="line">26.-<span class="title">a</span>                <span class="title">target</span> <span class="title">all</span> <span class="title">nodes</span>  #可以指定所有的远程主机，<span class="title">pdsh</span>会查看/<span class="title">etc</span>/<span class="title">pdsh</span>/<span class="title">machines</span>文件中的主机列表，要改变此路径，在编译<span class="title">pdsh</span>时通过--<span class="title">with</span>-<span class="title">machines</span>参数指定  </span><br><span class="line">27.<span class="title">available</span> <span class="title">rcmd</span> <span class="title">modules</span>: <span class="title">ssh</span>,<span class="title">rsh</span>,<span class="title">exec</span> (<span class="title">default</span>: <span class="title">rsh</span>)</span><br></pre></td></tr></table></figure>
-<p>1、pdsh批量统计主机信息</p>
-<p>1.pdsh -w ssh:192.168.1.153,ssh:192.168.1.222 “uname -n”<br>2.192.168.1.222: localhost.localdomain<br>3.192.168.1.153: local-centos02  </p>
-<p>排除某些主机</p>
-<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>pdsh -w ssh:<span class="number">192.168</span><span class="number">.1</span>.[<span class="number">153</span>-<span class="number">222</span>] -x <span class="number">192.168</span><span class="number">.1</span>.[<span class="number">154</span>-<span class="number">221</span>] <span class="string">"uptime"</span>  </span><br><span class="line"><span class="number">2.192</span><span class="number">.168</span><span class="number">.1</span><span class="number">.153</span>:  <span class="number">11</span>:<span class="number">46</span>:<span class="number">57</span> up  <span class="number">2</span>:<span class="number">42</span>,  <span class="number">2</span> users,  load average: <span class="number">0.00</span>, <span class="number">0.00</span>, <span class="number">0.00</span>  </span><br><span class="line"><span class="number">3.192</span><span class="number">.168</span><span class="number">.1</span><span class="number">.222</span>:  <span class="number">11</span>:<span class="number">46</span>:<span class="number">55</span> up <span class="number">3</span> days,  <span class="number">3</span>:<span class="number">26</span>,  <span class="number">3</span> users,  load average: <span class="number">0.00</span>, <span class="number">0.01</span>, <span class="number">0.00</span>  </span><br><span class="line"></span><br><span class="line">支持正则</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span>pdsh -w ssh:<span class="number">192.168</span><span class="number">.1</span>.[<span class="number">153</span>-<span class="number">222</span>],/<span class="number">2</span>$/ <span class="string">"uptime"</span>  </span><br><span class="line"></span><br><span class="line">对于不规范的主机，可以写到一个文件中，路径是编译时指定</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span>cat /etc/pdsh/machines   </span><br><span class="line"><span class="number">2.</span>aaa  </span><br><span class="line"><span class="number">3.</span>bbb  </span><br><span class="line"><span class="number">4.</span>user001  </span><br><span class="line"><span class="number">5.</span>user1111  </span><br><span class="line"><span class="number">6.</span>  </span><br><span class="line"><span class="number">7.</span>pdsh -R ssh -a uptime</span><br></pre></td></tr></table></figure>
-<p>按照组进行调用</p>
-<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>cat /etc/dsh/group/userhosts  </span><br><span class="line"><span class="number">2.</span>  </span><br><span class="line"><span class="number">3.</span>pdsh -R ssh -g userhosts uptime  </span><br><span class="line"><span class="number">4.</span>  </span><br><span class="line"><span class="number">5.</span>-X  <span class="comment">#排除指定组的主机  </span></span><br><span class="line"><span class="number">6.</span>  </span><br><span class="line"><span class="number">7.</span>pdsh -R ssh -X userhosts uptime  </span><br><span class="line"><span class="number">8.</span>  </span><br><span class="line"><span class="number">9.</span>pdsh 在远程主机上执行命令  </span><br><span class="line"><span class="number">10.</span>  </span><br><span class="line"><span class="number">11.</span>pdsh -R  ssh -g userhosts <span class="string">"rm -rf /home/opsuser/mysql"</span>  </span><br><span class="line"><span class="number">12.</span>pdsh -R  ssh -g userhosts <span class="string">"sudo mkdir /mnt/test"</span>  </span><br><span class="line"><span class="number">13.</span>pdsh -R  ssh -g userhosts <span class="string">"sudo /etc/init.d/gmond start"</span>  </span><br><span class="line"></span><br><span class="line">pdsh 交互模式</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span>pdsh -R ssh -w <span class="number">192.168</span><span class="number">.1</span><span class="number">.153</span>  </span><br><span class="line"></span><br><span class="line">pdcp应用</span><br><span class="line"></span><br><span class="line">pdcp主要是本地主机和远程主机进行文件复制，在使用pdcp时，两台主机都要安装pdcp</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">1.</span>pdcp -R ssh -g userhosts /home/opsuser/mysqldb.tar.gz /home/opsuser <span class="comment">#复制文件  </span></span><br><span class="line"><span class="number">2.</span>pdcp -R ssh -w userhosts -r /home/opsuser/webdata /home/opsuser     <span class="comment">#复制目录</span></span><br></pre></td></tr></table></figure>
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/06/17/使用ssh-keygen和ssh-copy-id三步实现SSH无密码登录/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2016/06/17/使用ssh-keygen和ssh-copy-id三步实现SSH无密码登录/" itemprop="url">使用ssh-keygen和ssh-copy-id三步实现SSH无密码登录</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-06-17T10:52:00+08:00">2016-06-17 10:52:00</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2016/06/17/使用ssh-keygen和ssh-copy-id三步实现SSH无密码登录/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/06/17/使用ssh-keygen和ssh-copy-id三步实现SSH无密码登录/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>1、在A机器上使用ssh-keygen产生公钥私钥对<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ssh-keygen -t rsa -b 1024</span></span><br><span class="line">Generating <span class="keyword">public</span>/<span class="keyword">private</span> rsa key pair.</span><br><span class="line">Enter file in which to save the key (/root/.ssh/id_rsa): </span><br><span class="line">Enter passphrase (<span class="keyword">empty</span> <span class="keyword">for</span> no passphrase): </span><br><span class="line">Enter same passphrase again: </span><br><span class="line">Your identification has been saved in /root/.ssh/id_rsa.</span><br><span class="line">Your <span class="keyword">public</span> key has been saved in /root/.ssh/id_rsa.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line"><span class="number">0</span>c:f8:<span class="number">73</span>:aa:<span class="number">46</span>:<span class="number">52</span>:<span class="number">06</span>:ba:<span class="number">54</span>:e0:fc:d4:<span class="number">40</span>:<span class="number">58</span>:<span class="number">07</span>:<span class="number">33</span> root@HA-<span class="number">1</span></span><br><span class="line">The key<span class="string">'s randomart image is:</span><br><span class="line">+--[ RSA 1024]----+</span><br><span class="line">| .=E..           |</span><br><span class="line">|o...*.           |</span><br><span class="line">| +.o...          |</span><br><span class="line">|..o o. o         |</span><br><span class="line">|.. +  o S        |</span><br><span class="line">|. . .  +         |</span><br><span class="line">|   o  .          |</span><br><span class="line">|    ..           |</span><br><span class="line">|   ..            |</span><br><span class="line">+-----------------+</span></span><br></pre></td></tr></table></figure></p>
-<p>2、第二步:用ssh-copy-id将公钥复制到远程机器中<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">#ssh-copy-id -i ~/.ssh/id_rsa.pub remote-host</span></span><br><span class="line">jsmith@remote-host<span class="string">'s password:</span><br><span class="line">Now try logging into the machine, with "ssh '</span>remote-host<span class="string">'", and check in:</span><br><span class="line">.ssh/authorized_keys</span><br><span class="line">`</span></span><br></pre></td></tr></table></figure></p>
-<p>ssh-copy-id 将key写到远程机器的 ~/ .ssh/authorized_key.文件中</p>
-<p> #ssh remote-host</p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/6/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -800,7 +837,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">78</a></div>
+      <div><a href="/archives/">80</a></div>
     </div>
     
     
@@ -818,7 +855,7 @@
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">35</a></div>
+      <div><a href="/tags/">37</a></div>
     </div>
     
   </div>

@@ -132,6 +132,140 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/10/27/使用Prometheus监控Oracle系统展示到Grafana/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/10/27/使用Prometheus监控Oracle系统展示到Grafana/" itemprop="url">使用Prometheus监控Oracle系统展示到Grafana</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-10-27T21:58:00+08:00">2018-10-27 21:58:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
+        </span>
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2018/10/27/使用Prometheus监控Oracle系统展示到Grafana/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/10/27/使用Prometheus监控Oracle系统展示到Grafana/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>oracledb_exporter参考：<br><a href="https://github.com/iamseth/oracledb_exporter" target="_blank" rel="external">https://github.com/iamseth/oracledb_exporter</a><br>本文直接把oracledb_exporter部署在k8s环境。docker部署方式更为简单<br>我们使用Prometheus在Grafana上为Oracle实现监控仪表板。由于Oracle不支持http通信，它由Oracle Exporter获取指标，它将Oracle的内容发送到Prometheus，并将Prometheus内容输出到Grafana。<br><img src="/img/oracle1.jpg" alt="crt"><br>Oracle DB→Oracle Exporter→Prometheus→Grafana</p>
+<p>Oracle Exporter需要将Oracle与Prometheus连接。Oracle Exporter将有关Oracle的信息传递给Prometheus。<br>创建yaml对象</p>
+<h1 id="u90E8_u7F72oracle-export"><a href="#u90E8_u7F72oracle-export" class="headerlink" title="部署oracle-export"></a>部署oracle-export</h1><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF | kubectl create -f - </span><br><span class="line">apiVersion: extensions/v1beta1</span><br><span class="line">kind: Deployment</span><br><span class="line">metadata:</span><br><span class="line">  labels:</span><br><span class="line">    name: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">  name: oracle-<span class="keyword">export</span>-dm</span><br><span class="line">  <span class="keyword">namespace</span>: monitoring</span><br><span class="line">spec:</span><br><span class="line">  replicas: <span class="number">1</span></span><br><span class="line">  selector:</span><br><span class="line">    matchLabels:</span><br><span class="line">      app: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">  <span class="keyword">template</span>:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        app: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">    spec:</span><br><span class="line">      containers:</span><br><span class="line">      - image:  wtingdocker/oracledb_exporter:latest</span><br><span class="line">        name: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">        command:</span><br><span class="line">        - <span class="string">"/oracledb_exporter"</span></span><br><span class="line">        ports:</span><br><span class="line">        - containerPort: <span class="number">9161</span></span><br><span class="line">          protocol: TCP</span><br><span class="line">        env:</span><br><span class="line">        - name: DATA_SOURCE_NAME</span><br><span class="line">          value: <span class="string">"system/oracle@ip:1521/sid"</span>  <span class="preprocessor">#改成自己的数据库信息 定义DATA_SOURCE_NAME变量</span></span><br><span class="line">---</span><br><span class="line">kind: Service</span><br><span class="line">apiVersion: v1</span><br><span class="line">metadata:</span><br><span class="line">  labels:</span><br><span class="line">    app: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">  name: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">  <span class="keyword">namespace</span>: monitoring</span><br><span class="line">spec:</span><br><span class="line">  type: NodePort</span><br><span class="line">  ports:</span><br><span class="line">  - port: <span class="number">9161</span></span><br><span class="line">    targetPort: <span class="number">9161</span></span><br><span class="line">  selector:</span><br><span class="line">    app: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+<h1 id="u4FEE_u6539prometheus-yml_u6587_u4EF6"><a href="#u4FEE_u6539prometheus-yml_u6587_u4EF6" class="headerlink" title="修改prometheus.yml文件"></a>修改prometheus.yml文件</h1><figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">scrape_configs</span>:</span><br><span class="line">  - <span class="attribute">job_name</span>: <span class="string">'oracle-endpoint'</span></span><br><span class="line">    <span class="attribute">static_configs</span>:</span><br><span class="line">    - <span class="attribute">targets</span>:</span><br><span class="line">      - <span class="attribute">oracle-export-X-X</span>:<span class="number">9161</span></span><br><span class="line">      <span class="attribute">labels</span>:</span><br><span class="line">        <span class="attribute">target</span>: <span class="string">'192.168.1.X'</span></span><br><span class="line">        <span class="attribute">descr</span>: <span class="string">'XX数据库'</span></span><br></pre></td></tr></table></figure>
+<p>重新加载prometheus配置文件<br><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl  apply <span class="operator">-f</span> configmap.yaml</span><br></pre></td></tr></table></figure></p>
+<p>重新启动prometheus容器以使修改后的内容生效<br><figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XPOST <span class="string">http:</span><span class="comment">//192.168.7.X:30680/-/reload</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="Grafana_u5C55_u793A"><a href="#Grafana_u5C55_u793A" class="headerlink" title="Grafana展示"></a>Grafana展示</h1><p>访问oracle-export端口验证Oracle和Prometheus连接<br><img src="/img/20181027225036.png" alt="oracle1"><br><img src="/img/20181027225445.png" alt="oracle1"><br>Grafana添加Prometheus数据库源<br><img src="/img/0181027230136.png" alt="oracle2"></p>
+<p>仪表板导入3333可以根据自己的需要添加export提供的metrics 展示以及通过alertmanager告警<br><img src="/img/20181027230648.png" alt="oracle2"></p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/kubernetes/" rel="tag"><i class="fas fa-tags"></i>kubernetes</a>
+        
+        <a class="post-tag button" href="/tags/prometheus/" rel="tag"><i class="fas fa-tags"></i>prometheus</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/29/kubernetes-ingress配置HTTPS-TLS证书/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/09/29/kubernetes-ingress配置HTTPS-TLS证书/" itemprop="url">kubernetes ingress配置HTTPS/TLS证书</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-29T23:14:00+08:00">2018-09-29 23:14:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
+        </span>
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2018/09/29/kubernetes-ingress配置HTTPS-TLS证书/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/09/29/kubernetes-ingress配置HTTPS-TLS证书/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p><a href="https://kubernetes.io/docs/concepts/services-networking/ingress/" target="_blank" rel="external">Ingress是Kubernetes中的一个概念，用于</a>将入站连接路由到不同的服务。这可以通过不同方式实现。<br>生成证书文件<br><figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl req -x509 -nodes -days <span class="number">2920</span> -newkey rsa:<span class="number">2048</span> -keyout tls<span class="class">.key</span> -out tls<span class="class">.crt</span> -subj <span class="string">"/CN=*.idcsec.com/O=nginxsvc"</span></span><br></pre></td></tr></table></figure></p>
+<p>导入证书文件到k8s secret<br><figure class="hljs highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl <span class="built_in">create</span> secret tls <span class="keyword">https</span>-secret <span class="comment">--key tls.key --cert tls.crt</span></span><br></pre></td></tr></table></figure></p>
+<p>或者使用yaml<br><figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">apiVersion:</span> v1</span><br><span class="line"><span class="string">kind:</span> Secret</span><br><span class="line"><span class="string">type:</span> kubernetes.io/tls</span><br><span class="line"><span class="string">metadata:</span></span><br><span class="line"><span class="label">  name:</span> mytlssecret</span><br><span class="line"><span class="string">data:</span></span><br><span class="line">  tls.<span class="string">crt:</span> &lt;base64 encoded cert&gt;</span><br><span class="line">  tls.<span class="string">key:</span> &lt;base64 encoded key&gt;</span><br></pre></td></tr></table></figure></p>
+<p>配置ingress<br><figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">kind</span>: Ingress</span><br><span class="line"><span class="attribute">apiVersion</span>: extensions/v1beta1</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: test</span><br><span class="line">  <span class="attribute">annotations</span>:</span><br><span class="line">    ingress.kubernetes.io/<span class="attribute">ssl-redirect</span>: <span class="string">"False"</span>  #设置是否强制跳转 false| true</span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">tls</span>:</span><br><span class="line">  - <span class="attribute">hosts</span>: </span><br><span class="line">    - www.idcsec.com</span><br><span class="line">    <span class="attribute">secretName</span>: https-secret</span><br><span class="line">  <span class="attribute">rules</span>:</span><br><span class="line">  - <span class="attribute">host</span>:  www.idcsec.com</span><br><span class="line">    <span class="attribute">http</span>:</span><br><span class="line">      <span class="attribute">paths</span>:</span><br><span class="line">      - <span class="attribute">path</span>: /</span><br><span class="line">        <span class="attribute">backend</span>:</span><br><span class="line">          <span class="attribute">serviceName</span>: test</span><br><span class="line">          <span class="attribute">servicePort</span>: <span class="number">80</span></span><br></pre></td></tr></table></figure></p>
+<p>校验证书信息<br><figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -<span class="keyword">in</span> tls<span class="class">.crt</span>  -noout -text</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/kubernetes/ingress-nginx/tree/master/docs/examples/auth/client-certs" target="_blank" rel="external">Client Certificate Authentication</a><br><a href="https://github.com/kubernetes/ingress-nginx/blob/master/docs/examples/PREREQUISITES.md#creating-the-ca-authentication-secret" target="_blank" rel="external">TLS证书</a></p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/ingress-nginx/" rel="tag"><i class="fas fa-tags"></i>ingress-nginx</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/29/kubernetes-ingres-nginx高级配置/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -655,127 +789,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/08/14/Caliconode-localhostlocaldomainisalreadyusingtheIPv4address问题/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/08/14/Caliconode-localhostlocaldomainisalreadyusingtheIPv4address问题/" itemprop="url">Caliconode-localhostlocaldomainisalreadyusingtheIPv4address问题</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-08-14T01:08:00+08:00">2018-08-14 01:08:00</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2018/08/14/Caliconode-localhostlocaldomainisalreadyusingtheIPv4address问题/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/08/14/Caliconode-localhostlocaldomainisalreadyusingtheIPv4address问题/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>   Calico报错 Calico node ‘localhost.localdomain’ is already using the IPv4 addressx.x.x.x解决<br>服务器之前改名了hostname没有重启部署完etcd、Calico node。后来重启导致k8sCalico node起不来。<br>报错大楷是由于etcd内存储了之前hostname(localhost.localdomain)的的记录导致现在ip和之前冲突，不能自动删除重建<br>查看日志信息<br><figure class="hljs highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl  logs   calico-<span class="keyword">node</span><span class="identifier"></span><span class="title">-8w7tv</span> -c  calico-<span class="keyword">node</span><span class="identifier">  </span><span class="title">-n</span> kube-system -f</span><br></pre></td></tr></table></figure></p>
-<p><img src="/img/etc2.png" alt="crt"></p>
-<p>v3没有ls使用get替代</p>
-<p>查看etcd信息<br><figure class="hljs highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$export</span> <span class="constant">ETCDCTL_API</span>=<span class="number">3</span></span><br><span class="line"><span class="variable">$etcdctl</span> --endpoints=<span class="symbol">https:</span>/<span class="regexp">/192.168.7.92:2379,https:/</span><span class="regexp">/192.168.7.93:2379,https:/</span><span class="regexp">/192.168.7.94:2379   --cacert=/etc</span><span class="regexp">/kubernetes/ssl</span><span class="regexp">/ca.pem   --cert=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd.pem   --key=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd-key.pem  get  /</span> --prefix --keys-only | grep localhost</span><br></pre></td></tr></table></figure></p>
-<p><img src="/img/etc1.png" alt="crt"><br>删除之前存储的信息<br><figure class="hljs highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$etcdctl</span> --endpoints=<span class="symbol">https:</span>/<span class="regexp">/192.168.7.92:2379,https:/</span><span class="regexp">/192.168.7.93:2379,https:/</span><span class="regexp">/192.168.7.94:2379   --cacert=/etc</span><span class="regexp">/kubernetes/ssl</span><span class="regexp">/ca.pem   --cert=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd.pem   --key=/etc</span><span class="regexp">/etcd/ssl</span><span class="regexp">/etcd-key.pem  get /</span> --prefix --keys-only | grep localhost | xargs -<span class="constant">I</span> &#123;&#125; etcdctl del &#123;&#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="/img/etc3.png" alt="crt"></p>
-<p>重启caliconode pod恢复正常<br><img src="/img/etc4.png" alt="crt"></p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/kubernetes/" rel="tag"><i class="fas fa-tags"></i>kubernetes</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/08/09/Kubernetes1-11-nginx-ingress安装部署/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/08/09/Kubernetes1-11-nginx-ingress安装部署/" itemprop="url">Kubernetes1.11 nginx-ingress安装部署</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-08-09T14:34:00+08:00">2018-08-09 14:34:00</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
-        </span>
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2018/08/09/Kubernetes1-11-nginx-ingress安装部署/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/08/09/Kubernetes1-11-nginx-ingress安装部署/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <h1 id="u90E8_u7F72Ingress"><a href="#u90E8_u7F72Ingress" class="headerlink" title="部署Ingress"></a>部署Ingress</h1><p>ingress的部署文件在kubernetes Ingress 修改nodeselector 指定nodes上。<br><code>Pod.spec.nodeSelector</code>是通过kubernetes的label-selector机制进行节点选择，由scheduler调度策略<code>MatchNodeSelector</code>进行label匹配，调度pod到目标节点，该匹配规则是强制约束。启用节点选择器的步骤为:</p>
-<h2 id="Node_u6DFB_u52A0label_u6807_u8BB0"><a href="#Node_u6DFB_u52A0label_u6807_u8BB0" class="headerlink" title="Node添加label标记"></a>Node添加label标记</h2><p>查询lable<br><figure class="hljs highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl get nodes --show-labels</span><br><span class="line">标记规则：kubectl <span class="keyword">label</span> nodes <span class="variable">&lt;node-name&gt;</span> <span class="variable">&lt;label-key&gt;</span>=<span class="variable">&lt;label-value&gt;</span></span><br><span class="line">kubectl <span class="keyword">label</span> node <span class="number">192.168</span>.<span class="number">7.93</span> role=nginx-ingress</span><br></pre></td></tr></table></figure></p>
-<p><img src="/img/ingress1.png" alt="crt"><br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">镜像v0<span class="number">.17</span><span class="number">.1</span>:docker pull wtingdocker/nginx-ingress-controller</span><br><span class="line">https:<span class="comment">//github.com/kubernetes/ingress-nginx/releases</span></span><br></pre></td></tr></table></figure></p>
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/ingress/" rel="tag"><i class="fas fa-tags"></i>ingress</a>
-        
-        <a class="post-tag button" href="/tags/kubernetes/" rel="tag"><i class="fas fa-tags"></i>kubernetes</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/2/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -820,7 +833,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">78</a></div>
+      <div><a href="/archives/">80</a></div>
     </div>
     
     
@@ -838,7 +851,7 @@
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">35</a></div>
+      <div><a href="/tags/">37</a></div>
     </div>
     
   </div>

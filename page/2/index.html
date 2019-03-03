@@ -132,6 +132,129 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/12/29/Prometheus-Node-Exporter监控主机性能展示Grafana/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/12/29/Prometheus-Node-Exporter监控主机性能展示Grafana/" itemprop="url">Prometheus Node_Exporter监控主机性能展示Grafana</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-12-29T11:18:00+08:00">2018-12-29 11:18:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/prometheus/" itemprop="url" rel="index"><span itemprop="name">prometheus</span></a></span>
+        </span>
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2018/12/29/Prometheus-Node-Exporter监控主机性能展示Grafana/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/12/29/Prometheus-Node-Exporter监控主机性能展示Grafana/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p><img src="https://i.loli.net/2018/12/29/5c26e87a05bad.png" alt="Consul"><br>
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/node-exporter/" rel="tag"><i class="fas fa-tags"></i>node_exporter</a>
+        
+        <a class="post-tag button" href="/tags/prometheus/" rel="tag"><i class="fas fa-tags"></i>prometheus</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/12/29/Prometheus-Consul实现自动服务发现/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/12/29/Prometheus-Consul实现自动服务发现/" itemprop="url">Prometheus+Consul实现自动服务发现</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-12-29T10:55:00+08:00">2018-12-29 10:55:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/prometheus/" itemprop="url" rel="index"><span itemprop="name">prometheus</span></a></span>
+        </span>
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2018/12/29/Prometheus-Consul实现自动服务发现/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/12/29/Prometheus-Consul实现自动服务发现/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>prometheus+Consul自动服务发现减少修改修改prometheus.yml重启prometheus等操作</p>
+<h1 id="Consul__u4ECB_u7ECD"><a href="#Consul__u4ECB_u7ECD" class="headerlink" title="Consul 介绍"></a>Consul 介绍</h1><p>Consul有多个组件，但总体而言，它是基础架构中的一款服务发现和配置的工具。 它提供了几个关键功能：<br>服务发现：Consul client 可以提供服务，例如api或mysql，也可以使用Consul client来发现指定服务的提供者。 使用DNS或HTTP，应用程序可以轻松找到他们所依赖的服务。<br>健康检查：Consul client 可以提供任何数量的健康检查，或者与给定的服务（“Web服务器是否返回200 OK”），或与本地节点（“内存利用率是否低于90％”）相关联。 可以使用此信息来监控集群运行状况，服务发现组件使用此信息将流量从有问题的主机中移除出去。<br>KV Store：应用程序可以使用Consul的分层键/值存储，包括动态配置，功能标记，协调，leader选举等等。 简单的HTTP API使其易于使用。<br>多数据中心：Consul支持多个数据中心。 这意味着Consul的用户不必担心构建额外的抽象层以扩展到多个区域。<br>官方架构图<br><img src="https://i.loli.net/2018/12/29/5c26e3aa40037.png" alt="Consul"><br>
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/consul/" rel="tag"><i class="fas fa-tags"></i>consul</a>
+        
+        <a class="post-tag button" href="/tags/prometheus/" rel="tag"><i class="fas fa-tags"></i>prometheus</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/12/12/Prometheus系统监控redis展示Grafana/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -625,140 +748,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/10/27/使用Prometheus监控Oracle系统展示到Grafana/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/10/27/使用Prometheus监控Oracle系统展示到Grafana/" itemprop="url">使用Prometheus监控Oracle系统展示到Grafana</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-10-27T21:58:00+08:00">2018-10-27 21:58:00</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
-        </span>
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2018/10/27/使用Prometheus监控Oracle系统展示到Grafana/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/10/27/使用Prometheus监控Oracle系统展示到Grafana/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>oracledb_exporter参考：<br><a href="https://github.com/iamseth/oracledb_exporter" target="_blank" rel="external">https://github.com/iamseth/oracledb_exporter</a><br>本文直接把oracledb_exporter部署在k8s环境。docker部署方式更为简单<br>我们使用Prometheus在Grafana上为Oracle实现监控仪表板。由于Oracle不支持http通信，它由Oracle Exporter获取指标，它将Oracle的内容发送到Prometheus，并将Prometheus内容输出到Grafana。<br><img src="/img/oracle1.jpg" alt="crt"><br>Oracle DB→Oracle Exporter→Prometheus→Grafana</p>
-<p>Oracle Exporter需要将Oracle与Prometheus连接。Oracle Exporter将有关Oracle的信息传递给Prometheus。<br>创建yaml对象</p>
-<h1 id="u90E8_u7F72oracle-export"><a href="#u90E8_u7F72oracle-export" class="headerlink" title="部署oracle-export"></a>部署oracle-export</h1><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF | kubectl create -f - </span><br><span class="line">apiVersion: extensions/v1beta1</span><br><span class="line">kind: Deployment</span><br><span class="line">metadata:</span><br><span class="line">  labels:</span><br><span class="line">    name: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">  name: oracle-<span class="keyword">export</span>-dm</span><br><span class="line">  <span class="keyword">namespace</span>: monitoring</span><br><span class="line">spec:</span><br><span class="line">  replicas: <span class="number">1</span></span><br><span class="line">  selector:</span><br><span class="line">    matchLabels:</span><br><span class="line">      app: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">  <span class="keyword">template</span>:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        app: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">    spec:</span><br><span class="line">      containers:</span><br><span class="line">      - image:  wtingdocker/oracledb_exporter:latest</span><br><span class="line">        name: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">        command:</span><br><span class="line">        - <span class="string">"/oracledb_exporter"</span></span><br><span class="line">        ports:</span><br><span class="line">        - containerPort: <span class="number">9161</span></span><br><span class="line">          protocol: TCP</span><br><span class="line">        env:</span><br><span class="line">        - name: DATA_SOURCE_NAME</span><br><span class="line">          value: <span class="string">"system/oracle@ip:1521/sid"</span>  <span class="preprocessor">#改成自己的数据库信息 定义DATA_SOURCE_NAME变量</span></span><br><span class="line">---</span><br><span class="line">kind: Service</span><br><span class="line">apiVersion: v1</span><br><span class="line">metadata:</span><br><span class="line">  labels:</span><br><span class="line">    app: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">  name: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">  <span class="keyword">namespace</span>: monitoring</span><br><span class="line">spec:</span><br><span class="line">  type: NodePort</span><br><span class="line">  ports:</span><br><span class="line">  - port: <span class="number">9161</span></span><br><span class="line">    targetPort: <span class="number">9161</span></span><br><span class="line">  selector:</span><br><span class="line">    app: oracle-<span class="keyword">export</span>-<span class="number">198</span></span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
-<h1 id="u4FEE_u6539prometheus-yml_u6587_u4EF6"><a href="#u4FEE_u6539prometheus-yml_u6587_u4EF6" class="headerlink" title="修改prometheus.yml文件"></a>修改prometheus.yml文件</h1><figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">scrape_configs</span>:</span><br><span class="line">  - <span class="attribute">job_name</span>: <span class="string">'oracle-endpoint'</span></span><br><span class="line">    <span class="attribute">static_configs</span>:</span><br><span class="line">    - <span class="attribute">targets</span>:</span><br><span class="line">      - <span class="attribute">oracle-export-X-X</span>:<span class="number">9161</span></span><br><span class="line">      <span class="attribute">labels</span>:</span><br><span class="line">        <span class="attribute">target</span>: <span class="string">'192.168.1.X'</span></span><br><span class="line">        <span class="attribute">descr</span>: <span class="string">'XX数据库'</span></span><br></pre></td></tr></table></figure>
-<p>重新加载prometheus配置文件<br><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl  apply <span class="operator">-f</span> configmap.yaml</span><br></pre></td></tr></table></figure></p>
-<p>重新启动prometheus容器以使修改后的内容生效<br><figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XPOST <span class="string">http:</span><span class="comment">//192.168.7.X:30680/-/reload</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="Grafana_u5C55_u793A"><a href="#Grafana_u5C55_u793A" class="headerlink" title="Grafana展示"></a>Grafana展示</h1><p>访问oracle-export端口验证Oracle和Prometheus连接<br><img src="/img/20181027225036.png" alt="oracle1"><br><img src="/img/20181027225445.png" alt="oracle1"><br>Grafana添加Prometheus数据库源<br><img src="/img/0181027230136.png" alt="oracle2"></p>
-<p>仪表板导入3333可以根据自己的需要添加export提供的metrics 展示以及通过alertmanager告警<br><img src="/img/20181027230648.png" alt="oracle2"></p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/kubernetes/" rel="tag"><i class="fas fa-tags"></i>kubernetes</a>
-        
-        <a class="post-tag button" href="/tags/prometheus/" rel="tag"><i class="fas fa-tags"></i>prometheus</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/29/kubernetes-ingress配置HTTPS-TLS证书/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/09/29/kubernetes-ingress配置HTTPS-TLS证书/" itemprop="url">kubernetes ingress配置HTTPS/TLS证书</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-29T23:14:00+08:00">2018-09-29 23:14:00</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
-        </span>
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2018/09/29/kubernetes-ingress配置HTTPS-TLS证书/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/09/29/kubernetes-ingress配置HTTPS-TLS证书/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p><a href="https://kubernetes.io/docs/concepts/services-networking/ingress/" target="_blank" rel="external">Ingress是Kubernetes中的一个概念，用于</a>将入站连接路由到不同的服务。这可以通过不同方式实现。<br>生成证书文件<br><figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl req -x509 -nodes -days <span class="number">2920</span> -newkey rsa:<span class="number">2048</span> -keyout tls<span class="class">.key</span> -out tls<span class="class">.crt</span> -subj <span class="string">"/CN=*.idcsec.com/O=nginxsvc"</span></span><br></pre></td></tr></table></figure></p>
-<p>导入证书文件到k8s secret<br><figure class="hljs highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl <span class="built_in">create</span> secret tls <span class="keyword">https</span>-secret <span class="comment">--key tls.key --cert tls.crt</span></span><br></pre></td></tr></table></figure></p>
-<p>或者使用yaml<br><figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">apiVersion:</span> v1</span><br><span class="line"><span class="string">kind:</span> Secret</span><br><span class="line"><span class="string">type:</span> kubernetes.io/tls</span><br><span class="line"><span class="string">metadata:</span></span><br><span class="line"><span class="label">  name:</span> mytlssecret</span><br><span class="line"><span class="string">data:</span></span><br><span class="line">  tls.<span class="string">crt:</span> &lt;base64 encoded cert&gt;</span><br><span class="line">  tls.<span class="string">key:</span> &lt;base64 encoded key&gt;</span><br></pre></td></tr></table></figure></p>
-<p>配置ingress<br><figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">kind</span>: Ingress</span><br><span class="line"><span class="attribute">apiVersion</span>: extensions/v1beta1</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: test</span><br><span class="line">  <span class="attribute">annotations</span>:</span><br><span class="line">    ingress.kubernetes.io/<span class="attribute">ssl-redirect</span>: <span class="string">"False"</span>  #设置是否强制跳转 false| true</span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">tls</span>:</span><br><span class="line">  - <span class="attribute">hosts</span>: </span><br><span class="line">    - www.idcsec.com</span><br><span class="line">    <span class="attribute">secretName</span>: https-secret</span><br><span class="line">  <span class="attribute">rules</span>:</span><br><span class="line">  - <span class="attribute">host</span>:  www.idcsec.com</span><br><span class="line">    <span class="attribute">http</span>:</span><br><span class="line">      <span class="attribute">paths</span>:</span><br><span class="line">      - <span class="attribute">path</span>: /</span><br><span class="line">        <span class="attribute">backend</span>:</span><br><span class="line">          <span class="attribute">serviceName</span>: test</span><br><span class="line">          <span class="attribute">servicePort</span>: <span class="number">80</span></span><br></pre></td></tr></table></figure></p>
-<p>校验证书信息<br><figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -<span class="keyword">in</span> tls<span class="class">.crt</span>  -noout -text</span><br></pre></td></tr></table></figure></p>
-<p><a href="https://github.com/kubernetes/ingress-nginx/tree/master/docs/examples/auth/client-certs" target="_blank" rel="external">Client Certificate Authentication</a><br><a href="https://github.com/kubernetes/ingress-nginx/blob/master/docs/examples/PREREQUISITES.md#creating-the-ca-authentication-secret" target="_blank" rel="external">TLS证书</a></p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/ingress-nginx/" rel="tag"><i class="fas fa-tags"></i>ingress-nginx</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -803,7 +792,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">78</a></div>
+      <div><a href="/archives/">80</a></div>
     </div>
     
     
@@ -821,7 +810,7 @@
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">35</a></div>
+      <div><a href="/tags/">37</a></div>
     </div>
     
   </div>
