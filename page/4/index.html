@@ -132,6 +132,74 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/08/14/kubernetes1-11安装Helm管理部署Kubernetes应用/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/08/14/kubernetes1-11安装Helm管理部署Kubernetes应用/" itemprop="url">kubernetes1.11安装Helm管理部署Kubernetes应用</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-08-14T22:41:00+08:00">2018-08-14 22:41:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
+        </span>
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2018/08/14/kubernetes1-11安装Helm管理部署Kubernetes应用/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/08/14/kubernetes1-11安装Helm管理部署Kubernetes应用/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <h1 id="Helm__u57FA_u672C_u6982_u5FF5"><a href="#Helm__u57FA_u672C_u6982_u5FF5" class="headerlink" title="Helm 基本概念"></a>Helm 基本概念</h1><p>Helm 可以理解为 Kubernetes 的包管理工具，可以方便地发现、共享和使用为Kubernetes构建的应用，它包含几个基本概念</p>
+<p>Chart：一个 Helm 包，其中包含了运行一个应用所需要的镜像、依赖和资源定义等，还可能包含 Kubernetes 集群中的服务定义，类似 Homebrew 中的 formula，APT 的 dpkg 或者 Yum 的 rpm 文件，<br>Release: 在 Kubernetes 集群上运行的 Chart 的一个实例。在同一个集群上，一个 Chart 可以安装很多次。每次安装都会创建一个新的 release。例如一个 MySQL Chart，如果想在服务器上运行两个数据库，就可以把这个 Chart 安装两次。每次安装都会生成自己的 Release，会有自己的 Release 名称。<br>Repository：用于发布和存储 Chart 的仓库。</p>
+<h1 id="Helm__u7EC4_u4EF6"><a href="#Helm__u7EC4_u4EF6" class="headerlink" title="Helm 组件"></a>Helm 组件</h1><p>Helm 采用客户端/服务器架构，有如下组件组成：</p>
+<p>Helm CLI 是 Helm 客户端，可以在本地执行<br>从最新<code>https://github.com/helm/helm/releases</code>，下载helm-v2.9.1-linux-amd64.tar.gz到本地，解压后把二进制直接放到环境PATH下即可<br>Tiller 是服务器端组件，在 Kubernetes 群集上运行，并管理 Kubernetes 应用程序的生命周期<br>Repository 是 Chart 仓库，Helm客户端通过HTTP协议来访问仓库中Chart的索引文件和压缩包。</p>
+<h1 id="u5B89_u88C5Helm"><a href="#u5B89_u88C5Helm" class="headerlink" title="安装Helm"></a>安装Helm</h1><p>Helm 会利用 “gcr.io/kubernetes-helm/tiller” 镜像在Kubernetes集群上安装配置 Tiller；并且利用 “<a href="https://kubernetes-charts.storage.googleapis.com" target="_blank" rel="external">https://kubernetes-charts.storage.googleapis.com</a>“ 作为缺省的 stable repository 的地址。由于在国内可能无法访问 “gcr.io”, “storage.googleapis.com” 等域名.可以使用阿里云提供的table repository 的地址</p>
+<figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget <span class="string">https:</span><span class="comment">//storage.googleapis.com/kubernetes-helm/helm-v2.9.1-linux-amd64.tar.gz</span></span><br><span class="line">tar -zxvf helm-v2<span class="number">.9</span><span class="number">.1</span>-linux-amd64.tar.gz &amp;&amp;\</span><br><span class="line">cp linux-amd64<span class="regexp">/helm /</span>opt<span class="regexp">/kube/</span>bin<span class="regexp">/ &amp;&amp; chmod +x /</span>opt<span class="regexp">/kube/</span>bin/helm</span><br></pre></td></tr></table></figure>
+<p>执行下面命令安装<br>未使用SSL/TLS认证机制<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$helm init --upgrade -i <span class="number">192.168</span><span class="number">.19</span><span class="number">.111</span>/gc/tiller:v2<span class="number">.5</span><span class="number">.1</span> --stable-repo-url https:<span class="comment">//kubernetes.oss-cn-hangzhou.aliyuncs.com/charts</span></span><br><span class="line">kubectl get pod --all-namespaces|grep tiller</span><br></pre></td></tr></table></figure></p>
+<p>若要查看在存储库中可用的所有 Helm charts<br><figure class="hljs highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">helm <span class="keyword">search</span>  <span class="comment">//看在存储库中可用的所有 Helm charts</span></span><br><span class="line">helm repo <span class="keyword">update</span>  <span class="comment">//更新charts列表以获取最新版本</span></span><br><span class="line">helm <span class="keyword">list</span> <span class="comment">//查看在群集上安装的Charts列表</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="/img/helm1.png" alt="crt"></p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/kubernetes/" rel="tag"><i class="fas fa-tags"></i>kubernetes</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/08/14/Caliconode-localhostlocaldomainisalreadyusingtheIPv4address问题/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -696,57 +764,9 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/12/13/jenkins与sonar集成自动化代码质量检查/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2017/12/13/jenkins与sonar集成自动化代码质量检查/" itemprop="url">jenkins与sonar集成自动化代码质量检查</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-12-13T14:35:11+08:00">2017-12-13 14:35:11</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2017/12/13/jenkins与sonar集成自动化代码质量检查/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2017/12/13/jenkins与sonar集成自动化代码质量检查/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>安装jenkins,mysql：省略</p>
-<h1 id="u5B89_u88C5sonar"><a href="#u5B89_u88C5sonar" class="headerlink" title="安装sonar"></a>安装sonar</h1><h2 id="mysql_u521B_u5EFA_u6570_u636E_u5E93user_u5E76_u6388_u6743_28_u6D4B_u8BD5_u53EF_u4EE5_u4F7F_u7528_u81EA_u5E26_u6570_u636E_u5E93_29"><a href="#mysql_u521B_u5EFA_u6570_u636E_u5E93user_u5E76_u6388_u6743_28_u6D4B_u8BD5_u53EF_u4EE5_u4F7F_u7528_u81EA_u5E26_u6570_u636E_u5E93_29" class="headerlink" title="mysql创建数据库user并授权(测试可以使用自带数据库)"></a>mysql创建数据库user并授权(测试可以使用自带数据库)</h2><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;CREATE DATABASE sonarqube SET utf8 COLLATE utf8_general_ci;</span><br><span class="line">&gt; CREATE USER <span class="string">'sonar’@'</span>%<span class="string">' IDENTIFIED BY '</span>password<span class="string">';</span><br><span class="line">&gt; GRANT all privileges ON sonarqube.* TO sonar’@‘%'</span> IDENTIFIED BY <span class="string">'password'</span>;</span><br><span class="line">&gt; flush privileges;</span><br></pre></td></tr></table></figure>
-<h2 id="u4E0B_u8F7D_u5B89_u88C5"><a href="#u4E0B_u8F7D_u5B89_u88C5" class="headerlink" title="下载安装"></a>下载安装</h2><figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//sonarsource.bintray.com/Distribution/sonarqube/sonarqube-6.7.zip</span></span><br><span class="line">unzip sonarqube-<span class="number">6.7</span><span class="class">.zip</span>  -d /usr/local/</span><br><span class="line">cd /usr/local/sonarqube-<span class="number">6.7</span>/</span><br><span class="line">vim conf/sonar<span class="class">.properties</span>  /配置文件</span><br><span class="line">sonar<span class="class">.web</span><span class="class">.host</span>=<span class="number">0.0</span>.<span class="number">0.0</span></span><br><span class="line">sonar<span class="class">.web</span><span class="class">.port</span>=<span class="number">9000</span></span><br><span class="line">sonar<span class="class">.jdbc</span><span class="class">.username</span>=sonar</span><br><span class="line">sonar<span class="class">.jdbc</span><span class="class">.password</span>=password</span><br><span class="line">sonar<span class="class">.jdbc</span><span class="class">.url</span>=jdbc:mysql:<span class="comment">//localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;useConfigs=maxPerformance&amp;useSSL=false</span></span><br><span class="line"> ./bin/linux-x86-<span class="number">64</span>/sonar<span class="class">.sh</span>  start 启动sonar 需要使用非root启动</span><br><span class="line"> 中文插件下载解压到下目录</span><br><span class="line">wget https:<span class="comment">//github.com/SonarQubeCommunity/sonar-l10n-zh/releases/download/sonar-l10n-zh-plugin-1.18/sonar-l10n-zh-plugin-1.18.jar</span></span><br><span class="line"> /usr/local/sonarqube-<span class="number">6.7</span>/extensions/plugins/</span><br><span class="line"> ./bin/linux-x86-<span class="number">64</span>/sonar<span class="class">.sh</span>  restart</span><br></pre></td></tr></table></figure>
-<h1 id="u5B89_u88C5sonar-runner"><a href="#u5B89_u88C5sonar-runner" class="headerlink" title="安装sonar-runner"></a>安装sonar-runner</h1><h2 id="u4E0B_u8F7D_u5B89_u88C5-1"><a href="#u4E0B_u8F7D_u5B89_u88C5-1" class="headerlink" title="下载安装"></a>下载安装</h2><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist/2.4/sonar-runner-dist-2.4.zip</span></span><br><span class="line">unzip sonar-runner-dist-<span class="number">2.4</span>.zip -d /usr/local/</span><br><span class="line">cd /usr/local/sonar-runner-dist-<span class="number">2.4</span></span><br><span class="line">vim conf/sonar-runner.properties </span><br><span class="line">sonar.host.url=http:<span class="comment">//172.18.8.32:9000</span></span><br><span class="line">sonar.sourceEncoding=UTF-<span class="number">8</span></span><br><span class="line">sonar.login=admin</span><br><span class="line">sonar.password=admi</span><br><span class="line">配置环境配置</span><br><span class="line">vim /etc/profile</span><br><span class="line">export SONAR_HOME=/usr/local/sonarqube-<span class="number">6.7</span></span><br><span class="line">PATH=<span class="variable">$PATH</span>:/usr/local/sonar-runner-<span class="number">2.4</span>/bin   </span><br><span class="line">export PATH</span><br><span class="line">source  /etc/profile</span><br><span class="line">测试ok</span><br><span class="line">sonar-scanner -h</span><br></pre></td></tr></table></figure>
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
   </nav>
   
   
@@ -788,7 +808,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">80</a></div>
+      <div><a href="/archives/">81</a></div>
     </div>
     
     

@@ -132,6 +132,68 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/09/02/tomcat性能优化实例/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2016/09/02/tomcat性能优化实例/" itemprop="url">tomcat性能优化实例</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-09-02T17:49:00+08:00">2016-09-02 17:49:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/tomcat/" itemprop="url" rel="index"><span itemprop="name">tomcat</span></a></span>
+        </span>
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2016/09/02/tomcat性能优化实例/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/09/02/tomcat性能优化实例/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>生产配置实例：<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;Connectorport=<span class="string">"8080"</span>protocol=<span class="string">"org.apache.coyote.http11.Http11NioProtocol"</span></span><br><span class="line">               maxThreads=<span class="string">"1000"</span></span><br><span class="line">               minSpareThreads=<span class="string">"100"</span></span><br><span class="line">               maxSpareThreads=<span class="string">"200"</span></span><br><span class="line">               acceptCount=<span class="string">"900"</span></span><br><span class="line">               disableUploadTimeout=<span class="string">"true"</span></span><br><span class="line">              connectionTimeout=<span class="string">"20000"</span></span><br><span class="line">               URIEncoding=<span class="string">"UTF-8"</span></span><br><span class="line">               enableLookups=<span class="string">"false"</span></span><br><span class="line">               redirectPort=<span class="string">"8443"</span></span><br><span class="line">               compression=<span class="string">"on"</span></span><br><span class="line">              compressionMinSize=<span class="string">"1024"</span></span><br><span class="line">              compressableMimeType=<span class="string">"text/html,text/xml,text/css,text/javascript"</span>/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>参数说明：<br>org.apache.coyote.http11.Http11NioProtocol：调整工作模式为Nio<br>有三种工作模式：Bio、Nio和Apr<br>Bio(Blocking I/O)：默认工作模式，阻塞式I/O操作，没有任何优化技术处理，性能比较低。<br>Nio(New I/O or Non-Blocking)：非阻塞式I/O操作，有Bio有更好的并发处理性能。<br>Apr(Apache Portable Runtime，Apache可移植运行库)：首选工作模式，主要为上层的应用程序提供一个可以跨越多操作系统平台使用的底层支持接口库。<br>tomcat利用基于Apr库tomcat-native来实现操作系统级别控制，提供一种优化技术和非阻塞式I/O操作，大大提高并发处理能力。但是需要安装apr和tomcat-native库。<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">maxThreads：最大线程数，默认<span class="number">150</span>。增大值避免队列请求过多，导致响应缓慢。</span><br><span class="line">minSpareThreads：最小空闲线程数。</span><br><span class="line">maxSpareThreads：最大空闲线程数，如果超过这个值，会关闭无用的线程。</span><br><span class="line">acceptCount：当处理请求超过此值时，将后来请求放到队列中等待。</span><br><span class="line">disableUploadTimeout：禁用上传超时时间</span><br><span class="line">connectionTimeout：连接超时，单位毫秒，<span class="number">0</span>代表不限制</span><br><span class="line">URIEncoding：URI地址编码使用UTF-<span class="number">8</span></span><br><span class="line">enableLookups：关闭dns解析，提高响应时间</span><br><span class="line">compression：启用压缩功能</span><br><span class="line">compressionMinSize：最小压缩大小，单位Byte</span><br><span class="line">compressableMimeType：压缩的文件类型</span><br></pre></td></tr></table></figure></p>
+<p>调整JVM内存大小：<br>在catalina.sh增加JAVA_OPTS=’-Xms512m -Xmx1024m -XX:PermSize=128m-XX:MaxPermSize=256m’<br>-Xms JVM初始最小堆内存，默认为物理内存1/64，不要设置过大，否则增加回收时间（暂停应用），相对频率少，相反，频率高。<br>-Xmx JVM最大允许堆内存大小，默认为物理内存1/4<br>-XX:PermSize JVM初始分配非堆内存大小<br>-XX:MaxPermSize  JVM最大允许分配的非堆内存</p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/tomcat/" rel="tag"><i class="fas fa-tags"></i>tomcat</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/09/02/shell编程中if的语法和常见判断用法/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -724,78 +786,9 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/06/23/Tomcat部署配置/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2016/06/23/Tomcat部署配置/" itemprop="url">Tomcat部署配置</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-06-23T15:20:19+08:00">2016-06-23 15:20:19</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2016/06/23/Tomcat部署配置/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/06/23/Tomcat部署配置/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>软件</p>
-<p>apache-tomcat-7.0.61.tar.gz <a href="http://tomcat.apache.org/download-70.cgi" target="_blank" rel="external">http://tomcat.apache.org/download-70.cgi</a></p>
-<p>jdk-8u77-linux-x64.rpm <a href="http://www.oracle.com/technetwork/java/javase/archive-139210.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/archive-139210.html</a></p>
-<p>一、安装与配置Tomcat</p>
-<p>1安装jdk<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># rpm -ivh jdk-7u40-linux-x64.rpm</span></span><br></pre></td></tr></table></figure></p>
-<p>2、修改环境变量下面内容<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile</span><br><span class="line">export JAVA_HOME=/usr/java/jdk1<span class="number">.8</span><span class="number">.0</span>_77</span><br><span class="line">export CLASSPATH=<span class="variable">$JAVA_HOME</span>/lib/tools.jar:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib</span><br><span class="line">export PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line">:wq</span><br><span class="line"><span class="comment"># source /etc/profile</span></span><br></pre></td></tr></table></figure></p>
-<p>3、测试java<br> <figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br><span class="line">java version <span class="string">"1.8.0_77"</span></span><br><span class="line">Java(TM) SE Runtime Environment (build <span class="number">1.8</span><span class="number">.0</span>_77-b03)</span><br><span class="line">Java HotSpot(TM) <span class="number">64</span>-Bit Server VM (build <span class="number">25.77</span>-b03, mixed mode)</span><br></pre></td></tr></table></figure></p>
-<p>二、安装tomcat<br>1、<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf apache-tomcat-<span class="number">7.0</span><span class="number">.42</span>.tar.gz -C /usr/local/</span><br><span class="line">ln -sv apache-tomcat-<span class="number">7.0</span><span class="number">.42</span> tomcat</span><br><span class="line">cd tomcat/bin</span><br><span class="line">./startup.sh</span><br></pre></td></tr></table></figure></p>
-<p>2、tomcat目录结构</p>
-<p>bin ——Tomcat执行脚本目录</p>
-<p>•conf ——Tomcat配置文件 </p>
-<p>•lib ——Tomcat运行需要的库文件（JARS）</p>
-<p>•logs ——Tomcat执行时的LOG文件 </p>
-<p>•temp ——Tomcat临时文件存放目录 </p>
-<p>•webapps ——Tomcat的主要Web发布目录（存放我们自己的JSP,SERVLET,类） </p>
-<p>•work ——Tomcat的工作目录，Tomcat将翻译JSP文件到的Java文件和class文件放在这里。<br>3、bin/主要主文件有，</p>
-<p>•catalina.sh 用于启动和关闭tomcat服务器 </p>
-<p>•configtest.sh 用于检查配置文件 </p>
-<p>•startup.sh 启动Tomcat脚本 </p>
-<p>•shutdown.sh 关闭Tomcat脚本 </p>
-<p>4、conf目录下的文件</p>
-<p>server.xml Tomcat 的全局配置文件 </p>
-<p>•web.xml 为不同的Tomcat配置的web应用设置缺省值的文件 </p>
-<p>•tomcat-users.xml Tomcat用户认证的配置文件 </p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
   </nav>
   
   
@@ -837,7 +830,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">80</a></div>
+      <div><a href="/archives/">81</a></div>
     </div>
     
     
