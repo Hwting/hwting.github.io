@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo, docker, linux, kubernetes, Nginx, tomcat, Jenkins">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="Wang'T博客" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato|Roboto+Condensed|Skranji|Ubuntu|Ubuntu+Mono">
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/solarized-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>Nginx常用配置笔记 | Wang'T博客 - _入网络深似海,从此节操是路人.</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">Wang'T博客</a></h1>
+        <h2 class="subtitle">_入网络深似海,从此节操是路人.</h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/img/logo.jpg" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/">首页</a></li>
+        
+        <li role="menuitem"><a href="/archives/">归档</a></li>
+        
+        <li role="menuitem"><a href="/categories/">分类</a></li>
+        
+        <li role="menuitem"><a href="/tags/">标签</a></li>
+        
+        <li role="menuitem"><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2019/04/11/Nginx常用配置笔记/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="Wang'T">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">Nginx常用配置笔记</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-04-11T21:52:00+08:00">2019-04-11 21:52:00</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2019/04/11/Nginx常用配置笔记/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2019/04/11/Nginx常用配置笔记/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>location匹配规则及优先级</p>
+<ol>
+<li>= 严格匹配这个查询。如果找到，停止搜索。</li>
+<li>^~ 匹配路径的前缀，如果找到，停止搜索。</li>
+<li>~ 为区分大小写的正则匹配</li>
+<li>~<em> 为不区分大小写匹配<br>优先级： =, ^~, ~/~</em>, 无</li>
+</ol>
+<p>Nginx禁止未绑定域名访问<br>nginx通过host配置确认转发到那台服务器处理。如果未匹配上就会转发到default_server节点来处理。例如配置如下：<br><figure class="hljs highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line"><span class="title">listen</span> <span class="number">80</span> default_server;</span><br><span class="line"><span class="title">server_name</span> nginx.net;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>对于所有请求的HOST未匹配上的都会转发到该server处理。<br>通过如下配置，所有未匹配到server_name的请求都会返回403<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">listen <span class="number">80</span> <span class="keyword">default</span>;</span><br><span class="line">server_name _ ;</span><br><span class="line"><span class="keyword">return</span> <span class="number">403</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中_是无效域名的代表，同样可以写成其他例如”-” “@”等等。</p>
+<h1 id="Nginx_rewrite_u914D_u7F6E"><a href="#Nginx_rewrite_u914D_u7F6E" class="headerlink" title="Nginx rewrite配置"></a>Nginx rewrite配置</h1><p>1)last<br>重新将rewrite后的地址在server标签中执行<br>2)break<br>将rewrite后的地址在当前location标签中执行<br>3)redirect<br>返回302临时重定向，浏览器地址会显示跳转后的URL地址。<br>4)permanent<br>返回301永久重定向，浏览器地址会显示跳转后的URL地址。<br>使用last和break，浏览器中的地址不会改变，其中需要注意的是last和break的区别：<br>使用alias指令必须用last标记;使用proxy_pass指令时，需要使用break标记。Last标记在本条rewrite规则执行完毕后，会对其所在server{……}标签重新发起请求，而break标记则在本条规则匹配完成后，终止匹配。</p>
+<p>将url中以/wap/开头的请求转发到后台对应的某台server上，可以再Nginx里设置一个变量，来临时保存/wap/后面的路径信息</p>
+<figure class="hljs highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">location ^~ /wap/</span><br><span class="line">&#123;</span><br><span class="line">if (<span class="variable">$request</span>_uri ~ /wap/(\d+)/(.+))</span><br><span class="line">&#123;</span><br><span class="line">set <span class="variable">$bucketid</span> <span class="variable">$1</span>;</span><br><span class="line">set <span class="variable">$params</span> <span class="variable">$2</span>;</span><br><span class="line">&#125;</span><br><span class="line">proxy_pass http://mx<span class="variable">$bucketid</span>.test.com:<span class="number">6601</span>/<span class="variable">$params</span>;</span><br><span class="line">&#125;</span><br><span class="line">也可以首先rewrite一下，然后再代理：</span><br><span class="line">location ^~ /wap/&#123;</span><br><span class="line">rewrite /wap/(\d+)/(.+) /<span class="variable">$2</span>?<span class="variable">$args</span> break;</span><br><span class="line">proxy_pass http://mx<span class="variable">$1</span>.test.com:<span class="number">6601</span>;</span><br><span class="line">&#125;</span><br><span class="line">或者</span><br><span class="line">location ~* /wap/(\d+)/(.+)</span><br><span class="line">&#123;</span><br><span class="line">proxy_pass http://mx<span class="variable">$1</span>.test.com:<span class="number">6601</span>/<span class="variable">$2</span>?<span class="variable">$args</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意上面最后的?$args，表明把原始url最后的get参数也给代理到后台<br>如果在proxy_pass中使用了变量（不管是主机名变量$1或后面的$2变量），则必须得加这段代码<br>但如果proxy_pass没用任何变量，则不需要加，它默认会把所有的url都给代理到后台，如：<br><figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">location ~* <span class="regexp">/wap/</span>(\d+)/(.+)</span><br><span class="line">&#123;</span><br><span class="line">proxy_pass <span class="string">http:</span><span class="comment">//mx.test.com:6601;</span></span><br><span class="line">&#125;</span><br><span class="line">另外还需要注意url的/问题</span><br><span class="line">下面四种情况分别用<span class="string">http:</span><span class="comment">//192.168.1.4/proxy/test.html 进行访问。</span></span><br><span class="line">第一种：</span><br><span class="line">location <span class="regexp">/proxy/</span> &#123;</span><br><span class="line">proxy_pass <span class="string">http:</span><span class="comment">//127.0.0.1:81/;</span></span><br><span class="line">&#125;</span><br><span class="line">会被代理到<span class="string">http:</span><span class="comment">//127.0.0.1:81/test.html 这个url</span></span><br><span class="line">第二种(相对于第一种，最后少一个 /)</span><br><span class="line">location <span class="regexp">/proxy/</span> &#123;</span><br><span class="line">proxy_pass <span class="string">http:</span><span class="comment">//127.0.0.1:81;</span></span><br><span class="line">&#125;</span><br><span class="line">会被代理到<span class="string">http:</span><span class="comment">//127.0.0.1:81/proxy/test.html 这个url</span></span><br><span class="line">第三种：</span><br><span class="line">location <span class="regexp">/proxy/</span> &#123;</span><br><span class="line">proxy_pass <span class="string">http:</span><span class="comment">//127.0.0.1:81/ftlynx/;</span></span><br><span class="line">&#125;</span><br><span class="line">会被代理到<span class="string">http:</span><span class="comment">//127.0.0.1:81/ftlynx/test.html 这个url。</span></span><br><span class="line">第四种情况(相对于第三种，最后少一个 / )：</span><br><span class="line">location <span class="regexp">/proxy/</span> &#123;</span><br><span class="line">proxy_pass <span class="string">http:</span><span class="comment">//127.0.0.1:81/ftlynx;</span></span><br><span class="line">&#125;</span><br><span class="line">会被代理到<span class="string">http:</span><span class="comment">//127.0.0.1:81/ftlynxtest.html 这个url</span></span><br><span class="line">也就是说如果proxy_pass只是后端服务器的IP，最后没有/的话，就会将全uri带过去。</span><br><span class="line">而如果proxy_pass带了/的话，只是带最后访问的文件。</span><br></pre></td></tr></table></figure></p>
+<h1 id="root_u4E0Ealias_u533A_u522B"><a href="#root_u4E0Ealias_u533A_u522B" class="headerlink" title="root与alias区别"></a>root与alias区别</h1><p>一句话概括，root对应的目录会加上location部分去找文件，而alias则不会<br>Nginx 配置文件 server 中指定两个 location 执行，分别为root 和 alias 指令：<br>alisa:<br><figure class="hljs highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">/static</span>/ &#123;</span><br><span class="line">           alias /www/test/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>按照上述配置，则访问 /static/ 目录里面的文件时，nginx 会去 /www/test/ 目录找文件<br>请求 <a href="http://idcsec.com/static/a.gif" target="_blank" rel="external">http://idcsec.com/static/a.gif</a> 时，在服务器查找的资源路径是：/www/test/a.gif</p>
+<p>root:<br><figure class="hljs highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">/static</span>/ &#123;</span><br><span class="line">          root /www/test;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>按照这种配置，则访问 /static/ 目录下的文件时，nginx 会去 /www/test/static/ 目录下找文件<br>请求 <a href="http://idcsec.com/static/a.gif" target="_blank" rel="external">http://idcsec.com/static/a.gif</a> 这个地址时，那么在服务器里面对应的真正的资源是 /www/test/static/a.gif文件，真实的路径是root指定的值加上location指定的值</p>
+<ul>
+<li>alias 是一个目录别名的定义，root 则是最上层目录的定义。</li>
+<li>另一个区别是 alias 后面必须要用 “/” 结束，否则会找不到文件，而 root 则对 ”/” 可有可无。</li>
+<li>误区：认为 root 是指 /www/test目录下，而应该是 /www/test/static 目录 。</li>
+</ul>
+<p>Nginx静动分离<br><figure class="hljs highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">location ~ .<span class="keyword">*</span>\.(html|<span class="string">htm</span>|<span class="string">gif</span>|<span class="string">jpg</span>|<span class="string">jpeg</span>|<span class="string">bmp</span>|<span class="string">png</span>|<span class="string">ico</span>|<span class="string">txt</span>|<span class="string">js</span>|<span class="string">css)$ </span><br><span class="line">   &#123; </span><br><span class="line">       root  /usr/local/nginx/html/website/static/;</span><br><span class="line">       #expires定义用户浏览器缓存的时间为7天，如果静态页面不常更新，可以设置更长，这样可以节省带宽和缓解服务器的压力</span><br><span class="line">       expires      1d;	</span><br><span class="line">   &#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>Nginx日志    切割<br><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#nginx日志切割脚本</span></span><br><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line">logs_path=<span class="string">"/usr/local/nginx/logs/"</span></span><br><span class="line">pid_path=<span class="string">"/usr/local/nginx/logs/nginx.pid"</span></span><br><span class="line">mv <span class="variable">$&#123;logs_path&#125;</span>access.log <span class="variable">$&#123;logs_path&#125;</span>access_$(date <span class="operator">-d</span> <span class="string">"yesterday"</span> +<span class="string">"%Y%m%d"</span>).log</span><br><span class="line"><span class="built_in">kill</span> -USR1 `cat <span class="variable">$&#123;pid_path&#125;</span>`</span><br><span class="line">crontab <span class="operator">-e</span></span><br><span class="line"></span><br><span class="line"><span class="number">0</span> <span class="number">0</span> * * * bash /usr/<span class="built_in">local</span>/nginx/nginx_log.sh</span><br></pre></td></tr></table></figure></p>
+<p>Nginx 443强制跳转<br><figure class="hljs highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line">  <span class="title">listen</span> <span class="number">443</span>;</span><br><span class="line">  <span class="title">server_name</span> idcsec.com.com;</span><br><span class="line">  <span class="title">ssl</span> <span class="built_in">on</span>;</span><br><span class="line">  <span class="title">ssl_certificate</span> /etc/nginx/ssl/idcsec.com.crt;</span><br><span class="line">  <span class="title">ssl_certificate_key</span> /etc/nginx/ssl/idcsec.com.com.key;</span><br><span class="line">  <span class="title">ssl_session_cache</span> shared:SSL:<span class="number">10m</span>;</span><br><span class="line">  <span class="title">ssl_session_timeout</span> <span class="number">5m</span>;</span><br><span class="line">  <span class="title">ssl_protocols</span>  TLSv1 TLSv1.<span class="number">1</span> TLSv1.<span class="number">2</span>;</span><br><span class="line">  <span class="title">ssl_ciphers</span> HIGH:!aNULL:!MD5;</span><br><span class="line">  <span class="title">ssl_prefer_server_ciphers</span> <span class="built_in">on</span>;</span><br><span class="line">  <span class="title">location</span> / &#123;</span><br><span class="line">           <span class="title">proxy_pass</span>  <span class="url">http://test_domain</span>;</span><br><span class="line">           <span class="title">proxy_next_upstream</span> <span class="built_in">error</span> timeout invalid_header http_500 http_502 http_503;</span><br><span class="line">           <span class="title">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">           <span class="title">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">           <span class="title">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">           <span class="title">proxy_set_header</span> X-Forwarded-Proto https;</span><br><span class="line">           <span class="title">proxy_redirect</span>     <span class="built_in">off</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title">server</span> &#123;</span><br><span class="line"><span class="title">listen</span> <span class="number">80</span>;</span><br><span class="line"><span class="title">server_name</span> idcsec.com.com;</span><br><span class="line"><span class="title">location</span> / &#123;</span><br><span class="line"><span class="title">return</span> <span class="number">301</span> <span class="url">https://<span class="variable">$server_name</span><span class="variable">$request_uri</span></span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/Nginx/" rel="tag"><i class="fas fa-tags"></i>Nginx</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2019/04/08/fastDFS单节点搭建/" rel="next" title="fastDFS单节点搭建"><i class="fas fa-angle-left"></i><span class="nav-title">fastDFS单节点搭建</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+    </div>
+  </nav>
+  
+  
+  
+
+<div class="comments" id="comments">
+  
+  <script defer id="dsq-count-scr" src="//www.idcsec.com.disqus.com/count.js"></script>
+  
+  <div id="disqus_thread" class="disqus_thread"></div>
+  <script type="text/javascript">
+  var disqus_config = function () {
+    this.page.url = "http://www.idcsec.com/2019/04/11/Nginx常用配置笔记/";
+    this.page.identifier = "2019/04/11/Nginx常用配置笔记/";
+  };
+  (function() {
+    var d = document, s = d.createElement("script");
+    s.src = "https://www.idcsec.com.disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  
+  
+</div>
+
+
+
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/img/avatar.jpg" alt="Wang'T">
+  
+  <h1 class="author-name">Wang'T</h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    <div class="archives-count">
+      <div class="site-count-title">归档</div>
+      <div><a href="/archives/">82</a></div>
+    </div>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="categories-count">
+      <div class="site-count-title">分类</div>
+      <div><a href="/categories/">12</a></div>
+    </div>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="tags-count">
+      <div class="site-count-title">标签</div>
+      <div><a href="/tags/">38</a></div>
+    </div>
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#Nginx_rewrite_u914D_u7F6E"><span class="toc-text">Nginx rewrite配置</span></a></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#root_u4E0Ealias_u533A_u522B"><span class="toc-text">root与alias区别</span></a></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:wang.t.nice@gmail.com" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="http://www.ytniu.com" target="_blank">Jixiang's Blog</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">Wang'T</span><span class="year"><i class="far fa-copyright"></i>2015 - 2019</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">BY-NC-ND 4.0</a></span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>

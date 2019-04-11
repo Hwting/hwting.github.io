@@ -132,6 +132,72 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/06/24/CentOS-6-5-内核升级2-6-32-3-12-61过程记录/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2016/06/24/CentOS-6-5-内核升级2-6-32-3-12-61过程记录/" itemprop="url">CentOS 6.5 内核升级2.6.32 -> 3.12.61过程记录 </a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-06-24T12:46:00+08:00">2016-06-24 12:46:00</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2016/06/24/CentOS-6-5-内核升级2-6-32-3-12-61过程记录/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/06/24/CentOS-6-5-内核升级2-6-32-3-12-61过程记录/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>一. 准备工作<br>确认内核及版本信息<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># uname -r</span></span><br><span class="line"><span class="number">2.6</span><span class="number">.32</span>-<span class="number">220.</span>el6.x86_64</span><br></pre></td></tr></table></figure></p>
+<p>安装编译安装新内核，依赖于开发环境和开发库<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum grouplist  <span class="comment">//查看已经安装的和未安装的软件包组，来判断我们是否安装了相应的开发环境和开发库；</span></span><br><span class="line">yum groupinstall <span class="string">"Development Tools"</span>  <span class="comment">//一般是安装这两个软件包组，这样做会确定你拥有编译时所需的一切</span></span><br><span class="line">工具</span><br><span class="line">yum install ncurses-devel <span class="comment">//你必须这样才能让 make *config 这个指令正确地执行</span></span><br><span class="line">yum install qt-devel <span class="comment">//如果你没有 X 环境，这一条可以不用</span></span><br><span class="line">yum install hmaccalc zlib-devel binutils-devel elfutils-libelf-devel <span class="comment">//创建 CentOS-6 内核时需要它们</span></span><br></pre></td></tr></table></figure></p>
+<p>二. 编译内核</p>
+<p>Linux内核版本有两种：稳定版和开发版 ，Linux内核版本号由3个数字组成：r.x.y<br>•r: 主版本号</p>
+<p>•x: 次版本号，偶数表示稳定版本；奇数表示开发中版本。</p>
+<p>•y: 修订版本号 ， 表示修改的次数</p>
+<p>获取并解压内核源码，配置编译项<br>去 <a href="http://www.kernel.org" target="_blank" rel="external">http://www.kernel.org</a> 首页，可以看到有stable, longterm等版本，longterm是比stable更稳定的版本，会长时间更新，选择 3.12.61。</p>
+<p>Linux内核版本有两种：稳定版和开发版 ，Linux内核版本号由3个数字组成：r.x.y<br>•r: 主版本号<br>•x: 次版本号，偶数表示稳定版本；奇数表示开发中版本。<br>•y: 修订版本号 ， 表示修改的次数</p>
+<p>在系统原有的内核配置文件的基础上建立新的编译选项，所以复制一份到当前目录下，命名为.config<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@localhost linux-<span class="number">3.12</span><span class="number">.61</span>]<span class="comment">#tar -xf linux-3.12.61.tar.xz -C /usr/src/kernels/</span></span><br><span class="line">root@localhost linux-<span class="number">3.12</span><span class="number">.61</span>]<span class="comment">#cd /usr/src/kernels/linux-3.12.61/</span></span><br><span class="line">root@localhost linux-<span class="number">3.12</span><span class="number">.61</span>]<span class="comment">#cp /boot/config-2.6.32-220.el6.x86_64 .config</span></span><br></pre></td></tr></table></figure></p>
+<p> 通过菜单方式配置内核使用make memuconfig，它便是根据需要定制模块<br> <figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@localhost linux-<span class="number">3.12</span><span class="number">.61</span>]<span class="comment"># cd /usr/src/kernels/linux-3.12.61</span></span><br><span class="line">root@localhost linux-<span class="number">3.12</span><span class="number">.61</span>]<span class="comment"># make menuconfig</span></span><br></pre></td></tr></table></figure></p>
+<p>\\需要安装yum -y install ncurses-devel</p>
+<p>这里使用下面方式继续配置：<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment">#sh -c 'yes "" | make oldconfig' //使用旧内核配置，并自动接受每个新增选项的默认设置</span></span><br><span class="line">  HOSTCC  scripts/basic/fixdep</span><br><span class="line">  HOSTCC  scripts/kconfig/conf.o</span><br><span class="line">  SHIPPED scripts/kconfig/zconf.tab.c</span><br><span class="line">  SHIPPED scripts/kconfig/zconf.lex.c</span><br><span class="line">  SHIPPED scripts/kconfig/zconf.hash.c</span><br><span class="line">  HOSTCC  scripts/kconfig/zconf.tab.o</span><br><span class="line">  HOSTLD  scripts/kconfig/conf</span><br><span class="line">scripts/kconfig/conf --oldconfig Kconfig</span><br><span class="line">.config:<span class="number">555</span>:warning: symbol value <span class="string">'m'</span> invalid <span class="keyword">for</span> PCCARD_NONSTATIC</span><br><span class="line">.config:<span class="number">2567</span>:warning: symbol value <span class="string">'m'</span> invalid <span class="keyword">for</span> MFD_WM8400</span><br><span class="line">.config:<span class="number">2568</span>:warning: symbol value <span class="string">'m'</span> invalid <span class="keyword">for</span> MFD_WM831X</span><br><span class="line">.config:<span class="number">2569</span>:warning: symbol value <span class="string">'m'</span> invalid <span class="keyword">for</span> MFD_WM8350</span><br><span class="line">.config:<span class="number">2582</span>:warning: symbol value <span class="string">'m'</span> invalid <span class="keyword">for</span> MFD_WM8350_I2C</span><br><span class="line">.config:<span class="number">2584</span>:warning: symbol value <span class="string">'m'</span> invalid <span class="keyword">for</span> AB3100_CORE</span><br><span class="line">.config:<span class="number">3502</span>:warning: symbol value <span class="string">'m'</span> invalid <span class="keyword">for</span> MMC_RICOH_MMC</span><br><span class="line">*</span><br><span class="line">* Restart config...</span><br><span class="line">*</span><br><span class="line">*</span><br><span class="line">* General setup</span><br><span class="line">*</span><br><span class="line"></span><br><span class="line">... ...</span><br><span class="line">XZ decompressor tester (XZ_DEC_TEST) [N/m/y/?] (<span class="keyword">NEW</span>) </span><br><span class="line">Averaging functions (AVERAGE) [Y/?] (<span class="keyword">NEW</span>) y</span><br><span class="line">CORDIC algorithm (CORDIC) [N/m/y/?] (<span class="keyword">NEW</span>) </span><br><span class="line">JEDEC DDR data (DDR) [N/y/?] (<span class="keyword">NEW</span>) </span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># configuration written to .config</span></span><br><span class="line"><span class="comment">#</span></span><br></pre></td></tr></table></figure></p>
+<p>开始编译<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@localhost linux-<span class="number">3.12</span><span class="number">.61</span>]<span class="comment"># make -j4 bzImage  //生成内核文件</span></span><br><span class="line">root@localhost linux-<span class="number">3.12</span><span class="number">.61</span>]<span class="comment"># make -j4 modules  //编译模块</span></span><br><span class="line">root@localhost linux-<span class="number">3.12</span><span class="number">.61</span>]<span class="comment"># make -j4 modules_install  //编译安装模块</span></span><br></pre></td></tr></table></figure></p>
+<p>安装</p>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@localhost linux-<span class="number">3.12</span><span class="number">.61</span>]<span class="comment">#make install</span></span><br></pre></td></tr></table></figure>
+<p>如果出现了 ERROR: modinfo: could not find module xxx，数量少的话，可以忽略</p>
+<p>修改grub引导，重启</p>
+<p>安装完成后，需要修改Grub引导顺序，让新安装的内核作为默认内核。 编辑 grub.conf文件</p>
+<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/grub.conf</span><br><span class="line"><span class="comment">#boot=/dev/sda1</span></span><br><span class="line">device (hd0) HD(<span class="number">1</span>,<span class="number">800</span>,<span class="number">200000</span>,b99f9008-<span class="number">34</span>a9-<span class="number">4</span>d88-<span class="number">8288</span>-<span class="number">177</span>f4cf74dc2)</span><br><span class="line"><span class="keyword">default</span>=<span class="number">0</span></span><br><span class="line">timeout=<span class="number">5</span></span><br><span class="line">splashimage=(hd0,<span class="number">1</span>)/grub/splash.xpm.gz</span><br><span class="line">hiddenmenu</span><br><span class="line">title CentOS (<span class="number">3.12</span><span class="number">.61</span>)</span><br><span class="line">        root (hd0,<span class="number">1</span>)</span><br><span class="line">        kernel /vmlinuz-<span class="number">3.12</span><span class="number">.61</span> ro root=/dev/mapper/VolGroup-lv_root rd_NO_LUKS rd_NO_MD rd_LVM_LV=VolGroup/lv_swap LANG=zh_CN.UTF-<span class="number">8</span> rd_LVM_LV=VolGroup/lv_root  KEYBOARDTYPE=pc KEYTABLE=us rd_NO_DM rhgb quiet crashkernel=auto SYSFONT=latarcyrheb-sun16</span><br><span class="line">        initrd /initramfs-<span class="number">3.12</span><span class="number">.61</span>.img</span><br><span class="line">title CentOS (<span class="number">2.6</span><span class="number">.32</span>-<span class="number">573.8</span><span class="number">.1</span>.el6.x86_64)</span><br><span class="line">        root (hd0,<span class="number">1</span>)</span><br><span class="line">        kernel /vmlinuz-<span class="number">2.6</span><span class="number">.32</span>-<span class="number">573.8</span><span class="number">.1</span>.el6.x86_64 ro root=/dev/mapper/VolGroup-lv_root rd_NO_LUKS rd_NO_MD rd_LVM_LV=VolGroup/lv_swap LANG=zh_CN.UTF-<span class="number">8</span> rd_LVM_LV=VolGroup/lv_root  KEYBOARDTYPE=pc KEYTABLE=us rd_NO_DM rhgb quiet crashkernel=auto</span><br><span class="line">        initrd /initramfs-<span class="number">2.6</span><span class="number">.32</span>-<span class="number">573.8</span><span class="number">.1</span>.el6.x86_64.img</span><br><span class="line">title CentOS (<span class="number">2.6</span><span class="number">.32</span>-<span class="number">431.</span>el6.x86_64)</span><br><span class="line">        root (hd0,<span class="number">1</span>)</span><br><span class="line">        kernel /vmlinuz-<span class="number">2.6</span><span class="number">.32</span>-<span class="number">431.</span>el6.x86_64 ro root=/dev/mapper/VolGroup-lv_root rd_NO_LUKS rd_NO_MD rd_LVM_LV=VolGroup/lv_swap LANG=zh_CN.UTF-<span class="number">8</span> rd_LVM_LV=VolGroup/lv_root  KEYBOARDTYPE=pc KEYTABLE=us rd_NO_DM rhgb quiet</span><br><span class="line">        initrd /initramfs-<span class="number">2.6</span><span class="number">.32</span>-<span class="number">431.</span>el6.x86_64.img</span><br><span class="line">        `</span><br></pre></td></tr></table></figure>
+<p>在 grub.conf 文件中决定开机使用哪个内核版本做启动的参数是 default，默认为 0（代表从最新的内核启动，代表的内核版本从上往下依次是 0，1, 2 等）<br>reboot<br>[root@localhost ~]# uname -r<br>3.12.61</p>
+<p>如果安装失败执行以下命令重新编译<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># make mrproper         #完成或者安装过程出错，可以清理上次编译的现场</span></span><br><span class="line"><span class="comment"># make clean</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/06/23/Tomcat部署配置/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -671,52 +737,6 @@ make install
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2015/12/12/test/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2015/12/12/test/" itemprop="url">test</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2015-12-12T00:19:12+08:00">2015-12-12 00:19:12</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2015/12/12/test/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2015/12/12/test/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <embed src="http://i1.hunantv.com/ui/swf/share/player.swf?video_id=1089920" quality="high" width="580" height="425" align="middle" allowscriptaccess="always" allowfullscreen="true" type="application/x-shockwave-flash">
-
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/7/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -761,7 +781,7 @@ make install
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">81</a></div>
+      <div><a href="/archives/">82</a></div>
     </div>
     
     
@@ -779,7 +799,7 @@ make install
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">37</a></div>
+      <div><a href="/tags/">38</a></div>
     </div>
     
   </div>
