@@ -132,6 +132,59 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/11/09/自己签发ssl证书生成/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2016/11/09/自己签发ssl证书生成/" itemprop="url">自己签发ssl证书生成</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-11-09T15:25:00+08:00">2016-11-09 15:25:00</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2016/11/09/自己签发ssl证书生成/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/11/09/自己签发ssl证书生成/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#生成一个RSA密钥 </span><br><span class="line"></span><br><span class="line">$ openssl genrsa -des3 -out server<span class="class">.key</span> <span class="number">1024</span></span><br><span class="line">#拷贝一个不需要输入密码的密钥文件</span><br><span class="line"></span><br><span class="line">$ openssl rsa -<span class="keyword">in</span> server<span class="class">.key</span> -out server_nopass<span class="class">.key</span></span><br><span class="line">#生成一个证书请求</span><br><span class="line"></span><br><span class="line">$ openssl req -new -key server<span class="class">.key</span> -out server<span class="class">.csr</span></span><br><span class="line">#自己签发证书</span><br><span class="line"></span><br><span class="line">$ openssl x509 -req -days <span class="number">3650</span> -<span class="keyword">in</span> server<span class="class">.csr</span> -signkey server<span class="class">.key</span> -out server.crt</span><br></pre></td></tr></table></figure>
+<p>nginx 配置ssl<br><figure class="hljs highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssl_certificate <span class="regexp">/etc/</span>nginx<span class="regexp">/ssl/</span>xxx.com.crt;</span><br><span class="line">ssl_certificate_key <span class="regexp">/etc/</span>nginx<span class="regexp">/ssl/</span>xxx.com.key;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/ssl/" rel="tag"><i class="fas fa-tags"></i>ssl</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/11/09/apache2-4-23编译安装/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -705,70 +758,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/06/24/CentOS-2-6版本内核升级至3-10-yum版/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2016/06/24/CentOS-2-6版本内核升级至3-10-yum版/" itemprop="url">CentOS 2.6版本内核升级至3.10 yum版 </a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-06-24T13:24:11+08:00">2016-06-24 13:24:11</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2016/06/24/CentOS-2-6版本内核升级至3-10-yum版/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/06/24/CentOS-2-6版本内核升级至3-10-yum版/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>升级前系统镜像：CentOS 6.5 64位  </p>
-<p>内核版本：2.6.32-431.23.3.el6_x86_64</p>
-<p>1、导入public key</p>
-<p>rpm –import <a href="https://www.elrepo.org/RPM-GPG-KEY-elrepo.org" target="_blank" rel="external">https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</a></p>
-<p>2、安装elrepo到内核为2.6.32的CentOS中</p>
-<p>rpm -Uvh <a href="http://www.elrepo.org/elrepo-release-6-8.el6.elrepo.noarch.rpm" target="_blank" rel="external">http://www.elrepo.org/elrepo-release-6-8.el6.elrepo.noarch.rpm</a></p>
-<p>3、安装kernel-lt(long term support)长期支持版本</p>
-<p>yum –enablerepo=elrepo-kernel install kernel-lt -y</p>
-<p>注：</p>
-<p>1)</p>
-<p>如果直接通过yum方式使用elrepo源速度会较慢(该源在国外)。</p>
-<p>推荐采用rpm的方式安装kernel-lt：</p>
-<p>访问<a href="http://elrepo.org/linux/kernel/el6/x86_64/RPMS/下载对应的rpm包，通过rpm方式安装：" target="_blank" rel="external">http://elrepo.org/linux/kernel/el6/x86_64/RPMS/下载对应的rpm包，通过rpm方式安装：</a></p>
-<p>rpm -ivh kernel-lt-3.10.93-1.el6.elrepo.x86_64.rpm</p>
-<p>2)</p>
-<p>关于kernel-lt的介绍可以参考elrepo官网介绍：<a href="http://elrepo.org/tiki/kernel-lt" target="_blank" rel="external">http://elrepo.org/tiki/kernel-lt</a></p>
-<p>4、编辑grub.conf文件，修改Grub引导顺序</p>
-<p>vim /etc/grub.conf</p>
-<p>确认安装的新内核的位置，将default的值调整为新内核的顺序，如本次升级案例中新装的内核位置为0，所以将default修改为0，保存退出，reboot重启服务器。</p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/6/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -813,7 +802,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">82</a></div>
+      <div><a href="/archives/">83</a></div>
     </div>
     
     
@@ -831,7 +820,7 @@
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">38</a></div>
+      <div><a href="/tags/">40</a></div>
     </div>
     
   </div>

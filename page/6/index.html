@@ -132,6 +132,53 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/09/06/Linux挂载已分区的LVM磁盘/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/09/06/Linux挂载已分区的LVM磁盘/" itemprop="url">Linux挂载已分区的LVM磁盘</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-09-06T09:09:53+08:00">2017-09-06 09:09:53</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2017/09/06/Linux挂载已分区的LVM磁盘/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2017/09/06/Linux挂载已分区的LVM磁盘/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>查看新挂载的lvm磁盘<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">[root@tomcat-node5 /]<span class="comment"># fdisk  -l</span></span><br><span class="line"></span><br><span class="line">Disk /dev/xvda: <span class="number">42.9</span> GB, <span class="number">42949672960</span> bytes</span><br><span class="line"><span class="number">255</span> heads, <span class="number">63</span> sectors/track, <span class="number">5221</span> cylinders</span><br><span class="line">Units = cylinders of <span class="number">16065</span> * <span class="number">512</span> = <span class="number">8225280</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disk identifier: <span class="number">0x00078f9c</span></span><br><span class="line"></span><br><span class="line">    Device Boot      Start         End      Blocks   Id  System</span><br><span class="line">/dev/xvda1   *           <span class="number">1</span>        <span class="number">5222</span>    <span class="number">41940992</span>   <span class="number">83</span>  Linux</span><br><span class="line"></span><br><span class="line">Disk /dev/xvdb: <span class="number">107.4</span> GB, <span class="number">107374182400</span> bytes</span><br><span class="line"><span class="number">255</span> heads, <span class="number">63</span> sectors/track, <span class="number">13054</span> cylinders</span><br><span class="line">Units = cylinders of <span class="number">16065</span> * <span class="number">512</span> = <span class="number">8225280</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disk identifier: <span class="number">0x00000000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disk /dev/mapper/jhjhome1-lv_home: <span class="number">32.2</span> GB, <span class="number">32212254720</span> bytes</span><br><span class="line"><span class="number">255</span> heads, <span class="number">63</span> sectors/track, <span class="number">3916</span> cylinders</span><br><span class="line">Units = cylinders of <span class="number">16065</span> * <span class="number">512</span> = <span class="number">8225280</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disk identifier: <span class="number">0x00000000</span></span><br><span class="line">.....</span><br><span class="line"></span><br><span class="line">Disk /dev/xvdc: <span class="number">107.4</span> GB, <span class="number">107374182400</span> bytes</span><br><span class="line"><span class="number">255</span> heads, <span class="number">63</span> sectors/track, <span class="number">13054</span> cylinders</span><br><span class="line">Units = cylinders of <span class="number">16065</span> * <span class="number">512</span> = <span class="number">8225280</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disk identifier: <span class="number">0x00000000</span></span><br></pre></td></tr></table></figure></p>
+<p>Disk /dev/xvdc是新挂载上去磁盘</p>
+<p>直接挂着目录报错<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@jhjapp-tomcat-node5 ~]<span class="comment"># mount /dev/xvdc /mnt</span></span><br><span class="line">mount: unknown filesystem type <span class="string">'LVM2_member'</span></span><br></pre></td></tr></table></figure></p>
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/09/01/Oracle自动删除归档日志shell脚本/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -587,59 +634,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/11/09/自己签发ssl证书生成/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2016/11/09/自己签发ssl证书生成/" itemprop="url">自己签发ssl证书生成</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-11-09T15:25:00+08:00">2016-11-09 15:25:00</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2016/11/09/自己签发ssl证书生成/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/11/09/自己签发ssl证书生成/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#生成一个RSA密钥 </span><br><span class="line"></span><br><span class="line">$ openssl genrsa -des3 -out server<span class="class">.key</span> <span class="number">1024</span></span><br><span class="line">#拷贝一个不需要输入密码的密钥文件</span><br><span class="line"></span><br><span class="line">$ openssl rsa -<span class="keyword">in</span> server<span class="class">.key</span> -out server_nopass<span class="class">.key</span></span><br><span class="line">#生成一个证书请求</span><br><span class="line"></span><br><span class="line">$ openssl req -new -key server<span class="class">.key</span> -out server<span class="class">.csr</span></span><br><span class="line">#自己签发证书</span><br><span class="line"></span><br><span class="line">$ openssl x509 -req -days <span class="number">3650</span> -<span class="keyword">in</span> server<span class="class">.csr</span> -signkey server<span class="class">.key</span> -out server.crt</span><br></pre></td></tr></table></figure>
-<p>nginx 配置ssl<br><figure class="hljs highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssl_certificate <span class="regexp">/etc/</span>nginx<span class="regexp">/ssl/</span>xxx.com.crt;</span><br><span class="line">ssl_certificate_key <span class="regexp">/etc/</span>nginx<span class="regexp">/ssl/</span>xxx.com.key;</span><br></pre></td></tr></table></figure></p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/ssl/" rel="tag"><i class="fas fa-tags"></i>ssl</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/5/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -684,7 +678,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">82</a></div>
+      <div><a href="/archives/">83</a></div>
     </div>
     
     
@@ -702,7 +696,7 @@
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">38</a></div>
+      <div><a href="/tags/">40</a></div>
     </div>
     
   </div>

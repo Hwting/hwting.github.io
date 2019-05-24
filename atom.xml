@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.idcsec.com/"/>
-  <updated>2019-04-11T15:14:53.590Z</updated>
+  <updated>2019-05-19T04:53:09.254Z</updated>
   <id>http://www.idcsec.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于docker overlay2存储驱动配置</title>
+    <link href="http://www.idcsec.com/2019/05/19/%E5%85%B3%E4%BA%8Edocker-overlay2%E5%AD%98%E5%82%A8%E9%A9%B1%E5%8A%A8%E9%85%8D%E7%BD%AE/"/>
+    <id>http://www.idcsec.com/2019/05/19/关于docker-overlay2存储驱动配置/</id>
+    <published>2019-05-19T04:43:00.000Z</published>
+    <updated>2019-05-19T04:53:09.254Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="u4E3A_u5565_u8981_u7528overlay2"><a href="#u4E3A_u5565_u8981_u7528overlay2" class="headerlink" title="为啥要用overlay2"></a>为啥要用overlay2</h1><p>docker centos（内核3.10）上默认存储驱动是devicemapper 的loop-lvm模式，这种模式是用文件模拟块设备，不推荐生产使用<br>direct lvm又不是一个开箱即用的模式，懒得配置<br>最关键的是 docker in docker的情况下 device mapper是行不通的，典型的场景就是用drone时，构建docker镜像就不能正常工作<br>overlay存储驱动层数过多时会导致文件链接数过多可能会耗尽inode<br>所以当前overlay2是个比较好的选择</p><p>内核<br>你需要一个高版本的内核推荐4.9以上，我们用的是4.14，如果使用低内核可能你一些FROM别的基础镜像就跑不了，如用overlay2在centos系统上跑FROM ubuntu的镜像（不是必现）</p><p>我们这里提供了一个免费的内核rpm包 这个在我们生产环境跑了将近一年没出任何问题</p><p>监控<br>overlay2如果不做一些特殊操作，cadvisor是监控不到容器内实际使用多少磁盘的，经过xfs和配额配置才能正常监控到<br>kubernetes<br>kubelet默认一次拉取一个镜像，设置为false可以同时拉取多个镜像，<br>前提是存储驱动要为overlay2，对应的Dokcer也需要增加下载并发数<br>serialize-image-pulls: ‘false’</p><p>使用xfs文件系统<br>不使用xfs就无法做到给每个容器限制10G的大小，就可能出现一个容器的误操作导致把机器盘全占完</p><p>我们使用了lvm去弄个分区出来做xfs文件系统，当然你也可以不用lvm<br><figure class="hljs highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> which lvs &amp;&gt;<span class="regexp">/dev/null</span>; <span class="keyword">then</span></span><br><span class="line">  echo <span class="string">""</span>; echo -e <span class="string">"Remove last docker lv and mount ......"</span></span><br><span class="line">  lvremove k8s/docker -y</span><br><span class="line">  lvcreate -y -n docker k8s -<span class="constant">L</span> <span class="number">100</span>G</span><br><span class="line">  mkfs.xfs -n ftype=<span class="number">1</span> -f /dev/mapper/k8s-docker</span><br><span class="line">  mkdir -p /var/<span class="class"><span class="keyword">lib</span>/<span class="title">docker</span></span></span><br><span class="line">  mount -o pquota,uqnoenforce /dev/mapper/k8s-docker /var/<span class="class"><span class="keyword">lib</span>/<span class="title">docker</span></span></span><br><span class="line">  echo -e <span class="string">"/dev/mapper/k8s-docker                                  /var/lib/docker         xfs     defaults,pquota        0 0"</span> &gt;&gt; <span class="regexp">/etc/fstab</span></span><br><span class="line">fi</span><br></pre></td></tr></table></figure></p><h1 id="u914D_u7F6E_u4F7F_u7528overlay2"><a href="#u914D_u7F6E_u4F7F_u7528overlay2" class="headerlink" title="配置使用overlay2"></a>配置使用overlay2</h1><figure class="hljs highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># <span class="atom">cat</span> /<span class="atom">etc</span>/<span class="atom">docker</span>/<span class="atom">daemon</span>.<span class="atom">json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"registry-mirrors"</span>: [<span class="string">"https://registry.docker-cn.com"</span>],</span><br><span class="line">  <span class="string">"insecure-registries"</span>:[<span class="string">"192.168.1.0/24"</span>],</span><br><span class="line">  <span class="string">"storage-opts"</span>: [</span><br><span class="line">    <span class="string">"overlay2.override_kernel_check=true"</span>,</span><br><span class="line">    <span class="string">"overlay2.size=10G"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"log-driver"</span>: <span class="string">"json-file"</span>,</span><br><span class="line">  <span class="string">"log-opts"</span>: &#123;</span><br><span class="line">    <span class="string">"max-size"</span>: <span class="string">"10m"</span>,</span><br><span class="line">    <span class="string">"max-file"</span>: <span class="string">"3"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="atom">systemctl</span> <span class="atom">daemon</span>-<span class="atom">reload</span> </span><br><span class="line"><span class="atom">systemctl</span> <span class="atom">restart</span> <span class="atom">docker</span></span><br></pre></td></tr></table></figure><p>这样就可以把每个容器磁盘大小限制在10G了</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;u4E3A_u5565_u8981_u7528overlay2&quot;&gt;&lt;a href=&quot;#u4E3A_u5565_u8981_u7528overlay2&quot; class=&quot;headerlink&quot; title=&quot;为啥要用overlay2&quot;&gt;&lt;/a&gt;为啥要用overlay2
+      
+    
+    </summary>
+    
+      <category term="kubernetes" scheme="http://www.idcsec.com/categories/kubernetes/"/>
+    
+    
+      <category term="docker " scheme="http://www.idcsec.com/tags/docker/"/>
+    
+      <category term="overlay2" scheme="http://www.idcsec.com/tags/overlay2/"/>
+    
+  </entry>
   
   <entry>
     <title>Nginx常用配置笔记</title>
@@ -461,33 +488,6 @@
     
     
       <category term="ipv6 linux" scheme="http://www.idcsec.com/tags/ipv6-linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Prometheus监控container的告警规则</title>
-    <link href="http://www.idcsec.com/2018/11/05/Prometheus%E7%9B%91%E6%8E%A7container%E7%9A%84%E5%91%8A%E8%AD%A6%E8%A7%84%E5%88%99/"/>
-    <id>http://www.idcsec.com/2018/11/05/Prometheus监控container的告警规则/</id>
-    <published>2018-11-05T11:44:00.000Z</published>
-    <updated>2018-11-05T11:56:17.798Z</updated>
-    
-    <content type="html"><![CDATA[<p>修改Prometheus.yml文件<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">rules.yml: |</span><br><span class="line">   groups:</span><br><span class="line">   - name: container.rules</span><br><span class="line">     rules:</span><br><span class="line">     - alert: Container_Memory_RSS</span><br><span class="line">       expr: ((sum(container_memory_rss&#123;job=<span class="string">"kubernetes-cadvisor"</span>,pod_name!=<span class="string">""</span>&#125;) by (pod_name)) /(sum(container_spec_memory_limit_bytes&#123;job=<span class="string">"kubernetes-cadvisor"</span>,pod_name!=<span class="string">""</span>&#125;) by (pod_name)) * <span class="number">100</span>) &gt; <span class="number">95</span></span><br><span class="line">       <span class="keyword">for</span>: <span class="number">2</span>m</span><br><span class="line">       labels:</span><br><span class="line">         severity: critica</span><br><span class="line">       annotations:</span><br><span class="line">         summary: <span class="string">"检测内存使用率过高"</span></span><br><span class="line">         description:  <span class="string">"&#123;&#123; $labels.pod_name &#125;&#125;内存持续2分钟高于95%. 当前值: &#123;&#123; $value &#125;&#125;"</span></span><br><span class="line">     - alert: Container_Network_RX_Average</span><br><span class="line">       expr: ((sum (rate (container_network_receive_bytes_total&#123;job=<span class="string">"kubernetes-nodes"</span>,pod_name!=<span class="string">""</span>&#125;[<span class="number">1</span>m])) by (pod_name)) / <span class="number">1024</span>) &gt; <span class="number">102400</span></span><br><span class="line">       <span class="keyword">for</span>: <span class="number">2</span>m</span><br><span class="line">       labels:</span><br><span class="line">         severity: critica</span><br><span class="line">       annotations:</span><br><span class="line">         summary:  <span class="string">"检测网络带宽使用率过高."</span></span><br><span class="line">         description: <span class="string">"&#123;&#123; $labels.pod_name &#125;&#125;网络带宽持续2分钟高于 100M. RX带宽使用率: &#123;&#123; $value &#125;&#125;"</span></span><br><span class="line">     - alert: Container_Network_TX_Average</span><br><span class="line">       expr: ((sum (rate (container_network_transmit_bytes_total&#123;job=<span class="string">"kubernetes-nodes"</span>,pod_name!=<span class="string">""</span>&#125;[<span class="number">1</span>m])) by (pod_name)) / <span class="number">1024</span>) &gt; <span class="number">102400</span></span><br><span class="line">       <span class="keyword">for</span>: <span class="number">2</span>m</span><br><span class="line">       labels:</span><br><span class="line">         severity: critica</span><br><span class="line">       annotations:</span><br><span class="line">         summary:  <span class="string">"检测网络带宽使用率过高."</span></span><br><span class="line">         description: <span class="string">"&#123;&#123; $labels.pod_name &#125;&#125;网络带宽持续2分钟高于 100M. TX带宽使用率: &#123;&#123; $value &#125;&#125;"</span></span><br><span class="line">     - alert: Container_USAGE_CPU_Average</span><br><span class="line">       expr: ((sum(rate(container_cpu_usage_seconds_total&#123;job=<span class="string">"kubernetes-nodes"</span>,image!=<span class="string">""</span>,pod_name!=<span class="string">""</span>&#125;[<span class="number">1</span>m])) BY (pod_name)) * <span class="number">100</span>) &gt; <span class="number">95</span></span><br><span class="line">       <span class="keyword">for</span>: <span class="number">2</span>m</span><br><span class="line">       labels:</span><br><span class="line">         severity: critica</span><br><span class="line">       annotations:</span><br><span class="line">         summary:  <span class="string">"检测CPU平均使用率过高."</span></span><br><span class="line">         description: <span class="string">"&#123;&#123; $labels.pod_name &#125;&#125;CPU持续2分钟高于高于95% 当前值: &#123;&#123; $value &#125;&#125;"</span></span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;修改Prometheus.yml文件&lt;br&gt;&lt;figure class=&quot;hljs highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;l
-      
-    
-    </summary>
-    
-      <category term="kubernetes" scheme="http://www.idcsec.com/categories/kubernetes/"/>
-    
-    
-      <category term="Prometheus" scheme="http://www.idcsec.com/tags/Prometheus/"/>
-    
-      <category term="alertmanager" scheme="http://www.idcsec.com/tags/alertmanager/"/>
     
   </entry>
   

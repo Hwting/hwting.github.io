@@ -132,6 +132,54 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/01/29/解决Linux-出现大量TIME-WAIT连接问题/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/01/29/解决Linux-出现大量TIME-WAIT连接问题/" itemprop="url">解决Linux 出现大量TIME_WAIT连接问题</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-01-29T11:30:59+08:00">2018-01-29 11:30:59</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2018/01/29/解决Linux-出现大量TIME-WAIT连接问题/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/01/29/解决Linux-出现大量TIME-WAIT连接问题/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -n|awk <span class="string">'/^tcp/&#123;++S[$NF]&#125;END&#123;for (a in S) print a,S[a]&#125;'</span>    <span class="comment">#得到当前服务器的所有TCP连接数状态</span></span><br></pre></td></tr></table></figure>
+<p>修改/etc/sysctl.conf文件参数<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysctl.conf</span><br><span class="line">net.ipv4.tcp_tw_reuse = <span class="number">1</span>  <span class="comment">#表示开启重用。允许将TIME-WAIT sockets重新用于新的TCP连接，默认为0，表示关闭；</span></span><br><span class="line">net.ipv4.tcp_tw_recycle = <span class="number">1</span>  <span class="comment">#表示开启TCP连接中TIME-WAIT sockets的快速回收，默认为0，表示关闭。</span></span><br><span class="line">net.ipv4.tcp_fin_timeout = <span class="number">30</span>  <span class="comment">#修改系統默认的TIMEOUT时间</span></span><br></pre></td></tr></table></figure></p>
+<p>TIME_WAIT 的默认时间是 2倍的 MLS，即 240 秒，最低为 30 秒，最高为 300 秒。MLS 是 TCP 片在网上的最长存活时间。TIME_WAIT的主要作用是保证关闭的TCP端口不立即被使用。因为当网络存在延迟时，可能当某个端口被关闭后，网络中还有一些重传的TCP片在发向这个端口，如果这个端口立即建立新的TCP连接，则可能会有影响。所以使用2倍的MSL时间来限制这个端口立即被使用。</p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/12/15/zabbix-shell脚本钉钉机器人报警/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -638,53 +686,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/09/06/Linux挂载已分区的LVM磁盘/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2017/09/06/Linux挂载已分区的LVM磁盘/" itemprop="url">Linux挂载已分区的LVM磁盘</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-09-06T09:09:53+08:00">2017-09-06 09:09:53</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2017/09/06/Linux挂载已分区的LVM磁盘/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2017/09/06/Linux挂载已分区的LVM磁盘/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>查看新挂载的lvm磁盘<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">[root@tomcat-node5 /]<span class="comment"># fdisk  -l</span></span><br><span class="line"></span><br><span class="line">Disk /dev/xvda: <span class="number">42.9</span> GB, <span class="number">42949672960</span> bytes</span><br><span class="line"><span class="number">255</span> heads, <span class="number">63</span> sectors/track, <span class="number">5221</span> cylinders</span><br><span class="line">Units = cylinders of <span class="number">16065</span> * <span class="number">512</span> = <span class="number">8225280</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disk identifier: <span class="number">0x00078f9c</span></span><br><span class="line"></span><br><span class="line">    Device Boot      Start         End      Blocks   Id  System</span><br><span class="line">/dev/xvda1   *           <span class="number">1</span>        <span class="number">5222</span>    <span class="number">41940992</span>   <span class="number">83</span>  Linux</span><br><span class="line"></span><br><span class="line">Disk /dev/xvdb: <span class="number">107.4</span> GB, <span class="number">107374182400</span> bytes</span><br><span class="line"><span class="number">255</span> heads, <span class="number">63</span> sectors/track, <span class="number">13054</span> cylinders</span><br><span class="line">Units = cylinders of <span class="number">16065</span> * <span class="number">512</span> = <span class="number">8225280</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disk identifier: <span class="number">0x00000000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disk /dev/mapper/jhjhome1-lv_home: <span class="number">32.2</span> GB, <span class="number">32212254720</span> bytes</span><br><span class="line"><span class="number">255</span> heads, <span class="number">63</span> sectors/track, <span class="number">3916</span> cylinders</span><br><span class="line">Units = cylinders of <span class="number">16065</span> * <span class="number">512</span> = <span class="number">8225280</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disk identifier: <span class="number">0x00000000</span></span><br><span class="line">.....</span><br><span class="line"></span><br><span class="line">Disk /dev/xvdc: <span class="number">107.4</span> GB, <span class="number">107374182400</span> bytes</span><br><span class="line"><span class="number">255</span> heads, <span class="number">63</span> sectors/track, <span class="number">13054</span> cylinders</span><br><span class="line">Units = cylinders of <span class="number">16065</span> * <span class="number">512</span> = <span class="number">8225280</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">Disk identifier: <span class="number">0x00000000</span></span><br></pre></td></tr></table></figure></p>
-<p>Disk /dev/xvdc是新挂载上去磁盘</p>
-<p>直接挂着目录报错<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@jhjapp-tomcat-node5 ~]<span class="comment"># mount /dev/xvdc /mnt</span></span><br><span class="line">mount: unknown filesystem type <span class="string">'LVM2_member'</span></span><br></pre></td></tr></table></figure></p>
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/4/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -729,7 +730,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">82</a></div>
+      <div><a href="/archives/">83</a></div>
     </div>
     
     
@@ -747,7 +748,7 @@
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">38</a></div>
+      <div><a href="/tags/">40</a></div>
     </div>
     
   </div>
