@@ -132,6 +132,52 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2019/01/21/kubernetes-pod资源限制/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2019/01/21/kubernetes-pod资源限制/" itemprop="url">kubernetes pod资源限制</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-01-21T10:09:32+08:00">2019-01-21 10:09:32</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2019/01/21/kubernetes-pod资源限制/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2019/01/21/kubernetes-pod资源限制/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>资源限制namespace 设置 ResouceQuota 和 LimitRange两种</p>
+<h1 id="u8D44_u6E90_u9650_u989D_uFF08Resource_Quota_uFF09"><a href="#u8D44_u6E90_u9650_u989D_uFF08Resource_Quota_uFF09" class="headerlink" title="资源限额（Resource Quota）"></a>资源限额（Resource Quota）</h1><p>资源限额可以为每一个命名空间提供一个总体的资源使用的限制，限制命名空间某种类型的资源对象的总数目上线，限制pod可以使用到的计算资源的总上限<br>创建应该dev的命名空间<br>
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2019/01/20/kubernetes-apiserver高可用/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -632,74 +678,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/11/19/IPv6隧道技术轻松通过苹果ipv6-only审核/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/11/19/IPv6隧道技术轻松通过苹果ipv6-only审核/" itemprop="url">IPv6隧道技术轻松通过苹果ipv6-only审核</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-11-19T22:54:00+08:00">2018-11-19 22:54:00</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
-        </span>
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2018/11/19/IPv6隧道技术轻松通过苹果ipv6-only审核/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/11/19/IPv6隧道技术轻松通过苹果ipv6-only审核/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>如果使用阿里云的服务器并且域名备案接入商是阿里就购买阿里云提供的ipv6地址（通过ipv6转ipv4<br>）</p>
-<p>以下是通过<a href="https://www.tunnelbroker.net提供的ipv6隧道方法" target="_blank" rel="external">https://www.tunnelbroker.net提供的ipv6隧道方法</a></p>
-<h1 id="centos7_u5F00_u542Fipv6_u652F_u6301"><a href="#centos7_u5F00_u542Fipv6_u652F_u6301" class="headerlink" title="centos7开启ipv6支持"></a>centos7开启ipv6支持</h1><p>vim /etc/modprobe.d/disable_ipv6.conf<br><figure class="hljs highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword"><span class="common">options</span></span> ipv6 disable=0</span><br></pre></td></tr></table></figure></p>
-<p>vim /etc/sysconfig/networ<br><figure class="hljs highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">NETWORKING_IPV6=<span class="value"><span class="keyword">yes</span></span></span></span><br></pre></td></tr></table></figure></p>
-<p>vim /etc/sysctl.conf<br><figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">net<span class="class">.ipv6</span><span class="class">.conf</span><span class="class">.all</span><span class="class">.disable_ipv6</span> = <span class="number">0</span></span><br><span class="line">net<span class="class">.ipv6</span><span class="class">.conf</span><span class="class">.default</span><span class="class">.disable_ipv6</span> = <span class="number">0</span></span><br><span class="line">net<span class="class">.ipv6</span><span class="class">.conf</span><span class="class">.lo</span><span class="class">.disable_ipv6</span> = <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
-<p>配置完最好重启一下<br>reboot</p>
-<h1 id="u6CE8_u518C_u8D26_u53F7"><a href="#u6CE8_u518C_u8D26_u53F7" class="headerlink" title="注册账号"></a>注册账号</h1><p><a href="https://www.tunnelbroker.net注册账号" target="_blank" rel="external">https://www.tunnelbroker.net注册账号</a><br>创建一个ipv6 tunnel<br><img src="/img/ipv61.png" alt="ipv6"><br><img src="/img/ipv62.png" alt="monitoring"><br>这centos7选择linux-net-tools按照命令执行完查看<br>添加dns<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/resolv.conf </span><br><span class="line">nameserver <span class="number">2001</span>:<span class="number">4860</span>:<span class="number">4860</span>::<span class="number">8888</span></span><br><span class="line">nameserver <span class="number">2001</span>:<span class="number">4860</span>:<span class="number">4860</span>::<span class="number">8844</span></span><br></pre></td></tr></table></figure></p>
-<p>ping6 ipv6.google.com<br>nginx转发配置<br><figure class="hljs highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">listen 80<span class="comment">;</span></span><br><span class="line">listen  [<span class="number">::</span>]:80<span class="comment">;</span></span><br><span class="line">server_name  test.idcsec.com<span class="comment">;</span></span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line">#charset koi8-r<span class="comment">;</span></span><br><span class="line"></span><br><span class="line"> #  access_log  logs/wangting.access.log  main<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">location / &#123;</span><br><span class="line">    root   html<span class="comment">;</span></span><br><span class="line">    index  index  index.html index.htm<span class="comment">;</span></span><br><span class="line">    proxy_pass   http://test.idcsec.com.com<span class="comment">;</span></span><br><span class="line">    proxy_redirect off<span class="comment">;</span></span><br><span class="line">    # 后端的Web服务器可以通过X-Forwarded-For获取用户真实IP</span><br><span class="line">    proxy_set_header  Host  "test.idcsec.com"<span class="comment">;</span></span><br><span class="line">    proxy_set_header  X-Real-IP  $remote_addr<span class="comment">;</span></span><br><span class="line">    proxy_set_header  X-Forwarded-For  $proxy_add_x_forwarded_for<span class="comment">;</span></span><br><span class="line">    proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504<span class="comment">;</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>域名添加4A解析<br>验证<br> <a href="http://ipv6-test.com/validate.php" target="_blank" rel="external">http://ipv6-test.com/validate.php</a><br> 页面代理服务ipv6网站www.ipv6proxy.net/index.php</p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/ipv6-linux/" rel="tag"><i class="fas fa-tags"></i>ipv6 linux</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -744,7 +722,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">83</a></div>
+      <div><a href="/archives/">84</a></div>
     </div>
     
     

@@ -132,6 +132,53 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2019/06/21/ingress-nginx后端pod容器获取客服端真实ip/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2019/06/21/ingress-nginx后端pod容器获取客服端真实ip/" itemprop="url">ingress-nginx后端pod容器获取客服端真实ip</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-06-21T12:50:27+08:00">2019-06-21 12:50:27</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2019/06/21/ingress-nginx后端pod容器获取客服端真实ip/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2019/06/21/ingress-nginx后端pod容器获取客服端真实ip/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>业务场景:<br>cdn-LB-ingress-nginx<br>创建ingres-nginx的configmap文件<br><figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f - &lt;&lt;EOF</span><br><span class="line"><span class="string">apiVersion:</span> v1</span><br><span class="line"><span class="string">data:</span></span><br><span class="line">  compute-full-forwarded-<span class="string">for:</span> <span class="string">"true"</span></span><br><span class="line">  forwarded-<span class="keyword">for</span>-<span class="string">header:</span> X-Forwarded-For</span><br><span class="line">  use-forwarded-<span class="string">headers:</span> <span class="string">"true"</span></span><br><span class="line"><span class="string">kind:</span> ConfigMap</span><br><span class="line"><span class="string">metadata:</span></span><br><span class="line"><span class="label">  labels:</span></span><br><span class="line"><span class="label">    app:</span> ingress-nginx</span><br><span class="line"><span class="label">  name:</span> nginx-configuration</span><br><span class="line"><span class="label">  namespace:</span> ingress-nginx</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p>
+<p>主要参数<a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#use-forwarded-headers" target="_blank" rel="external">https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#use-forwarded-headers</a><br><figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">compute-full-forwarded-<span class="string">for:</span> <span class="string">"true"</span></span><br><span class="line">forwarded-<span class="keyword">for</span>-<span class="string">header:</span> X-Forwarded-For</span><br><span class="line">use-forwarded-<span class="string">headers:</span> <span class="string">"true"</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2019/05/19/关于docker-overlay2存储驱动配置/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -705,52 +752,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2019/01/21/kubernetes-pod资源限制/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2019/01/21/kubernetes-pod资源限制/" itemprop="url">kubernetes pod资源限制</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-01-21T10:09:32+08:00">2019-01-21 10:09:32</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2019/01/21/kubernetes-pod资源限制/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2019/01/21/kubernetes-pod资源限制/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>资源限制namespace 设置 ResouceQuota 和 LimitRange两种</p>
-<h1 id="u8D44_u6E90_u9650_u989D_uFF08Resource_Quota_uFF09"><a href="#u8D44_u6E90_u9650_u989D_uFF08Resource_Quota_uFF09" class="headerlink" title="资源限额（Resource Quota）"></a>资源限额（Resource Quota）</h1><p>资源限额可以为每一个命名空间提供一个总体的资源使用的限制，限制命名空间某种类型的资源对象的总数目上线，限制pod可以使用到的计算资源的总上限<br>创建应该dev的命名空间<br>
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -795,7 +796,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">83</a></div>
+      <div><a href="/archives/">84</a></div>
     </div>
     
     

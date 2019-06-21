@@ -132,6 +132,76 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/16/解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/09/16/解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx/" itemprop="url">解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-16T22:05:00+08:00">2018-09-16 22:05:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
+        </span>
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2018/09/16/解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/09/16/解决ingress-nginx反向代理在监听非80端口时候跳转问题以及Nginx/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <ul>
+<li>解决方法比较多主要根据自己的环境找到合适的解决方式，ingress-nginx默认监听443,80，这里的环境主要是因为路由器映射到非80端口导致跳转的Heather的Request丢失端口跳转到了默认的80<br>参考<br><a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_redirect" target="_blank" rel="external">http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_redirect</a><br><a href="https://www.nginx.com/resources/wiki/start/topics/examples/fullexample2/" target="_blank" rel="external">https://www.nginx.com/resources/wiki/start/topics/examples/fullexample2/</a><br><a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#proxy-redirect" target="_blank" rel="external">https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#proxy-redirect</a><h1 id="nginx_u914D_u7F6E"><a href="#nginx_u914D_u7F6E" class="headerlink" title="nginx配置"></a>nginx配置</h1><figure class="hljs highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">  upstream tomcat &#123;</span><br><span class="line">    server <span class="number">127.0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">9090</span> weight=<span class="number">1</span> max_fails=<span class="number">3</span> fail_timeout=<span class="number">30</span>s;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  server &#123;</span><br><span class="line">    listen <span class="number">80</span>;</span><br><span class="line">    server_name example.com *.example.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">      proxy_next_upstream http_502 http_504 error timeout invalid_header;</span><br><span class="line"></span><br><span class="line">      proxy_set_header Host  <span class="variable">$host</span>:<span class="variable">$server</span>_port;</span><br><span class="line">      proxy_set_header X-Real-IP <span class="variable">$remote</span>_addr;</span><br><span class="line">      proxy_set_header X-Forwarded-For <span class="variable">$proxy</span>_add_x_forwarded_for;</span><br><span class="line">      proxy_redirect http://<span class="variable">$host</span> http://<span class="variable">$host</span>:<span class="variable">$server</span>_port;//由于是路由器上面配置映射非<span class="number">80</span>端口到<span class="number">80</span>端口这里就不能使用<span class="variable">$server</span>_port需要直接写端口号</span><br><span class="line">      proxy_redirect off;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="ingress-nginx_u914D_u7F6E"><a href="#ingress-nginx_u914D_u7F6E" class="headerlink" title="ingress-nginx配置"></a>ingress-nginx配置</h1><p>默认ingress-nginx 代理重定向是OFF<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-master ~]<span class="preprocessor"># kubectl exec -it nginx-ingress-controller-<span class="number">1971110253</span>-<span class="number">0</span>rcjw  -n kube-system -- cat /etc/nginx/nginx.conf   | grep <span class="string">"proxy_redirect"</span> | head -n <span class="number">1</span></span></span><br><span class="line">            proxy_redirect                          off;</span><br></pre></td></tr></table></figure></p>
+<h1 id="ingress_u4EE3_u7406_u91CD_u5B9A_u5411_u914D_u7F6E"><a href="#ingress_u4EE3_u7406_u91CD_u5B9A_u5411_u914D_u7F6E" class="headerlink" title="ingress代理重定向配置"></a>ingress代理重定向配置</h1><figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">kind:</span> Ingress</span><br><span class="line"><span class="string">apiVersion:</span> extensions/v1beta1</span><br><span class="line"><span class="string">metadata:</span></span><br><span class="line"><span class="label">  name:</span> $&#123;projectSvc&#125;</span><br><span class="line"><span class="label">  annotations:</span></span><br><span class="line">    nginx.ingress.kubernetes.io/proxy-redirect-<span class="string">from:</span> <span class="string">"test.cn:9090"</span></span><br><span class="line">    nginx.ingress.kubernetes.io/proxy-redirect-<span class="string">to:</span> <span class="string">"test.cn:9090"</span></span><br><span class="line"><span class="string">spec:</span></span><br><span class="line"><span class="label">  rules:</span></span><br><span class="line">  - <span class="string">host:</span>  $&#123;projectUrl&#125;</span><br><span class="line"><span class="label">    http:</span></span><br><span class="line"><span class="label">      paths:</span></span><br><span class="line">      - <span class="string">path:</span> /</span><br><span class="line"><span class="label">        backend:</span></span><br><span class="line"><span class="label">          serviceName:</span> $&#123;projectSvc&#125;</span><br><span class="line"><span class="label">          servicePort:</span> <span class="number">80</span></span><br><span class="line">  - <span class="string">host:</span> $&#123;projectUrl<span class="regexp">/test.loca/</span>test.cn&#125;</span><br><span class="line"><span class="label">    http:</span> </span><br><span class="line"><span class="label">      paths:</span> </span><br><span class="line">      - <span class="string">path:</span> /</span><br><span class="line"><span class="label">        backend:</span></span><br><span class="line"><span class="label">          serviceName:</span> $&#123;projectSvc&#125;</span><br><span class="line"><span class="label">          servicePort:</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>重点</li>
+</ul>
+<figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nginx<span class="class">.ingress</span><span class="class">.kubernetes</span><span class="class">.io</span>/proxy-redirect-from: <span class="string">"idcsec.com"</span></span><br><span class="line">nginx<span class="class">.ingress</span><span class="class">.kubernetes</span><span class="class">.io</span>/proxy-redirect-to: <span class="string">"idcsec.com"</span></span><br></pre></td></tr></table></figure>
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/ingress-nginx/" rel="tag"><i class="fas fa-tags"></i>ingress-nginx</a>
+        
+        <a class="post-tag button" href="/tags/nginx/" rel="tag"><i class="fas fa-tags"></i>nginx</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/09/14/HARBOR仓库安装部署/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -737,61 +807,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/02/27/ecureCRT配置Cisco网络设备关键字高亮/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/02/27/ecureCRT配置Cisco网络设备关键字高亮/" itemprop="url">SecureCRT配置Cisco网络设备关键字高亮</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-02-27T15:34:00+08:00">2018-02-27 15:34:00</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2018/02/27/ecureCRT配置Cisco网络设备关键字高亮/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/02/27/ecureCRT配置Cisco网络设备关键字高亮/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>##效果图：<br><img src="/img/securecrt1.png" alt="crt"><br>下载思科关键字文件解C:\Users\Administrator\AppData\Roaming\VanDyke\Config\Keywords(根据自己的用户路径)<br>链接: <a href="https://pan.baidu.com/s/1c3BZb8k" target="_blank" rel="external">https://pan.baidu.com/s/1c3BZb8k</a> 密码: xv7h</p>
-<p>##设置 options-eitdefault-appearance<br><img src="/img/securecrt2.png" alt="crt"></p>
-<p>##设置配置文件路径options-Globaloptions<br><img src="/img/securecrt3.png" alt="crt"></p>
-<p>#下拉菜单选择解压好的关键字文件<br><img src="/img/securecrt4.png" alt="crt"></p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/crt/" rel="tag"><i class="fas fa-tags"></i>crt</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/3/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -836,7 +851,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">83</a></div>
+      <div><a href="/archives/">84</a></div>
     </div>
     
     

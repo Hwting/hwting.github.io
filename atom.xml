@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.idcsec.com/"/>
-  <updated>2019-05-19T04:53:09.254Z</updated>
+  <updated>2019-06-21T05:50:29.807Z</updated>
   <id>http://www.idcsec.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ingress-nginx后端pod容器获取客服端真实ip</title>
+    <link href="http://www.idcsec.com/2019/06/21/ingress-nginx%E5%90%8E%E7%AB%AFpod%E5%AE%B9%E5%99%A8%E8%8E%B7%E5%8F%96%E5%AE%A2%E6%9C%8D%E7%AB%AF%E7%9C%9F%E5%AE%9Eip/"/>
+    <id>http://www.idcsec.com/2019/06/21/ingress-nginx后端pod容器获取客服端真实ip/</id>
+    <published>2019-06-21T04:50:27.000Z</published>
+    <updated>2019-06-21T05:50:29.807Z</updated>
+    
+    <content type="html"><![CDATA[<p>业务场景:<br>cdn-LB-ingress-nginx<br>创建ingres-nginx的configmap文件<br><figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f - &lt;&lt;EOF</span><br><span class="line"><span class="string">apiVersion:</span> v1</span><br><span class="line"><span class="string">data:</span></span><br><span class="line">  compute-full-forwarded-<span class="string">for:</span> <span class="string">"true"</span></span><br><span class="line">  forwarded-<span class="keyword">for</span>-<span class="string">header:</span> X-Forwarded-For</span><br><span class="line">  use-forwarded-<span class="string">headers:</span> <span class="string">"true"</span></span><br><span class="line"><span class="string">kind:</span> ConfigMap</span><br><span class="line"><span class="string">metadata:</span></span><br><span class="line"><span class="label">  labels:</span></span><br><span class="line"><span class="label">    app:</span> ingress-nginx</span><br><span class="line"><span class="label">  name:</span> nginx-configuration</span><br><span class="line"><span class="label">  namespace:</span> ingress-nginx</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure></p><p>主要参数<a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#use-forwarded-headers" target="_blank" rel="external">https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#use-forwarded-headers</a><br><figure class="hljs highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">compute-full-forwarded-<span class="string">for:</span> <span class="string">"true"</span></span><br><span class="line">forwarded-<span class="keyword">for</span>-<span class="string">header:</span> X-Forwarded-For</span><br><span class="line">use-forwarded-<span class="string">headers:</span> <span class="string">"true"</span></span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;业务场景:&lt;br&gt;cdn-LB-ingress-nginx&lt;br&gt;创建ingres-nginx的configmap文件&lt;br&gt;&lt;figure class=&quot;hljs highlight groovy&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>关于docker overlay2存储驱动配置</title>
@@ -462,32 +483,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>IPv6隧道技术轻松通过苹果ipv6-only审核</title>
-    <link href="http://www.idcsec.com/2018/11/19/IPv6%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF%E8%BD%BB%E6%9D%BE%E9%80%9A%E8%BF%87%E8%8B%B9%E6%9E%9Cipv6-only%E5%AE%A1%E6%A0%B8/"/>
-    <id>http://www.idcsec.com/2018/11/19/IPv6隧道技术轻松通过苹果ipv6-only审核/</id>
-    <published>2018-11-19T14:54:00.000Z</published>
-    <updated>2019-01-10T09:10:22.032Z</updated>
-    
-    <content type="html"><![CDATA[<p>如果使用阿里云的服务器并且域名备案接入商是阿里就购买阿里云提供的ipv6地址（通过ipv6转ipv4<br>）</p><p>以下是通过<a href="https://www.tunnelbroker.net提供的ipv6隧道方法" target="_blank" rel="external">https://www.tunnelbroker.net提供的ipv6隧道方法</a></p><h1 id="centos7_u5F00_u542Fipv6_u652F_u6301"><a href="#centos7_u5F00_u542Fipv6_u652F_u6301" class="headerlink" title="centos7开启ipv6支持"></a>centos7开启ipv6支持</h1><p>vim /etc/modprobe.d/disable_ipv6.conf<br><figure class="hljs highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword"><span class="common">options</span></span> ipv6 disable=0</span><br></pre></td></tr></table></figure></p><p>vim /etc/sysconfig/networ<br><figure class="hljs highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">NETWORKING_IPV6=<span class="value"><span class="keyword">yes</span></span></span></span><br></pre></td></tr></table></figure></p><p>vim /etc/sysctl.conf<br><figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">net<span class="class">.ipv6</span><span class="class">.conf</span><span class="class">.all</span><span class="class">.disable_ipv6</span> = <span class="number">0</span></span><br><span class="line">net<span class="class">.ipv6</span><span class="class">.conf</span><span class="class">.default</span><span class="class">.disable_ipv6</span> = <span class="number">0</span></span><br><span class="line">net<span class="class">.ipv6</span><span class="class">.conf</span><span class="class">.lo</span><span class="class">.disable_ipv6</span> = <span class="number">0</span></span><br></pre></td></tr></table></figure></p><p>配置完最好重启一下<br>reboot</p><h1 id="u6CE8_u518C_u8D26_u53F7"><a href="#u6CE8_u518C_u8D26_u53F7" class="headerlink" title="注册账号"></a>注册账号</h1><p><a href="https://www.tunnelbroker.net注册账号" target="_blank" rel="external">https://www.tunnelbroker.net注册账号</a><br>创建一个ipv6 tunnel<br><img src="/img/ipv61.png" alt="ipv6"><br><img src="/img/ipv62.png" alt="monitoring"><br>这centos7选择linux-net-tools按照命令执行完查看<br>添加dns<br><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/resolv.conf </span><br><span class="line">nameserver <span class="number">2001</span>:<span class="number">4860</span>:<span class="number">4860</span>::<span class="number">8888</span></span><br><span class="line">nameserver <span class="number">2001</span>:<span class="number">4860</span>:<span class="number">4860</span>::<span class="number">8844</span></span><br></pre></td></tr></table></figure></p><p>ping6 ipv6.google.com<br>nginx转发配置<br><figure class="hljs highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">listen 80<span class="comment">;</span></span><br><span class="line">listen  [<span class="number">::</span>]:80<span class="comment">;</span></span><br><span class="line">server_name  test.idcsec.com<span class="comment">;</span></span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line">#charset koi8-r<span class="comment">;</span></span><br><span class="line"></span><br><span class="line"> #  access_log  logs/wangting.access.log  main<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">location / &#123;</span><br><span class="line">    root   html<span class="comment">;</span></span><br><span class="line">    index  index  index.html index.htm<span class="comment">;</span></span><br><span class="line">    proxy_pass   http://test.idcsec.com.com<span class="comment">;</span></span><br><span class="line">    proxy_redirect off<span class="comment">;</span></span><br><span class="line">    # 后端的Web服务器可以通过X-Forwarded-For获取用户真实IP</span><br><span class="line">    proxy_set_header  Host  "test.idcsec.com"<span class="comment">;</span></span><br><span class="line">    proxy_set_header  X-Real-IP  $remote_addr<span class="comment">;</span></span><br><span class="line">    proxy_set_header  X-Forwarded-For  $proxy_add_x_forwarded_for<span class="comment">;</span></span><br><span class="line">    proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504<span class="comment">;</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>域名添加4A解析<br>验证<br> <a href="http://ipv6-test.com/validate.php" target="_blank" rel="external">http://ipv6-test.com/validate.php</a><br> 页面代理服务ipv6网站www.ipv6proxy.net/index.php</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;如果使用阿里云的服务器并且域名备案接入商是阿里就购买阿里云提供的ipv6地址（通过ipv6转ipv4&lt;br&gt;）&lt;/p&gt;
-&lt;p&gt;以下是通过&lt;a href=&quot;https://www.tunnelbroker.net提供的ipv6隧道方法&quot; target=&quot;_blank&quot; rel
-      
-    
-    </summary>
-    
-      <category term="linux" scheme="http://www.idcsec.com/categories/linux/"/>
-    
-    
-      <category term="ipv6 linux" scheme="http://www.idcsec.com/tags/ipv6-linux/"/>
     
   </entry>
   
