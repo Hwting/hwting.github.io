@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo, docker, linux, kubernetes, Nginx, tomcat, Jenkins">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="Wang'T博客" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato|Roboto+Condensed|Skranji|Ubuntu|Ubuntu+Mono">
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/solarized-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>Kubernetes中的Taint和Toleration | Wang'T博客 - _入网络深似海,从此节操是路人.</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">Wang'T博客</a></h1>
+        <h2 class="subtitle">_入网络深似海,从此节操是路人.</h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/img/logo.jpg" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/">首页</a></li>
+        
+        <li role="menuitem"><a href="/archives/">归档</a></li>
+        
+        <li role="menuitem"><a href="/categories/">分类</a></li>
+        
+        <li role="menuitem"><a href="/tags/">标签</a></li>
+        
+        <li role="menuitem"><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2019/07/03/ubernetes中的Taint和Toleration-1/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="Wang'T">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">Kubernetes中的Taint和Toleration</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-07-03T14:04:00+08:00">2019-07-03 14:04:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/kubernetes/" itemprop="url" rel="index"><span itemprop="name">kubernetes</span></a></span>
+        </span>
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2019/07/03/ubernetes中的Taint和Toleration-1/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2019/07/03/ubernetes中的Taint和Toleration-1/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p><a href="https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/" target="_blank" rel="external">参考</a></p>
+<p>Taint 和 toleration 相互配合，可以用来避免 pod 被分配到不合适的节点上。每个节点上都可以应用一个或多个 taint ，这表示对于那些不能容忍这些 taint 的 pod，是不会被该节点接受的。如果将 toleration 应用于 pod 上，则表示这些 pod 可以（但不要求）被调度到具有匹配 taint 的节点上。可使用节点污点来控制允许工作负载在哪些节点上运行。</p>
+<h1 id="u6DFB_u52A0taint"><a href="#u6DFB_u52A0taint" class="headerlink" title="添加taint"></a>添加taint</h1><p>查看节点taint在返回的节点说明中，查找 Taints 字段<br><figure class="hljs highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">kubectl</span>  describe nodes  rancher-k8s-m1</span><br></pre></td></tr></table></figure></p>
+<p>可以使用命令 kubectl taint 给节点增加一个 taint。比如<br><figure class="hljs highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl taint nodes <span class="string">[NODE_NAME]</span> <span class="string">[KEY]</span>=<span class="string">[VALUE]</span>:<span class="string">[EFFECT]</span></span><br></pre></td></tr></table></figure></p>
+<p>还可以向具有特定标签的节点添加污点：<br><figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kubectl taint node -l  node-role<span class="class">.kubernetes</span><span class="class">.io</span>/etcd=tru dedicated=foo:PreferNoSchedule</span><br><span class="line"><span class="id">#kubectl</span>  taint nodes dev-k8s-m1 node-role<span class="class">.kubernetes</span><span class="class">.io</span>/controlplane=true:NoSchedule 给节点 dev-k8s-m1 增加一个 taint，它的 key 是 role<span class="class">.kubernetes</span><span class="class">.io</span>/controlplane，value 是 true，effect 是 NoSchedule。除非pod有符合的容忍(toleration),否则不会被调度到dev-k8s-m1这个节点</span><br></pre></td></tr></table></figure></p>
+<h1 id="u5220_u9664taint"><a href="#u5220_u9664taint" class="headerlink" title="删除taint"></a>删除taint</h1><figure class="hljs highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl taint nodes dev-k8s-m1 role<span class="class">.kubernetes</span><span class="class">.io</span>/controlplane:NoSchedule-</span><br></pre></td></tr></table></figure>
+<p>点污点是与“effect”相关联的键值对。以下是可用的effect：<br><figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NoSchedule：不会将不能容忍此污点的 Pod 调度到节点上。</span><br><span class="line">PreferNoSchedule：Kubernetes 会避免将不能容忍此污点的 Pod 调度到节点上。这是一个优先选择或者软性版本的NoSchedule,调度系统会尽量避免调度不容忍这种污点的pod到带有此污点的节点上,但是并不是硬性要求</span><br><span class="line">NoExecute：如果 Pod 已在节点上运行，则会将该 Pod 从节点中逐出；如果尚未在节点上运行，则不会将其调度到节点上。</span><br></pre></td></tr></table></figure></p>
+<h1 id="toleration"><a href="#toleration" class="headerlink" title="toleration"></a>toleration</h1><p>可以在 PodSpec 中定义 pod 的 toleration。下面两个 toleration 均与上面例子中使用 kubectl taint 命令创建的 taint 相匹配，因此如果一个 pod 拥有其中的任何一个 toleration 都能够被分配到 dev-k8s-m1<br><figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">tolerations</span>:</span><br><span class="line">- <span class="attribute">key</span>: <span class="string">"role.kubernetes.io/controlplane"</span></span><br><span class="line">  <span class="attribute">operator</span>: <span class="string">"Equal"</span></span><br><span class="line">  <span class="attribute">value</span>: <span class="string">"true"</span></span><br><span class="line">  <span class="attribute">effect</span>: <span class="string">"NoSchedule"</span></span><br></pre></td></tr></table></figure></p>
+<figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">tolerations</span>:</span><br><span class="line">- <span class="attribute">key</span>: <span class="string">"role.kubernetes.io/controlplane"</span></span><br><span class="line">  <span class="attribute">operator</span>: <span class="string">"Exists"</span></span><br><span class="line">  <span class="attribute">effect</span>: <span class="string">"NoSchedule"</span></span><br></pre></td></tr></table></figure>
+<p>只有pod的key和effect都和某一个污点的key与effect匹配,才被认为是匹配,并且要符合以下情形:<br>operator是Exists(这种情况下value不应当指定)<br>operator是 Equal 并且value相同<br>如果operator没有指定,则默认是Equal<br><figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">tolerations</span>:</span><br><span class="line">- <span class="attribute">operator</span>: <span class="string">"Exists"</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">tolerations</span>:</span><br><span class="line">- <span class="attribute">key</span>: <span class="string">"role.kubernetes.io/controlplane"</span></span><br><span class="line">  <span class="attribute">operator</span>: <span class="string">"Exists"</span></span><br></pre></td></tr></table></figure></p>
+<p>以上会匹配所有key为role.kubernetes.io/controlplane的所有taint节点<br>可以为一个节点(node)添加多个污点,也可以为一个pod添加多个容忍(toleration).kubernetes处理多个污点(taint)或者多个容忍(toleration)类似于过滤器:起初包含所有污点,然后忽略掉pod匹配的污点,剩下不可被忽略的污点决定此节点对pod的效果,特别地:<br>1 如果至少有一个不可忽略的NoSchedule类型的效果(effect),kubernetes不会调度pod到此节点上来.<br>2 如果没有不可忽略的NoSchedule类型的效果(effect),但是至少有一个PreferNoSchedule类型的效果,则kubernetes会尝试调度pod到此节点上<br>3 如果至少有一个NoExecute类型的效果(effect),则此pod会被驱离此节点(当然,前提此pod在此节点上),并且如果pod不在此节点上,也不会被调度到此节点上<br>假如你有一个以下类型的节点<br><figure class="hljs highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl taint nodes node<span class="number">1</span> key<span class="number">1</span>=<span class="keyword">value</span><span class="number">1</span>:NoSchedule</span><br><span class="line">kubectl taint nodes node<span class="number">1</span> key<span class="number">1</span>=<span class="keyword">value</span><span class="number">1</span>:NoExecute</span><br><span class="line">kubectl taint nodes node<span class="number">1</span> key<span class="number">2</span>=<span class="keyword">value</span><span class="number">2</span>:NoSchedule</span><br></pre></td></tr></table></figure></p>
+<p>类型的pod<br><figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">tolerations</span>:</span><br><span class="line">- <span class="attribute">key</span>: <span class="string">"key1"</span></span><br><span class="line">  <span class="attribute">operator</span>: <span class="string">"Equal"</span></span><br><span class="line">  <span class="attribute">value</span>: <span class="string">"value1"</span></span><br><span class="line">  <span class="attribute">effect</span>: <span class="string">"NoSchedule"</span></span><br><span class="line">- <span class="attribute">key</span>: <span class="string">"key1"</span></span><br><span class="line">  <span class="attribute">operator</span>: <span class="string">"Equal"</span></span><br><span class="line">  <span class="attribute">value</span>: <span class="string">"value1"</span></span><br><span class="line">  <span class="attribute">effect</span>: <span class="string">"NoExecute"</span></span><br></pre></td></tr></table></figure></p>
+<p>这种情况下,pod不会被调度到node1上,因为没有容忍(toleration)来匹配第三个taint.但是如果它运行在此节点上,它仍然可以继续运行在此节点上,因为它仅仅不匹配第三个taint.(而第三个taint的效果是NoSchedule,指示不要被调度到此节点)</p>
+<h1 id="tolerationSeconds"><a href="#tolerationSeconds" class="headerlink" title="tolerationSeconds"></a>tolerationSeconds</h1><p>通常情况下,一个效果类型为NoExecute的taint被添加到一个节点上后,所有不容忍此taint的pod会被马上驱离,容忍的永远不会被驱离.但是效果类型NoExecute可以指定一个tolerationSeconds字段来指示当NoExecute效果类型的污点被添加到节点以后,pod仍然可以继续在在指定时间内留存在此节点上,优雅驱离<br><figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">tolerations</span>:</span><br><span class="line">- <span class="attribute">key</span>: <span class="string">"key1"</span></span><br><span class="line">  <span class="attribute">operator</span>: <span class="string">"Equal"</span></span><br><span class="line">  <span class="attribute">value</span>: <span class="string">"value1"</span></span><br><span class="line">  <span class="attribute">effect</span>: <span class="string">"NoExecute"</span></span><br><span class="line">  <span class="attribute">tolerationSeconds</span>: <span class="number">3600</span></span><br></pre></td></tr></table></figure></p>
+<p>在此段时间内如果污点被移除,则pod不会被驱离</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/taint/" rel="tag"><i class="fas fa-tags"></i>taint</a>
+        
+        <a class="post-tag button" href="/tags/toleration/" rel="tag"><i class="fas fa-tags"></i>toleration</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2019/06/21/ingress-nginx后端pod容器获取客服端真实ip/" rel="next" title="ingress-nginx后端pod容器获取客服端真实ip"><i class="fas fa-angle-left"></i><span class="nav-title">ingress-nginx后端pod容器获取客服端真实ip</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+    </div>
+  </nav>
+  
+  
+  
+
+<div class="comments" id="comments">
+  
+  <script defer id="dsq-count-scr" src="//www.idcsec.com.disqus.com/count.js"></script>
+  
+  <div id="disqus_thread" class="disqus_thread"></div>
+  <script type="text/javascript">
+  var disqus_config = function () {
+    this.page.url = "http://www.idcsec.com/2019/07/03/ubernetes中的Taint和Toleration-1/";
+    this.page.identifier = "2019/07/03/ubernetes中的Taint和Toleration-1/";
+  };
+  (function() {
+    var d = document, s = d.createElement("script");
+    s.src = "https://www.idcsec.com.disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  
+  
+</div>
+
+
+
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/img/avatar.jpg" alt="Wang'T">
+  
+  <h1 class="author-name">Wang'T</h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    <div class="archives-count">
+      <div class="site-count-title">归档</div>
+      <div><a href="/archives/">85</a></div>
+    </div>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="categories-count">
+      <div class="site-count-title">分类</div>
+      <div><a href="/categories/">12</a></div>
+    </div>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="tags-count">
+      <div class="site-count-title">标签</div>
+      <div><a href="/tags/">42</a></div>
+    </div>
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#u6DFB_u52A0taint"><span class="toc-text">添加taint</span></a></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#u5220_u9664taint"><span class="toc-text">删除taint</span></a></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#toleration"><span class="toc-text">toleration</span></a></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#tolerationSeconds"><span class="toc-text">tolerationSeconds</span></a></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:wang.t.nice@gmail.com" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="http://www.ytniu.com" target="_blank">Jixiang's Blog</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">Wang'T</span><span class="year"><i class="far fa-copyright"></i>2015 - 2019</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">BY-NC-ND 4.0</a></span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>
