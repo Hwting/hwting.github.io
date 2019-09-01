@@ -132,6 +132,59 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/07/10/8s-statefulsets部署zookeeper/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/07/10/8s-statefulsets部署zookeeper/" itemprop="url">k8s statefulsets部署zookeeper</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-07-10T23:06:00+08:00">2018-07-10 23:06:00</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2018/07/10/8s-statefulsets部署zookeeper/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/07/10/8s-statefulsets部署zookeeper/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <h1 id="u4F7F_u7528NFS_u914D_u7F6Epv_u3001pvc"><a href="#u4F7F_u7528NFS_u914D_u7F6Epv_u3001pvc" class="headerlink" title="使用NFS配置pv、pvc"></a>使用NFS配置pv、pvc</h1><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;root@centos-master pv]<span class="comment"># cat /etc/exports | grep /opt/zkdata/zk-data-</span></span><br><span class="line">/opt/zkdata/zk-data-<span class="number">0</span> *(rw,no_root_squash,no_all_squash,sync)</span><br><span class="line">/opt/zkdata/zk-data-<span class="number">1</span> *(rw,no_root_squash,no_all_squash,sync)</span><br><span class="line">/opt/zkdata/zk-data-<span class="number">2</span> *(rw,no_root_squash,no_all_squash,sync)</span><br></pre></td></tr></table></figure>
+<h2 id="u521B_u5EFAk8spv_uFF1Apv-yaml"><a href="#u521B_u5EFAk8spv_uFF1Apv-yaml" class="headerlink" title="创建k8spv：pv.yaml"></a>创建k8spv：pv.yaml</h2><figure class="hljs highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">apiVersion</span>: v1</span><br><span class="line"><span class="attribute">kind</span>: PersistentVolume</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: datadir-zk-<span class="number">0</span></span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">capacity</span>:</span><br><span class="line">    <span class="attribute">storage</span>: <span class="number">10</span>Gi </span><br><span class="line">  <span class="attribute">accessModes</span>:</span><br><span class="line">    - ReadWriteOnce </span><br><span class="line">  <span class="attribute">persistentVolumeReclaimPolicy</span>: Recycle </span><br><span class="line">  <span class="attribute">storageClassName</span>: slow</span><br><span class="line">  <span class="attribute">nfs</span>: </span><br><span class="line">    <span class="attribute">path</span>: /opt/zkdata/zk-data-<span class="number">0</span> </span><br><span class="line">    <span class="attribute">server</span>: x.x.x.x</span><br><span class="line">    <span class="attribute">readOnly</span>: false</span><br><span class="line">---</span><br><span class="line"><span class="attribute">apiVersion</span>: v1</span><br><span class="line"><span class="attribute">kind</span>: PersistentVolume</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: datadir-zk-<span class="number">1</span></span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">capacity</span>:</span><br><span class="line">    <span class="attribute">storage</span>: <span class="number">10</span>Gi</span><br><span class="line">  <span class="attribute">accessModes</span>:</span><br><span class="line">    - RReadWriteOnce</span><br><span class="line">  <span class="attribute">persistentVolumeReclaimPolicy</span>: Recycle</span><br><span class="line">  <span class="attribute">storageClassName</span>: slow</span><br><span class="line">  <span class="attribute">nfs</span>:</span><br><span class="line">    <span class="attribute">path</span>: /opt/zkdata/zk-data-<span class="number">1</span></span><br><span class="line">    <span class="attribute">server</span>: x.x.x.x</span><br><span class="line">    <span class="attribute">readOnly</span>: false</span><br><span class="line">---</span><br><span class="line"><span class="attribute">apiVersion</span>: v1</span><br><span class="line"><span class="attribute">kind</span>: PersistentVolume</span><br><span class="line"><span class="attribute">metadata</span>:</span><br><span class="line">  <span class="attribute">name</span>: datadir-zk-<span class="number">2</span></span><br><span class="line"><span class="attribute">spec</span>:</span><br><span class="line">  <span class="attribute">capacity</span>:</span><br><span class="line">    <span class="attribute">storage</span>: <span class="number">10</span>Gi</span><br><span class="line">  <span class="attribute">accessModes</span>:</span><br><span class="line">    - ReadWriteOnce</span><br><span class="line">  <span class="attribute">persistentVolumeReclaimPolicy</span>: Recycle</span><br><span class="line">  <span class="attribute">storageClassName</span>: slow</span><br><span class="line">  <span class="attribute">nfs</span>:</span><br><span class="line">    <span class="attribute">path</span>: /opt/zkdata/zk-data-<span class="number">2</span></span><br><span class="line">    <span class="attribute">server</span>: x.x.x.x</span><br><span class="line">    <span class="attribute">readOnly</span>: false</span><br></pre></td></tr></table></figure>
+<p>kubectl  kubectl  create -f pv.yaml<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-master pv]<span class="comment"># kubectl get pv</span></span><br><span class="line">NAME           CAPACITY   ACCESSMODES   RECLAIMPOLICY   STATUS      CLAIM     STORAGECLASS   REASON    AGE</span><br><span class="line">datadir-zk-<span class="number">0</span>   <span class="number">10</span>Gi       RWX           Recycle         Available             slow                     <span class="number">25</span>s</span><br><span class="line">datadir-zk-<span class="number">1</span>   <span class="number">10</span>Gi       RWX           Recycle         Available             slow                     <span class="number">25</span>s</span><br><span class="line">datadir-zk-<span class="number">2</span>   <span class="number">10</span>Gi       RWX           Recycle         Available             slow                     <span class="number">25</span>s</span><br></pre></td></tr></table></figure></p>
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/k8s/" rel="tag"><i class="fas fa-tags"></i>k8s</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/03/23/fastDFS-Nginx分布式图片服务器搭建/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -678,53 +731,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/10/20/jenkins-Role-basedauthorization权限管理插件配置/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2017/10/20/jenkins-Role-basedauthorization权限管理插件配置/" itemprop="url">jenkins Role-basedauthorization权限管理插件配置</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-10-20T10:24:14+08:00">2017-10-20 10:24:14</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2017/10/20/jenkins-Role-basedauthorization权限管理插件配置/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2017/10/20/jenkins-Role-basedauthorization权限管理插件配置/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>1、安装插件、Role-based Authorization Strategy<br><img src="/img/jenkins11.png" alt="jenkins"><br>2、打开jenkins授权Role-based<br><img src="/img/jenkins22.png" alt="jenkins"><br>3、配置Manage and Assign Roles admin给所以权限 Assign Roles添加jenkinadmin到admin<br><img src="/img/jenkins33.png" alt="jenkins"><br>4、配置全局角色权限和项目角色权限：如设置testTeam全局权限read只允许查看test开始的项目名称,项目权限test-Team  Pattern:test.* </p>
-<p><img src="/img/jenkins44.png" alt="jenkins"><br>5.设置Assign Roles，全局添加用户对于全局testTeam，项目角色添加用户到对于的项目test-Team。<br><img src="/img/jenkins55.png" alt="jenkins"><br>6、验证也test-Tame成员登录<br><img src="/img/jenkins66.png" alt="jenkins"></p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/4/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -769,7 +775,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">85</a></div>
+      <div><a href="/archives/">86</a></div>
     </div>
     
     
@@ -825,6 +831,8 @@
         <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
         
         <li><i class="fas fa-link"></i><a href="http://www.ytniu.com" target="_blank">Jixiang's Blog</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="http://idcsec.com" target="_blank">另外一个博客</a></li>
         
       </ul>
     </div>

@@ -132,6 +132,57 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/07/05/SVN-apache搭建/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2016/07/05/SVN-apache搭建/" itemprop="url">SVN+apache搭建</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-07-05T10:42:14+08:00">2016-07-05 10:42:14</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2016/07/05/SVN-apache搭建/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/07/05/SVN-apache搭建/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>1.安装软件包<br><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install httpd</span><br><span class="line">yum install mod_dav_svn</span><br><span class="line">yum install subversion</span><br></pre></td></tr></table></figure></p>
+<p>2、创建仓库<br><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> mkdir /var/svn/svnrepos</span><br><span class="line">svnadmin create /var/svnrepos/jktest</span><br></pre></td></tr></table></figure></p>
+<p>3、配置<br><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/var/svn/svnrepos/jktest</span><br><span class="line">conf目录下找到svnserve.conf</span><br><span class="line">password-db = passwd，将前面的<span class="comment">#删除，</span></span><br><span class="line">authz-db = authz   将前面的<span class="comment">#删除</span></span><br><span class="line">realm = /var/svn/svnrepos/jktest   将前面的<span class="comment">#删除改自己的库地址</span></span><br><span class="line">：wq</span><br><span class="line">vim /var/svn/svnrepos/jktest/conf/authz  添加用户名密码</span><br><span class="line">[/]</span><br><span class="line"><span class="built_in">test</span> = rw</span><br><span class="line">：wq</span><br><span class="line"> vim /var/svn/svnrepos/jktest/conf/passwd </span><br><span class="line"> [user]</span><br><span class="line"> <span class="built_in">test</span> = <span class="number">123456</span></span><br></pre></td></tr></table></figure></p>
+<p>4、配置svn关联到apache:<br><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/httpd/conf.d/subversion.conf //添加下面内容</span><br><span class="line">LoadModule dav_svn_module     modules/mod_dav_svn.so  </span><br><span class="line"><span class="number">02</span>.LoadModule authz_svn_module   modules/mod_authz_svn.so  </span><br><span class="line"></span><br><span class="line">&lt;Location /svnrepos&gt;</span><br><span class="line">   DAV svn</span><br><span class="line">   SVNParentPath /var/svn/svnrepos</span><br><span class="line"></span><br><span class="line">   <span class="comment"># Limit write permission to list of valid users.</span></span><br><span class="line"><span class="comment">#   &lt;LimitExcept GET PROPFIND OPTIONS REPORT&gt;</span></span><br><span class="line">      <span class="comment"># Require SSL connection for password protection.</span></span><br><span class="line">      <span class="comment"># SSLRequireSSL</span></span><br><span class="line"></span><br><span class="line">      AuthType Basic</span><br><span class="line">      AuthName <span class="string">"Authorization svn"</span></span><br><span class="line">      AuthUserFile /var/svn/svnrepos/jktest/pwdfile</span><br><span class="line">      AuthzSVNAccessFile /var/svn/svnrepos/jktest/conf/authz</span><br><span class="line"><span class="string">"/etc/httpd/conf.d/subversion.conf"</span> <span class="number">41</span>L, <span class="number">1109</span>C</span><br></pre></td></tr></table></figure></p>
+<p>添加<br><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/httpd/conf/httpd.conf </span><br><span class="line">include conf.d/*.conf</span><br></pre></td></tr></table></figure></p>
+<p>添加http访问用户<br>htpasswd -c /var/svn/svnrepos/jktest/pwdfile test<br>这里用到参数-c，是因为pwdfile文件不存在，如果文件存在，则无需该参数！否则，将覆盖掉原有密码文件<br>启动svn服务<br>svnserve -d -r /var/www/svn/project<br>启动httpd</p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/07/01/nginx安装与负载均衡配置/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -694,66 +745,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2016/03/14/nginx-php-mysql配置/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2016/03/14/nginx-php-mysql配置/" itemprop="url">nginx+php+mysql配置</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2016-03-14T13:59:00+08:00">2016-03-14 13:59:00</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/nginx/" itemprop="url" rel="index"><span itemprop="name">nginx</span></a></span>
-        </span>
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2016/03/14/nginx-php-mysql配置/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2016/03/14/nginx-php-mysql配置/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>nginx安装<br>略<br>mysql安装<br>略<br>php-fpm安装<br>略</p>
-<p>配置文件<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">一、配置nginx支持php</span><br><span class="line">cp /etc/nginx/nginx.conf  /etc/nginx/nginx.confbak<span class="comment">#备份原有配置文件</span></span><br><span class="line">vi /etc/nginx/nginx.conf <span class="comment">#编辑</span></span><br><span class="line">user nginx nginx; <span class="comment">#修改nginx运行账号为：nginx组的nginx用户</span></span><br><span class="line">:wq  <span class="comment">#保存退出</span></span><br><span class="line">cp /etc/nginx/conf.d/<span class="keyword">default</span>.conf /etc/nginx/conf.d/<span class="keyword">default</span>.confbak <span class="comment">#备份原有配置文件</span></span><br><span class="line">vi /etc/nginx/conf.d/<span class="keyword">default</span>.conf <span class="comment">#编辑</span></span><br><span class="line"></span><br><span class="line">index index.php index.html index.htm; <span class="comment">#增加index.php#pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">location ~ \.php$ &#123;</span><br><span class="line">root html;</span><br><span class="line">fastcgi_pass <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9000</span>;</span><br><span class="line">fastcgi_index index.php;</span><br><span class="line">fastcgi_param SCRIPT_FILENAME <span class="variable">$document_root</span><span class="variable">$fastcgi_script_name</span>;</span><br><span class="line"><span class="keyword">include</span> fastcgi_params;</span><br><span class="line">&#125;<span class="comment">#取消FastCGI server部分location的注释,并要注意fastcgi_param行的参数,改为$document_root$fastcgi_script_name,或者使用绝对路径</span></span><br><span class="line">service nginx restart <span class="comment">#重启nginx</span></span><br></pre></td></tr></table></figure></p>
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/nginx/" rel="tag"><i class="fas fa-tags"></i>nginx</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/7/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -798,7 +789,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">85</a></div>
+      <div><a href="/archives/">86</a></div>
     </div>
     
     
@@ -854,6 +845,8 @@
         <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
         
         <li><i class="fas fa-link"></i><a href="http://www.ytniu.com" target="_blank">Jixiang's Blog</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="http://idcsec.com" target="_blank">另外一个博客</a></li>
         
       </ul>
     </div>

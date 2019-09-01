@@ -132,6 +132,53 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/10/20/jenkins-Role-basedauthorization权限管理插件配置/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2017/10/20/jenkins-Role-basedauthorization权限管理插件配置/" itemprop="url">jenkins Role-basedauthorization权限管理插件配置</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-10-20T10:24:14+08:00">2017-10-20 10:24:14</time></span>
+        </span>
+        
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2017/10/20/jenkins-Role-basedauthorization权限管理插件配置/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2017/10/20/jenkins-Role-basedauthorization权限管理插件配置/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>1、安装插件、Role-based Authorization Strategy<br><img src="/img/jenkins11.png" alt="jenkins"><br>2、打开jenkins授权Role-based<br><img src="/img/jenkins22.png" alt="jenkins"><br>3、配置Manage and Assign Roles admin给所以权限 Assign Roles添加jenkinadmin到admin<br><img src="/img/jenkins33.png" alt="jenkins"><br>4、配置全局角色权限和项目角色权限：如设置testTeam全局权限read只允许查看test开始的项目名称,项目权限test-Team  Pattern:test.* </p>
+<p><img src="/img/jenkins44.png" alt="jenkins"><br>5.设置Assign Roles，全局添加用户对于全局testTeam，项目角色添加用户到对于的项目test-Team。<br><img src="/img/jenkins55.png" alt="jenkins"><br>6、验证也test-Tame成员登录<br><img src="/img/jenkins66.png" alt="jenkins"></p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/10/20/jenkins-HTML-publisher-plugin插件无法显示解决办法/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -572,52 +619,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/02/23/zabbix改中文/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2017/02/23/zabbix改中文/" itemprop="url">zabbix改中文</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-02-23T09:09:51+08:00">2017-02-23 09:09:51</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2017/02/23/zabbix改中文/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2017/02/23/zabbix改中文/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>找到本地C:\Windows\Fonts\simkai.ttf（楷体）上传到服务器zabbix网站目录fonts目录下<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">zabbix网站根目录下面</span><br><span class="line">sed -i <span class="string">'s/DejaVuSans/simkai/g'</span> ./<span class="keyword">include</span>/defines.inc.php</span><br><span class="line">vim /<span class="keyword">include</span>/locales.inc.php </span><br><span class="line"><span class="string">'zh_CN'</span> =&gt; [<span class="string">'name'</span> =&gt; _(<span class="string">'Chinese (zh_CN)'</span>),<span class="string">'display'</span> =&gt; <span class="keyword">true</span>],</span><br></pre></td></tr></table></figure></p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/5/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -662,7 +663,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">85</a></div>
+      <div><a href="/archives/">86</a></div>
     </div>
     
     
@@ -718,6 +719,8 @@
         <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
         
         <li><i class="fas fa-link"></i><a href="http://www.ytniu.com" target="_blank">Jixiang's Blog</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="http://idcsec.com" target="_blank">另外一个博客</a></li>
         
       </ul>
     </div>
