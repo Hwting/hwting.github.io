@@ -132,6 +132,94 @@
   
   <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/07/16/Activemq集群搭建ZooKeeper-LevelDB/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wang'T">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/07/16/Activemq集群搭建ZooKeeper-LevelDB/" itemprop="url">Activemq集群搭建ZooKeeper+LevelDB</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-07-16T22:19:00+08:00">2018-07-16 22:19:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/activemq/" itemprop="url" rel="index"><span itemprop="name">activemq</span></a></span>
+        </span>
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2018/07/16/Activemq集群搭建ZooKeeper-LevelDB/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2018/07/16/Activemq集群搭建ZooKeeper-LevelDB/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>ZooKeeper搭建<br>略<br>MQ高可用集群部署<br>参考<a href="http://activemq.apache.org/replicated-leveldb-store.html">http://activemq.apache.org/replicated-leveldb-store.html</a></p>
+<table>
+<thead>
+<tr>
+<th>ip</th>
+<th>集群通信端口</th>
+<th>openwire端口</th>
+<th>管理端口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.1.100</td>
+<td>61619</td>
+<td>61616</td>
+<td>8161</td>
+</tr>
+<tr>
+<td>192.168.1.200</td>
+<td>61619</td>
+<td>61616</td>
+</tr>
+<tr>
+<td>192.168.1.300</td>
+<td>61619</td>
+<td>61616</td>
+</tr>
+</tbody>
+</table>
+<h1 id="u4E00_u3001_u4FEE_u6539_vim_conf/activemq-xml"><a href="#u4E00_u3001_u4FEE_u6539_vim_conf/activemq-xml" class="headerlink" title="一、修改 vim conf/activemq.xml"></a>一、修改 vim conf/activemq.xml</h1><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">所以节点brokerName必须一致</span><br><span class="line"> &lt;broker xmlns=<span class="string">"http://activemq.apache.org/schema/core"</span> brokerName=<span class="string">"mybroker"</span> dataDirectory=<span class="string">"$&#123;activemq.data&#125;"</span>&gt;</span><br></pre></td></tr></table></figure>
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/activemq/" rel="tag"><i class="fas fa-tags"></i>activemq</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2018/07/10/8s-statefulsets部署zookeeper/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wang'T">
@@ -678,59 +766,6 @@
     </footer>
   </article>
   
-  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2017/10/24/Nginx编译添加后端健康检查模块/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wang'T">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/img/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wang'T博客">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2017/10/24/Nginx编译添加后端健康检查模块/" itemprop="url">Nginx编译添加后端健康检查模块</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2017-10-24T14:23:28+08:00">2017-10-24 14:23:28</time></span>
-        </span>
-        
-        
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="/2017/10/24/Nginx编译添加后端健康检查模块/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2017/10/24/Nginx编译添加后端健康检查模块/" itemprop="commentCount"></span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>该模块可以为Tengine提供主动式后端服务器健康检查的功能。可以通过补丁的方式来添加该模块到我们自己的nginx中。</p>
-<h1 id="u4E0B_u8F7Dnginx_upstream_check_module_u6A21_u5757"><a href="#u4E0B_u8F7Dnginx_upstream_check_module_u6A21_u5757" class="headerlink" title="下载nginx_upstream_check_module模块"></a>下载nginx_upstream_check_module模块</h1><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">clone</span> https:<span class="comment">//github.com/yaoweibin/nginx_upstream_check_module.git</span></span><br></pre></td></tr></table></figure>
-<p>编译补丁到nginx，必须使用最新的nginx_upstream_check_module才支持nginx 1.12.2版本<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd ~/nginx-<span class="number">1.12</span><span class="number">.2</span> <span class="comment">##进入nginx的源码目录</span></span><br><span class="line">nginx-<span class="number">1.12</span><span class="number">.2</span>]<span class="comment"># patch -p1 &lt; ../nginx_upstream_check_module/check_1.12.1+.patch </span></span><br><span class="line">patching file src/http/modules/ngx_http_upstream_hash_module.c</span><br><span class="line">patching file src/http/modules/ngx_http_upstream_ip_hash_module.c</span><br><span class="line">patching file src/http/modules/ngx_http_upstream_least_conn_module.c</span><br><span class="line">patching file src/http/ngx_http_upstream_round_robin.c</span><br><span class="line">patching file src/http/ngx_http_upstream_round_robin.h</span><br></pre></td></tr></table></figure></p>
-<h2 id="u67E5_u770B_u4E4B_u524D_u7684nginx_u7F16_u8BD1_u53C2_u6570"><a href="#u67E5_u770B_u4E4B_u524D_u7684nginx_u7F16_u8BD1_u53C2_u6570" class="headerlink" title="查看之前的nginx编译参数"></a>查看之前的nginx编译参数</h2><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /usr/local/nginx/sbin/nginx -V</span></span><br><span class="line">nginx version: nginx/<span class="number">1.10</span><span class="number">.1</span></span><br><span class="line">built by gcc <span class="number">4.4</span><span class="number">.7</span> <span class="number">20120313</span> (Red Hat <span class="number">4.4</span><span class="number">.7</span>-<span class="number">18</span>) (GCC) </span><br><span class="line">built with OpenSSL <span class="number">1.0</span><span class="number">.1</span>e-fips <span class="number">11</span> Feb <span class="number">2013</span></span><br><span class="line">TLS SNI support enabled</span><br><span class="line">configure arguments: --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module</span><br></pre></td></tr></table></figure>
-<p>编译nginx参数，此处只make 不要make install，编译参数需要和之前的一样添加–add-module=<br><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ./configure --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module --add-module=../nginx_upstream_check_module/</span></span><br><span class="line">make</span><br><span class="line">.....</span><br><span class="line">trueobjs/addon/nginx_upstream_check_module/ngx_http_upstream_check_module.o \</span><br><span class="line">trueobjs/ngx_modules.o \</span><br><span class="line">true-ldl -lpthread -lcrypt -lpcre -lssl -lcrypto -ldl -lz \</span><br><span class="line">true-Wl,-E</span><br><span class="line">sed -e <span class="string">"s|%%PREFIX%%|/usr/local/nginx|"</span> \</span><br><span class="line">truetrue-e <span class="string">"s|%%PID_PATH%%|/usr/local/nginx/logs/nginx.pid|"</span> \</span><br><span class="line">truetrue-e <span class="string">"s|%%CONF_PATH%%|/etc/nginx/nginx.conf|"</span> \</span><br><span class="line">truetrue-e <span class="string">"s|%%ERROR_LOG_PATH%%|/usr/local/nginx/logs/error.log|"</span> \</span><br><span class="line">truetrue&lt; man/nginx<span class="number">.8</span> &gt; objs/nginx<span class="number">.8</span></span><br><span class="line">make[<span class="number">1</span>]: Leaving directory `/root/nginx-<span class="number">1.12</span><span class="number">.2</span><span class="string">'</span></span><br></pre></td></tr></table></figure></p>
-<figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">备份旧版本nginx </span><br><span class="line">cp -a /usr/local/nginx/sbin/nginx  /usr/local/nginx/sbin/nginx.back</span><br><span class="line">停止nginx服务，替换nginx执行文件</span><br><span class="line">/usr/local/nginx/sbin/nginx -s stop</span><br><span class="line">nginx-<span class="number">1.12</span><span class="number">.2</span>]<span class="comment"># cp -a objs/nginx /usr/local/nginx/sbin/</span></span><br><span class="line">cp: overwrite `/usr/local/nginx/sbin/nginx<span class="string">'? y</span></span><br></pre></td></tr></table></figure>
-<h3 id="u9A8C_u8BC1_u7248_u672C_u5DF2_u7ECF_u5347_u7EA7_u52301-12-2__u6DFB_u52A0_u4E86nginx_upstream_check_module_u6A21_u5757"><a href="#u9A8C_u8BC1_u7248_u672C_u5DF2_u7ECF_u5347_u7EA7_u52301-12-2__u6DFB_u52A0_u4E86nginx_upstream_check_module_u6A21_u5757" class="headerlink" title="验证版本已经升级到1.12.2 添加了nginx_upstream_check_module模块"></a>验证版本已经升级到1.12.2 添加了nginx_upstream_check_module模块</h3><figure class="hljs highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> nginx-<span class="number">1.12</span><span class="number">.2</span>]<span class="comment"># /usr/local/nginx/sbin/nginx -V</span></span><br><span class="line">nginx version: nginx/<span class="number">1.12</span><span class="number">.2</span></span><br><span class="line">built by gcc <span class="number">4.4</span><span class="number">.7</span> <span class="number">20120313</span> (Red Hat <span class="number">4.4</span><span class="number">.7</span>-<span class="number">18</span>) (GCC) </span><br><span class="line">built with OpenSSL <span class="number">1.0</span><span class="number">.1</span>e-fips <span class="number">11</span> Feb <span class="number">2013</span></span><br><span class="line">TLS SNI support enabled</span><br><span class="line">configure arguments: --prefix=/usr/local/nginx --conf-path=/etc/nginx/nginx.conf --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module --add-module=/root/nginx_upstream_check_module/</span><br></pre></td></tr></table></figure>
-<p>健康检查模块配置:参照官网<a href="http://tengine.taobao.org/document_cn/http_upstream_check_cn.html" target="_blank" rel="external">http://tengine.taobao.org/document_cn/http_upstream_check_cn.html</a><br><figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">upstream cluster2 &#123;&#10;        # simple round-robin&#10;        server 192.168.0.3:80;&#10;        server 192.168.0.4:80;&#10;        check interval=3000 rise=2 fall=5 timeout=1000 type=http;&#10;        check_keepalive_requests 100;&#10;        check_http_send &#34;HEAD / HTTP/1.1\r\nConnection: keep-alive\r\n\r\n&#34;;&#10;        check_http_expect_alive http_2xx http_3xx;&#10;    &#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/4/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -775,7 +810,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">86</a></div>
+      <div><a href="/archives/">87</a></div>
     </div>
     
     
@@ -784,7 +819,7 @@
     
     <div class="categories-count">
       <div class="site-count-title">分类</div>
-      <div><a href="/categories/">12</a></div>
+      <div><a href="/categories/">13</a></div>
     </div>
     
     
@@ -793,7 +828,7 @@
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">42</a></div>
+      <div><a href="/tags/">43</a></div>
     </div>
     
   </div>
@@ -854,7 +889,7 @@
     <div class="footer-container">
       <div class="footer-left">
         <div class="copyright">
-          <span class="author">Wang'T</span><span class="year"><i class="far fa-copyright"></i>2015 - 2019</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">BY-NC-ND 4.0</a></span>
+          <span class="author">Wang'T</span><span class="year"><i class="far fa-copyright"></i>2015 - 2020</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">BY-NC-ND 4.0</a></span>
         </div>
         
         <div class="busuanzi">

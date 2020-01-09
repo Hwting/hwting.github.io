@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo, docker, linux, kubernetes, Nginx, tomcat, Jenkins">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="Wang'T博客" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato|Roboto+Condensed|Skranji|Ubuntu|Ubuntu+Mono">
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/solarized-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>ELK日志平台索引备份，迁移及恢复 ELK7.5.1集群部署 | Wang'T博客 - _入网络深似海,从此节操是路人.</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">Wang'T博客</a></h1>
+        <h2 class="subtitle">_入网络深似海,从此节操是路人.</h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/img/logo.jpg" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/">首页</a></li>
+        
+        <li role="menuitem"><a href="/archives/">归档</a></li>
+        
+        <li role="menuitem"><a href="/categories/">分类</a></li>
+        
+        <li role="menuitem"><a href="/tags/">标签</a></li>
+        
+        <li role="menuitem"><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="page">
+  
+  <article class="article post card animate" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://www.idcsec.com/2020/01/09/ELK日志平台索引备份，迁移及恢复-ELK7-5-1集群部署/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="Wang'T">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/img/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="Wang'T博客">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">ELK日志平台索引备份，迁移及恢复 ELK7.5.1集群部署</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2020-01-09T22:42:00+08:00">2020-01-09 22:42:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/elk/" itemprop="url" rel="index"><span itemprop="name">elk</span></a></span>
+        </span>
+        
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-comment-count">
+          <i class="far fa-comments"></i><span><a href="/2020/01/09/ELK日志平台索引备份，迁移及恢复-ELK7-5-1集群部署/#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="2020/01/09/ELK日志平台索引备份，迁移及恢复-ELK7-5-1集群部署/" itemprop="commentCount"></span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>从6.7或更早版本直接升级到7.5.1需要 完全重启群集。<br><img src="/img/kibana.png" alt="kibnan"><br><a id="more"></a></p>
+<p>#创建快照备份索引.kibana<br><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html" target="_blank" rel="external">https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html</a></p>
+<p>1、修改elasticsearch配置文件必须path.repo 在所有主节点和数据节点上的设置中。<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim elasticsearch.yml</span><br><span class="line">path.repo: [<span class="string">"/opt/my_backup"</span>] <span class="comment">//设置仓库路径</span></span><br></pre></td></tr></table></figure></p>
+<p>2、设置仓库<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">curl  -H <span class="string">"Content-Type: application/json"</span>  -XPUT  http:<span class="comment">//192.168.0.156:9200/_snapshot/my_backup -d '</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"type"</span>: <span class="string">"fs"</span>,</span><br><span class="line">    <span class="string">"settings"</span>: &#123;</span><br><span class="line">        <span class="string">"location"</span>: <span class="string">"/opt/my_backup"</span>,</span><br><span class="line"><span class="string">"compress"</span>: <span class="keyword">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="string">'</span></span><br></pre></td></tr></table></figure></p>
+<p>3、查看仓库<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -GET http:<span class="comment">//192.168.0.156:9200/_snapshot</span></span><br></pre></td></tr></table></figure></p>
+<p>4、备份数据<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XPUT http:<span class="comment">//192.168.0.156:9200/_snapshot/my_backup/snapshot_20200108</span></span><br></pre></td></tr></table></figure></p>
+<p>执行上面的命令会快照ealsticsearch上所有的索引。<br>如果需要快照指定的.kibana索引:<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl -XPUT http:<span class="comment">//192.168.0.156:9200/_snapshot/my_backup/snapshot_20200108 -d '</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"indices"</span>: <span class="string">".kibana"</span></span><br><span class="line">&#125;<span class="string">'</span></span><br></pre></td></tr></table></figure></p>
+<p>5、查看备份<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -XGET http:<span class="comment">//192.168.0.156:9200/_snapshot/my_backup/snapshot_20200108</span></span><br><span class="line">_snapshot/my_backup/_all 查看全部</span><br></pre></td></tr></table></figure></p>
+<p>6、删除备份<br><figure class="hljs highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XDELETE http:<span class="comment">//192.168.0.156:9200/_snapshot/my_backup/snapshot_20200108</span></span><br></pre></td></tr></table></figure></p>
+<p>7、恢复备份<br><figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -XPOST http://192.168.0.156:9200/_snapshot/my_backup/snapshot_20200108/_restore</span><br></pre></td></tr></table></figure></p>
+<h1 id="ELK_u96C6_u7FA4_u90E8_u7F72"><a href="#ELK_u96C6_u7FA4_u90E8_u7F72" class="headerlink" title="ELK集群部署"></a>ELK集群部署</h1><h2 id="Elasticsearch_u96C6_u7FA4_u90E8_u7F72_u67B6_u6784"><a href="#Elasticsearch_u96C6_u7FA4_u90E8_u7F72_u67B6_u6784" class="headerlink" title="Elasticsearch集群部署架构"></a>Elasticsearch集群部署架构</h2><table>
+<thead>
+<tr>
+<th>节点</th>
+<th style="text-align:center">CPU/内存</th>
+<th style="text-align:right">节点角色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ES-cluster-192.168.0.114</td>
+<td style="text-align:center">8*32</td>
+<td style="text-align:right">master Kibana</td>
+</tr>
+<tr>
+<td>ES-cluster-192-168-0-98</td>
+<td style="text-align:center">8*32</td>
+<td style="text-align:right">master</td>
+</tr>
+<tr>
+<td>ES-cluster-192-168-0-156</td>
+<td style="text-align:center">8*32</td>
+<td style="text-align:right">master</td>
+</tr>
+</tbody>
+</table>
+<h2 id="u521D_u59CB_u5316_u73AF_u5883"><a href="#u521D_u59CB_u5316_u73AF_u5883" class="headerlink" title="初始化环境"></a>初始化环境</h2><p>如果有多个java版本需要指定JAVA_HOME<br><figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/data/elk/elasticsearch-7.5.1/jdk&#10;export PATH=$JAVA_HOME/bin:$PATH</span><br></pre></td></tr></table></figure></p>
+<p>创建用户<br><figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupadd elk&#10;useradd elk -g elk&#10;echo &#39;123456&#39; | passwd --stdin elk</span><br></pre></td></tr></table></figure></p>
+<p>修改文件描述符<br><figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/security/limits.conf&#10;* soft  nofile 655360&#10;* hard  nofile 655360&#10;* soft  nproc  4096&#10;* hard  nproc  4096&#10;elk soft memlock unlimited&#10;elk hard memlock unlimited&#10;ulimit -n&#10;echo &#39;vm.max_map_count=655360&#39; &#62;&#62; /etc/sysctl.conf&#10;sysctl -p</span><br></pre></td></tr></table></figure></p>
+<h2 id="elasticsearch7-0_u914D_u7F6E_u6587_u4EF6_u8BE6_u89E3"><a href="#elasticsearch7-0_u914D_u7F6E_u6587_u4EF6_u8BE6_u89E3" class="headerlink" title="elasticsearch7.0配置文件详解"></a>elasticsearch7.0配置文件详解</h2><p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-discovery-settings.html" target="_blank" rel="external">https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-discovery-settings.html</a><br><figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">cluster.name: ES-Cluster</span><br><span class="line">#ES集群名称，同一个集群内的所有节点集群名称必须保持一致</span><br><span class="line"></span><br><span class="line">node.name: ES-cluster-192.168.0.114</span><br><span class="line">#ES集群内的节点名称，同一个集群内的节点名称要具备唯一性</span><br><span class="line"></span><br><span class="line">node.master: true</span><br><span class="line">#允许节点是否可以成为一个master节点，ES是默认集群中的第一台机器成为master，如果这台机器停止就会重新选举</span><br><span class="line"></span><br><span class="line">node.data: false</span><br><span class="line">#允许该节点存储索引数据（默认开启）</span><br><span class="line">#关于Elasticsearch节点的角色功能详解，请看：https://www.dockerc.com/elasticsearch-master-or-data/</span><br><span class="line"></span><br><span class="line">path.data: /data/elk_data/data</span><br><span class="line">#ES是搜索引擎，会创建文档，建立索引，此路径是索引的存放目录，如果我们的日志数据较为庞大，那么索引所占用的磁盘空间也是不可小觑的</span><br><span class="line">#这个路径建议是专门的存储系统，如果不是存储系统，最好也要有冗余能力的磁盘，此目录还要对elasticsearch的运行用户有写入权限</span><br><span class="line">#path可以指定多个存储位置，分散存储，有助于性能提升，以至于怎么分散存储请看详解https://www.dockerc.com/elk-theory-elasticsearch/</span><br><span class="line"></span><br><span class="line">path.logs: /data/elk_data/logs</span><br><span class="line">#elasticsearch专门的日志存储位置，生产环境中建议elasticsearch配置文件与elasticsearch日志分开存储</span><br><span class="line"></span><br><span class="line">bootstrap.memory_lock: true</span><br><span class="line">#在ES运行起来后锁定ES所能使用的堆内存大小，锁定内存大小一般为可用内存的一半左右；锁定内存后就不会使用交换分区</span><br><span class="line">#如果不打开此项，当系统物理内存空间不足，ES将使用交换分区，ES如果使用交换分区，那么ES的性能将会变得很差</span><br><span class="line"></span><br><span class="line">network.host: 0.0.0.0</span><br><span class="line">#es绑定地址，支持IPv4及IPv6，默认绑定127.0.0.1；es的HTTP端口和集群通信端口就会监听在此地址上</span><br><span class="line"></span><br><span class="line">network.tcp.no_delay: true</span><br><span class="line">#是否启用tcp无延迟，true为启用tcp不延迟，默认为false启用tcp延迟</span><br><span class="line"></span><br><span class="line">network.tcp.keep_alive: true</span><br><span class="line">#是否启用TCP保持活动状态，默认为true</span><br><span class="line"></span><br><span class="line">network.tcp.reuse_address: true</span><br><span class="line">#是否应该重复使用地址。默认true，在Windows机器上默认为false</span><br><span class="line"></span><br><span class="line">network.tcp.send_buffer_size: 128mb</span><br><span class="line">#tcp发送缓冲区大小，默认不设置</span><br><span class="line"></span><br><span class="line">network.tcp.receive_buffer_size: 128mb</span><br><span class="line">#tcp接收缓冲区大小，默认不设置</span><br><span class="line"></span><br><span class="line">transport.tcp.port: 9300</span><br><span class="line">#设置集群节点通信的TCP端口，默认就是9300</span><br><span class="line"></span><br><span class="line">transport.tcp.compress: true</span><br><span class="line">#设置是否压缩TCP传输时的数据，默认为false</span><br><span class="line"></span><br><span class="line">http.max_content_length: 200mb</span><br><span class="line">#设置http请求内容的最大容量，默认是100mb</span><br><span class="line"></span><br><span class="line">http.cors.enabled: true</span><br><span class="line">#是否开启跨域访问</span><br><span class="line"></span><br><span class="line">http.cors.allow-origin: "*"</span><br><span class="line">#开启跨域访问后的地址限制，*表示无限制</span><br><span class="line"></span><br><span class="line">http.port: 9200</span><br><span class="line">#定义ES对外调用的http端口，默认是9200</span><br><span class="line"></span><br><span class="line">discovery.zen.ping.unicast.hosts: []    #在Elasticsearch7.0版本已被移除，</span><br><span class="line"></span><br><span class="line">discovery.zen.minimum_master_nodes: 3          #在Elasticsearch7.0版本已被移除</span><br><span class="line">#为了避免脑裂，集群的最少节点数量为，集群的总节点数量除以2加一</span><br><span class="line"></span><br><span class="line">discovery.zen.fd.ping_timeout: 120s             #在Elasticsearch7.0版本已被移除</span><br><span class="line">#探测超时时间，默认是3秒，我们这里填120秒是为了防止网络不好的时候ES集群发生脑裂现象</span><br><span class="line"></span><br><span class="line">discovery.zen.fd.ping_retries: 6                #在Elasticsearch7.0版本已被移除</span><br><span class="line">#探测次数，如果每次探测90秒，连续探测超过六次，则认为节点该节点已脱离集群，默认为3次</span><br><span class="line"></span><br><span class="line">discovery.zen.fd.ping_interval: 15s             #在Elasticsearch7.0版本已被移除</span><br><span class="line">#节点每隔15秒向master发送一次心跳，证明自己和master还存活，默认为1秒太频繁,</span><br><span class="line"></span><br><span class="line">discovery.seed_hosts: ["192.168.0.114:9300", "192.168.0.98:9300","192.168.0.156:9300"]</span><br><span class="line">#Elasticsearch7新增参数，群集自动发现种子节点,由discovery.zen.ping.unicast.hosts:参数改变而来</span><br><span class="line"></span><br><span class="line">cluster.initial_master_nodes: ["192.168.0.114:9300", "192.168.0.98:9300","192.168.0.156:9300"]</span><br><span class="line">#这三个节点全启动了才会选举主节点,群的总节点数量除以2加1</span><br><span class="line"></span><br><span class="line">cluster.fault_detection.leader_check.interval: 15s </span><br><span class="line">#Elasticsearch7新增参数，设置每个节点在选中的主节点的检查之间等待的时间。默认为1秒</span><br><span class="line"></span><br><span class="line">discovery.cluster_formation_warning_timeout: 30s </span><br><span class="line">#Elasticsearch7新增参数，启动后30秒内，如果集群未形成，那么将会记录一条警告信息，警告信息未master not fount开始，默认为10秒</span><br><span class="line"></span><br><span class="line">cluster.join.timeout: 30s</span><br><span class="line">#Elasticsearch7新增参数，节点发送请求加入集群后，在认为请求失败后，再次发送请求的等待时间，默认为60秒</span><br><span class="line"></span><br><span class="line">cluster.publish.timeout: 90s </span><br><span class="line">#Elasticsearch7新增参数，设置主节点等待每个集群状态完全更新后发布到所有节点的时间，默认为30秒</span><br><span class="line"></span><br><span class="line">cluster.routing.allocation.cluster_concurrent_rebalance: 32</span><br><span class="line">#集群内同时启动的数据任务个数，默认是2个</span><br><span class="line"></span><br><span class="line">cluster.routing.allocation.node_concurrent_recoveries: 32</span><br><span class="line">#添加或删除节点及负载均衡时并发恢复的线程个数，默认4个</span><br><span class="line"></span><br><span class="line">cluster.routing.allocation.node_initial_primaries_recoveries: 32</span><br><span class="line">#初始化数据恢复时，并发恢复线程的个数，默认4个</span><br></pre></td></tr></table></figure></p>
+<h2 id="u8C03_u6574JVM_u5185_u5B58"><a href="#u8C03_u6574JVM_u5185_u5B58" class="headerlink" title="调整JVM内存"></a>调整JVM内存</h2><p>主要修改elasticsearch/jvm.options<br><figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Xms16g    #Xms&#34920;&#31034;ES&#22534;&#20869;&#23384;&#21021;&#22987;&#22823;&#23567;&#10;-Xmx16g    #Xmx&#34920;&#31034;ES&#22534;&#20869;&#23384;&#30340;&#26368;&#22823;&#21487;&#29992;&#31354;&#38388;&#10;&#23558; &#65306; -XX:+UseConcMarkSweepGC&#10;&#25913;&#20026;&#65306;-XX:+UseG1GC</span><br></pre></td></tr></table></figure></p>
+<h2 id="Master_u8282_u70B9elasticsearch-yml_u90E8_u7F72es-cluster-192-168-0-114"><a href="#Master_u8282_u70B9elasticsearch-yml_u90E8_u7F72es-cluster-192-168-0-114" class="headerlink" title="Master节点elasticsearch.yml部署es-cluster-192-168-0-114"></a>Master节点elasticsearch.yml部署es-cluster-192-168-0-114</h2><figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ---------------------------------- Cluster -----------------------------------&#10;cluster.name: ES-Cluster&#10;# ------------------------------------ Node ------------------------------------&#10;node.name: es-cluster-192-168-0-114&#10;node.master: true&#10;node.data: true&#10;# ----------------------------------- Paths ------------------------------------&#10;path.data: /data/elk/elk_data&#10;path.logs: /data/elk/logs&#10;# ----------------------------------- Memory -----------------------------------&#10;bootstrap.memory_lock: true&#10;# ---------------------------------- Network -----------------------------------&#10;network.host: 0.0.0.0&#10;network.tcp.no_delay: true&#10;network.tcp.keep_alive: true&#10;network.tcp.reuse_address: true&#10;network.tcp.send_buffer_size: 128mb&#10;network.tcp.receive_buffer_size: 128mb&#10;transport.tcp.port: 9300&#10;transport.tcp.compress: true&#10;http.max_content_length: 200mb&#10;http.cors.enabled: true&#10;http.cors.allow-origin: &#34;*&#34;&#10;http.port: 9200&#10;# --------------------------------- Discovery ----------------------------------&#10;discovery.seed_hosts: [&#34;192.168.0.114:9300&#34;, &#34;192.168.0.98:9300&#34;,&#34;192.168.0.156:9300&#34;]&#10;cluster.initial_master_nodes: [&#34;192.168.0.114:9300&#34;, &#34;192.168.0.98:9300&#34;,&#34;192.168.0.156:9300&#34;]&#10;cluster.fault_detection.leader_check.interval: 15s&#10;discovery.cluster_formation_warning_timeout: 30s&#10;cluster.join.timeout: 120s&#10;cluster.publish.timeout: 90s&#10;cluster.routing.allocation.cluster_concurrent_rebalance: 32&#10;cluster.routing.allocation.node_concurrent_recoveries: 32&#10;cluster.routing.allocation.node_initial_primaries_recoveries: 32&#10;# ---------------------------------- xpack -----------------------------------&#10;xpack.security.enabled: true&#10;xpack.security.transport.ssl.enabled: true&#10;xpack.monitoring.collection.enabled: true&#10;xpack.security.transport.ssl.verification_mode: certificate&#10;xpack.security.transport.ssl.keystore.path: /etc/elasticsearch/certs/elastic-certificates.p12&#10;xpack.security.transport.ssl.truststore.path: /etc/elasticsearch/certs/elastic-certificates.p12&#10;xpack.security.http.ssl.enabled: true&#10;xpack.security.http.ssl.keystore.path: /etc/elasticsearch/certs/elastic-certificates.p12&#10;xpack.security.http.ssl.truststore.path: /etc/elasticsearch/certs/elastic-certificates.p12&#10;xpack.security.http.ssl.client_authentication: none&#10;xpack.security.http.ssl.verification_mode: certificate&#10;# ---------------------------------- Various -----------------------------------&#10;script.painless.regex.enabled: true&#10;indices.fielddata.cache.size:  25%&#10;thread_pool:&#10;    write:&#10;        size: 4&#10;        queue_size: 5000</span><br></pre></td></tr></table></figure>
+<h2 id="Master_u8282_u70B9elasticsearch-yml_u90E8_u7F72es-cluster-192-168-0-98"><a href="#Master_u8282_u70B9elasticsearch-yml_u90E8_u7F72es-cluster-192-168-0-98" class="headerlink" title="Master节点elasticsearch.yml部署es-cluster-192-168-0-98"></a>Master节点elasticsearch.yml部署es-cluster-192-168-0-98</h2><figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ---------------------------------- Cluster -----------------------------------&#10;cluster.name: ES-Cluster&#10;# ------------------------------------ Node ------------------------------------&#10;node.name: es-cluster-192-168-0-98&#10;node.master: true&#10;node.data: true&#10;# ----------------------------------- Paths ------------------------------------&#10;path.data: /data/elk/elk_data&#10;path.logs: /data/elk/logs&#10;# ----------------------------------- Memory -----------------------------------&#10;bootstrap.memory_lock: true&#10;# ---------------------------------- Network -----------------------------------&#10;network.host: 0.0.0.0&#10;network.tcp.no_delay: true&#10;network.tcp.keep_alive: true&#10;network.tcp.reuse_address: true&#10;network.tcp.send_buffer_size: 128mb&#10;network.tcp.receive_buffer_size: 128mb&#10;transport.tcp.port: 9300&#10;transport.tcp.compress: true&#10;http.max_content_length: 200mb&#10;http.cors.enabled: true&#10;http.cors.allow-origin: &#34;*&#34;&#10;http.port: 9200&#10;# --------------------------------- Discovery ----------------------------------&#10;discovery.seed_hosts: [&#34;192.168.0.114:9300&#34;, &#34;192.168.0.98:9300&#34;,&#34;192.168.0.156:9300&#34;]&#10;cluster.initial_master_nodes: [&#34;192.168.0.114:9300&#34;, &#34;192.168.0.98:9300&#34;,&#34;192.168.0.156:9300&#34;]&#10;cluster.fault_detection.leader_check.interval: 15s&#10;discovery.cluster_formation_warning_timeout: 30s&#10;cluster.join.timeout: 120s&#10;cluster.publish.timeout: 90s&#10;cluster.routing.allocation.cluster_concurrent_rebalance: 32&#10;cluster.routing.allocation.node_concurrent_recoveries: 32&#10;cluster.routing.allocation.node_initial_primaries_recoveries: 32&#10;# ---------------------------------- xpack -----------------------------------&#10;xpack.security.enabled: true&#10;xpack.security.transport.ssl.enabled: true&#10;xpack.monitoring.collection.enabled: true&#10;xpack.security.transport.ssl.verification_mode: certificate&#10;xpack.security.transport.ssl.keystore.path: /etc/elasticsearch/certs/elastic-certificates.p12&#10;xpack.security.transport.ssl.truststore.path: /etc/elasticsearch/certs/elastic-certificates.p12&#10;xpack.security.http.ssl.enabled: true&#10;xpack.security.http.ssl.keystore.path: /etc/elasticsearch/certs/elastic-certificates.p12&#10;xpack.security.http.ssl.truststore.path: /etc/elasticsearch/certs/elastic-certificates.p12&#10;xpack.security.http.ssl.client_authentication: none&#10;xpack.security.http.ssl.verification_mode: certificate&#10;# ---------------------------------- Various -----------------------------------&#10;script.painless.regex.enabled: true&#10;indices.fielddata.cache.size:  25%&#10;thread_pool:&#10;    write:&#10;        size: 4&#10;        queue_size: 5000</span><br></pre></td></tr></table></figure>
+<h2 id="Master_u8282_u70B9elasticsearch-yml_u90E8_u7F72es-cluster-192-168-0-156"><a href="#Master_u8282_u70B9elasticsearch-yml_u90E8_u7F72es-cluster-192-168-0-156" class="headerlink" title="Master节点elasticsearch.yml部署es-cluster-192-168-0-156"></a>Master节点elasticsearch.yml部署es-cluster-192-168-0-156</h2><figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ---------------------------------- Cluster -----------------------------------&#10;cluster.name: ES-Cluster&#10;# ------------------------------------ Node ------------------------------------&#10;node.name: es-cluster-192-168-0-156&#10;node.master: true      &#10;node.data: true        &#10;# ----------------------------------- Paths ------------------------------------&#10;path.data: /data/elk/elk_data&#10;path.logs: /data/elk/logs&#10;# ----------------------------------- Memory -----------------------------------&#10;bootstrap.memory_lock: true&#10;# ---------------------------------- Network -----------------------------------&#10;network.host: 0.0.0.0&#10;network.tcp.no_delay: true&#10;network.tcp.keep_alive: true&#10;network.tcp.reuse_address: true&#10;network.tcp.send_buffer_size: 128mb&#10;network.tcp.receive_buffer_size: 128mb&#10;transport.tcp.port: 9300&#10;transport.tcp.compress: true&#10;http.max_content_length: 200mb&#10;http.cors.enabled: true&#10;http.cors.allow-origin: &#34;*&#34;&#10;http.port: 9200&#10;# --------------------------------- Discovery ----------------------------------&#10;discovery.seed_hosts: [&#34;192.168.0.114:9300&#34;, &#34;192.168.0.98:9300&#34;,&#34;192.168.0.156:9300&#34;]&#10;cluster.initial_master_nodes: [&#34;192.168.0.114:9300&#34;, &#34;192.168.0.98:9300&#34;,&#34;192.168.0.156:9300&#34;]&#10;cluster.fault_detection.leader_check.interval: 15s&#10;discovery.cluster_formation_warning_timeout: 30s&#10;cluster.join.timeout: 120s&#10;cluster.publish.timeout: 90s&#10;cluster.routing.allocation.cluster_concurrent_rebalance: 32&#10;cluster.routing.allocation.node_concurrent_recoveries: 32&#10;cluster.routing.allocation.node_initial_primaries_recoveries: 32&#10;# ---------------------------------- xpack -----------------------------------&#10;xpack.security.enabled: true&#10;xpack.security.transport.ssl.enabled: true&#10;xpack.monitoring.collection.enabled: true&#10;xpack.security.transport.ssl.verification_mode: certificate&#10;xpack.security.transport.ssl.keystore.path: /etc/elasticsearch/certs/elastic-certificates.p12&#10;xpack.security.transport.ssl.truststore.path: /etc/elasticsearch/certs/elastic-certificates.p12&#10;xpack.security.http.ssl.enabled: true&#10;xpack.security.http.ssl.keystore.path: /etc/elasticsearch/certs/elastic-certificates.p12&#10;xpack.security.http.ssl.truststore.path: /etc/elasticsearch/certs/elastic-certificates.p12&#10;xpack.security.http.ssl.client_authentication: none&#10;xpack.security.http.ssl.verification_mode: certificate&#10;# ---------------------------------- Various -----------------------------------&#10;script.painless.regex.enabled: true&#10;indices.fielddata.cache.size:  25%&#10;thread_pool:&#10;    write:&#10;        size: 4&#10;        queue_size: 5000</span><br></pre></td></tr></table></figure>
+<h2 id="u5B89_u88C5Kibana"><a href="#u5B89_u88C5Kibana" class="headerlink" title="安装Kibana"></a>安装Kibana</h2><p>1、通过elastic-stack-ca.p12 CA给kibana颁发证书<br><figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/elasticsearch-certutil cert --ca \&#10;elastic-stack-ca.p12 \&#10;-name &#34;CN=kibana,OU=elk,DC=mydomain,DC=com&#34;&#10;ENTER&#10;kibana.p12 &#10;ENTER&#10;ENTER&#10;&#36716;&#25442;&#25104;&#20854;&#20182;&#26684;&#24335; &#19981;&#20351;&#29992;https&#21487;&#20197;&#19981;&#29992;&#10;openssl pkcs12 -in kibana.p12 -nocerts -nodes &#62; kibana.key&#10;openssl pkcs12 -in kibana.p12 -clcerts -nokeys  &#62; kibana.cer&#10;openssl pkcs12 -in kibana.p12 -cacerts -nokeys -chain &#62; kibana-ca.cer&#10;mkdir /etc/kibana/certs&#10;cp kibana* /etc/kibana/certs/&#10;chown kibana:kibana -R /etc/kibana/certs/</span><br></pre></td></tr></table></figure></p>
+<figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim config/kibana.yml &#10;  server.port: 5600&#10;  server.host: &#34;192.168.0.98&#34;&#10;  elasticsearch.hosts: [&#34;https://192.168.0.98:9200&#34;,&#34;https://192.168.0.98:9200&#34;,&#34;https://192.168.0.156:9200&#34;]&#10;  xpack.security.enabled: true&#10;  elasticsearch.ssl.certificateAuthorities: /etc/kibana/certs/kibana-ca.cer&#10;  elasticsearch.ssl.verificationMode: certificate&#10;  server.ssl.enabled: true&#10;  server.ssl.key: /etc/kibana/certs/kibana.key&#10;  server.ssl.certificate: /etc/kibana/certs/kibana.cer&#10;  server.ssl.certificateAuthorities: /etc/kibana/certs/kibana-ca.ce&#10;  elasticsearch.username: &#34;kibana&#34;&#10;  elasticsearch.password: &#34;xxxxx&#34;&#10;  #elasticsearch.ssl.verificationMode: none&#10;  elasticsearch.requestTimeout: 90000&#10;  i18n.locale: &#34;zh-CN&#34;</span><br></pre></td></tr></table></figure>
+<p>如果你不想将用户ID和密码放在kibana.yml文件中明文配置，可以将它们存储在密钥库中。运行以下命令以创建Kibana密钥库并添加配置：<br><figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/kibana-keystore create&#10;./bin/kibana-keystore add elasticsearch.username&#10;./bin/kibana-keystore add elasticsearch.password</span><br></pre></td></tr></table></figure></p>
+<h2 id="u542F_u7528X-pack_u5B89_u5168_u914D_u7F6ETLS_u548C_u8EAB_u4EFD_u9A8C_u8BC1"><a href="#u542F_u7528X-pack_u5B89_u5168_u914D_u7F6ETLS_u548C_u8EAB_u4EFD_u9A8C_u8BC1" class="headerlink" title="启用X-pack安全配置TLS和身份验证"></a>启用X-pack安全配置TLS和身份验证</h2><h3 id="u751F_u6210CA_u8BC1_u4E66"><a href="#u751F_u6210CA_u8BC1_u4E66" class="headerlink" title="生成CA证书"></a>生成CA证书</h3><p>开启安全模块后，节点间通讯需要配置TLS<br>生成CA证书 bin/elasticsearch-certutil ca，将产生新文件 elastic-stack-ca.p12<br>为集群中的每个节点生成证书和私钥 bin/elasticsearch-certutil cert –ca elastic-stack-ca.p12，将产生新文件 elastic-certificates.p12默认情况下 elasticsearch-certutil 生成没有主机名信息的证书，这意味着你可以将证书用于集群中的每个节点，另外要关闭主机名验证。<br>将 elastic-certificates.p12 文件复制到每个节点上Elasticsearch配置目录中<br><figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /etc/elasticsearch/certs/&#10;bin/elasticsearch-certutil ca --days  2920&#10;bin/elasticsearch-certutil cert --days 2920 --ca elastic-stack-ca.p12&#10;cp elastic-certificates.p12 /etc/elasticsearch/certs/&#10;chown -R elk:elk /etc/elasticsearch/certs</span><br></pre></td></tr></table></figure></p>
+<p>拷贝证书到所有节点下并赋予相关的权限<br>elasticsearch.yml末尾增加xpack相关配置<br><figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xpack.security.enabled: true&#10;xpack.security.transport.ssl.enabled: true&#10;xpack.security.transport.ssl.verification_mode: certificate&#10;xpack.security.transport.ssl.keystore.path: certs/elastic-certificates.p12&#10;xpack.security.transport.ssl.truststore.path: certs/elastic-certificates.p12&#10;xpack.security.http.ssl.enabled: true&#10;xpack.security.http.ssl.keystore.path: certs/elastic-certificates.p12&#10;xpack.security.http.ssl.truststore.path: certs/elastic-certificates.p12&#10;xpack.security.http.ssl.client_authentication: none</span><br></pre></td></tr></table></figure></p>
+<h3 id="u8BBE_u7F6E_u5185_u7F6E_u7528_u6237_u5BC6_u7801"><a href="#u8BBE_u7F6E_u5185_u7F6E_u7528_u6237_u5BC6_u7801" class="headerlink" title="设置内置用户密码"></a>设置内置用户密码</h3><p>启动集群初始化elastic,apm_system,kibana,logstash_system,beats_system,remote_monitoring_user用户的密码，请牢记！<br>bin/elasticsearch-setup-passwords auto 各用户生成随机密码。<br>bin/elasticsearch-setup-passwords interactive 手动定义密码<br><figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/elasticsearch-setup-passwords interactive</span><br></pre></td></tr></table></figure></p>
+<h2 id="Logstash_u90E8_u7F72"><a href="#Logstash_u90E8_u7F72" class="headerlink" title="Logstash部署"></a>Logstash部署</h2><p><a href="http://idcsec.com/wp-admin/post.php?post=165&amp;action=edit" target="_blank" rel="external">http://idcsec.com/wp-admin/post.php?post=165&amp;action=edit</a></p>
+<h2 id="kfaka_u90E8_u7F72"><a href="#kfaka_u90E8_u7F72" class="headerlink" title="kfaka部署"></a>kfaka部署</h2><h2 id="kubernetes_u90E8_u7F72fluent-bit"><a href="#kubernetes_u90E8_u7F72fluent-bit" class="headerlink" title="kubernetes部署fluent-bit"></a>kubernetes部署fluent-bit</h2><p>##<br>修改密码命令如下<br><figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;</span><br></pre></td></tr></table></figure></p>
+<p>ES 7中集群分片限制的默认值为每节点最大1000个，可以通过cluster.max_shards_per_node进行设置，例如：<br><figure class="hljs highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url -X PUT &#34;localhost:9200/_cluster/settings?pretty&#34; -H &#39;Content-Type: application/json&#39; -d&#39;&#10;&#123;&#10;  &#34;persistent&#34;: &#123;&#10;    &#34;cluster.max_shards_per_node&#34;: 100000&#10;  &#125;&#10;&#125;&#10;&#39;</span><br></pre></td></tr></table></figure></p>
+<p>7.x配置默认分片<br>index.number_of_shards： 7.X不支持<br>需要在template里面修改<br><figure class="hljs highlight"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#10;  &#34;order&#34;: 0,&#10;  &#34;version&#34;: 60001,&#10;  &#34;index_patterns&#34;: [&#10;    &#34;logstash-*&#34;&#10;  ],&#10;  &#34;settings&#34;: &#123;&#10;    &#34;index&#34;: &#123;&#10;      &#34;max_result_window&#34;: &#34;2147483647&#34;,&#10;      &#34;number_of_shards&#34;: &#34;5&#34;,    #&#22312;&#36825;&#37324;&#35774;&#32622;&#10;      &#34;refresh_interval&#34;: &#34;30s&#34;&#10;    &#125;&#10;  &#125;,&#10;  &#34;mappings&#34;: &#123;&#125;,&#10;  &#34;aliases&#34;: &#123;&#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/elk-elasticsearch/" rel="tag"><i class="fas fa-tags"></i>elk,elasticsearch</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2019/07/21/python-client通过token连接k8sAPI-cluster/" rel="next" title="python client通过token连接k8sAPI cluster"><i class="fas fa-angle-left"></i><span class="nav-title">python client通过token连接k8sAPI cluster</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+    </div>
+  </nav>
+  
+  
+  
+
+<div class="comments" id="comments">
+  
+  <script defer id="dsq-count-scr" src="//www.idcsec.com.disqus.com/count.js"></script>
+  
+  <div id="disqus_thread" class="disqus_thread"></div>
+  <script type="text/javascript">
+  var disqus_config = function () {
+    this.page.url = "http://www.idcsec.com/2020/01/09/ELK日志平台索引备份，迁移及恢复-ELK7-5-1集群部署/";
+    this.page.identifier = "2020/01/09/ELK日志平台索引备份，迁移及恢复-ELK7-5-1集群部署/";
+  };
+  (function() {
+    var d = document, s = d.createElement("script");
+    s.src = "https://www.idcsec.com.disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  
+  
+</div>
+
+
+
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/img/avatar.jpg" alt="Wang'T">
+  
+  <h1 class="author-name">Wang'T</h1>
+  <h2 class="author-description"></h2>
+  <div class="site-count">
+    
+    <div class="archives-count">
+      <div class="site-count-title">归档</div>
+      <div><a href="/archives/">87</a></div>
+    </div>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="categories-count">
+      <div class="site-count-title">分类</div>
+      <div><a href="/categories/">13</a></div>
+    </div>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="tags-count">
+      <div class="site-count-title">标签</div>
+      <div><a href="/tags/">43</a></div>
+    </div>
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目录</div>
+      <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#ELK_u96C6_u7FA4_u90E8_u7F72"><span class="toc-text">ELK集群部署</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#Elasticsearch_u96C6_u7FA4_u90E8_u7F72_u67B6_u6784"><span class="toc-text">Elasticsearch集群部署架构</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#u521D_u59CB_u5316_u73AF_u5883"><span class="toc-text">初始化环境</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#elasticsearch7-0_u914D_u7F6E_u6587_u4EF6_u8BE6_u89E3"><span class="toc-text">elasticsearch7.0配置文件详解</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#u8C03_u6574JVM_u5185_u5B58"><span class="toc-text">调整JVM内存</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#Master_u8282_u70B9elasticsearch-yml_u90E8_u7F72es-cluster-192-168-0-114"><span class="toc-text">Master节点elasticsearch.yml部署es-cluster-192-168-0-114</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#Master_u8282_u70B9elasticsearch-yml_u90E8_u7F72es-cluster-192-168-0-98"><span class="toc-text">Master节点elasticsearch.yml部署es-cluster-192-168-0-98</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#Master_u8282_u70B9elasticsearch-yml_u90E8_u7F72es-cluster-192-168-0-156"><span class="toc-text">Master节点elasticsearch.yml部署es-cluster-192-168-0-156</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#u5B89_u88C5Kibana"><span class="toc-text">安装Kibana</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#u542F_u7528X-pack_u5B89_u5168_u914D_u7F6ETLS_u548C_u8EAB_u4EFD_u9A8C_u8BC1"><span class="toc-text">启用X-pack安全配置TLS和身份验证</span></a><ol class="list-group toc-child"><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#u751F_u6210CA_u8BC1_u4E66"><span class="toc-text">生成CA证书</span></a></li><li class="toc-item toc-level-3"><a class="list-group-item toc-link" href="#u8BBE_u7F6E_u5185_u7F6E_u7528_u6237_u5BC6_u7801"><span class="toc-text">设置内置用户密码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#Logstash_u90E8_u7F72"><span class="toc-text">Logstash部署</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#kfaka_u90E8_u7F72"><span class="toc-text">kfaka部署</span></a></li><li class="toc-item toc-level-2"><a class="list-group-item toc-link" href="#kubernetes_u90E8_u7F72fluent-bit"><span class="toc-text">kubernetes部署fluent-bit</span></a></li></ol></li></ol></div>
+    </div>
+    
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接</p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:wang.t.nice@gmail.com" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="http://www.ytniu.com" target="_blank">Jixiang's Blog</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="http://idcsec.com" target="_blank">另外一个博客</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">Wang'T</span><span class="year"><i class="far fa-copyright"></i>2015 - 2020</span><span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">BY-NC-ND 4.0</a></span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>
